@@ -1,0 +1,8 @@
+**.pyc
+**.csv
+**.DS_Store
+*.idea/
+*.ipynb_checkpoints/
+*__pycache__/
+.spinnaker/generate
+db/database_dump_docker.sql
