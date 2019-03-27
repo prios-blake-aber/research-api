@@ -39,13 +39,14 @@ class GrammarCollection(object):
         return other.members.append(GrammarRelation(source=self, description=description))
 
     @property
-    def has_members(self):
-        return Counter([(i.entity.__class__.__name__, i.description) for i in self.members])
+    def describe(self):
+        return Counter([(i.source.__class__.__name__, i.description) for i in self.members])
 
 
 class GrammarObject(object):
     """Object in the Domain Grammar"""
     def __init__(self, implementation=None):
+        self.observations = []
         self.implementation = implementation
         self.timestamp = time.time()
 
@@ -62,8 +63,21 @@ class GrammarObject(object):
         else:
             raise ValueError('The bound method must be parameter-free and only reference bound attributes!')
 
+    def asserts(self, other, context, measure, value, confidence, description):
+        other.observations.append(GrammarAssertion(
+            source=self, context=context, measure=measure, value=value,
+            confidence=confidence, description=description
+        ))
+
     def is_member_of(self, other, description):
-        return other.members.append(GrammarRelation(source=self, description=description))
+        other.members.append(GrammarRelation(source=self, description=description))
+
+    @property
+    def describe(self):
+        return Counter([
+            (i.context.__class__.__name__,
+             i.measure.__class__.__name__,
+             i.description) for i in self.observations])
 
     @property
     def is_implemented(self):
