@@ -1,19 +1,53 @@
 
+import time
 from collections import Counter
+
+
+class GrammarAssertion(object):
+    """Assertion in the Domain Grammar"""
+    def __init__(self, source, context, measure, value, confidence, description):
+        self.source = source
+        self.context = context
+        self.measure = measure
+        self.value = value
+        self.confidence = confidence
+        self.description = description
+        self.timestamp = time.time()
 
 
 class GrammarRelation(object):
     """Relation in the Domain Grammar"""
-    def __init__(self, entity, description):
-        self.entity = entity
+    def __init__(self, source, description):
+        self.source = source
         self.description = description
+        self.timestamp = time.time()
+
+
+class GrammarCollection(object):
+    """Collection in the Domain Grammar"""
+    def __init__(self):
+        self.members = []
+        self.timestamp = time.time()
+
+    def __repr__(self):
+        return 'Name: {n}\nProvenance: {p}'.format(
+            n=self.__class__.__name__,
+            p=get_all_bases(self.__class__)
+        )
+
+    def is_member_of(self, other, description):
+        return other.members.append(GrammarRelation(source=self, description=description))
+
+    @property
+    def has_members(self):
+        return Counter([(i.entity.__class__.__name__, i.description) for i in self.members])
 
 
 class GrammarObject(object):
     """Object in the Domain Grammar"""
     def __init__(self, implementation=None):
-        self.members = []
         self.implementation = implementation
+        self.timestamp = time.time()
 
     def __repr__(self):
         return 'Name: {n}\nProvenance: {p}\nImplemented: {i}'.format(
@@ -29,15 +63,11 @@ class GrammarObject(object):
             raise ValueError('The bound method must be parameter-free and only reference bound attributes!')
 
     def is_member_of(self, other, description):
-        return other.members.append(GrammarRelation(entity=self, description=description))
+        return other.members.append(GrammarRelation(source=self, description=description))
 
     @property
     def is_implemented(self):
         return callable(self.implementation)
-
-    @property
-    def has_members(self):
-        return Counter([i.description for i in self.members])
 
 
 def get_all_bases(cls, bases=None):
@@ -46,6 +76,20 @@ def get_all_bases(cls, bases=None):
     for c in cls.__bases__:
         get_all_bases(c, bases)
     return ' -> '.join([i.__name__ for i in bases])
+
+
+def describe_entity(item, indent=''):
+    if isinstance(item, GrammarCollection):
+        print('{i}{x}'.format(i=indent, x=item.__class__.__name__))
+        for i in item.members:
+            describe_entity(i, indent='  {i}'.format(i=indent))
+    elif isinstance(item, GrammarRelation):
+        print('{i}{x}'.format(i=indent, x=(item.source.__class__.__name__, item.description)))
+        if getattr(item.source, 'members', None):
+            for i in item.source.members:
+                describe_entity(i, indent='  {i}'.format(i=indent))
+    else:
+        pass
 
 
 def create_new_object(name, base_class=GrammarObject, attributes=None):
@@ -58,17 +102,8 @@ def create_new_object(name, base_class=GrammarObject, attributes=None):
     return new_class
 
 
-def assign_predicate_to_context(functor_name, f, context):
-    try:
-        context_name = 'Method On A {x}'.format(x=context.__name__)
-        return GrammarObject(functor_name, context_name, f)
-    except:
-        raise ValueError('Registered Context must be in [Meeting, Question, Person, Dot]')
-
-
 def register_method_to_context(context):
     def registration(f):
-        method = assign_predicate_to_context(f.__name__, f, context)
-        return setattr(context, f.__name__, method.implementation) or method
+        return setattr(context, f.__name__, f)
 
     return registration
