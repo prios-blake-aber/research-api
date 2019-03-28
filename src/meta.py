@@ -45,14 +45,18 @@ class GrammarCollection(object):
 
 class GrammarObject(object):
     """Object in the Domain Grammar"""
-    def __init__(self, implementation=None):
-        self.observations = []
+    def __init__(self, name='GrammarObject', description='Object in the Domain Grammar', implementation=None):
+        self.__name = name
+        self.__description = description
         self.implementation = implementation
+
+        self.observations = []
         self.timestamp = time.time()
 
     def __repr__(self):
-        return 'Name: {n}\nProvenance: {p}\nImplemented: {i}'.format(
-            n=self.__class__.__name__,
+        return 'Name: {n}\nDescription: {d}\nProvenance: {p}\nImplemented: {i}'.format(
+            n=self.__name,
+            d=self.__description,
             p=get_all_bases(self.__class__),
             i=self.is_implemented
         )
@@ -118,6 +122,14 @@ def create_new_object(name, base_class=GrammarObject, attributes=None):
 
 def register_method_to_context(context):
     def registration(f):
-        return setattr(context, f.__name__, f)
+        function_name = f.__name__
+        function_description = f.__doc__
+        method = GrammarObject(name=function_name, description=function_description, implementation=f)
+        return setattr(context, function_name, method.implementation) or method
 
     return registration
+
+
+def add_metaclasses_to_domain(configuration):
+    for name, base_class in configuration:
+        globals()[name] = create_new_object(name=name, base_class=globals()[base_class])
