@@ -26,7 +26,7 @@ class GrammarRelation(object):
 class GrammarCollection(object):
     """Collection in the Domain Grammar"""
     def __init__(self):
-        self.members = []
+        self._members = []
         self.timestamp = time.time()
 
     def __repr__(self):
@@ -36,27 +36,26 @@ class GrammarCollection(object):
         )
 
     def is_member_of(self, other, description):
-        return other.members.append(GrammarRelation(source=self, description=description))
+        return other._members.append(GrammarRelation(source=self, description=description))
 
     @property
     def describe(self):
-        return Counter([(i.source.__class__.__name__, i.description) for i in self.members])
+        return Counter([(i.source.__class__.__name__, i.description) for i in self._members])
 
 
 class GrammarObject(object):
     """Object in the Domain Grammar"""
     def __init__(self, name='GrammarObject', description='Object in the Domain Grammar', implementation=None):
-        self.__name = name
-        self.__description = description
+        self._name = name
+        self._members = []
+        self._description = description
         self.implementation = implementation
-
-        self.observations = []
         self.timestamp = time.time()
 
     def __repr__(self):
         return 'Name: {n}\nDescription: {d}\nProvenance: {p}\nImplemented: {i}'.format(
-            n=self.__name,
-            d=self.__description,
+            n=self._name,
+            d=self._description,
             p=get_all_bases(self.__class__),
             i=self.is_implemented
         )
@@ -68,20 +67,20 @@ class GrammarObject(object):
             raise ValueError('The bound method must be parameter-free and only reference bound attributes!')
 
     def asserts(self, other, context, measure, value, confidence, description):
-        other.observations.append(GrammarAssertion(
+        other._members.append(GrammarAssertion(
             source=self, context=context, measure=measure, value=value,
             confidence=confidence, description=description
         ))
 
     def is_member_of(self, other, description):
-        other.members.append(GrammarRelation(source=self, description=description))
+        other._members.append(GrammarRelation(source=self, description=description))
 
     @property
     def describe(self):
         return Counter([
             (i.context.__class__.__name__,
              i.measure.__class__.__name__,
-             i.description) for i in self.observations])
+             i.description) for i in self._members])
 
     @property
     def is_implemented(self):
@@ -99,12 +98,12 @@ def get_all_bases(cls, bases=None):
 def describe_entity(item, indent=''):
     if isinstance(item, GrammarCollection):
         print('{i}{x}'.format(i=indent, x=item.__class__.__name__))
-        for i in item.members:
+        for i in item._members:
             describe_entity(i, indent='  {i}'.format(i=indent))
     elif isinstance(item, GrammarRelation):
         print('{i}{x}'.format(i=indent, x=(item.source.__class__.__name__, item.description)))
-        if getattr(item.source, 'members', None):
-            for i in item.source.members:
+        if getattr(item.source, '_members', None):
+            for i in item.source._members:
                 describe_entity(i, indent='  {i}'.format(i=indent))
     else:
         pass
