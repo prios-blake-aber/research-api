@@ -56,7 +56,7 @@ def primary_actions_157(x: objects.Meeting):
 
 def primary_participants_in_meeting_138(x: objects.Meeting):
     """
-    OUTPUT: Person
+    OUTPUT: AssertionSet
     INPUT: Dots
     CONTEXT: Meeting
     INSIGHT: Activity
