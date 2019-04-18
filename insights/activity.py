@@ -70,35 +70,3 @@ def primary_participants_in_meeting_138(x: objects.Meeting):
          * Determines whether a Person received more than 10% of Dots and more than 10 Dots in a Meeting
     """
     pass
-
-
-def expected_view_on_action_165(x: objects.Meeting):
-    """
-    OUTPUT: AssertionSet
-    INPUT: All-Stream
-    CONTEXT: Meeting
-    INSIGHT: Synthesis
-    PROCESSING: Context-Only
-
-    * Defines the "Expected View" of a Person performing an Action in a Meeting based on the Person’s All-Stream scores for the Attributes associated with that Action.
-    * Returns a Scale Value representing their All Stream Action Value.
-    * Returns Null if the Person is missing All Stream Values for every Attribute associated with the Meeting Tracker Action.
-    """
-    pass
-
-
-def overall_view_on_action_160(x: objects.Meeting):
-    """
-    OUTPUT: AssertionSet
-    INPUT: Dots
-    CONTEXT: Meeting
-    INSIGHT: Synthesis
-    PROCESSING: Context-Only
-
-    * Defines the Overall View of an Action in a Meeting as the [Weighted Dots Mean](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186) of all Dots associated with that Action - that is, all Dots received by a Subject on the Attributes associated with the Meeting Tracker Action.
-    * Returns a Scale Value representing the Overall View of an Action in a Meeting.
-    * Returns Null if called with an empty list - i.e. if no Meeting Participants have authored Dots to the Subject on Attributes associated with the Action.
-    * This is produced by the following operation(s):
-        * Calculates the Overall View of the Dots given to a Subject on Attributes associated with a Meeting Tracker Action using the [Weighted Dots Mean](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186) method.
-    """
-    pass

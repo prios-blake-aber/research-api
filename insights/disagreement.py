@@ -1,6 +1,13 @@
 
 from src import objects
 
+"""
+Polarizing - ? (extreme form of nubbiness)
+Divisiveness - ?
+Nubbiness
+Consensus
+"""
+
 
 def is_polarizing_141(x: objects.AssertionSet):
     """
