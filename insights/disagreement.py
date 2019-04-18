@@ -309,89 +309,83 @@ def nubby_question_147(x: objects.Question):
     pass
 
 
-def percent_chance_responder_is_wrong_pop-up_144(x: objects.Question
+def percent_chance_responder_is_wrong_popup_144(x: objects.Question):
+    """
+    OUTPUT: Person
+    INPUT: Responses
+    CONTEXT: Question
+    INSIGHT: Disagreement
+    PROCESSING: Comparing [Person vs. Believable]
 
-):
-"""
-OUTPUT: Person
-INPUT: Responses
-CONTEXT: Question
-INSIGHT: Disagreement
-PROCESSING: Comparing [Person vs. Believable]
-
-* Notifies People who [disagree](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167) with the [Believable Choice](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130) on a Question. It also informs them of the percentage of the [Believability](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16)-weighted vote going to the Believable Choice.
-* Returns a mapping of each Person to a Statistic, which represents their Percent Chance of Being Wrong.
-* Returns a mapping of each Person to zero if any of the following conditions are True:
-    * There is no Believable Choice Response.
-    * People who Respond do not have Sufficient Believability.
-    * No Person disagrees with the Believable Choice.
-* This is produced by the following operation(s):
-    * Calculates the Total Participant Believability as the sum of the [Believability](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) of every Person in a Meeting Section and the Total Response Believability as the sum of the Believability of every Person who responded to the Question.
-    * Calculates the Response Believability Ratio as the ratio of the Total Response Believability to the Total Participant Believability.
-    * Determines whether there is Sufficient Believability in Responses if the following are both true:
-        * The Response Believability Ratio is greater than 0.8.
-        * The Total Participant Believability is greater than 0.
-    * Calculates the [Believable Choice](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130).
-    * Determines whether each Person [Disagrees With](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167) the Believable Choice.
-    * Determines whether a "Person is Wrong" by assessing if both conditions below are both True:
-        * There exists Sufficient Believability.
-        * The Person Disagrees with the Believable Choice.
-    * Defines a Person's Believability Adjustment Factor as:
-        * A small fixed positive quantity if a Person's Believability is greater than zero.
-        * Zero if a Person's Believability equals zero.
-    * Defines the Adjusted Believability for each Person as the sum of each Person's Believability and Believability Adjustment Factor.
-    * Calculates the "Adjusted Believability in Agreement with the Believable Choice" as the sum of Adjusted Believability of People who agree with the Believable Choice.
-    * Calculates the "Total Adjusted Believability" as the sum of Adjusted Believability of all People.
-    * Calculates the Percent Chance of Being Wrong as the minimum of the following two quantities:
-        * Ratio of "Adjusted Believability in Agreement with Believable Choice" to the "Total Adjusted Believability".
-        * A transformation of Total Adjusted Believability to a value between 0.5 and 1.
-    * Maps the following quantities to each Person depending on whether the "Person is Wrong":
-        * "Percent Chance of Being Wrong" if "Person is Wrong" is True.
-        * Zero if "Person is Wrong" is False.
-"""
-pass
+    * Notifies People who [disagree](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167) with the [Believable Choice](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130) on a Question. It also informs them of the percentage of the [Believability](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16)-weighted vote going to the Believable Choice.
+    * Returns a mapping of each Person to a Statistic, which represents their Percent Chance of Being Wrong.
+    * Returns a mapping of each Person to zero if any of the following conditions are True:
+        * There is no Believable Choice Response.
+        * People who Respond do not have Sufficient Believability.
+        * No Person disagrees with the Believable Choice.
+    * This is produced by the following operation(s):
+        * Calculates the Total Participant Believability as the sum of the [Believability](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) of every Person in a Meeting Section and the Total Response Believability as the sum of the Believability of every Person who responded to the Question.
+        * Calculates the Response Believability Ratio as the ratio of the Total Response Believability to the Total Participant Believability.
+        * Determines whether there is Sufficient Believability in Responses if the following are both true:
+            * The Response Believability Ratio is greater than 0.8.
+            * The Total Participant Believability is greater than 0.
+        * Calculates the [Believable Choice](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130).
+        * Determines whether each Person [Disagrees With](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167) the Believable Choice.
+        * Determines whether a "Person is Wrong" by assessing if both conditions below are both True:
+            * There exists Sufficient Believability.
+            * The Person Disagrees with the Believable Choice.
+        * Defines a Person's Believability Adjustment Factor as:
+            * A small fixed positive quantity if a Person's Believability is greater than zero.
+            * Zero if a Person's Believability equals zero.
+        * Defines the Adjusted Believability for each Person as the sum of each Person's Believability and Believability Adjustment Factor.
+        * Calculates the "Adjusted Believability in Agreement with the Believable Choice" as the sum of Adjusted Believability of People who agree with the Believable Choice.
+        * Calculates the "Total Adjusted Believability" as the sum of Adjusted Believability of all People.
+        * Calculates the Percent Chance of Being Wrong as the minimum of the following two quantities:
+            * Ratio of "Adjusted Believability in Agreement with Believable Choice" to the "Total Adjusted Believability".
+            * A transformation of Total Adjusted Believability to a value between 0.5 and 1.
+        * Maps the following quantities to each Person depending on whether the "Person is Wrong":
+            * "Percent Chance of Being Wrong" if "Person is Wrong" is True.
+            * Zero if "Person is Wrong" is False.
+    """
+    pass
 
 
-def not_perceiving_problems_pop-up_47(x: objects.Meeting
+def not_perceiving_problems_popup_47(x: objects.Meeting):
+    """
+    OUTPUT: Person
+    INPUT: Dots
+    CONTEXT: Meeting
+    INSIGHT: Activity, Disagreement
+    PROCESSING: Comparing [Person vs. Overall]
 
-):
-"""
-OUTPUT: Person
-INPUT: Dots
-CONTEXT: Meeting
-INSIGHT: Activity, Disagreement
-PROCESSING: Comparing [Person vs. Overall]
-
-* Notifies a Person who hasn't given any negative Dots in a Meeting Section despite the majority of other Participants giving negative feedback.
-* Returns a List of Meeting Section Participants who are Not Perceiving Problems.
-* Returns an empty List if:
- * Fewer than 5 Meeting Section Participants gave Negative Dots
- * Half or fewer of Meeting Section Participants gave Negative Dots
- * All Meeting Section Participants gave Negative Dots
-* This is produced by the following operation(s):
-    * Determines whether a majority of Meeting Section Participants gave Negative Dots:
-     * Selects Meeting Section Participants who gave Negative Dots.
-     * Determines whether more than half of the Meeting Section Participants gave Negative Dots.
-    * Determines whether there are at least 5 Meeting Section Participants who gave Negative Dots.
-    * Selects Meeting Section Participants who have not given a Negative Dot in the Meeting Section if the two previous conditions are True.
-"""
-pass
+    * Notifies a Person who hasn't given any negative Dots in a Meeting Section despite the majority of other Participants giving negative feedback.
+    * Returns a List of Meeting Section Participants who are Not Perceiving Problems.
+    * Returns an empty List if:
+     * Fewer than 5 Meeting Section Participants gave Negative Dots
+     * Half or fewer of Meeting Section Participants gave Negative Dots
+     * All Meeting Section Participants gave Negative Dots
+    * This is produced by the following operation(s):
+        * Determines whether a majority of Meeting Section Participants gave Negative Dots:
+         * Selects Meeting Section Participants who gave Negative Dots.
+         * Determines whether more than half of the Meeting Section Participants gave Negative Dots.
+        * Determines whether there are at least 5 Meeting Section Participants who gave Negative Dots.
+        * Selects Meeting Section Participants who have not given a Negative Dot in the Meeting Section if the two previous conditions are True.
+    """
+    pass
 
 
-def question_nubbiness_pop-up_49(x: objects.Meeting
+def question_nubbiness_popup_49(x: objects.Meeting):
+    """
+    OUTPUT: Question
+    INPUT: Responses
+    CONTEXT: Meeting
+    INSIGHT: Disagreement
+    PROCESSING: Context-Only
 
-):
-"""
-OUTPUT: Question
-INPUT: Responses
-CONTEXT: Meeting
-INSIGHT: Disagreement
-PROCESSING: Context-Only
-
-* Notifies the Responsible Party and Navigator for a Meeting when a [Question is Nubby](https://blakea-analytics-registry.dev.principled.io/detail?analytic=147) and a [Quorum Exists](https://blakea-analytics-registry.dev.principled.io/detail?analytic=145).
-* Returns a Boolean representing Question Nubbiness Pop-Up.
-"""
-pass
+    * Notifies the Responsible Party and Navigator for a Meeting when a [Question is Nubby](https://blakea-analytics-registry.dev.principled.io/detail?analytic=147) and a [Quorum Exists](https://blakea-analytics-registry.dev.principled.io/detail?analytic=145).
+    * Returns a Boolean representing Question Nubbiness Pop-Up.
+    """
+    pass
 
 
 def out_of_sync_people_on_question_41(x: objects.Question):
