@@ -1,4 +1,5 @@
 
+import time
 from enum import Enum
 
 
@@ -49,6 +50,7 @@ class Entity(object):
         3) This class is expected to act as a MixIn for Domain Objects
     """
     def __init__(self, allowable_attributes=None, allowable_collections=None, **kwargs):
+        self.created_at = time.time()
         defined_attributes = set(kwargs.keys())
         expected_attributes = set(allowable_attributes)
         expected_collections = set(allowable_collections.keys())
@@ -65,6 +67,11 @@ class Entity(object):
             else:
                 self._add_collection(kw)
             self._instantiate_collection_functions(kw, allowable_collections)
+
+    def _update_created_at(self, timestamp):
+        """Update the entity timestamp (Not recommended for ad hoc use)"""
+        assert isinstance(timestamp, float) and timestamp <= time.time(), "Timestamp must be Unix timestamp!"
+        setattr(self, 'created_at', timestamp)
 
     def _add_collection(self, attribute, list_of_entities=None):
         """Add a new collection as an attribute (Not recommended for ad hoc use)"""
@@ -114,24 +121,44 @@ class Assertion(object):
         self.context = context
         self.description = description
         self.confidence = confidence
+        self.created_at = time.time()
 
 
-class Dot(Assertion):
+class Judgement(Assertion):
+    """Judgement"""
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+
+class Comparison(Assertion):
+    """Judgement"""
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+
+class Dot(Judgement):
     """Dot"""
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
 
-class Ranking(Assertion):
+class Ranking(Judgement):
     """Ranking"""
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
 
-class Response(Assertion):
+class Response(Judgement):
     """Response"""
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+
+class AssertionSet(Entity):
+    """AssertionSet (Useful for Logic"""
+    def __init__(self, **kwargs):
+        _allowable_collections = {'members': Assertion}
+        super().__init__(allowable_collections=_allowable_collections, **kwargs)
 
 
 class Question(Entity):
