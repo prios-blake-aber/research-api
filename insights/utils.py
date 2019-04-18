@@ -275,3 +275,37 @@ def dot_score_relative_to_population_27(x: objects.Meeting):
         * Calculates Dot Score Relative to the Population by subtracting the results of the previous two steps.
     """
     pass
+
+
+def capped_author_weights_171(x: objects.AssertionSet):
+    """
+    OUTPUT: Assertion
+    INPUT: AssertionSet
+    CONTEXT: AssertionSet
+    INSIGHT: Normalization
+    PROCESSING: Context-Only
+
+    * Calculates weights to apply to [cap](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=173) all observations from a particular Author, based on a set of Dots.
+    * Returns a Statistic between 0 and 1 representing the Capped Author Weight.
+    * This is produced by the following operation(s):
+        * Calculates a count of the Dots by the Author.
+        * Calculates a [Capped Weight](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=173) based on the count.
+    """
+    pass
+
+
+def capping_173(x: objects.AssertionSet):
+    """
+    OUTPUT: Assertion
+    INPUT: AssertionSet
+    CONTEXT: AssertionSet
+    INSIGHT: Normalization
+    PROCESSING: Context-Only
+
+    * Defines the Capped Weight as the weight given each observation by a single label from a set of labeled observations, based on a parameterized asymptotic upper bound on the maximum impact any label can have, denominated in terms of number of observations.
+    * Returns a Statistic between 0 and 1 representing a Capped Weight.
+    * This is produced by the following operation(s):
+        * Calculates (counts) the number of observations associated with the particular label.
+        * Calculates the Capped Weight by applying an asymptotic capping function to the number of observations. The Capped Weight is always equal to 1 when there's one observation, and as the number of observations N increases beyond the upper bound, the Capped Weight converges to approximately 1 / N.
+    """
+    pass
