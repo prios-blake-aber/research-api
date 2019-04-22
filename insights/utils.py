@@ -177,8 +177,8 @@ def stream_population_summary_140(x: objects.AssertionSet):
     * Returns empty elements in a Population Summary in cases where input data for an individual Stream is Null
     * This is produced by the following operation(s):
         * Calculates the following statistics to calculate the Cumulative Distribution:
-         * Calculates a list of strictly increasing values
-         * Calculates a list of the corresponding proportions of values less than or equal to that value
+            * Calculates a list of strictly increasing values
+            * Calculates a list of the corresponding proportions of values less than or equal to that value
         * Maps the Count, Average, Variance, and Cumulative Distribution of each stream into a list of Population Summaries
     """
     pass

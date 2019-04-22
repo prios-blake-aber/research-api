@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>insights.activity &#8212; DomainAPI 0.0.1 documentation</title>
+    <title>core.utils &#8212; DomainAPI 0.0.1 documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -32,66 +32,17 @@
 
           <div class="body" role="main">
             
-  <h1>Source code for insights.activity</h1><div class="highlight"><pre>
+  <h1>Source code for core.utils</h1><div class="highlight"><pre>
 <span></span>
 <span class="kn">from</span> <span class="nn">src</span> <span class="k">import</span> <span class="n">objects</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Core functionality for Activity</span>
-<span class="sd">&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="actions_in_meeting_156"><a class="viewcode-back" href="../../insights.html#insights.activity.actions_in_meeting_156">[docs]</a><span class="k">def</span> <span class="nf">actions_in_meeting_156</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+<div class="viewcode-block" id="group_assertions_by_criteria"><a class="viewcode-back" href="../../core.html#core.utils.group_assertions_by_criteria">[docs]</a><span class="k">def</span> <span class="nf">group_assertions_by_criteria</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: AssertionSet</span>
-<span class="sd">    INPUT: Dots</span>
-<span class="sd">    CONTEXT: Meeting</span>
-<span class="sd">    INSIGHT: Activity</span>
-<span class="sd">    PROCESSING: Context-Only</span>
+<span class="sd">    TODO: Define generalization for grouping summary data</span>
 
-<span class="sd">    * Selects Meeting Tracker Actions performed by Subjects in Meeting Sections by inspecting the Dots given.</span>
-<span class="sd">    * Returns a List representing of all Actions which Have Occurred, where each list item is a Subject and Action pair.</span>
-<span class="sd">    * Returns Null if no Actions have occurred.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * A Subject is deemed to have performed a Meeting Tracker Action during a Meeting Section if he or she received Dots on any of the Attributes defined as Required Attributes of the Action.  Determines which, if any, Meeting Tracker Actions occurred in a Meeting Section by checking the Dots given to each Subject against the list of Required Attributes for each Meeting Tracker Action.</span>
-<span class="sd">        * Selects unique Subject and Action pairs matching the previous condition.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="primary_actions_157"><a class="viewcode-back" href="../../insights.html#insights.activity.primary_actions_157">[docs]</a><span class="k">def</span> <span class="nf">primary_actions_157</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: AssertionSet</span>
-<span class="sd">    INPUT: Dots</span>
-<span class="sd">    CONTEXT: Meeting</span>
-<span class="sd">    INSIGHT: Activity</span>
-<span class="sd">    PROCESSING: Context-Only</span>
-
-<span class="sd">    * Selects the Actions that are considered Primary in a Meeting, based on their [Relevance scores](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=158).</span>
-<span class="sd">    * Returns a list of Actions from a Meeting that are considered Primary.</span>
-<span class="sd">    * Returns an empty list if there were no Actions in the Meeting.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Assumes the list of Participants is already sorted by total number of Dots received (on Attributes associated with each Participant’s Actions).</span>
-<span class="sd">        * Maps each Participant with Actions in the Meeting to a list of their Actions.</span>
-<span class="sd">        * Sorts each Participant’s list of Actions by the [Relevance score](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=158).</span>
-<span class="sd">        * Selects up to a configurable maximum number of Primary Actions, choosing the next most relevant action from each Participant in a round robin fashion.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="primary_participants_in_meeting_138"><a class="viewcode-back" href="../../insights.html#insights.activity.primary_participants_in_meeting_138">[docs]</a><span class="k">def</span> <span class="nf">primary_participants_in_meeting_138</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: AssertionSet</span>
-<span class="sd">    INPUT: Dots</span>
-<span class="sd">    CONTEXT: Meeting</span>
-<span class="sd">    INSIGHT: Activity</span>
-<span class="sd">    PROCESSING: Comparing [Person vs. Overall]</span>
-
-<span class="sd">    * Identifies whether a Person received more than 20% of Dots (or more than 10% of Dots if they receive at least 10 Dots) during a Meeting</span>
-<span class="sd">    * Returns a boolean representing whether a Person is a Primary Participant in a Meeting.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Determines whether a Person is a Primary Participant in a Meeting if either of the following conditions are true:</span>
-<span class="sd">        * Determines whether a Person received more than 20% of Dots in a Meeting</span>
-<span class="sd">        * Determines whether a Person received more than 10% of Dots and more than 10 Dots in a Meeting</span>
+<span class="sd">    This function is a catch-all for the multiple grouping</span>
+<span class="sd">    functions that exist for summaries</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 </pre></div>

@@ -1,0 +1,1205 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Core Functionality &#8212; DomainAPI 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="core-functionality">
+<h1><a class="toc-backref" href="#id1">Core Functionality</a><a class="headerlink" href="#core-functionality" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#core-functionality" id="id1">Core Functionality</a></li>
+<li><a class="reference internal" href="#module-core.activity" id="id2">Activity</a></li>
+<li><a class="reference internal" href="#module-core.contribution" id="id3">Contribution</a></li>
+<li><a class="reference internal" href="#module-core.disagreement" id="id4">Disagreement</a></li>
+<li><a class="reference internal" href="#module-core.interaction" id="id5">Interaction</a></li>
+<li><a class="reference internal" href="#module-core.sentiment" id="id6">Sentiment</a></li>
+<li><a class="reference internal" href="#module-core.uniqueness" id="id7">Uniqueness</a></li>
+<li><a class="reference internal" href="#module-core.utils" id="id8">Utilities</a></li>
+<li><a class="reference internal" href="#indices-and-tables" id="id9">Indices and tables</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-core.activity">
+<span id="activity"></span><h1><a class="toc-backref" href="#id2">Activity</a><a class="headerlink" href="#module-core.activity" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="core.activity.action_relevance_158">
+<code class="descclassname">core.activity.</code><code class="descname">action_relevance_158</code><span class="sig-paren">(</span><em>x: src.objects.Meeting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/activity.html#action_relevance_158"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.activity.action_relevance_158" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: AssertionSet
+INPUT: Dots
+CONTEXT: Meeting
+INSIGHT: Sentiment
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Defines a “Relevance” score for the Meeting Tracker Actions that were found to have occurred in a Meeting Section (see: [Actions in Meeting](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=156">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=156</a>)) as a function of the number of of relevant Dots given.</li>
+<li>Returns a Dictionary mapping [Actions in a Meeting](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/detail?analytic=156">https://blakea-analytics-registry.dev.principled.io/detail?analytic=156</a>) (Subject-Action pairs) to Relevance scores.</li>
+<li>Returns Null if no Actions occurred in the Meeting.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Selects Dots from the Meeting Section associated with each Action that occurred (relevant to the Subject-Action pair).</li>
+<li>Calculates a “Relevance” score for each Action in a Meeting by counting the Dots given to the Subject on Attributes associated with the Action. Required Attributes count for twice as much</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.activity.attention_participant_received_155">
+<code class="descclassname">core.activity.</code><code class="descname">attention_participant_received_155</code><span class="sig-paren">(</span><em>x: src.objects.Meeting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/activity.html#attention_participant_received_155"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.activity.attention_participant_received_155" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Person
+INPUT: Dots
+CONTEXT: Meeting
+INSIGHT: Activity
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Calculates the total number of Dots one Person received in a Poll Section</li>
+<li>Returns a Statistic representing the Attention received by a Person</li>
+</ul>
+</dd></dl>
+
+</div>
+<div class="section" id="module-core.contribution">
+<span id="contribution"></span><h1><a class="toc-backref" href="#id3">Contribution</a><a class="headerlink" href="#module-core.contribution" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="core.contribution.all_stream_1">
+<code class="descclassname">core.contribution.</code><code class="descname">all_stream_1</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/contribution.html#all_stream_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.contribution.all_stream_1" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: AssertionSet
+INPUT: Streams
+CONTEXT: AssertionSet
+INSIGHT: Synthesis
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Estimates a Person’s score on an Attribute based on the average of scores for that Attribute for the Streams (Dots Aggregation, Tests, and Ranking Aggregation) on which they have a value.</li>
+<li>Returns a list representing the number of entity events on the Attribute and a Person’s All Stream Score.</li>
+<li>Returns Null if a Person does not have scores for any of the Streams (Dots Aggregation, Tests, and Ranking Aggregation).</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Calculates the sum of the entity events (individual Dots, Rankings, and Test Score) that comprise the Dot Aggregation, Ranking Aggregation, and Tests Streams on the Attribute.</li>
+<li>Calculates the average of a Person’s scores on Dots Aggregation, Tests, and Ranking Aggregation excluding Streams on which a Person does not have a score.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.contribution.attribute_believability_193">
+<code class="descclassname">core.contribution.</code><code class="descname">attribute_believability_193</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/contribution.html#attribute_believability_193"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.contribution.attribute_believability_193" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: AssertionSet
+INPUT: All-Stream
+CONTEXT: AssertionSet
+INSIGHT: Believability
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Defines “Attribute Believability” as the weight a Person’s opinion should receive, relative to others, on matters pertaining to that Attribute based on their All Stream score for that Attribute.</li>
+<li>Returns a number from 0-1 representing Attribute Believability.</li>
+<li>Returns Null if the Person does not have an [All Stream](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=1">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=1</a>) score on the Attribute.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Determines whether the Person has at least 10 events (individual Dots, Rankings, and Test Scores) on the Attribute.</li>
+<li>Maps the Person’s [All Stream](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=1">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=1</a>) score on the Attribute to a score between 0-1 if the previous condition was True.</li>
+<li>Calculates the square of the result from the previous step which represents the Person’s Attribute Believability weight.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.contribution.dots_aggregation_5">
+<code class="descclassname">core.contribution.</code><code class="descname">dots_aggregation_5</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/contribution.html#dots_aggregation_5"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.contribution.dots_aggregation_5" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: AssertionSet
+INPUT: Dots
+CONTEXT: AssertionSet
+INSIGHT: Synthesis
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Estimates the probable lower bound of a Person’s Dots score, taking into account both the score of Dots received as well as the number.</li>
+<li>Returns a Statistic between 0-1 that represents the minimum fraction of positive ratings a Person has received with 95% confidence, or, a Person’s Lower Bound [Wilson Score](<a class="reference external" href="https://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval#Wilson_score_interval">https://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval#Wilson_score_interval</a>).</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Determines whether a Person has received at least one Dot on an Attribute.</li>
+<li>Calculates the lower bound Wilson Score if the previous condition was True.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.contribution.general_believability_192">
+<code class="descclassname">core.contribution.</code><code class="descname">general_believability_192</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/contribution.html#general_believability_192"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.contribution.general_believability_192" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: AssertionSet
+INPUT: All-Stream
+CONTEXT: AssertionSet
+INSIGHT: Believability
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Defines “General Believability” as the weight a Person’s opinion should receive on general matters based on their [All Stream](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=1">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=1</a>) scores for a selected set of Attributes.</li>
+<li>Returns a Statistic, a number from 0-1, that represents General Believability.</li>
+<li>Returns Null if a Person has no All Stream score for any of the Attributes the client has configured to contribute to General Believability (client configuration information can be found [in the appendix](<a class="reference external" href="https://docs.google.com/document/d/1RafxVjqFCjkOLLx7cClbRsJLIuOjxSY2zvKuK-A_qgE/edit#heading=h.hj4e45f2b8hb">https://docs.google.com/document/d/1RafxVjqFCjkOLLx7cClbRsJLIuOjxSY2zvKuK-A_qgE/edit#heading=h.hj4e45f2b8hb</a>)) or if the Person does not have at least 10 events total between Dots, Rankings, and Tests on the Attributes that contribute to General Believability.</li>
+<li>This is produced by the following operation(s):
+* Maps the Person’s [All Stream](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=1">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=1</a>) scores on the Attributes to scores between 0-1.<ul>
+<li>Determines whether the Person has a score on at least one Attribute that contributes to General Believability.</li>
+<li>Determines whether the Person has at least 10 events (individual Dots, Rankings, and Test Scores) on the Attributes that contribute to General Believability.</li>
+<li>Calculates a weighted average of the All Stream scores with weights specified by clients for how much an Attribute should contribute to General Believability if the previous two conditions were true. If weights are unspecified, defaults to an equal-weighted average. If an Attribute does not have an All Stream score, it is excluded from the average.</li>
+<li>Calculates the square of the previous step.</li>
+</ul>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.contribution.ranking_aggregation_9">
+<code class="descclassname">core.contribution.</code><code class="descname">ranking_aggregation_9</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/contribution.html#ranking_aggregation_9"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.contribution.ranking_aggregation_9" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: AssertionSet
+INPUT: Rankings
+CONTEXT: AssertionSet
+INSIGHT: Synthesis
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Estimates a Person’s score on an Attribute based on the average of their Rankings received on that Attribute.</li>
+<li>Returns a list including a Scale Value representing a Ranking Aggregation score and an integer representing the number of Rankings a Person has received.</li>
+<li>Returns Null if a Person has fewer than 10 Rankings.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Determines if a Person has at least 10 Rankings.</li>
+<li>Calculates the count of Rankings a Person has received on that Attribute.</li>
+<li>Calculates the average of all Rankings if the previous condition is True.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</div>
+<div class="section" id="module-core.disagreement">
+<span id="disagreement"></span><h1><a class="toc-backref" href="#id4">Disagreement</a><a class="headerlink" href="#module-core.disagreement" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="core.disagreement.disagrees_with_167">
+<code class="descclassname">core.disagreement.</code><code class="descname">disagrees_with_167</code><span class="sig-paren">(</span><em>x: src.objects.Question</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/disagreement.html#disagrees_with_167"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.disagreement.disagrees_with_167" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Response
+INPUT: Responses
+CONTEXT: Question
+INSIGHT: Disagreement
+PROCESSING: Comparing [Collections of People]</p>
+<ul class="simple">
+<li>Defines “Disagreement” between two opinions on a Question. Two opinions disagree when they are classified into different [groups](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/detail?analytic=168">https://blakea-analytics-registry.dev.principled.io/detail?analytic=168</a>) and, if they are Question Responses with Likert or Scale Values, also have a difference greater than a configurable threshold (with a default value of 1.7).</li>
+<li>Returns a Boolean representing whether two opinions Disagrees With one another.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Determines whether two opinions disagree as:</dt>
+<dd><ul class="first last">
+<li>For Categorical or Yes/No opinions: the two opinions are different.</li>
+<li><dl class="first docutils">
+<dt>For Likert or Scale Value opinions:</dt>
+<dd><ul class="first last">
+<li>Determines whether the two opinions are Far Away: Compares whether the difference is greater than a configurable threshold value (default value of 1.7).</li>
+<li>Maps each opinion to a Summarized Opinions (Negative, Neutral, or Positive).</li>
+<li>Determines whether the Summarized Opinions Disagree: Determines whether their values are different.</li>
+<li>Determines whether the two opinions are Far Away and their Summarized Opinions Disagree.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.disagreement.divisiveness_179">
+<code class="descclassname">core.disagreement.</code><code class="descname">divisiveness_179</code><span class="sig-paren">(</span><em>x: src.objects.Question</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/disagreement.html#divisiveness_179"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.disagreement.divisiveness_179" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Response
+INPUT: Responses
+CONTEXT: Question
+INSIGHT: Disagreement
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Defines Divisiveness as the standard deviation of Summarized Opinions reflected in Meeting Question responses.</li>
+<li>Returns a Statistic representing Divisiveness.</li>
+<li><dl class="first docutils">
+<dt>Returns Null in the following cases:</dt>
+<dd><ul class="first last">
+<li>Fewer than two People respond to a Question.</li>
+<li>The Question has Categorical Responses.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Maps opinions to [Summarized Opinions](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/detail?analytic=168">https://blakea-analytics-registry.dev.principled.io/detail?analytic=168</a>).</li>
+<li>Calculates the standard deviation of the Summarized Opinions.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.disagreement.is_polarizing_141">
+<code class="descclassname">core.disagreement.</code><code class="descname">is_polarizing_141</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/disagreement.html#is_polarizing_141"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.disagreement.is_polarizing_141" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Person
+INPUT: Dots
+CONTEXT: AssertionSet
+INSIGHT: Disagreement
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Identifies a Polarizing event when Scale Values on a Person are spread out and there exist comparable numbers of positive (8 and above) and negative (4 and below) Scale Values</li>
+<li>Returns a boolean</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Calculates the standard deviation of Scale Values</li>
+<li><dl class="first docutils">
+<dt>Calculates the Bucketed Standard Deviation of Scale Values:</dt>
+<dd><ul class="first last">
+<li>Maps the Scale Values to their Summarized Opinion</li>
+<li>Calculates the standard deviation</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Calculates the Relative Incidence Ratio of positive/negative Scale Values</dt>
+<dd><ul class="first last">
+<li>Calculates the numerator as the minimum count of positive/negative Scale Values</li>
+<li>Calculates the Denominator as the maximum count of positive/negative Scale Values</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Combines the following conditions to determine whether the Scale Values are polarizing:</dt>
+<dd><ul class="first last">
+<li>Calculates the standard deviation of Scale Values is greater than 0.5</li>
+<li>Calculates the Bucketed Standard Deviation of Scale Values is greater than 1.0</li>
+<li>Calculates the Relative Incidence Ratio of positive/negative Scale Values is greater than 0.25</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</div>
+<div class="section" id="module-core.interaction">
+<span id="interaction"></span><h1><a class="toc-backref" href="#id5">Interaction</a><a class="headerlink" href="#module-core.interaction" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="core.interaction.believable_and_overall_meeting_section_quality_disagree_143">
+<code class="descclassname">core.interaction.</code><code class="descname">believable_and_overall_meeting_section_quality_disagree_143</code><span class="sig-paren">(</span><em>x: src.objects.Question</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/interaction.html#believable_and_overall_meeting_section_quality_disagree_143"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.interaction.believable_and_overall_meeting_section_quality_disagree_143" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Response
+INPUT: Responses
+CONTEXT: Question
+INSIGHT: Disagreement
+PROCESSING: Comparing [Believable vs. Overall]</p>
+<ul class="simple">
+<li>Identifies whether the [Believable Meeting Section Quality](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=123">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=123</a>) [Substantially Disagrees](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129</a>) with the [Meeting Section Quality](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=124">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=124</a>), based Question Responses to “Rate the Section”.</li>
+<li>Returns a Boolean representing whether the [Believable Meeting Section Quality](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=123">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=123</a>) [Substantially Disagrees](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129</a>) with the [Meeting Section Quality](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=124">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=124</a>)</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Calculates the [Believable Meeting Section Quality](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=123">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=123</a>) from “Rate the Section” Question Responses and Authors’ Believability scores.</li>
+<li>Calculates the [Meeting Section Quality](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=124">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=124</a>) from “Rate the Section” Question Responses.</li>
+<li>Tests for Substantial Disagreement between the [Believable Meeting Section Quality](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=123">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=123</a>) and the [Meeting Section Quality](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=124">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=124</a>) using the [Substantial Disagreement](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129</a>) library function.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.interaction.believable_and_overall_meeting_section_sentiment_disagree_119">
+<code class="descclassname">core.interaction.</code><code class="descname">believable_and_overall_meeting_section_sentiment_disagree_119</code><span class="sig-paren">(</span><em>x: src.objects.Meeting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/interaction.html#believable_and_overall_meeting_section_sentiment_disagree_119"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.interaction.believable_and_overall_meeting_section_sentiment_disagree_119" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Meeting
+INPUT: Dots
+CONTEXT: Meeting
+INSIGHT: Sentiment, Disagreement
+PROCESSING: Comparing [Believable vs. Overall]</p>
+<ul class="simple">
+<li>Identifies Meetings in which the [Believable Meeting Section Sentiment](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=116">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=116</a>) [Substantively Disagrees](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129</a>) with the [Overall Meeting Section Sentiment](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/detail?writeup=117">https://blakea-analytics-registry.dev.principled.io/detail?writeup=117</a>).</li>
+<li>Returns a Boolean representing whether the Believable and Overall Meeting Section Sentiment Disagree.</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.interaction.believable_sentiment_disagrees_with_overall_sentiment_142">
+<code class="descclassname">core.interaction.</code><code class="descname">believable_sentiment_disagrees_with_overall_sentiment_142</code><span class="sig-paren">(</span><em>x: src.objects.Meeting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/interaction.html#believable_sentiment_disagrees_with_overall_sentiment_142"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.interaction.believable_sentiment_disagrees_with_overall_sentiment_142" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Person
+INPUT: Dots
+CONTEXT: Meeting
+INSIGHT: Disagreement
+PROCESSING: Comparing [Believable vs. Overall]</p>
+<ul class="simple">
+<li>Identifies Notable Poll Section Participants on which there was [Substantive Disagreement](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129</a>) between the Believable View and the Overall View.</li>
+<li>Returns a Boolean representing the above.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Assumes that all Poll Section Dots on a Participant who was found to have performed Notably [Well](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=126">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=126</a>) / [Poorly](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=127">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=127</a>) have been passed in.</li>
+<li>Calculates the Believable View using the [Weighted Dots Mean method](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186</a>) and passing in the Believability scores of the Dot Authors.</li>
+<li>Calculates the Overall View using the [Weighted Dots Mean method](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186</a>)</li>
+<li>Determines whether there is Substantive Disagreement between the two Views using the [Substantive Disagreement library method](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129</a>)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.interaction.believable_view_disagrees_with_overall_view_on_action_162">
+<code class="descclassname">core.interaction.</code><code class="descname">believable_view_disagrees_with_overall_view_on_action_162</code><span class="sig-paren">(</span><em>x: src.objects.Meeting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/interaction.html#believable_view_disagrees_with_overall_view_on_action_162"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.interaction.believable_view_disagrees_with_overall_view_on_action_162" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: AssertionSet
+INPUT: Dots
+CONTEXT: Meeting
+INSIGHT: Disagreement
+PROCESSING: Comparing [Believable vs. Overall]</p>
+<ul class="simple">
+<li>Identifies Actions in Meetings about which there is [Substantive Disagreement](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129</a>) between the [Overall View](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=117">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=117</a>) and the [Believable View](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=116">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=116</a>).</li>
+<li>Returns a Boolean representing the above.</li>
+<li>This is produced by the following operation(s):
+* Compares the [Overall View](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=117">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=117</a>) to the [Believable View](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=116">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=116</a>) using the [Substantive Disagreement](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129</a>) library method.</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.interaction.meeting_section_quality_is_polarizing_125">
+<code class="descclassname">core.interaction.</code><code class="descname">meeting_section_quality_is_polarizing_125</code><span class="sig-paren">(</span><em>x: src.objects.Question</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/interaction.html#meeting_section_quality_is_polarizing_125"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.interaction.meeting_section_quality_is_polarizing_125" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Meeting
+INPUT: Responses
+CONTEXT: Question
+INSIGHT: Disagreement
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Identifies whether Rankings of a Meeting Section’s usefulness are [Polarizing](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=141">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=141</a>) based on “Rate the Section” Responses.</li>
+<li>Returns a Boolean representing whether Question Responses to “Rate the Section” are [Polarizing](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=141">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=141</a>).</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Tests whether the “Rate the Section” Question Responses in a Meeting Section are Polarizing using the [Polarizing](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=141">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=141</a>) library function.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.interaction.negative_dot_on_a_better_subject_popup_46">
+<code class="descclassname">core.interaction.</code><code class="descname">negative_dot_on_a_better_subject_popup_46</code><span class="sig-paren">(</span><em>x: src.objects.Meeting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/interaction.html#negative_dot_on_a_better_subject_popup_46"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.interaction.negative_dot_on_a_better_subject_popup_46" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Person
+INPUT: Dots
+CONTEXT: Meeting
+INSIGHT: Disagreement
+PROCESSING: Comparing [Dots vs. All-Stream]</p>
+<ul class="simple">
+<li>Notifies a Person when they give Negative Dots in a Meeting to a Subject with an All-Stream score substantially higher than their own on the Attribute in question (difference in percentiles &gt; 40%).</li>
+<li>Returns a Boolean representing whether a Person gave a Negative Dot to a Subject who is Better than them.</li>
+<li>Returns Null if a Person does not have an All Stream score on that Attribute.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Calculates the difference in the Subject and Author’s All Stream percentiles on the Attribute.</li>
+<li>Determines whether the difference in the Subject and Author’s All Stream percentiles on the Attribute is greater than 40%.</li>
+<li>Determines whether a Subject gave a Negative Dot (&lt;5).</li>
+<li>Determines whether there is Sufficient Confidence (at least 1.2) associated with the Author and Subject’s All Stream scores using [Stream Population Summary Confidence](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=140">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=140</a>) for that Attribute.</li>
+<li>Combines the previous 3 conditions.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</div>
+<div class="section" id="module-core.sentiment">
+<span id="sentiment"></span><h1><a class="toc-backref" href="#id6">Sentiment</a><a class="headerlink" href="#module-core.sentiment" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="core.sentiment.action_relevance_158">
+<code class="descclassname">core.sentiment.</code><code class="descname">action_relevance_158</code><span class="sig-paren">(</span><em>x: src.objects.Meeting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/sentiment.html#action_relevance_158"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.sentiment.action_relevance_158" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: AssertionSet
+INPUT: Dots
+CONTEXT: Meeting
+INSIGHT: Sentiment
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Defines a “Relevance” score for the Meeting Tracker Actions that were found to have occurred in a Meeting Section (see: [Actions in Meeting](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=156">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=156</a>)) as a function of the number of of relevant Dots given.</li>
+<li>Returns a Dictionary mapping [Actions in a Meeting](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/detail?analytic=156">https://blakea-analytics-registry.dev.principled.io/detail?analytic=156</a>) (Subject-Action pairs) to Relevance scores.</li>
+<li>Returns Null if no Actions occurred in the Meeting.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Selects Dots from the Meeting Section associated with each Action that occurred (relevant to the Subject-Action pair).</li>
+<li>Calculates a “Relevance” score for each Action in a Meeting by counting the Dots given to the Subject on Attributes associated with the Action. Required Attributes count for twice as much</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.sentiment.author_opinions_on_actions_115">
+<code class="descclassname">core.sentiment.</code><code class="descname">author_opinions_on_actions_115</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/sentiment.html#author_opinions_on_actions_115"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.sentiment.author_opinions_on_actions_115" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: AssertionSet
+INPUT: Dots
+CONTEXT: AssertionSet
+INSIGHT: Grouping
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Groups the Dots of each Author in a Meeting by the Actions (a Meeting Tracker Action and the Subject who performed it) which which they are associated.</li>
+<li><dl class="first docutils">
+<dt>Returns a list of Author Opinions on Actions, which consist of the following:</dt>
+<dd><ul class="first last">
+<li>The Author of the Opinions</li>
+<li>The Subject of the Opinions</li>
+<li>The Meeting Tracker Action in Question</li>
+<li>A list of the Dots from the Author to the Subject on Attributes associated with the Action</li>
+<li>A list of all Dots from any Meeting Participant to the Subject on Attributes associated with the Action</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>Returns an empty list if no Actions were identified in the Meeting.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Maps Actions in a Meeting (Subject, Action pairs) to a list of the associated Meeting Dots.</li>
+<li>For each Action, Maps the contributing Authors to their Dots on that Action.</li>
+<li>Maps each Author of a Dot contributing to any of the Actions identified in the Meeting to the collection of information listed above.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.sentiment.author_view_on_action_152">
+<code class="descclassname">core.sentiment.</code><code class="descname">author_view_on_action_152</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/sentiment.html#author_view_on_action_152"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.sentiment.author_view_on_action_152" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: AssertionSet
+INPUT: Dots
+CONTEXT: AssertionSet
+INSIGHT: Grouping
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Defines an Author’s view on how a Meeting Tracker Action was performed by a Subject as the average of the Dots that Author gave to the Subject on Attributes associated with the  Action.</li>
+<li>Returns a Scale Value representing an Author’s view on how a Subject performed a Meeting Tracker Action.</li>
+<li>Returns Null if called with an empty list - i.e. if the Person hasn’t authored any Dots to the Subject on Attribute associated with the Action.</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.sentiment.believable_choice_130">
+<code class="descclassname">core.sentiment.</code><code class="descname">believable_choice_130</code><span class="sig-paren">(</span><em>x: src.objects.Question</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/sentiment.html#believable_choice_130"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.sentiment.believable_choice_130" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Response
+INPUT: Believability
+CONTEXT: Question
+INSIGHT: Consensus
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Defines “Believable Choice” as the [Believability](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16)-weighted">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16)-weighted</a> majority opinion on a Question Response.</li>
+<li>Returns the value representing the Believable Choice.</li>
+<li><dl class="first docutils">
+<dt>Returns Null if:</dt>
+<dd><ul class="first last">
+<li>every Person responding to a Question has zero believability OR</li>
+<li>for Categorical Responses, there is no choice receiving more than 70% of the believability-weighted vote.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Calculates Total Believability: Calculates the sum of the Believability of all People who respond to a Question.</li>
+<li><dl class="first docutils">
+<dt>Determines the Believable Choice based on type of Response.</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>For Categorical or Yes/No Responses:</dt>
+<dd><ul class="first last">
+<li>Calculates Response Believability for each Response: Calculates the sum of the Believability of People who give the same Response.</li>
+<li>Calculates the ratio of Response Believability to Total Believability for each Response.</li>
+<li>Determines whether the ratio above for any Response is greater than 0.70.</li>
+<li>Selects the Response for which the above condition is True, if one exists. Returns Null otherwise.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>For 1-to-10 or 1-to-5 scale Responses:</dt>
+<dd><ul class="first last">
+<li>Calculates [believability](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16)-weighted">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16)-weighted</a> average of responses.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.sentiment.believable_meeting_section_quality_123">
+<code class="descclassname">core.sentiment.</code><code class="descname">believable_meeting_section_quality_123</code><span class="sig-paren">(</span><em>x: src.objects.Question</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/sentiment.html#believable_meeting_section_quality_123"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.sentiment.believable_meeting_section_quality_123" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Response
+INPUT: Believability
+CONTEXT: Question
+INSIGHT: Sentiment
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Defines “Believable Meeting Section Quality” as the [Believability-weighted](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16</a>) average of Rankings reflected in Question Responses to “Rate the Section”.</li>
+<li>Returns a Scale Value representing the [Believable](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16</a>) Meeting Section Quality.</li>
+<li>Returns Null if there are no “Rate the Section” Questions or Responses.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Maps [Believability](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16</a>) to 0.01 for people who don’t have that Score.</li>
+<li>Calculates the [Believability-weighted](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16</a>) average of all Question Responses to  “Rate the Section”.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.sentiment.believable_meeting_section_sentiment_116">
+<code class="descclassname">core.sentiment.</code><code class="descname">believable_meeting_section_sentiment_116</code><span class="sig-paren">(</span><em>x: src.objects.Meeting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/sentiment.html#believable_meeting_section_sentiment_116"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.sentiment.believable_meeting_section_sentiment_116" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Meeting
+INPUT: Believability
+CONTEXT: Meeting
+INSIGHT: Sentiment
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Defines “Believable Meeting Section Sentiment” as the [Believable Dots Summary](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186</a>) of all Dots in a Meeting.</li>
+<li>Returns a Scale Value representing the Believable Meeting Section Sentiment.</li>
+<li>Returns Null if there are no Dots in the Meeting.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Calculates the Believability-Weighted Author-Capped Dot Average: Combines Dot values with a weighted average, using the product of the Author’s [Believability](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=14">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=14</a>) and [Capped Author Weights](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=171">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=171</a>) as weights.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.sentiment.believable_view_on_action_159">
+<code class="descclassname">core.sentiment.</code><code class="descname">believable_view_on_action_159</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/sentiment.html#believable_view_on_action_159"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.sentiment.believable_view_on_action_159" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Person
+INPUT: Believability
+CONTEXT: AssertionSet
+INSIGHT: Believability
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Defines the Believable View of an Action in a Meeting as the [Believability-Weighted Dots Mean](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186</a>) of all Dots associated with that Action - that is, all Dots received by a Subject on the Attributes associated with the Meeting Tracker Action.</li>
+<li>Returns a Scale Value representing the Believable View of an Action.</li>
+<li>Returns Null if called with an empty list - i.e. if no Meeting Participants have authored Dots to the Subject on Attributes associated with the Action.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Calculates the Believable View of the Dots given to a Subject on Attributes associated with a Meeting Tracker Action using the [Believability-Weighted Dots Mean](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186</a>) method and passing in the Believability scores of the Dot Authors.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.sentiment.dotted_notably_poorly_in_meeting_127">
+<code class="descclassname">core.sentiment.</code><code class="descname">dotted_notably_poorly_in_meeting_127</code><span class="sig-paren">(</span><em>x: src.objects.Meeting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/sentiment.html#dotted_notably_poorly_in_meeting_127"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.sentiment.dotted_notably_poorly_in_meeting_127" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Person
+INPUT: Dots
+CONTEXT: Meeting
+INSIGHT: Sentiment
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Identifies whether a given Subject across all Attributes receives a Negative [believability-weighted](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16</a>) Dot average and no Positive Dots in a Meeting Section.</li>
+<li>Returns a Boolean representing whether a Person was Dotted Notably Poorly in a Meeting across all Attributes in a Meeting Section.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Calculates the [believability-weighted](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16</a>) mean of all Dots across all Attributes in a Meeting section.</li>
+<li>Determines whether the [believability-weighted](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16</a>) Attribute Dot mean is Negative.</li>
+<li>Determines whether there are no Positive Dots.</li>
+<li>Determines whether both of the previous conditions are True.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.sentiment.dotted_notably_well_in_meeting_126">
+<code class="descclassname">core.sentiment.</code><code class="descname">dotted_notably_well_in_meeting_126</code><span class="sig-paren">(</span><em>x: src.objects.Meeting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/sentiment.html#dotted_notably_well_in_meeting_126"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.sentiment.dotted_notably_well_in_meeting_126" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Person
+INPUT: Dots
+CONTEXT: Meeting
+INSIGHT: Sentiment
+PROCESSING: Context-Only</p>
+<ul>
+<li><p class="first">Identifies whether a given Subject across all Attributes receives a Very Positive (&gt;8) [Believability-weighted](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16</a>) Dot average and no Negative Dots in a Meeting Section.</p>
+</li>
+<li><p class="first">Returns a Boolean representing whether a Person was Dotted Notably Well in a Meeting across All Attributes in a Meeting Section.</p>
+</li>
+<li><p class="first">This is produced by the following operation(s):</p>
+<blockquote>
+<div><ul class="simple">
+<li>Calculates the [Believability-weighted](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16</a>) mean of all Dots across all Attributes in a Meeting Section.</li>
+<li>Determines whether the [Believability-weighted](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16</a>) Dot mean is Very Positive (&gt;8).</li>
+<li>Determines whether there are no Negative Dots.</li>
+<li>Determines whether both of the previous conditions are True.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.sentiment.expected_view_on_action_165">
+<code class="descclassname">core.sentiment.</code><code class="descname">expected_view_on_action_165</code><span class="sig-paren">(</span><em>x: src.objects.Meeting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/sentiment.html#expected_view_on_action_165"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.sentiment.expected_view_on_action_165" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: AssertionSet
+INPUT: All-Stream
+CONTEXT: Meeting
+INSIGHT: Synthesis
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Defines the “Expected View” of a Person performing an Action in a Meeting based on the Person’s All-Stream scores for the Attributes associated with that Action.</li>
+<li>Returns a Scale Value representing their All Stream Action Value.</li>
+<li>Returns Null if the Person is missing All Stream Values for every Attribute associated with the Meeting Tracker Action.</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.sentiment.frequent_negatively_dotted_attributes_31">
+<code class="descclassname">core.sentiment.</code><code class="descname">frequent_negatively_dotted_attributes_31</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/sentiment.html#frequent_negatively_dotted_attributes_31"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.sentiment.frequent_negatively_dotted_attributes_31" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: AssertionSet
+INPUT: Dots
+CONTEXT: AssertionSet
+INSIGHT: Sentiment
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Selects up to 3 weakest Attributes from those on which a Person has 10 or more Dots averaging 5.5 or less.</li>
+<li>Returns a List of up to 3 Attributes that represent a Person’s Frequent Negatively Dotted Actions.</li>
+<li>Returns an empty list if a Person has not received more than 10 Dots on any single Attribute or if they don’t have any Attributes with an average Dot value less than 5.5.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Determines if a Person has received at least 10 Dots on an Attribute.</li>
+<li>Calculates the average of all Dots received on the Attributes from the previous step.</li>
+<li>Determines if any Attributes’ averages from the previous step are less than 5.5.</li>
+<li>Selects top 3 Attributes from an ascending sorted list of Attributes based on the averages from the previous step (if ties exist, they are broken arbitrarily).</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.sentiment.frequent_positively_dotted_attributes_30">
+<code class="descclassname">core.sentiment.</code><code class="descname">frequent_positively_dotted_attributes_30</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/sentiment.html#frequent_positively_dotted_attributes_30"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.sentiment.frequent_positively_dotted_attributes_30" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: AssertionSet
+INPUT: Dots
+CONTEXT: AssertionSet
+INSIGHT: Sentiment
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Selects up to 3 highest rated Attributes from those on which a Person has 10 or more Dots averaging 6.5 or better.</li>
+<li>Returns a List of up to 3 Attributes that represent a Person’s Frequent Positively Dotted Actions.</li>
+<li>Returns an empty list if a Person has not received more than 10 Dots on any single Attribute or if they don’t have any Attributes with an average Dot value greater than 6.5.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Determines if a Person has received at least 10 Dots on an Attribute.</li>
+<li>Calculates the average of all Dots received on the Attributes from the previous step.</li>
+<li>Determines if any Attributes’ averages from the previous step exceed 6.5.</li>
+<li>Selects top 3 Attributes from a descending sorted list of Attributes based on the averages from the previous step (if ties exist, they are broken arbitrarily).</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.sentiment.meeting_section_importance_34">
+<code class="descclassname">core.sentiment.</code><code class="descname">meeting_section_importance_34</code><span class="sig-paren">(</span><em>x: src.objects.Meeting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/sentiment.html#meeting_section_importance_34"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.sentiment.meeting_section_importance_34" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Meeting
+INPUT: nan
+CONTEXT: Meeting
+INSIGHT: Sentiment
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Classifies Meeting Sections as Critical, Very Important, Important, Typical, or Unremarkable based on the number of Important People in the Meeting Section and the number of generated Dots and Questions.</li>
+<li>Returns a Statistic between 0-1 that represents the classification of a Meeting Section’s Importance.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Calculates a Person Importance Value for each Participant based on their General Believability, and if provided, job level and whether they belong to particular Management Groups (job level and membership to management groups are not currently provided in the pilot). Defaults to zero.</li>
+<li>Calculates the Important People Scaling Factor: calculates how many People had nonzero Person Importance (capped at 4).</li>
+<li>Calculates the Activity Scaling Factor: calculates a statistic representing how much activity occurred in the Meeting Section based on Dots and Questions and achieves its maximum value at 100 Dots or 10 Questions.</li>
+<li>Calculates the Dot Scaling Factor, which is a function of how many Dots were given in a Meeting Section and achieves its maximum value at 20 Dots.</li>
+<li>Calculates the Total Importance: calculates the sum of all Meeting Section Participants’ Person Importance.</li>
+<li>Calculates the overall Meeting Section Importance Value: calculates the product of the Total Importance and the three Scaling Factors above.</li>
+<li>Determines which classification the Meeting Section Importance Value receives and returns the associated text label (Critical, Very Important, Important, Typical, or Unremarkable).</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>To produce a result at the Meeting level (as opposed to Meeting Section Level), there is code living in the application which labels a Meeting based on the results from this analytic for the first Meeting Section only.</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.sentiment.negatively_dotted_attributes_in_meeting_121">
+<code class="descclassname">core.sentiment.</code><code class="descname">negatively_dotted_attributes_in_meeting_121</code><span class="sig-paren">(</span><em>x: src.objects.Meeting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/sentiment.html#negatively_dotted_attributes_in_meeting_121"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.sentiment.negatively_dotted_attributes_in_meeting_121" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: AssertionSet
+INPUT: Dots
+CONTEXT: Meeting
+INSIGHT: Sentiment
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Identifies Attributes on which a Subject received Negative Dots in a Meeting.</li>
+<li>Returns a List of Attributes representing the Negatively Dotted Attributes in Meeting for a Participant.</li>
+<li>Returns an empty list if there are no Negative Dots.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Determines whether each Dot was Negative.</li>
+<li>Selects the list of Attributes that had at least one Negative Dot.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.sentiment.overall_meeting_section_quality_124">
+<code class="descclassname">core.sentiment.</code><code class="descname">overall_meeting_section_quality_124</code><span class="sig-paren">(</span><em>x: src.objects.Question</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/sentiment.html#overall_meeting_section_quality_124"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.sentiment.overall_meeting_section_quality_124" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Meeting
+INPUT: Responses
+CONTEXT: Question
+INSIGHT: Sentiment
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Defines “Meeting Section Quality” as the average of Rankings reflected in Question Responses to “Rate the Section”.</li>
+<li>Returns a Scale Value representing the Meeting Section Quality.</li>
+<li>Returns Null if there are no “Rate the Section” Questions or Responses.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Calculates the average of all Question Responses to “Rate the Section”.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.sentiment.overall_meeting_section_sentiment_117">
+<code class="descclassname">core.sentiment.</code><code class="descname">overall_meeting_section_sentiment_117</code><span class="sig-paren">(</span><em>x: src.objects.Meeting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/sentiment.html#overall_meeting_section_sentiment_117"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.sentiment.overall_meeting_section_sentiment_117" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Meeting
+INPUT: Dots
+CONTEXT: Meeting
+INSIGHT: Sentiment
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Defines “Overall Meeting Section Sentiment” as the [Dots Summary](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186</a>) of all Dots in a Meeting.</li>
+<li>Returns a Scale Value representing Overall Meeting Section Sentiment.</li>
+<li>Returns Null if there are no Dots in the Poll.</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.sentiment.overall_view_on_action_160">
+<code class="descclassname">core.sentiment.</code><code class="descname">overall_view_on_action_160</code><span class="sig-paren">(</span><em>x: src.objects.Meeting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/sentiment.html#overall_view_on_action_160"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.sentiment.overall_view_on_action_160" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: AssertionSet
+INPUT: Dots
+CONTEXT: Meeting
+INSIGHT: Synthesis
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Defines the Overall View of an Action in a Meeting as the [Weighted Dots Mean](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186</a>) of all Dots associated with that Action - that is, all Dots received by a Subject on the Attributes associated with the Meeting Tracker Action.</li>
+<li>Returns a Scale Value representing the Overall View of an Action in a Meeting.</li>
+<li>Returns Null if called with an empty list - i.e. if no Meeting Participants have authored Dots to the Subject on Attributes associated with the Action.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Calculates the Overall View of the Dots given to a Subject on Attributes associated with a Meeting Tracker Action using the [Weighted Dots Mean](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186</a>) method.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.sentiment.positively_dotted_attributes_in_meeting_120">
+<code class="descclassname">core.sentiment.</code><code class="descname">positively_dotted_attributes_in_meeting_120</code><span class="sig-paren">(</span><em>x: src.objects.Meeting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/sentiment.html#positively_dotted_attributes_in_meeting_120"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.sentiment.positively_dotted_attributes_in_meeting_120" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: AssertionSet
+INPUT: Dots
+CONTEXT: Meeting
+INSIGHT: Sentiment
+PROCESSING: Context-Only</p>
+<ul class="simple">
+<li>Identifies Attributes on which a Subject received Positive Dots in a Meeting.</li>
+<li>Returns a List of Attributes representing Positively Dotted Attributes in Meeting.</li>
+<li>Returns an empty list if there are no Positive Dots.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Determines whether each Dot was Positive.</li>
+<li>Selects Attributes that had at least one Positive Dot.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</div>
+<div class="section" id="module-core.uniqueness">
+<span id="uniqueness"></span><h1><a class="toc-backref" href="#id7">Uniqueness</a><a class="headerlink" href="#module-core.uniqueness" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="core.uniqueness.author_disagrees_with_believable_view_on_action_153">
+<code class="descclassname">core.uniqueness.</code><code class="descname">author_disagrees_with_believable_view_on_action_153</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/uniqueness.html#author_disagrees_with_believable_view_on_action_153"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.uniqueness.author_disagrees_with_believable_view_on_action_153" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Person
+INPUT: Dots
+CONTEXT: AssertionSet
+INSIGHT: Disagreement
+PROCESSING: Comparing [Person vs. Believable]</p>
+<ul class="simple">
+<li>Identifies when an Author’s View of an Action in a Meeting [Substantively Disagrees](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129</a>) with the Believable View.</li>
+<li>Returns a Boolean indicating the above.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Compares the Author’s View to the Believable View using the [Substantive Disagreement](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129</a>) library method</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.uniqueness.author_disagrees_with_overall_view_on_action_154">
+<code class="descclassname">core.uniqueness.</code><code class="descname">author_disagrees_with_overall_view_on_action_154</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/uniqueness.html#author_disagrees_with_overall_view_on_action_154"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.uniqueness.author_disagrees_with_overall_view_on_action_154" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Person
+INPUT: Dots
+CONTEXT: AssertionSet
+INSIGHT: Disagreement
+PROCESSING: Comparing [Person vs. Overall]</p>
+<ul class="simple">
+<li>Identifies when an Author’s View of an Action in a Meeting [Substantively Disagrees](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129</a>) with the [Overall View](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=160">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=160</a>).</li>
+<li>Returns a Boolean indicating the above.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Compares the Author’s View to the [Overall View](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=160">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=160</a>) using the [Substantive Disagreement](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129</a>) library function.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.uniqueness.disagreeing_dotters_higher_than_average_111">
+<code class="descclassname">core.uniqueness.</code><code class="descname">disagreeing_dotters_higher_than_average_111</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/uniqueness.html#disagreeing_dotters_higher_than_average_111"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.uniqueness.disagreeing_dotters_higher_than_average_111" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Person
+INPUT: Dots
+CONTEXT: AssertionSet
+INSIGHT: Disagreement
+PROCESSING: Comparing [Person vs. Overall]</p>
+<ul class="simple">
+<li>Identifies Authors whose average opinion of a Subject across all Attributes is one of the five highest of all Authors, and is at least 2.0 more than the average Dot the Subject received.</li>
+<li>Returns a list of People that represent Disagreeing Dotters (Higher Than Average).</li>
+<li>Returns an empty list if the Subject hasn’t received any Dot Ratings or if no Dot Authors meet the criteria below.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Calculates the average of all Dot Ratings that the Subject receives and the average of each Author’s Dot Ratings of the Subject.</li>
+<li>Determines whether each Author’s average Dot Rating exceeds the average of all Dot Ratings that the Subject receives by at least 2.0.</li>
+<li>Determines whether each Author’s Dot Rating average is among the five highest of all Authors’ average Dot Ratings of the Subject.</li>
+<li>Selects the Authors for which the previous two conditions are both True.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.uniqueness.disagreeing_dotters_lower_than_average_24">
+<code class="descclassname">core.uniqueness.</code><code class="descname">disagreeing_dotters_lower_than_average_24</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/uniqueness.html#disagreeing_dotters_lower_than_average_24"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.uniqueness.disagreeing_dotters_lower_than_average_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Person
+INPUT: Dots
+CONTEXT: AssertionSet
+INSIGHT: Disagreement
+PROCESSING: Comparing [Person vs. Overall]</p>
+<ul class="simple">
+<li>Identifies Authors whose average opinion of a Subject across all Attributes is one of the five lowest of all Authors, and is at least 2.0 less than the average Dot the Subject received.</li>
+<li>Returns a list of People that represent Disagreeing Dotters (Lower Than Average).</li>
+<li>Returns an empty list if the Subject hasn’t received any Dot Ratings or if no Dot Authors meet the criteria below.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Calculates the average of all Dot Ratings that the Subject receives and the average of each Author’s Dot Ratings of the Subject.</li>
+<li>Determines whether each Author’s average Dot Rating is 2.0 or lower than the average of all Dot Ratings that the Subject receives.</li>
+<li>Determines whether each Author’s Dot Rating average is among the five lowest of all Authors’ average Dot Ratings of the Subject.</li>
+<li>Selects the Authors for which the previous two conditions are both True.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.uniqueness.significantly_out_of_sync_people_on_question_114">
+<code class="descclassname">core.uniqueness.</code><code class="descname">significantly_out_of_sync_people_on_question_114</code><span class="sig-paren">(</span><em>x: src.objects.Meeting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/uniqueness.html#significantly_out_of_sync_people_on_question_114"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.uniqueness.significantly_out_of_sync_people_on_question_114" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Person
+INPUT: Responses
+CONTEXT: Meeting
+INSIGHT: Disagreement
+PROCESSING: Comparing [Person vs. Believable]</p>
+<ul class="simple">
+<li>Identifies People who disagree with the believable choice on substantially more questions than others during a Meeting.</li>
+<li>Returns List of People representing those who are Significantly Out of Sync People on Question.</li>
+<li>Returns an empty List if no Person in the Meeting Section satisfies conditions below.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Calculates the count of questions on which each Person was [Out of Sync with the Believable Consensus](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=41">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=41</a>).</li>
+<li>Calculates Z-scores of the counts over all People in a Meeting Section.</li>
+<li><dl class="first docutils">
+<dt>Determines whether each Person was Notable: Combines the following conditions:</dt>
+<dd><ul class="first last">
+<li>Determines whether a Person is a [Primary Meeting Participant](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=138">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=138</a>).</li>
+<li>Determines whether a Person’s [Believability](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16</a>) is greater than zero.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Determines whether a Person is Significantly Out of Sync: Combines the following conditions:</dt>
+<dd><ul class="first last">
+<li>A Person is Notable and their Z-score is greater than the Notable threshold (0.67).</li>
+<li>A Person is Not Notable and their Z-score is greater than the General threshold (1.28).</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>Selects People who are Significantly Out of Sync.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.uniqueness.unexpected_action_163">
+<code class="descclassname">core.uniqueness.</code><code class="descname">unexpected_action_163</code><span class="sig-paren">(</span><em>x: src.objects.Meeting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/uniqueness.html#unexpected_action_163"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.uniqueness.unexpected_action_163" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: AssertionSet
+INPUT: Dots
+CONTEXT: Meeting
+INSIGHT: Disagreement
+PROCESSING: Comparing [Believable vs. All-Stream]</p>
+<ul class="simple">
+<li>Identifies whether the [Believable View](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=159">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=159</a>) on an Action in a Meeting [Substantively Disagrees](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129</a>) with the [Expected View](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=165">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=165</a>) derived from the Subject’s All-Stream scores.</li>
+<li>Returns a Boolean representing the above.</li>
+<li>This is produced by the following operation(s):
+* Compares the [Expected View](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=165">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=165</a>) to the [Believable View](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=159">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=159</a>) using the [Substantive Disagreement](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129</a>) library method.</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.uniqueness.uniquely_out_of_sync_on_question_136">
+<code class="descclassname">core.uniqueness.</code><code class="descname">uniquely_out_of_sync_on_question_136</code><span class="sig-paren">(</span><em>x: src.objects.Question</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/uniqueness.html#uniquely_out_of_sync_on_question_136"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.uniqueness.uniquely_out_of_sync_on_question_136" title="Permalink to this definition">¶</a></dt>
+<dd><p>OUTPUT: Person
+INPUT: Responses
+CONTEXT: Question
+INSIGHT: Disagreement
+PROCESSING: Comparing [Person vs. Believable]</p>
+<ul class="simple">
+<li>Identifies every Person whose Opinion is [out of sync with the believable consensus](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=41">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=41</a>) on a Question and is shared by a small minority of people (&lt;12%).</li>
+<li>Returns a list of People who were Uniquely Out of Sync on Question.</li>
+<li>Returns an empty list if there is no Believable Choice or there are no People who satisfy the criteria below.</li>
+<li><dl class="first docutils">
+<dt>This is produced by the following operation(s):</dt>
+<dd><ul class="first last">
+<li>Calculates the [Believable Choice](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130</a>) Response to a Question.</li>
+<li>Determines whether a Person [disagrees with](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167</a>) with the [Believable Choice](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130</a>).</li>
+<li>Determines whether the Person [disagrees with](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167</a>) more than 88% of People.</li>
+<li>Determines whether the both conditions above are True for a Person.</li>
+<li>Selects People for which the condition above is True.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</div>
+<div class="section" id="module-core.utils">
+<span id="utilities"></span><h1><a class="toc-backref" href="#id8">Utilities</a><a class="headerlink" href="#module-core.utils" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="core.utils.group_assertions_by_criteria">
+<code class="descclassname">core.utils.</code><code class="descname">group_assertions_by_criteria</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/utils.html#group_assertions_by_criteria"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.utils.group_assertions_by_criteria" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO: Define generalization for grouping summary data</p>
+<p>This function is a catch-all for the multiple grouping
+functions that exist for summaries</p>
+</dd></dl>
+
+</div>
+<div class="section" id="indices-and-tables">
+<h1><a class="toc-backref" href="#id9">Indices and tables</a><a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">DomainAPI</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Research.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/core.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

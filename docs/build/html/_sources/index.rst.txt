@@ -7,53 +7,11 @@ Welcome to DomainAPI's documentation!
 =====================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :glob:
 
-DomainAPI Insights - Activity
-=============================
-.. automodule:: insights.activity
-   :members:
-
-DomainAPI Insights - Contribution
-=================================
-.. automodule:: insights.contributuon
-   :members:
-
-DomainAPI Insights - Disagreement
-=================================
-.. automodule:: insights.disagreement
-   :members:
-
-DomainAPI Insights - Interaction
-================================
-.. automodule:: insights.interaction
-   :members:
-
-DomainAPI Insights - Sentiment
-==============================
-.. automodule:: insights.sentiment
-   :members:
-
-DomainAPI Insights - Uniqueness
-===============================
-.. automodule:: insights.uniqueness
-   :members:
-
-DomainAPI Insights - Utilities
-==============================
-.. automodule:: insights.utils
-   :members:
-
-DomainAPI Classes
-=================
-.. automodule:: src.objects
-   :members:
-
-DomainAPI MetaClasses
-=====================
-.. automodule:: src.meta
-   :members:
+   * Insights <insights>
+   * Core Capabilities <core>
+   * Domain Objects <objects>
 
 Indices and tables
 ==================

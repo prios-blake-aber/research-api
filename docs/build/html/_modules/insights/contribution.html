@@ -1,0 +1,302 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>insights.contribution &#8212; DomainAPI 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for insights.contribution</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">from</span> <span class="nn">src</span> <span class="k">import</span> <span class="n">objects</span>
+
+
+<span class="k">def</span> <span class="nf">dots_aggregation_5</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: AssertionSet</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: AssertionSet</span>
+<span class="sd">    INSIGHT: Synthesis</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Estimates a Person&#39;s score on an Attribute based on the average of their Dots received on that Attribute.</span>
+
+<span class="sd">    * Returns a list including a Scale Value representing a Person&#39;s Dots Aggregation score and an integer representing the total number of Dots a Person has received.</span>
+
+<span class="sd">    * Returns Null if the Person has received fewer than 10 Dots.</span>
+
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">       * Determines if the Person has received at least 10 Dots on an Attribute.</span>
+
+<span class="sd">       * Calculates the count of Dots a Person has received on that Attribute.</span>
+
+<span class="sd">       * Calculates the average of all Dots that Attribute if the previous condition is True.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+
+<div class="viewcode-block" id="dots_aggregation_5"><a class="viewcode-back" href="../../insights.html#insights.contribution.dots_aggregation_5">[docs]</a><span class="k">def</span> <span class="nf">dots_aggregation_5</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: AssertionSet</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: AssertionSet</span>
+<span class="sd">    INSIGHT: Synthesis</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Estimates the probable lower bound of a Person&#39;s Dots score, taking into account both the score of Dots received as well as the number.</span>
+<span class="sd">    * Returns a Statistic between 0-1 that represents the minimum fraction of positive ratings a Person has received with 95% confidence, or, a Person&#39;s Lower Bound [Wilson Score](https://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval#Wilson_score_interval).</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Determines whether a Person has received at least one Dot on an Attribute.</span>
+<span class="sd">        * Calculates the lower bound Wilson Score if the previous condition was True.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="ranking_aggregation_9"><a class="viewcode-back" href="../../insights.html#insights.contribution.ranking_aggregation_9">[docs]</a><span class="k">def</span> <span class="nf">ranking_aggregation_9</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: AssertionSet</span>
+<span class="sd">    INPUT: Rankings</span>
+<span class="sd">    CONTEXT: AssertionSet</span>
+<span class="sd">    INSIGHT: Synthesis</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Estimates a Person&#39;s score on an Attribute based on the average of their Rankings received on that Attribute.</span>
+<span class="sd">    * Returns a list including a Scale Value representing a Ranking Aggregation score and an integer representing the number of Rankings a Person has received.</span>
+<span class="sd">    * Returns Null if a Person has fewer than 10 Rankings.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Determines if a Person has at least 10 Rankings.</span>
+<span class="sd">        * Calculates the count of Rankings a Person has received on that Attribute.</span>
+<span class="sd">        * Calculates the average of all Rankings if the previous condition is True.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="all_stream_1"><a class="viewcode-back" href="../../insights.html#insights.contribution.all_stream_1">[docs]</a><span class="k">def</span> <span class="nf">all_stream_1</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: AssertionSet</span>
+<span class="sd">    INPUT: Streams</span>
+<span class="sd">    CONTEXT: AssertionSet</span>
+<span class="sd">    INSIGHT: Synthesis</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Estimates a Person&#39;s score on an Attribute based on the average of scores for that Attribute for the Streams (Dots Aggregation, Tests, and Ranking Aggregation) on which they have a value.</span>
+<span class="sd">    * Returns a list representing the number of entity events on the Attribute and a Person’s All Stream Score.</span>
+<span class="sd">    * Returns Null if a Person does not have scores for any of the Streams (Dots Aggregation, Tests, and Ranking Aggregation).</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Calculates the sum of the entity events (individual Dots, Rankings, and Test Score) that comprise the Dot Aggregation, Ranking Aggregation, and Tests Streams on the Attribute.</span>
+<span class="sd">        * Calculates the average of a Person&#39;s scores on Dots Aggregation, Tests, and Ranking Aggregation excluding Streams on which a Person does not have a score.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<span class="k">def</span> <span class="nf">attribute_believability_193</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: AssertionSet</span>
+<span class="sd">    INPUT: All-Stream</span>
+<span class="sd">    CONTEXT: AssertionSet</span>
+<span class="sd">    INSIGHT: Believability</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Defines &quot;Attribute Believability&quot; as the weight a Person&#39;s opinion should receive, relative to others, on matters pertaining to that Attribute based on their All Stream score for that Attribute.</span>
+
+<span class="sd">    * Returns a number from 0-1 representing Attribute Believability.</span>
+
+<span class="sd">    * Returns Null if the Person does not have an [All Stream](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=1) score on the Attribute.</span>
+
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">       * Maps the Person&#39;s [All Stream](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=1) score on the Attribute to a score between 0-1.</span>
+<span class="sd">       * Calculates the square of the result from the previous step which represents the Person&#39;s Attribute Believability weight.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+
+<div class="viewcode-block" id="attribute_believability_193"><a class="viewcode-back" href="../../insights.html#insights.contribution.attribute_believability_193">[docs]</a><span class="k">def</span> <span class="nf">attribute_believability_193</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: AssertionSet</span>
+<span class="sd">    INPUT: All-Stream</span>
+<span class="sd">    CONTEXT: AssertionSet</span>
+<span class="sd">    INSIGHT: Believability</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Defines &quot;Attribute Believability&quot; as the weight a Person&#39;s opinion should receive, relative to others, on matters pertaining to that Attribute based on their All Stream score for that Attribute.</span>
+
+<span class="sd">    * Returns a number from 0-1 representing Attribute Believability.</span>
+
+<span class="sd">    * Returns Null if the Person does not have an [All Stream](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=1) score on the Attribute.</span>
+
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">       * Determines whether the Person has at least 10 events (individual Dots, Rankings, and Test Scores) on the Attribute.</span>
+<span class="sd">       * Maps the Person&#39;s [All Stream](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=1) score on the Attribute to a score between 0-1 if the previous condition was True.</span>
+<span class="sd">       * Calculates the square of the result from the previous step which represents the Person&#39;s Attribute Believability weight.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<span class="k">def</span> <span class="nf">general_believability_192</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: AssertionSet</span>
+<span class="sd">    INPUT: All-Stream</span>
+<span class="sd">    CONTEXT: AssertionSet</span>
+<span class="sd">    INSIGHT: Believability</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Defines &quot;General Believability&quot; as the weight a Person&#39;s opinion should receive on general matters based on their [All Stream](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=1) scores for a selected set of Attributes.</span>
+
+<span class="sd">    * Returns a Statistic, a number from 0-1, that represents General Believability.</span>
+
+<span class="sd">    * Returns Null if a Person has no All Stream score for any of the Attributes the client has configured to contribute to General Believability (client configuration information can be found [in the appendix](https://docs.google.com/document/d/1RafxVjqFCjkOLLx7cClbRsJLIuOjxSY2zvKuK-A_qgE/edit#heading=h.hj4e45f2b8hb)).</span>
+
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">      * Maps the Person&#39;s [All Stream](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=1) scores on the Attributes to scores between 0-1.</span>
+
+<span class="sd">      * Determines whether the Person has a score on at least one Attribute that contributes to General Believability.</span>
+
+<span class="sd">      * Calculates a weighted average of the All Stream scores with weights specified by clients for how much an Attribute should contribute to General Believability. If weights are unspecified, defaults to an equal-weighted average. If an Attribute does not have an All Stream score, it is excluded from the average.</span>
+
+<span class="sd">      * Calculates the square of the previous step.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+
+<div class="viewcode-block" id="general_believability_192"><a class="viewcode-back" href="../../insights.html#insights.contribution.general_believability_192">[docs]</a><span class="k">def</span> <span class="nf">general_believability_192</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: AssertionSet</span>
+<span class="sd">    INPUT: All-Stream</span>
+<span class="sd">    CONTEXT: AssertionSet</span>
+<span class="sd">    INSIGHT: Believability</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Defines &quot;General Believability&quot; as the weight a Person&#39;s opinion should receive on general matters based on their [All Stream](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=1) scores for a selected set of Attributes.</span>
+
+<span class="sd">    * Returns a Statistic, a number from 0-1, that represents General Believability.</span>
+
+<span class="sd">    * Returns Null if a Person has no All Stream score for any of the Attributes the client has configured to contribute to General Believability (client configuration information can be found [in the appendix](https://docs.google.com/document/d/1RafxVjqFCjkOLLx7cClbRsJLIuOjxSY2zvKuK-A_qgE/edit#heading=h.hj4e45f2b8hb)) or if the Person does not have at least 10 events total between Dots, Rankings, and Tests on the Attributes that contribute to General Believability.</span>
+
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">      * Maps the Person&#39;s [All Stream](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=1) scores on the Attributes to scores between 0-1.</span>
+
+<span class="sd">      * Determines whether the Person has a score on at least one Attribute that contributes to General Believability.</span>
+
+<span class="sd">      * Determines whether the Person has at least 10 events (individual Dots, Rankings, and Test Scores) on the Attributes that contribute to General Believability.</span>
+
+<span class="sd">      * Calculates a weighted average of the All Stream scores with weights specified by clients for how much an Attribute should contribute to General Believability if the previous two conditions were true. If weights are unspecified, defaults to an equal-weighted average. If an Attribute does not have an All Stream score, it is excluded from the average.</span>
+
+<span class="sd">      * Calculates the square of the previous step.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">DomainAPI</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html">Insights Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.activity">Activity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.contribution">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.disagreement">Disagreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.interaction">Interaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.sentiment">Sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.uniqueness">Uniqueness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.utils">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html">Core Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.activity">Activity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.contribution">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.disagreement">Disagreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.interaction">Interaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.sentiment">Sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.uniqueness">Uniqueness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.utils">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html">Domain Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.objects">Domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.meta">Base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Research.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

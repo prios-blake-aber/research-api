@@ -20,7 +20,7 @@ sys.setrecursionlimit(1500)
 
 # -- Project information -----------------------------------------------------
 
-project = 'DotsResearchAPI'
+project = 'DomainAPI'
 copyright = '2019, Research'
 author = 'Research'
 

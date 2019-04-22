@@ -38,7 +38,7 @@
 <span class="kn">import</span> <span class="nn">time</span>
 
 
-<div class="viewcode-block" id="EntityCollection"><a class="viewcode-back" href="../../index.html#src.meta.EntityCollection">[docs]</a><span class="k">class</span> <span class="nc">EntityCollection</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="EntityCollection"><a class="viewcode-back" href="../../objects.html#src.meta.EntityCollection">[docs]</a><span class="k">class</span> <span class="nc">EntityCollection</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A collection of Entity objects sharing the same type</span>
 <span class="sd">        1) Used to instantiate container-like attributes in an Entity</span>
 <span class="sd">        2) Type checks all elements of the container</span>
@@ -53,13 +53,13 @@
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{n}</span><span class="s1"> members of type </span><span class="si">{t}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="n">t</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
 
-<div class="viewcode-block" id="EntityCollection.check_consistent_types"><a class="viewcode-back" href="../../index.html#src.meta.EntityCollection.check_consistent_types">[docs]</a>    <span class="k">def</span> <span class="nf">check_consistent_types</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">list_of_entities</span><span class="p">):</span>
+<div class="viewcode-block" id="EntityCollection.check_consistent_types"><a class="viewcode-back" href="../../objects.html#src.meta.EntityCollection.check_consistent_types">[docs]</a>    <span class="k">def</span> <span class="nf">check_consistent_types</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">list_of_entities</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Records the type of the first appended item and detects inconsistency&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">list_of_entities</span><span class="p">:</span>
             <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list_of_entities</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Entities must share common type!&quot;</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">list_of_entities</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="EntityCollection.append"><a class="viewcode-back" href="../../index.html#src.meta.EntityCollection.append">[docs]</a>    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<div class="viewcode-block" id="EntityCollection.append"><a class="viewcode-back" href="../../objects.html#src.meta.EntityCollection.append">[docs]</a>    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Appends new items to container, records expected type, checks type consistency&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
@@ -68,13 +68,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="Entity"><a class="viewcode-back" href="../../index.html#src.meta.Entity">[docs]</a><span class="k">class</span> <span class="nc">Entity</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Entity"><a class="viewcode-back" href="../../objects.html#src.meta.Entity">[docs]</a><span class="k">class</span> <span class="nc">Entity</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A generic Entity object with attributes, containers and dynamically generated methods</span>
-<span class="sd">        1) Attributes can be defined on instantiation via kwargs</span>
-<span class="sd">        2) Container attributes have special functionality</span>
-<span class="sd">            a) Instantiates with a list</span>
-<span class="sd">            b) Generates a special method that appends to this list</span>
-<span class="sd">        3) This class is expected to act as a MixIn for Domain Objects</span>
+<span class="sd">    * Attributes can be defined on instantiation via kwargs</span>
+<span class="sd">    * Container attributes have special functionality:</span>
+<span class="sd">        * Instantiates with a list</span>
+<span class="sd">        * Generates a special method that appends to this list</span>
+<span class="sd">        * This class is expected to act as a MixIn for Domain Objects</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">allowable_attributes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">allowable_collections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">created_at</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
@@ -131,7 +131,7 @@
         <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">add_function</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">add_function</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Assertion"><a class="viewcode-back" href="../../index.html#src.meta.Assertion">[docs]</a><span class="k">class</span> <span class="nc">Assertion</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Assertion"><a class="viewcode-back" href="../../objects.html#src.meta.Assertion">[docs]</a><span class="k">class</span> <span class="nc">Assertion</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A generic Assertion object</span>
 <span class="sd">        1) The &quot;source&quot; and &quot;target&quot; attributes should both be an Entity</span>
 <span class="sd">        2) The &quot;value&quot; should be some numerical value</span>
@@ -167,6 +167,30 @@
 
 
 <h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html">Insights Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.activity">Activity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.contribution">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.disagreement">Disagreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.interaction">Interaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.sentiment">Sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.uniqueness">Uniqueness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.utils">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html">Core Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.activity">Activity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.contribution">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.disagreement">Disagreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.interaction">Interaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.sentiment">Sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.uniqueness">Uniqueness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.utils">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html">Domain Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.objects">Domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.meta">Base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html#indices-and-tables">Indices and tables</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>

@@ -35,11 +35,11 @@ class EntityCollection(object):
 
 class Entity(object):
     """A generic Entity object with attributes, containers and dynamically generated methods
-        1) Attributes can be defined on instantiation via kwargs
-        2) Container attributes have special functionality
-            a) Instantiates with a list
-            b) Generates a special method that appends to this list
-        3) This class is expected to act as a MixIn for Domain Objects
+    * Attributes can be defined on instantiation via kwargs
+    * Container attributes have special functionality:
+        * Instantiates with a list
+        * Generates a special method that appends to this list
+        * This class is expected to act as a MixIn for Domain Objects
     """
     def __init__(self, allowable_attributes=None, allowable_collections=None, **kwargs):
         self.created_at = time.time()

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>insights.sentiment &#8212; DomainAPI 0.0.1 documentation</title>
+    <title>functions.sentiment &#8212; DomainAPI 0.0.1 documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -32,12 +32,30 @@
 
           <div class="body" role="main">
             
-  <h1>Source code for insights.sentiment</h1><div class="highlight"><pre>
+  <h1>Source code for functions.sentiment</h1><div class="highlight"><pre>
 <span></span>
 <span class="kn">from</span> <span class="nn">src</span> <span class="k">import</span> <span class="n">objects</span>
 
 
-<div class="viewcode-block" id="author_opinions_on_actions_115"><a class="viewcode-back" href="../../insights.html#insights.sentiment.author_opinions_on_actions_115">[docs]</a><span class="k">def</span> <span class="nf">author_opinions_on_actions_115</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+<div class="viewcode-block" id="action_relevance_158"><a class="viewcode-back" href="../../index.html#functions.sentiment.action_relevance_158">[docs]</a><span class="k">def</span> <span class="nf">action_relevance_158</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: AssertionSet</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: Meeting</span>
+<span class="sd">    INSIGHT: Sentiment</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Defines a “Relevance” score for the Meeting Tracker Actions that were found to have occurred in a Meeting Section (see: [Actions in Meeting](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=156)) as a function of the number of of relevant Dots given.</span>
+<span class="sd">    * Returns a Dictionary mapping [Actions in a Meeting](https://blakea-analytics-registry.dev.principled.io/detail?analytic=156) (Subject-Action pairs) to Relevance scores.</span>
+<span class="sd">    * Returns Null if no Actions occurred in the Meeting.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Selects Dots from the Meeting Section associated with each Action that occurred (relevant to the Subject-Action pair).</span>
+<span class="sd">        * Calculates a “Relevance” score for each Action in a Meeting by counting the Dots given to the Subject on Attributes associated with the Action. Required Attributes count for twice as much</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="author_opinions_on_actions_115"><a class="viewcode-back" href="../../index.html#functions.sentiment.author_opinions_on_actions_115">[docs]</a><span class="k">def</span> <span class="nf">author_opinions_on_actions_115</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    OUTPUT: AssertionSet</span>
 <span class="sd">    INPUT: Dots</span>
@@ -61,7 +79,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="author_view_on_action_152"><a class="viewcode-back" href="../../insights.html#insights.sentiment.author_view_on_action_152">[docs]</a><span class="k">def</span> <span class="nf">author_view_on_action_152</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+<div class="viewcode-block" id="author_view_on_action_152"><a class="viewcode-back" href="../../index.html#functions.sentiment.author_view_on_action_152">[docs]</a><span class="k">def</span> <span class="nf">author_view_on_action_152</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    OUTPUT: AssertionSet</span>
 <span class="sd">    INPUT: Dots</span>
@@ -76,7 +94,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="believable_choice_130"><a class="viewcode-back" href="../../insights.html#insights.sentiment.believable_choice_130">[docs]</a><span class="k">def</span> <span class="nf">believable_choice_130</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
+<div class="viewcode-block" id="believable_choice_130"><a class="viewcode-back" href="../../index.html#functions.sentiment.believable_choice_130">[docs]</a><span class="k">def</span> <span class="nf">believable_choice_130</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    OUTPUT: Response</span>
 <span class="sd">    INPUT: Believability</span>
@@ -103,7 +121,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="believable_view_on_action_159"><a class="viewcode-back" href="../../insights.html#insights.sentiment.believable_view_on_action_159">[docs]</a><span class="k">def</span> <span class="nf">believable_view_on_action_159</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+<div class="viewcode-block" id="believable_view_on_action_159"><a class="viewcode-back" href="../../index.html#functions.sentiment.believable_view_on_action_159">[docs]</a><span class="k">def</span> <span class="nf">believable_view_on_action_159</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    OUTPUT: Person</span>
 <span class="sd">    INPUT: Believability</span>
@@ -120,7 +138,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="meeting_section_importance_34"><a class="viewcode-back" href="../../insights.html#insights.sentiment.meeting_section_importance_34">[docs]</a><span class="k">def</span> <span class="nf">meeting_section_importance_34</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+<div class="viewcode-block" id="meeting_section_importance_34"><a class="viewcode-back" href="../../index.html#functions.sentiment.meeting_section_importance_34">[docs]</a><span class="k">def</span> <span class="nf">meeting_section_importance_34</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    OUTPUT: Meeting</span>
 <span class="sd">    INPUT: nan</span>
@@ -143,7 +161,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="overall_meeting_section_quality_124"><a class="viewcode-back" href="../../insights.html#insights.sentiment.overall_meeting_section_quality_124">[docs]</a><span class="k">def</span> <span class="nf">overall_meeting_section_quality_124</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
+<div class="viewcode-block" id="overall_meeting_section_quality_124"><a class="viewcode-back" href="../../index.html#functions.sentiment.overall_meeting_section_quality_124">[docs]</a><span class="k">def</span> <span class="nf">overall_meeting_section_quality_124</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    OUTPUT: Meeting</span>
 <span class="sd">    INPUT: Responses</span>
@@ -160,7 +178,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="overall_meeting_section_sentiment_117"><a class="viewcode-back" href="../../insights.html#insights.sentiment.overall_meeting_section_sentiment_117">[docs]</a><span class="k">def</span> <span class="nf">overall_meeting_section_sentiment_117</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+<div class="viewcode-block" id="overall_meeting_section_sentiment_117"><a class="viewcode-back" href="../../index.html#functions.sentiment.overall_meeting_section_sentiment_117">[docs]</a><span class="k">def</span> <span class="nf">overall_meeting_section_sentiment_117</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    OUTPUT: Meeting</span>
 <span class="sd">    INPUT: Dots</span>
@@ -175,7 +193,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="believable_meeting_section_quality_123"><a class="viewcode-back" href="../../insights.html#insights.sentiment.believable_meeting_section_quality_123">[docs]</a><span class="k">def</span> <span class="nf">believable_meeting_section_quality_123</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
+<div class="viewcode-block" id="believable_meeting_section_quality_123"><a class="viewcode-back" href="../../index.html#functions.sentiment.believable_meeting_section_quality_123">[docs]</a><span class="k">def</span> <span class="nf">believable_meeting_section_quality_123</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    OUTPUT: Response</span>
 <span class="sd">    INPUT: Believability</span>
@@ -193,7 +211,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="believable_meeting_section_sentiment_116"><a class="viewcode-back" href="../../insights.html#insights.sentiment.believable_meeting_section_sentiment_116">[docs]</a><span class="k">def</span> <span class="nf">believable_meeting_section_sentiment_116</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+<div class="viewcode-block" id="believable_meeting_section_sentiment_116"><a class="viewcode-back" href="../../index.html#functions.sentiment.believable_meeting_section_sentiment_116">[docs]</a><span class="k">def</span> <span class="nf">believable_meeting_section_sentiment_116</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    OUTPUT: Meeting</span>
 <span class="sd">    INPUT: Believability</span>
@@ -210,7 +228,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="dotted_notably_poorly_in_meeting_127"><a class="viewcode-back" href="../../insights.html#insights.sentiment.dotted_notably_poorly_in_meeting_127">[docs]</a><span class="k">def</span> <span class="nf">dotted_notably_poorly_in_meeting_127</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+<div class="viewcode-block" id="dotted_notably_poorly_in_meeting_127"><a class="viewcode-back" href="../../index.html#functions.sentiment.dotted_notably_poorly_in_meeting_127">[docs]</a><span class="k">def</span> <span class="nf">dotted_notably_poorly_in_meeting_127</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    OUTPUT: Person</span>
 <span class="sd">    INPUT: Dots</span>
@@ -229,7 +247,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="dotted_notably_well_in_meeting_126"><a class="viewcode-back" href="../../insights.html#insights.sentiment.dotted_notably_well_in_meeting_126">[docs]</a><span class="k">def</span> <span class="nf">dotted_notably_well_in_meeting_126</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+<div class="viewcode-block" id="dotted_notably_well_in_meeting_126"><a class="viewcode-back" href="../../index.html#functions.sentiment.dotted_notably_well_in_meeting_126">[docs]</a><span class="k">def</span> <span class="nf">dotted_notably_well_in_meeting_126</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    OUTPUT: Person</span>
 <span class="sd">    INPUT: Dots</span>
@@ -254,7 +272,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="frequent_negatively_dotted_attributes_31"><a class="viewcode-back" href="../../insights.html#insights.sentiment.frequent_negatively_dotted_attributes_31">[docs]</a><span class="k">def</span> <span class="nf">frequent_negatively_dotted_attributes_31</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+<div class="viewcode-block" id="frequent_negatively_dotted_attributes_31"><a class="viewcode-back" href="../../index.html#functions.sentiment.frequent_negatively_dotted_attributes_31">[docs]</a><span class="k">def</span> <span class="nf">frequent_negatively_dotted_attributes_31</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    OUTPUT: AssertionSet</span>
 <span class="sd">    INPUT: Dots</span>
@@ -274,7 +292,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="frequent_positively_dotted_attributes_30"><a class="viewcode-back" href="../../insights.html#insights.sentiment.frequent_positively_dotted_attributes_30">[docs]</a><span class="k">def</span> <span class="nf">frequent_positively_dotted_attributes_30</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+<div class="viewcode-block" id="frequent_positively_dotted_attributes_30"><a class="viewcode-back" href="../../index.html#functions.sentiment.frequent_positively_dotted_attributes_30">[docs]</a><span class="k">def</span> <span class="nf">frequent_positively_dotted_attributes_30</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    OUTPUT: AssertionSet</span>
 <span class="sd">    INPUT: Dots</span>
@@ -294,7 +312,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="negatively_dotted_attributes_in_meeting_121"><a class="viewcode-back" href="../../insights.html#insights.sentiment.negatively_dotted_attributes_in_meeting_121">[docs]</a><span class="k">def</span> <span class="nf">negatively_dotted_attributes_in_meeting_121</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+<div class="viewcode-block" id="negatively_dotted_attributes_in_meeting_121"><a class="viewcode-back" href="../../index.html#functions.sentiment.negatively_dotted_attributes_in_meeting_121">[docs]</a><span class="k">def</span> <span class="nf">negatively_dotted_attributes_in_meeting_121</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    OUTPUT: AssertionSet</span>
 <span class="sd">    INPUT: Dots</span>
@@ -312,7 +330,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="positively_dotted_attributes_in_meeting_120"><a class="viewcode-back" href="../../insights.html#insights.sentiment.positively_dotted_attributes_in_meeting_120">[docs]</a><span class="k">def</span> <span class="nf">positively_dotted_attributes_in_meeting_120</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+<div class="viewcode-block" id="positively_dotted_attributes_in_meeting_120"><a class="viewcode-back" href="../../index.html#functions.sentiment.positively_dotted_attributes_in_meeting_120">[docs]</a><span class="k">def</span> <span class="nf">positively_dotted_attributes_in_meeting_120</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    OUTPUT: AssertionSet</span>
 <span class="sd">    INPUT: Dots</span>
@@ -330,7 +348,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="expected_view_on_action_165"><a class="viewcode-back" href="../../insights.html#insights.sentiment.expected_view_on_action_165">[docs]</a><span class="k">def</span> <span class="nf">expected_view_on_action_165</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+<div class="viewcode-block" id="expected_view_on_action_165"><a class="viewcode-back" href="../../index.html#functions.sentiment.expected_view_on_action_165">[docs]</a><span class="k">def</span> <span class="nf">expected_view_on_action_165</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    OUTPUT: AssertionSet</span>
 <span class="sd">    INPUT: All-Stream</span>
@@ -345,7 +363,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="overall_view_on_action_160"><a class="viewcode-back" href="../../insights.html#insights.sentiment.overall_view_on_action_160">[docs]</a><span class="k">def</span> <span class="nf">overall_view_on_action_160</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+<div class="viewcode-block" id="overall_view_on_action_160"><a class="viewcode-back" href="../../index.html#functions.sentiment.overall_view_on_action_160">[docs]</a><span class="k">def</span> <span class="nf">overall_view_on_action_160</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    OUTPUT: AssertionSet</span>
 <span class="sd">    INPUT: Dots</span>

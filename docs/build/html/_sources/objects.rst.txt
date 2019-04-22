@@ -3,15 +3,24 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to DomainAPI's documentation!
-=====================================
+Domain Objects
+==============
 
 .. toctree::
-   :glob:
+   :maxdepth: 2
+   :caption: Contents:
 
-   * Insights <insights>
-   * Core Capabilities <core>
-   * Domain Objects <objects>
+.. contents::
+
+Domain
+======
+.. automodule:: src.objects
+   :members:
+
+Base
+====
+.. automodule:: src.meta
+   :members:
 
 Indices and tables
 ==================
