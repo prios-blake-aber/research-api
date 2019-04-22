@@ -1,0 +1,199 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>functions.disagreement &#8212; DomainAPI 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for functions.disagreement</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">from</span> <span class="nn">src</span> <span class="k">import</span> <span class="n">objects</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Core functionality for Disagreement</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="is_polarizing_141"><a class="viewcode-back" href="../../index.html#functions.disagreement.is_polarizing_141">[docs]</a><span class="k">def</span> <span class="nf">is_polarizing_141</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Person</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: AssertionSet</span>
+<span class="sd">    INSIGHT: Disagreement</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Identifies a Polarizing event when Scale Values on a Person are spread out and there exist comparable numbers of positive (8 and above) and negative (4 and below) Scale Values</span>
+<span class="sd">    * Returns a boolean</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Calculates the standard deviation of Scale Values</span>
+<span class="sd">        * Calculates the Bucketed Standard Deviation of Scale Values:</span>
+<span class="sd">            * Maps the Scale Values to their Summarized Opinion</span>
+<span class="sd">            * Calculates the standard deviation</span>
+<span class="sd">        * Calculates the Relative Incidence Ratio of positive/negative Scale Values</span>
+<span class="sd">            * Calculates the numerator as the minimum count of positive/negative Scale Values</span>
+<span class="sd">            * Calculates the Denominator as the maximum count of positive/negative Scale Values</span>
+<span class="sd">        * Combines the following conditions to determine whether the Scale Values are polarizing:</span>
+<span class="sd">            * Calculates the standard deviation of Scale Values is greater than 0.5</span>
+<span class="sd">            * Calculates the Bucketed Standard Deviation of Scale Values is greater than 1.0</span>
+<span class="sd">            * Calculates the Relative Incidence Ratio of positive/negative Scale Values is greater than 0.25</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="disagrees_with_167"><a class="viewcode-back" href="../../index.html#functions.disagreement.disagrees_with_167">[docs]</a><span class="k">def</span> <span class="nf">disagrees_with_167</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Response</span>
+<span class="sd">    INPUT: Responses</span>
+<span class="sd">    CONTEXT: Question</span>
+<span class="sd">    INSIGHT: Disagreement</span>
+<span class="sd">    PROCESSING: Comparing [Collections of People]</span>
+
+<span class="sd">    * Defines &quot;Disagreement&quot; between two opinions on a Question. Two opinions disagree when they are classified into different [groups](https://blakea-analytics-registry.dev.principled.io/detail?analytic=168) and, if they are Question Responses with Likert or Scale Values, also have a difference greater than a configurable threshold (with a default value of 1.7).</span>
+<span class="sd">    * Returns a Boolean representing whether two opinions Disagrees With one another.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Determines whether two opinions disagree as:</span>
+<span class="sd">            * For Categorical or Yes/No opinions: the two opinions are different.</span>
+<span class="sd">            * For Likert or Scale Value opinions:</span>
+<span class="sd">                * Determines whether the two opinions are Far Away: Compares whether the difference is greater than a configurable threshold value (default value of 1.7).</span>
+<span class="sd">                * Maps each opinion to a Summarized Opinions (Negative, Neutral, or Positive).</span>
+<span class="sd">                * Determines whether the Summarized Opinions Disagree: Determines whether their values are different.</span>
+<span class="sd">                * Determines whether the two opinions are Far Away and their Summarized Opinions Disagree.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="divisiveness_179"><a class="viewcode-back" href="../../index.html#functions.disagreement.divisiveness_179">[docs]</a><span class="k">def</span> <span class="nf">divisiveness_179</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Response</span>
+<span class="sd">    INPUT: Responses</span>
+<span class="sd">    CONTEXT: Question</span>
+<span class="sd">    INSIGHT: Disagreement</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Defines Divisiveness as the standard deviation of Summarized Opinions reflected in Meeting Question responses.</span>
+<span class="sd">    * Returns a Statistic representing Divisiveness.</span>
+<span class="sd">    * Returns Null in the following cases:</span>
+<span class="sd">        * Fewer than two People respond to a Question.</span>
+<span class="sd">        * The Question has Categorical Responses.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Maps opinions to [Summarized Opinions](https://blakea-analytics-registry.dev.principled.io/detail?analytic=168).</span>
+<span class="sd">        * Calculates the standard deviation of the Summarized Opinions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">DomainAPI</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html">Insights Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.activity">Activity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.contribution">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.disagreement">Disagreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.interaction">Interaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.sentiment">Sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.uniqueness">Uniqueness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.utils">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html">Core Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.activity">Activity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.contribution">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.disagreement">Disagreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.interaction">Interaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.sentiment">Sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.uniqueness">Uniqueness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.utils">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html">Domain Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.objects">Domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.meta">Base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Research.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

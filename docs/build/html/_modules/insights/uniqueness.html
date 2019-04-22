@@ -1,0 +1,263 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>insights.uniqueness &#8212; DomainAPI 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for insights.uniqueness</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">from</span> <span class="nn">src</span> <span class="k">import</span> <span class="n">objects</span>
+
+
+<div class="viewcode-block" id="unexpected_action_163"><a class="viewcode-back" href="../../insights.html#insights.uniqueness.unexpected_action_163">[docs]</a><span class="k">def</span> <span class="nf">unexpected_action_163</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: AssertionSet</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: Meeting</span>
+<span class="sd">    INSIGHT: Disagreement</span>
+<span class="sd">    PROCESSING: Comparing [Believable vs. All-Stream]</span>
+
+<span class="sd">    * Identifies whether the [Believable View](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=159) on an Action in a Meeting [Substantively Disagrees](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129) with the [Expected View](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=165) derived from the Subject’s All-Stream scores.</span>
+<span class="sd">    * Returns a Boolean representing the above.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">      * Compares the [Expected View](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=165) to the [Believable View](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=159) using the [Substantive Disagreement](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129) library method.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="uniquely_out_of_sync_on_question_136"><a class="viewcode-back" href="../../insights.html#insights.uniqueness.uniquely_out_of_sync_on_question_136">[docs]</a><span class="k">def</span> <span class="nf">uniquely_out_of_sync_on_question_136</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Person</span>
+<span class="sd">    INPUT: Responses</span>
+<span class="sd">    CONTEXT: Question</span>
+<span class="sd">    INSIGHT: Disagreement</span>
+<span class="sd">    PROCESSING: Comparing [Person vs. Believable]</span>
+
+<span class="sd">    * Identifies every Person whose Opinion is [out of sync with the believable consensus](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=41) on a Question and is shared by a small minority of people (&lt;12%).</span>
+<span class="sd">    * Returns a list of People who were Uniquely Out of Sync on Question.</span>
+<span class="sd">    * Returns an empty list if there is no Believable Choice or there are no People who satisfy the criteria below.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Calculates the [Believable Choice](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130) Response to a Question.</span>
+<span class="sd">        * Determines whether a Person [disagrees with](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167) with the [Believable Choice](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130).</span>
+<span class="sd">        * Determines whether the Person [disagrees with](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167) more than 88% of People.</span>
+<span class="sd">        * Determines whether the both conditions above are True for a Person.</span>
+<span class="sd">        * Selects People for which the condition above is True.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="author_disagrees_with_believable_view_on_action_153"><a class="viewcode-back" href="../../insights.html#insights.uniqueness.author_disagrees_with_believable_view_on_action_153">[docs]</a><span class="k">def</span> <span class="nf">author_disagrees_with_believable_view_on_action_153</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Person</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: AssertionSet</span>
+<span class="sd">    INSIGHT: Disagreement</span>
+<span class="sd">    PROCESSING: Comparing [Person vs. Believable]</span>
+
+<span class="sd">    * Identifies when an Author’s View of an Action in a Meeting [Substantively Disagrees](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129) with the Believable View.</span>
+<span class="sd">    * Returns a Boolean indicating the above.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Compares the Author’s View to the Believable View using the [Substantive Disagreement](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129) library method</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="author_disagrees_with_overall_view_on_action_154"><a class="viewcode-back" href="../../insights.html#insights.uniqueness.author_disagrees_with_overall_view_on_action_154">[docs]</a><span class="k">def</span> <span class="nf">author_disagrees_with_overall_view_on_action_154</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Person</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: AssertionSet</span>
+<span class="sd">    INSIGHT: Disagreement</span>
+<span class="sd">    PROCESSING: Comparing [Person vs. Overall]</span>
+
+<span class="sd">    * Identifies when an Author’s View of an Action in a Meeting [Substantively Disagrees](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129) with the [Overall View](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=160).</span>
+<span class="sd">    * Returns a Boolean indicating the above.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Compares the Author’s View to the [Overall View](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=160) using the [Substantive Disagreement](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129) library function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="disagreeing_dotters_higher_than_average_111"><a class="viewcode-back" href="../../insights.html#insights.uniqueness.disagreeing_dotters_higher_than_average_111">[docs]</a><span class="k">def</span> <span class="nf">disagreeing_dotters_higher_than_average_111</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Person</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: AssertionSet</span>
+<span class="sd">    INSIGHT: Disagreement</span>
+<span class="sd">    PROCESSING: Comparing [Person vs. Overall]</span>
+
+<span class="sd">    * Identifies Authors whose average opinion of a Subject across all Attributes is one of the five highest of all Authors, and is at least 2.0 more than the average Dot the Subject received.</span>
+<span class="sd">    * Returns a list of People that represent Disagreeing Dotters (Higher Than Average).</span>
+<span class="sd">    * Returns an empty list if the Subject hasn’t received any Dot Ratings or if no Dot Authors meet the criteria below.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Calculates the average of all Dot Ratings that the Subject receives and the average of each Author’s Dot Ratings of the Subject.</span>
+<span class="sd">        * Determines whether each Author’s average Dot Rating exceeds the average of all Dot Ratings that the Subject receives by at least 2.0.</span>
+<span class="sd">        * Determines whether each Author’s Dot Rating average is among the five highest of all Authors’ average Dot Ratings of the Subject.</span>
+<span class="sd">        * Selects the Authors for which the previous two conditions are both True.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="disagreeing_dotters_lower_than_average_24"><a class="viewcode-back" href="../../insights.html#insights.uniqueness.disagreeing_dotters_lower_than_average_24">[docs]</a><span class="k">def</span> <span class="nf">disagreeing_dotters_lower_than_average_24</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Person</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: AssertionSet</span>
+<span class="sd">    INSIGHT: Disagreement</span>
+<span class="sd">    PROCESSING: Comparing [Person vs. Overall]</span>
+
+<span class="sd">    * Identifies Authors whose average opinion of a Subject across all Attributes is one of the five lowest of all Authors, and is at least 2.0 less than the average Dot the Subject received.</span>
+<span class="sd">    * Returns a list of People that represent Disagreeing Dotters (Lower Than Average).</span>
+<span class="sd">    * Returns an empty list if the Subject hasn’t received any Dot Ratings or if no Dot Authors meet the criteria below.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Calculates the average of all Dot Ratings that the Subject receives and the average of each Author’s Dot Ratings of the Subject.</span>
+<span class="sd">        * Determines whether each Author’s average Dot Rating is 2.0 or lower than the average of all Dot Ratings that the Subject receives.</span>
+<span class="sd">        * Determines whether each Author’s Dot Rating average is among the five lowest of all Authors’ average Dot Ratings of the Subject.</span>
+<span class="sd">        * Selects the Authors for which the previous two conditions are both True.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="significantly_out_of_sync_people_on_question_114"><a class="viewcode-back" href="../../insights.html#insights.uniqueness.significantly_out_of_sync_people_on_question_114">[docs]</a><span class="k">def</span> <span class="nf">significantly_out_of_sync_people_on_question_114</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Person</span>
+<span class="sd">    INPUT: Responses</span>
+<span class="sd">    CONTEXT: Meeting</span>
+<span class="sd">    INSIGHT: Disagreement</span>
+<span class="sd">    PROCESSING: Comparing [Person vs. Believable]</span>
+
+<span class="sd">    * Identifies People who disagree with the believable choice on substantially more questions than others during a Meeting.</span>
+<span class="sd">    * Returns List of People representing those who are Significantly Out of Sync People on Question.</span>
+<span class="sd">    * Returns an empty List if no Person in the Meeting Section satisfies conditions below.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Calculates the count of questions on which each Person was [Out of Sync with the Believable Consensus](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=41).</span>
+<span class="sd">        * Calculates Z-scores of the counts over all People in a Meeting Section.</span>
+<span class="sd">        * Determines whether each Person was Notable: Combines the following conditions:</span>
+<span class="sd">            * Determines whether a Person is a [Primary Meeting Participant](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=138).</span>
+<span class="sd">            * Determines whether a Person&#39;s [Believability](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) is greater than zero.</span>
+<span class="sd">        * Determines whether a Person is Significantly Out of Sync: Combines the following conditions:</span>
+<span class="sd">            * A Person is Notable and their Z-score is greater than the Notable threshold (0.67).</span>
+<span class="sd">            * A Person is Not Notable and their Z-score is greater than the General threshold (1.28).</span>
+<span class="sd">        * Selects People who are Significantly Out of Sync.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">DomainAPI</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html">Insights Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.activity">Activity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.contribution">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.disagreement">Disagreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.interaction">Interaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.sentiment">Sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.uniqueness">Uniqueness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.utils">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html">Core Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.activity">Activity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.contribution">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.disagreement">Disagreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.interaction">Interaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.sentiment">Sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.uniqueness">Uniqueness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.utils">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html">Domain Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.objects">Domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.meta">Base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Research.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,134 +1,116 @@
 
+
 import time
-from collections import Counter
 
 
-class GrammarAssertion(object):
-    """Assertion in the Domain Grammar"""
-    def __init__(self, source, context, measure, value, confidence, description):
-        self.source = source
-        self.context = context
-        self.measure = measure
-        self.value = value
-        self.confidence = confidence
-        self.description = description
-        self.timestamp = time.time()
-
-
-class GrammarRelation(object):
-    """Relation in the Domain Grammar"""
-    def __init__(self, source, description):
-        self.source = source
-        self.description = description
-        self.timestamp = time.time()
-
-
-class GrammarCollection(object):
-    """Collection in the Domain Grammar"""
-    def __init__(self):
-        self._members = []
-        self.timestamp = time.time()
+class EntityCollection(object):
+    """A collection of Entity objects sharing the same type
+        1) Used to instantiate container-like attributes in an Entity
+        2) Type checks all elements of the container
+        3) Has append() method to add new elements to container
+    """
+    def __init__(self, list_of_entities):
+        assert isinstance(list_of_entities, list), "Must be a list!"
+        self.type = type('NotSet', (object,), {})
+        self.check_consistent_types(list_of_entities)
+        self.data = list_of_entities
 
     def __repr__(self):
-        return 'Name: {n}\nProvenance: {p}'.format(
-            n=self.__class__.__name__,
-            p=get_all_bases(self.__class__)
-        )
+        return '{n} members of type {t}'.format(n=len(self.data), t=self.type.__name__)
 
-    def is_member_of(self, other, description):
-        return other._members.append(GrammarRelation(source=self, description=description))
+    def check_consistent_types(self, list_of_entities):
+        """Records the type of the first appended item and detects inconsistency"""
+        if list_of_entities:
+            assert len(set(type(i) for i in list_of_entities)) == 1, "Entities must share common type!"
+            self.type = type(list_of_entities.pop())
 
-    @property
-    def describe(self):
-        return Counter([(i.source.__class__.__name__, i.description) for i in self._members])
-
-
-class GrammarObject(object):
-    """Object in the Domain Grammar"""
-    def __init__(self, name='GrammarObject', description='Object in the Domain Grammar', implementation=None):
-        self._name = name
-        self._members = []
-        self._description = description
-        self.implementation = implementation
-        self.timestamp = time.time()
-
-    def __repr__(self):
-        return 'Name: {n}\nDescription: {d}\nProvenance: {p}\nImplemented: {i}'.format(
-            n=self._name,
-            d=self._description,
-            p=get_all_bases(self.__class__),
-            i=self.is_implemented
-        )
-
-    def __call__(self, *args, **kwargs):
-        if self.is_implemented:
-            return self.implementation(self, *args, **kwargs)
+    def append(self, item):
+        """Appends new items to container, records expected type, checks type consistency"""
+        if not self.data:
+            self.type = type(item)
         else:
-            raise ValueError('The bound method must be parameter-free and only reference bound attributes!')
-
-    def asserts(self, other, context, measure, value, confidence, description):
-        other._members.append(GrammarAssertion(
-            source=self, context=context, measure=measure, value=value,
-            confidence=confidence, description=description
-        ))
-
-    def is_member_of(self, other, description):
-        other._members.append(GrammarRelation(source=self, description=description))
-
-    @property
-    def describe(self):
-        return Counter([
-            (i.context.__class__.__name__,
-             i.measure.__class__.__name__,
-             i.description) for i in self._members])
-
-    @property
-    def is_implemented(self):
-        return callable(self.implementation)
+            assert isinstance(item, self.type), "Entities must be of type {t}!".format(t=self.type)
+        self.data.append(item)
 
 
-def get_all_bases(cls, bases=None):
-    bases = bases or []
-    bases.append(cls)
-    for c in cls.__bases__:
-        get_all_bases(c, bases)
-    return ' -> '.join([i.__name__ for i in bases])
+class Entity(object):
+    """A generic Entity object with attributes, containers and dynamically generated methods
+    * Attributes can be defined on instantiation via kwargs
+    * Container attributes have special functionality:
+        * Instantiates with a list
+        * Generates a special method that appends to this list
+        * This class is expected to act as a MixIn for Domain Objects
+    """
+    def __init__(self, allowable_attributes=None, allowable_collections=None, **kwargs):
+        self.created_at = time.time()
+        defined_attributes = set(kwargs.keys())
+        expected_attributes = set(allowable_attributes)
+        expected_collections = set(allowable_collections.keys())
+
+        for kw in expected_attributes.union(defined_attributes).difference(expected_collections):
+            if kw not in expected_attributes.difference(defined_attributes):
+                setattr(self, kw, kwargs[kw])
+            else:
+                setattr(self, kw, None)
+
+        for kw in expected_collections:
+            if kw in defined_attributes:
+                self._add_collection(kw, kwargs[kw])
+            else:
+                self._add_collection(kw)
+            self._instantiate_collection_functions(kw, allowable_collections)
+
+    def _update_created_at(self, timestamp):
+        """Update the entity timestamp (Not recommended for ad hoc use)"""
+        assert isinstance(timestamp, float) and timestamp <= time.time(), "Timestamp must be Unix timestamp!"
+        setattr(self, 'created_at', timestamp)
+
+    def _add_collection(self, attribute, list_of_entities=None):
+        """Add a new collection as an attribute (Not recommended for ad hoc use)"""
+        if list_of_entities:
+            entities = EntityCollection(list_of_entities)
+        else:
+            entities = EntityCollection([])
+
+        setattr(self, attribute, entities)
+
+    def _add_to_a_collection(self, item, attribute, expected_object):
+        """Append new items to an existing collection (Not recommended for ad hoc use)"""
+        assert expected_object, "Attribute {a} does not allow this object!".format(a=attribute)
+        assert isinstance(item, expected_object), "Must be a {t} object!".format(t=type(expected_object))
+        list_of_items = getattr(self, attribute)
+        list_of_items.append(item)
+
+    def _instantiate_collection_functions(self, attribute, allowable_collections):
+        """Adds a method for each defined collection on instantiation (Not recommended for ad hoc use)"""
+        object_type = allowable_collections.get(attribute)
+
+        def add_function(x):
+            return self._add_to_a_collection(x, attribute, object_type)
+
+        add_function.__name__ = 'add_{x}'.format(x=attribute)
+        add_function.__doc__ = 'Adds {o} objects to the "{a}" collection'.format(
+            o=object_type.__name__, a=attribute
+        )
+
+        setattr(self, add_function.__name__, add_function)
 
 
-def describe_entity(item, indent=''):
-    if isinstance(item, GrammarCollection):
-        print('{i}{x}'.format(i=indent, x=item.__class__.__name__))
-        for i in item._members:
-            describe_entity(i, indent='  {i}'.format(i=indent))
-    elif isinstance(item, GrammarRelation):
-        print('{i}{x}'.format(i=indent, x=(item.source.__class__.__name__, item.description)))
-        if getattr(item.source, '_members', None):
-            for i in item.source._members:
-                describe_entity(i, indent='  {i}'.format(i=indent))
-    else:
-        pass
-
-
-def create_new_object(name, base_class=GrammarObject, attributes=None):
-    """Factory for Domain Objects"""
-    if isinstance(attributes, dict):
-        new_class = type(name, (base_class,), attributes)
-    else:
-        new_class = type(name, (base_class,), {})
-    new_class.__doc__ = '{n} in the Domain Grammar'.format(n=name)
-    return new_class
-
-
-def register_method_to_context(context):
-    def registration(f):
-        function_name = f.__name__
-        function_description = f.__doc__
-        method = GrammarObject(name=function_name, description=function_description, implementation=f)
-        return setattr(context, function_name, method.implementation) or method
-
-    return registration
-
-
-def add_metaclasses_to_domain(configuration):
-    for name, base_class in configuration:
-        globals()[name] = create_new_object(name=name, base_class=globals()[base_class])
+class Assertion(object):
+    """A generic Assertion object
+        1) The "source" and "target" attributes should both be an Entity
+        2) The "value" should be some numerical value
+        3) The "confidence" should be some numerical value
+        4) The "description" should be a free-form text field
+        5) The "measure" should be the Entity ascribing semantic meaning to the "value"
+        6) The "context" should be a list of Tags, Entities, etc that contextualize assertions
+    """
+    def __init__(self, source, target, value, measure=None, context=None, description=None, confidence=None):
+        self.source = source
+        self.target = target
+        self.value = value
+        self.measure = measure
+        self.context = context
+        self.description = description
+        self.confidence = confidence
+        self.created_at = time.time()

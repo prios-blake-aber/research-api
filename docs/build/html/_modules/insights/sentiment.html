@@ -1,0 +1,452 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>insights.sentiment &#8212; DomainAPI 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for insights.sentiment</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">from</span> <span class="nn">src</span> <span class="k">import</span> <span class="n">objects</span>
+
+
+<div class="viewcode-block" id="author_opinions_on_actions_115"><a class="viewcode-back" href="../../insights.html#insights.sentiment.author_opinions_on_actions_115">[docs]</a><span class="k">def</span> <span class="nf">author_opinions_on_actions_115</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: AssertionSet</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: AssertionSet</span>
+<span class="sd">    INSIGHT: Grouping</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Groups the Dots of each Author in a Meeting by the Actions (a Meeting Tracker Action and the Subject who performed it) which which they are associated.</span>
+<span class="sd">    * Returns a list of Author Opinions on Actions, which consist of the following:</span>
+<span class="sd">       * The Author of the Opinions</span>
+<span class="sd">       * The Subject of the Opinions</span>
+<span class="sd">       * The Meeting Tracker Action in Question</span>
+<span class="sd">       * A list of the Dots from the Author to the Subject on Attributes associated with the Action</span>
+<span class="sd">       * A list of all Dots from any Meeting Participant to the Subject on Attributes associated with the Action</span>
+<span class="sd">    * Returns an empty list if no Actions were identified in the Meeting.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Maps Actions in a Meeting (Subject, Action pairs) to a list of the associated Meeting Dots.</span>
+<span class="sd">        * For each Action, Maps the contributing Authors to their Dots on that Action.</span>
+<span class="sd">        * Maps each Author of a Dot contributing to any of the Actions identified in the Meeting to the collection of information listed above.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="author_view_on_action_152"><a class="viewcode-back" href="../../insights.html#insights.sentiment.author_view_on_action_152">[docs]</a><span class="k">def</span> <span class="nf">author_view_on_action_152</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: AssertionSet</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: AssertionSet</span>
+<span class="sd">    INSIGHT: Grouping</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Defines an Author’s view on how a Meeting Tracker Action was performed by a Subject as the average of the Dots that Author gave to the Subject on Attributes associated with the  Action.</span>
+<span class="sd">    * Returns a Scale Value representing an Author’s view on how a Subject performed a Meeting Tracker Action.</span>
+<span class="sd">    * Returns Null if called with an empty list - i.e. if the Person hasn’t authored any Dots to the Subject on Attribute associated with the Action.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="believable_choice_130"><a class="viewcode-back" href="../../insights.html#insights.sentiment.believable_choice_130">[docs]</a><span class="k">def</span> <span class="nf">believable_choice_130</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Response</span>
+<span class="sd">    INPUT: Believability</span>
+<span class="sd">    CONTEXT: Question</span>
+<span class="sd">    INSIGHT: Consensus</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Defines &quot;Believable Choice&quot; as the [Believability](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16)-weighted majority opinion on a Question Response.</span>
+<span class="sd">    * Returns the value representing the Believable Choice.</span>
+<span class="sd">    * Returns Null if:</span>
+<span class="sd">        * every Person responding to a Question has zero believability OR</span>
+<span class="sd">        * for Categorical Responses, there is no choice receiving more than 70% of the believability-weighted vote.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Calculates Total Believability: Calculates the sum of the Believability of all People who respond to a Question.</span>
+<span class="sd">        * Determines the Believable Choice based on type of Response.</span>
+<span class="sd">            * For Categorical or Yes/No Responses:</span>
+<span class="sd">                * Calculates Response Believability for each Response: Calculates the sum of the Believability of People who give the same Response.</span>
+<span class="sd">                * Calculates the ratio of Response Believability to Total Believability for each Response.</span>
+<span class="sd">                * Determines whether the ratio above for any Response is greater than 0.70.</span>
+<span class="sd">                * Selects the Response for which the above condition is True, if one exists. Returns Null otherwise.</span>
+<span class="sd">            * For 1-to-10 or 1-to-5 scale Responses:</span>
+<span class="sd">                * Calculates [believability](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16)-weighted average of responses.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="believable_view_on_action_159"><a class="viewcode-back" href="../../insights.html#insights.sentiment.believable_view_on_action_159">[docs]</a><span class="k">def</span> <span class="nf">believable_view_on_action_159</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Person</span>
+<span class="sd">    INPUT: Believability</span>
+<span class="sd">    CONTEXT: AssertionSet</span>
+<span class="sd">    INSIGHT: Believability</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Defines the Believable View of an Action in a Meeting as the [Believability-Weighted Dots Mean](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186) of all Dots associated with that Action - that is, all Dots received by a Subject on the Attributes associated with the Meeting Tracker Action.</span>
+<span class="sd">    * Returns a Scale Value representing the Believable View of an Action.</span>
+<span class="sd">    * Returns Null if called with an empty list - i.e. if no Meeting Participants have authored Dots to the Subject on Attributes associated with the Action.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Calculates the Believable View of the Dots given to a Subject on Attributes associated with a Meeting Tracker Action using the [Believability-Weighted Dots Mean](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186) method and passing in the Believability scores of the Dot Authors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="meeting_section_importance_34"><a class="viewcode-back" href="../../insights.html#insights.sentiment.meeting_section_importance_34">[docs]</a><span class="k">def</span> <span class="nf">meeting_section_importance_34</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Meeting</span>
+<span class="sd">    INPUT: nan</span>
+<span class="sd">    CONTEXT: Meeting</span>
+<span class="sd">    INSIGHT: Sentiment</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Classifies Meeting Sections as Critical, Very Important, Important, Typical, or Unremarkable based on the number of Important People in the Meeting Section and the number of generated Dots and Questions.</span>
+<span class="sd">    * Returns a Statistic between 0-1 that represents the classification of a Meeting Section&#39;s Importance.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Calculates a Person Importance Value for each Participant based on their General Believability, and if provided, job level and whether they belong to particular Management Groups (job level and membership to management groups are not currently provided in the pilot). Defaults to zero.</span>
+<span class="sd">        * Calculates the Important People Scaling Factor: calculates how many People had nonzero Person Importance (capped at 4).</span>
+<span class="sd">        * Calculates the Activity Scaling Factor: calculates a statistic representing how much activity occurred in the Meeting Section based on Dots and Questions and achieves its maximum value at 100 Dots or 10 Questions.</span>
+<span class="sd">        * Calculates the Dot Scaling Factor, which is a function of how many Dots were given in a Meeting Section and achieves its maximum value at 20 Dots.</span>
+<span class="sd">        * Calculates the Total Importance: calculates the sum of all Meeting Section Participants&#39; Person Importance.</span>
+<span class="sd">        * Calculates the overall Meeting Section Importance Value: calculates the product of the Total Importance and the three Scaling Factors above.</span>
+<span class="sd">        * Determines which classification the Meeting Section Importance Value receives and returns the associated text label (Critical, Very Important, Important, Typical, or Unremarkable).</span>
+<span class="sd">    * To produce a result at the Meeting level (as opposed to Meeting Section Level), there is code living in the application which labels a Meeting based on the results from this analytic for the first Meeting Section only.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="overall_meeting_section_quality_124"><a class="viewcode-back" href="../../insights.html#insights.sentiment.overall_meeting_section_quality_124">[docs]</a><span class="k">def</span> <span class="nf">overall_meeting_section_quality_124</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Meeting</span>
+<span class="sd">    INPUT: Responses</span>
+<span class="sd">    CONTEXT: Question</span>
+<span class="sd">    INSIGHT: Sentiment</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Defines &quot;Meeting Section Quality&quot; as the average of Rankings reflected in Question Responses to &quot;Rate the Section&quot;.</span>
+<span class="sd">    * Returns a Scale Value representing the Meeting Section Quality.</span>
+<span class="sd">    * Returns Null if there are no &quot;Rate the Section&quot; Questions or Responses.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Calculates the average of all Question Responses to &quot;Rate the Section&quot;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="overall_meeting_section_sentiment_117"><a class="viewcode-back" href="../../insights.html#insights.sentiment.overall_meeting_section_sentiment_117">[docs]</a><span class="k">def</span> <span class="nf">overall_meeting_section_sentiment_117</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Meeting</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: Meeting</span>
+<span class="sd">    INSIGHT: Sentiment</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Defines &quot;Overall Meeting Section Sentiment&quot; as the [Dots Summary](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186) of all Dots in a Meeting.</span>
+<span class="sd">    * Returns a Scale Value representing Overall Meeting Section Sentiment.</span>
+<span class="sd">    * Returns Null if there are no Dots in the Poll.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="believable_meeting_section_quality_123"><a class="viewcode-back" href="../../insights.html#insights.sentiment.believable_meeting_section_quality_123">[docs]</a><span class="k">def</span> <span class="nf">believable_meeting_section_quality_123</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Response</span>
+<span class="sd">    INPUT: Believability</span>
+<span class="sd">    CONTEXT: Question</span>
+<span class="sd">    INSIGHT: Sentiment</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Defines &quot;Believable Meeting Section Quality&quot; as the [Believability-weighted](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) average of Rankings reflected in Question Responses to &quot;Rate the Section&quot;.</span>
+<span class="sd">    * Returns a Scale Value representing the [Believable](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) Meeting Section Quality.</span>
+<span class="sd">    * Returns Null if there are no &quot;Rate the Section&quot; Questions or Responses.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Maps [Believability](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) to 0.01 for people who don&#39;t have that Score.</span>
+<span class="sd">        * Calculates the [Believability-weighted](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) average of all Question Responses to  &quot;Rate the Section&quot;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="believable_meeting_section_sentiment_116"><a class="viewcode-back" href="../../insights.html#insights.sentiment.believable_meeting_section_sentiment_116">[docs]</a><span class="k">def</span> <span class="nf">believable_meeting_section_sentiment_116</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Meeting</span>
+<span class="sd">    INPUT: Believability</span>
+<span class="sd">    CONTEXT: Meeting</span>
+<span class="sd">    INSIGHT: Sentiment</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Defines &quot;Believable Meeting Section Sentiment&quot; as the [Believable Dots Summary](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186) of all Dots in a Meeting.</span>
+<span class="sd">    * Returns a Scale Value representing the Believable Meeting Section Sentiment.</span>
+<span class="sd">    * Returns Null if there are no Dots in the Meeting.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Calculates the Believability-Weighted Author-Capped Dot Average: Combines Dot values with a weighted average, using the product of the Author&#39;s [Believability](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=14) and [Capped Author Weights](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=171) as weights.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="dotted_notably_poorly_in_meeting_127"><a class="viewcode-back" href="../../insights.html#insights.sentiment.dotted_notably_poorly_in_meeting_127">[docs]</a><span class="k">def</span> <span class="nf">dotted_notably_poorly_in_meeting_127</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Person</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: Meeting</span>
+<span class="sd">    INSIGHT: Sentiment</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Identifies whether a given Subject across all Attributes receives a Negative [believability-weighted](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) Dot average and no Positive Dots in a Meeting Section.</span>
+<span class="sd">    * Returns a Boolean representing whether a Person was Dotted Notably Poorly in a Meeting across all Attributes in a Meeting Section.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Calculates the [believability-weighted](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) mean of all Dots across all Attributes in a Meeting section.</span>
+<span class="sd">        * Determines whether the [believability-weighted](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) Attribute Dot mean is Negative.</span>
+<span class="sd">        * Determines whether there are no Positive Dots.</span>
+<span class="sd">        * Determines whether both of the previous conditions are True.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="dotted_notably_well_in_meeting_126"><a class="viewcode-back" href="../../insights.html#insights.sentiment.dotted_notably_well_in_meeting_126">[docs]</a><span class="k">def</span> <span class="nf">dotted_notably_well_in_meeting_126</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Person</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: Meeting</span>
+<span class="sd">    INSIGHT: Sentiment</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Identifies whether a given Subject across all Attributes receives a Very Positive (&gt;8) [Believability-weighted](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) Dot average and no Negative Dots in a Meeting Section.</span>
+
+<span class="sd">    * Returns a Boolean representing whether a Person was Dotted Notably Well in a Meeting across All Attributes in a Meeting Section.</span>
+
+<span class="sd">    * This is produced by the following operation(s):</span>
+
+<span class="sd">        * Calculates the [Believability-weighted](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) mean of all Dots across all Attributes in a Meeting Section.</span>
+
+<span class="sd">        * Determines whether the [Believability-weighted](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) Dot mean is Very Positive (&gt;8).</span>
+
+<span class="sd">        * Determines whether there are no Negative Dots.</span>
+
+<span class="sd">        * Determines whether both of the previous conditions are True.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="frequent_negatively_dotted_attributes_31"><a class="viewcode-back" href="../../insights.html#insights.sentiment.frequent_negatively_dotted_attributes_31">[docs]</a><span class="k">def</span> <span class="nf">frequent_negatively_dotted_attributes_31</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: AssertionSet</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: AssertionSet</span>
+<span class="sd">    INSIGHT: Sentiment</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Selects up to 3 weakest Attributes from those on which a Person has 10 or more Dots averaging 5.5 or less.</span>
+<span class="sd">    * Returns a List of up to 3 Attributes that represent a Person&#39;s Frequent Negatively Dotted Actions.</span>
+<span class="sd">    * Returns an empty list if a Person has not received more than 10 Dots on any single Attribute or if they don&#39;t have any Attributes with an average Dot value less than 5.5.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Determines if a Person has received at least 10 Dots on an Attribute.</span>
+<span class="sd">        * Calculates the average of all Dots received on the Attributes from the previous step.</span>
+<span class="sd">        * Determines if any Attributes&#39; averages from the previous step are less than 5.5.</span>
+<span class="sd">        * Selects top 3 Attributes from an ascending sorted list of Attributes based on the averages from the previous step (if ties exist, they are broken arbitrarily).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="frequent_positively_dotted_attributes_30"><a class="viewcode-back" href="../../insights.html#insights.sentiment.frequent_positively_dotted_attributes_30">[docs]</a><span class="k">def</span> <span class="nf">frequent_positively_dotted_attributes_30</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: AssertionSet</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: AssertionSet</span>
+<span class="sd">    INSIGHT: Sentiment</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Selects up to 3 highest rated Attributes from those on which a Person has 10 or more Dots averaging 6.5 or better.</span>
+<span class="sd">    * Returns a List of up to 3 Attributes that represent a Person&#39;s Frequent Positively Dotted Actions.</span>
+<span class="sd">    * Returns an empty list if a Person has not received more than 10 Dots on any single Attribute or if they don&#39;t have any Attributes with an average Dot value greater than 6.5.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Determines if a Person has received at least 10 Dots on an Attribute.</span>
+<span class="sd">        * Calculates the average of all Dots received on the Attributes from the previous step.</span>
+<span class="sd">        * Determines if any Attributes&#39; averages from the previous step exceed 6.5.</span>
+<span class="sd">        * Selects top 3 Attributes from a descending sorted list of Attributes based on the averages from the previous step (if ties exist, they are broken arbitrarily).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="negatively_dotted_attributes_in_meeting_121"><a class="viewcode-back" href="../../insights.html#insights.sentiment.negatively_dotted_attributes_in_meeting_121">[docs]</a><span class="k">def</span> <span class="nf">negatively_dotted_attributes_in_meeting_121</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: AssertionSet</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: Meeting</span>
+<span class="sd">    INSIGHT: Sentiment</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Identifies Attributes on which a Subject received Negative Dots in a Meeting.</span>
+<span class="sd">    * Returns a List of Attributes representing the Negatively Dotted Attributes in Meeting for a Participant.</span>
+<span class="sd">    * Returns an empty list if there are no Negative Dots.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Determines whether each Dot was Negative.</span>
+<span class="sd">        * Selects the list of Attributes that had at least one Negative Dot.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="positively_dotted_attributes_in_meeting_120"><a class="viewcode-back" href="../../insights.html#insights.sentiment.positively_dotted_attributes_in_meeting_120">[docs]</a><span class="k">def</span> <span class="nf">positively_dotted_attributes_in_meeting_120</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: AssertionSet</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: Meeting</span>
+<span class="sd">    INSIGHT: Sentiment</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Identifies Attributes on which a Subject received Positive Dots in a Meeting.</span>
+<span class="sd">    * Returns a List of Attributes representing Positively Dotted Attributes in Meeting.</span>
+<span class="sd">    * Returns an empty list if there are no Positive Dots.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Determines whether each Dot was Positive.</span>
+<span class="sd">        * Selects Attributes that had at least one Positive Dot.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="expected_view_on_action_165"><a class="viewcode-back" href="../../insights.html#insights.sentiment.expected_view_on_action_165">[docs]</a><span class="k">def</span> <span class="nf">expected_view_on_action_165</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: AssertionSet</span>
+<span class="sd">    INPUT: All-Stream</span>
+<span class="sd">    CONTEXT: Meeting</span>
+<span class="sd">    INSIGHT: Synthesis</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Defines the &quot;Expected View&quot; of a Person performing an Action in a Meeting based on the Person’s All-Stream scores for the Attributes associated with that Action.</span>
+<span class="sd">    * Returns a Scale Value representing their All Stream Action Value.</span>
+<span class="sd">    * Returns Null if the Person is missing All Stream Values for every Attribute associated with the Meeting Tracker Action.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="overall_view_on_action_160"><a class="viewcode-back" href="../../insights.html#insights.sentiment.overall_view_on_action_160">[docs]</a><span class="k">def</span> <span class="nf">overall_view_on_action_160</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: AssertionSet</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: Meeting</span>
+<span class="sd">    INSIGHT: Synthesis</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Defines the Overall View of an Action in a Meeting as the [Weighted Dots Mean](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186) of all Dots associated with that Action - that is, all Dots received by a Subject on the Attributes associated with the Meeting Tracker Action.</span>
+<span class="sd">    * Returns a Scale Value representing the Overall View of an Action in a Meeting.</span>
+<span class="sd">    * Returns Null if called with an empty list - i.e. if no Meeting Participants have authored Dots to the Subject on Attributes associated with the Action.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Calculates the Overall View of the Dots given to a Subject on Attributes associated with a Meeting Tracker Action using the [Weighted Dots Mean](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186) method.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">DomainAPI</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html">Insights Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.activity">Activity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.contribution">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.disagreement">Disagreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.interaction">Interaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.sentiment">Sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.uniqueness">Uniqueness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.utils">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html">Core Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.activity">Activity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.contribution">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.disagreement">Disagreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.interaction">Interaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.sentiment">Sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.uniqueness">Uniqueness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.utils">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html">Domain Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.objects">Domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.meta">Base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../objects.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Research.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
