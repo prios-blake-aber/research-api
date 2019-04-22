@@ -1,0 +1,63 @@
+.. DomainAPI documentation master file, created by
+   sphinx-quickstart on Mon Apr 22 10:07:19 2019.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to DomainAPI's documentation!
+=====================================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+DomainAPI Insights - Activity
+=============================
+.. automodule:: insights.activity
+   :members:
+
+DomainAPI Insights - Contribution
+=================================
+.. automodule:: insights.contributuon
+   :members:
+
+DomainAPI Insights - Disagreement
+=================================
+.. automodule:: insights.disagreement
+   :members:
+
+DomainAPI Insights - Interaction
+================================
+.. automodule:: insights.interaction
+   :members:
+
+DomainAPI Insights - Sentiment
+==============================
+.. automodule:: insights.sentiment
+   :members:
+
+DomainAPI Insights - Uniqueness
+===============================
+.. automodule:: insights.uniqueness
+   :members:
+
+DomainAPI Insights - Utilities
+==============================
+.. automodule:: insights.utils
+   :members:
+
+DomainAPI Classes
+=================
+.. automodule:: src.objects
+   :members:
+
+DomainAPI MetaClasses
+=====================
+.. automodule:: src.meta
+   :members:
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

@@ -1,6 +1,9 @@
 
 from src import objects
 
+"""
+Core functionality for Activity
+"""
 
 def actions_in_meeting_156(x: objects.Meeting):
     """
@@ -16,20 +19,6 @@ def actions_in_meeting_156(x: objects.Meeting):
     * This is produced by the following operation(s):
         * A Subject is deemed to have performed a Meeting Tracker Action during a Meeting Section if he or she received Dots on any of the Attributes defined as Required Attributes of the Action.  Determines which, if any, Meeting Tracker Actions occurred in a Meeting Section by checking the Dots given to each Subject against the list of Required Attributes for each Meeting Tracker Action.
         * Selects unique Subject and Action pairs matching the previous condition.
-    """
-    pass
-
-
-def attention_participant_received_155(x: objects.Meeting):
-    """
-    OUTPUT: Person
-    INPUT: Dots
-    CONTEXT: Meeting
-    INSIGHT: Activity
-    PROCESSING: Context-Only
-
-    * Calculates the total number of Dots one Person received in a Poll Section
-    * Returns a Statistic representing the Attention received by a Person
     """
     pass
 
@@ -66,7 +55,7 @@ def primary_participants_in_meeting_138(x: objects.Meeting):
     * Returns a boolean representing whether a Person is a Primary Participant in a Meeting.
     * This is produced by the following operation(s):
         * Determines whether a Person is a Primary Participant in a Meeting if either of the following conditions are true:
-         * Determines whether a Person received more than 20% of Dots in a Meeting
-         * Determines whether a Person received more than 10% of Dots and more than 10 Dots in a Meeting
+        * Determines whether a Person received more than 20% of Dots in a Meeting
+        * Determines whether a Person received more than 10% of Dots and more than 10 Dots in a Meeting
     """
     pass

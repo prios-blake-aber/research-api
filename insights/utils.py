@@ -28,7 +28,7 @@ def dot_count_26(x: objects.Meeting):
     pass
 
 
-def dots_summary_186(x: objects.Dots):
+def dots_summary_186(x: objects.AssertionSet):
     """
     OUTPUT: Person
     INPUT: nan
@@ -47,7 +47,7 @@ def dots_summary_186(x: objects.Dots):
     pass
 
 
-def dot_matrix_51(x: objects.Dots):
+def dot_matrix_51(x: objects.AssertionSet):
     """
     OUTPUT: Statistics
     INPUT: Dots
@@ -63,7 +63,7 @@ def dot_matrix_51(x: objects.Dots):
     """
     pass
 
-def dot_matrix_entry_150(x: objects.Dots):
+def dot_matrix_entry_150(x: objects.AssertionSet):
     """
     OUTPUT: Statistics
     INPUT: Dots

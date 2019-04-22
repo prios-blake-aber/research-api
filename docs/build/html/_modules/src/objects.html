@@ -1,0 +1,189 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>src.objects &#8212; DomainAPI 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for src.objects</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">from</span> <span class="nn">src</span> <span class="k">import</span> <span class="n">meta</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="k">import</span> <span class="n">Enum</span>
+
+
+<div class="viewcode-block" id="QuestionType"><a class="viewcode-back" href="../../index.html#src.objects.QuestionType">[docs]</a><span class="k">class</span> <span class="nc">QuestionType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Stub for the possible enumerations of Question Type&quot;&quot;&quot;</span>
+    <span class="n">LIKERT</span> <span class="o">=</span> <span class="s1">&#39;Likert&#39;</span>
+    <span class="n">SCALE</span> <span class="o">=</span> <span class="s1">&#39;Scale&#39;</span>
+    <span class="n">CATEGORICAL</span> <span class="o">=</span> <span class="s1">&#39;Categorical&#39;</span>
+    <span class="n">BINARY</span> <span class="o">=</span> <span class="s1">&#39;Binary&#39;</span></div>
+
+
+<div class="viewcode-block" id="Judgement"><a class="viewcode-back" href="../../index.html#src.objects.Judgement">[docs]</a><span class="k">class</span> <span class="nc">Judgement</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Judgement&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Comparison"><a class="viewcode-back" href="../../index.html#src.objects.Comparison">[docs]</a><span class="k">class</span> <span class="nc">Comparison</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Comparison&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Dot"><a class="viewcode-back" href="../../index.html#src.objects.Dot">[docs]</a><span class="k">class</span> <span class="nc">Dot</span><span class="p">(</span><span class="n">Judgement</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Dot&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Ranking"><a class="viewcode-back" href="../../index.html#src.objects.Ranking">[docs]</a><span class="k">class</span> <span class="nc">Ranking</span><span class="p">(</span><span class="n">Judgement</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Ranking&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Response"><a class="viewcode-back" href="../../index.html#src.objects.Response">[docs]</a><span class="k">class</span> <span class="nc">Response</span><span class="p">(</span><span class="n">Judgement</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Response&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AssertionSet"><a class="viewcode-back" href="../../index.html#src.objects.AssertionSet">[docs]</a><span class="k">class</span> <span class="nc">AssertionSet</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;AssertionSet (Useful for Logic&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">_allowable_collections</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;members&#39;</span><span class="p">:</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">}</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">allowable_collections</span><span class="o">=</span><span class="n">_allowable_collections</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Question"><a class="viewcode-back" href="../../index.html#src.objects.Question">[docs]</a><span class="k">class</span> <span class="nc">Question</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Question&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">_allowable_attributes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;question_type&#39;</span><span class="p">}</span>
+        <span class="n">_allowable_collections</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;responses&#39;</span><span class="p">:</span> <span class="n">Response</span><span class="p">}</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">_allowable_attributes</span><span class="p">,</span> <span class="n">_allowable_collections</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Attribute"><a class="viewcode-back" href="../../index.html#src.objects.Attribute">[docs]</a><span class="k">class</span> <span class="nc">Attribute</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Attribute&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">_allowable_attributes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">}</span>
+        <span class="n">_allowable_collections</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;members&#39;</span><span class="p">:</span> <span class="n">Attribute</span><span class="p">}</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">_allowable_attributes</span><span class="p">,</span> <span class="n">_allowable_collections</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Person"><a class="viewcode-back" href="../../index.html#src.objects.Person">[docs]</a><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Person&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">_allowable_attributes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;role&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">}</span>
+        <span class="n">_allowable_collections</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dots&#39;</span><span class="p">:</span> <span class="n">Dot</span><span class="p">}</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">_allowable_attributes</span><span class="p">,</span> <span class="n">_allowable_collections</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Team"><a class="viewcode-back" href="../../index.html#src.objects.Team">[docs]</a><span class="k">class</span> <span class="nc">Team</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Team&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">_allowable_attributes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">}</span>
+        <span class="n">_allowable_collections</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;members&#39;</span><span class="p">:</span> <span class="n">Person</span><span class="p">}</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">_allowable_attributes</span><span class="p">,</span> <span class="n">_allowable_collections</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Meeting"><a class="viewcode-back" href="../../index.html#src.objects.Meeting">[docs]</a><span class="k">class</span> <span class="nc">Meeting</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Meeting&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">_allowable_attributes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">}</span>
+        <span class="n">_allowable_collections</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dots&#39;</span><span class="p">:</span> <span class="n">Dot</span><span class="p">,</span> <span class="s1">&#39;questions&#39;</span><span class="p">:</span> <span class="n">Question</span><span class="p">,</span> <span class="s1">&#39;participants&#39;</span><span class="p">:</span> <span class="n">Person</span><span class="p">}</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">_allowable_attributes</span><span class="p">,</span> <span class="n">_allowable_collections</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">DomainAPI</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Research.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
