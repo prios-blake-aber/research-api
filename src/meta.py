@@ -4,10 +4,11 @@ import time
 
 
 class EntityCollection(object):
-    """A collection of Entity objects sharing the same type
-        1) Used to instantiate container-like attributes in an Entity
-        2) Type checks all elements of the container
-        3) Has append() method to add new elements to container
+    """A collection of Entity objects sharing the same type:
+
+    * Used to instantiate container-like attributes in an Entity
+    * Type checks all elements of the container
+    * Has append() method to add new elements to container
     """
     def __init__(self, list_of_entities):
         assert isinstance(list_of_entities, list), "Must be a list!"
@@ -35,6 +36,7 @@ class EntityCollection(object):
 
 class Entity(object):
     """A generic Entity object with attributes, containers and dynamically generated methods
+
     * Attributes can be defined on instantiation via kwargs
     * Container attributes have special functionality:
         * Instantiates with a list
@@ -44,8 +46,8 @@ class Entity(object):
     def __init__(self, allowable_attributes=None, allowable_collections=None, **kwargs):
         self.created_at = time.time()
         defined_attributes = set(kwargs.keys())
-        expected_attributes = set(allowable_attributes)
-        expected_collections = set(allowable_collections.keys())
+        expected_attributes = set(allowable_attributes) if allowable_attributes else set()
+        expected_collections = set(allowable_collections.keys()) if allowable_collections else set()
 
         for kw in expected_attributes.union(defined_attributes).difference(expected_collections):
             if kw not in expected_attributes.difference(defined_attributes):
@@ -97,13 +99,14 @@ class Entity(object):
 
 
 class Assertion(object):
-    """A generic Assertion object
-        1) The "source" and "target" attributes should both be an Entity
-        2) The "value" should be some numerical value
-        3) The "confidence" should be some numerical value
-        4) The "description" should be a free-form text field
-        5) The "measure" should be the Entity ascribing semantic meaning to the "value"
-        6) The "context" should be a list of Tags, Entities, etc that contextualize assertions
+    """A generic Assertion object:
+
+    * The "source" and "target" attributes should both be an Entity
+    * The "value" should be some numerical value
+    * The "confidence" should be some numerical value
+    * The "description" should be a free-form text field
+    * The "measure" should be the Entity ascribing semantic meaning to the "value"
+    * The "context" should be a list of Tags, Entities, etc that contextualize assertions
     """
     def __init__(self, source, target, value, measure=None, context=None, description=None, confidence=None):
         self.source = source

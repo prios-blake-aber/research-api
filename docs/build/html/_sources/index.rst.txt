@@ -10,7 +10,7 @@ Welcome to DomainAPI's documentation!
    :glob:
 
    * Insights <insights>
-   * Core Capabilities <core>
+   * Analytics <analytics>
    * Domain Objects <objects>
 
 Indices and tables

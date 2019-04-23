@@ -83,6 +83,24 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">allowable_collections</span><span class="o">=</span><span class="n">_allowable_collections</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="DotCollection"><a class="viewcode-back" href="../../objects.html#src.objects.DotCollection">[docs]</a><span class="k">class</span> <span class="nc">DotCollection</span><span class="p">(</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Collection of Dots&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ResponseCollection"><a class="viewcode-back" href="../../objects.html#src.objects.ResponseCollection">[docs]</a><span class="k">class</span> <span class="nc">ResponseCollection</span><span class="p">(</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Collection of Responses&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RelevanceCollection"><a class="viewcode-back" href="../../objects.html#src.objects.RelevanceCollection">[docs]</a><span class="k">class</span> <span class="nc">RelevanceCollection</span><span class="p">(</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Collection of Relevance Scores&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="Question"><a class="viewcode-back" href="../../objects.html#src.objects.Question">[docs]</a><span class="k">class</span> <span class="nc">Question</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Question&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -97,6 +115,23 @@
         <span class="n">_allowable_attributes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">}</span>
         <span class="n">_allowable_collections</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;members&#39;</span><span class="p">:</span> <span class="n">Attribute</span><span class="p">}</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">_allowable_attributes</span><span class="p">,</span> <span class="n">_allowable_collections</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RelevanceScore"><a class="viewcode-back" href="../../objects.html#src.objects.RelevanceScore">[docs]</a><span class="k">class</span> <span class="nc">RelevanceScore</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Relevance Score&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">_allowable_attributes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">}</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">allowable_attributes</span><span class="o">=</span><span class="n">_allowable_attributes</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">check_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;rating must be a float from 0 to 1&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="System"><a class="viewcode-back" href="../../objects.html#src.objects.System">[docs]</a><span class="k">class</span> <span class="nc">System</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;System&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Person"><a class="viewcode-back" href="../../objects.html#src.objects.Person">[docs]</a><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
@@ -149,15 +184,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.uniqueness">Uniqueness</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.utils">Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../insights.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html">Core Functionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.activity">Activity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.contribution">Contribution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.disagreement">Disagreement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.interaction">Interaction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.sentiment">Sentiment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.uniqueness">Uniqueness</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.utils">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html">Analytics Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.activity">Activity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.disagreement">Disagreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.sentiment">Sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.utils">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#indices-and-tables">Indices and tables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../objects.html">Domain Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.objects">Domain</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.meta">Base</a></li>

@@ -48,6 +48,24 @@ class AssertionSet(meta.Entity):
         super().__init__(allowable_collections=_allowable_collections, **kwargs)
 
 
+class DotCollection(AssertionSet):
+    """Collection of Dots"""
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+
+class ResponseCollection(AssertionSet):
+    """Collection of Responses"""
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+
+class RelevanceCollection(AssertionSet):
+    """Collection of Relevance Scores"""
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+
 class Question(meta.Entity):
     """Question"""
     def __init__(self, **kwargs):
@@ -62,6 +80,23 @@ class Attribute(meta.Entity):
         _allowable_attributes = {'name', 'description'}
         _allowable_collections = {'members': Attribute}
         super().__init__(_allowable_attributes, _allowable_collections, **kwargs)
+
+
+class RelevanceScore(meta.Entity):
+    """Relevance Score"""
+    def __init__(self, **kwargs):
+        _allowable_attributes = {'name', 'description'}
+        super().__init__(allowable_attributes=_allowable_attributes, **kwargs)
+
+    def check_value(self, value):
+        if value not in range(0, 1):
+            raise ValueError('rating must be a float from 0 to 1')
+
+
+class System(meta.Entity):
+    """System"""
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
 
 class Person(meta.Entity):

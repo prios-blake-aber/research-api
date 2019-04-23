@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Core Functionality
-==================
+Analytics Functionality
+=======================
 
 .. toctree::
    :maxdepth: 2
@@ -14,37 +14,22 @@ Core Functionality
 
 Activity
 ========
-.. automodule:: core.activity
-   :members:
-
-Contribution
-============
-.. automodule:: core.contribution
+.. automodule:: analytics.activity
    :members:
 
 Disagreement
 ============
-.. automodule:: core.disagreement
-   :members:
-
-Interaction
-===========
-.. automodule:: core.interaction
+.. automodule:: analytics.disagreement
    :members:
 
 Sentiment
 =========
-.. automodule:: core.sentiment
-   :members:
-
-Uniqueness
-==========
-.. automodule:: core.uniqueness
+.. automodule:: analytics.sentiment
    :members:
 
 Utilities
 =========
-.. automodule:: core.utils
+.. automodule:: analytics.utils
    :members:
 
 Indices and tables

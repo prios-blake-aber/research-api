@@ -72,6 +72,74 @@
     <span class="k">pass</span></div>
 
 
+<div class="viewcode-block" id="is_polarizing_141"><a class="viewcode-back" href="../../insights.html#insights.disagreement.is_polarizing_141">[docs]</a><span class="k">def</span> <span class="nf">is_polarizing_141</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Person</span>
+<span class="sd">    INPUT: Dots</span>
+<span class="sd">    CONTEXT: AssertionSet</span>
+<span class="sd">    INSIGHT: Disagreement</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Identifies a Polarizing event when Scale Values on a Person are spread out and there exist comparable numbers of positive (8 and above) and negative (4 and below) Scale Values</span>
+<span class="sd">    * Returns a boolean</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Calculates the standard deviation of Scale Values</span>
+<span class="sd">        * Calculates the Bucketed Standard Deviation of Scale Values:</span>
+<span class="sd">            * Maps the Scale Values to their Summarized Opinion</span>
+<span class="sd">            * Calculates the standard deviation</span>
+<span class="sd">        * Calculates the Relative Incidence Ratio of positive/negative Scale Values</span>
+<span class="sd">            * Calculates the numerator as the minimum count of positive/negative Scale Values</span>
+<span class="sd">            * Calculates the Denominator as the maximum count of positive/negative Scale Values</span>
+<span class="sd">        * Combines the following conditions to determine whether the Scale Values are polarizing:</span>
+<span class="sd">            * Calculates the standard deviation of Scale Values is greater than 0.5</span>
+<span class="sd">            * Calculates the Bucketed Standard Deviation of Scale Values is greater than 1.0</span>
+<span class="sd">            * Calculates the Relative Incidence Ratio of positive/negative Scale Values is greater than 0.25</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="disagrees_with_167"><a class="viewcode-back" href="../../insights.html#insights.disagreement.disagrees_with_167">[docs]</a><span class="k">def</span> <span class="nf">disagrees_with_167</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Response</span>
+<span class="sd">    INPUT: Responses</span>
+<span class="sd">    CONTEXT: Question</span>
+<span class="sd">    INSIGHT: Disagreement</span>
+<span class="sd">    PROCESSING: Comparing [Collections of People]</span>
+
+<span class="sd">    * Defines &quot;Disagreement&quot; between two opinions on a Question. Two opinions disagree when they are classified into different [groups](https://blakea-analytics-registry.dev.principled.io/detail?analytic=168) and, if they are Question Responses with Likert or Scale Values, also have a difference greater than a configurable threshold (with a default value of 1.7).</span>
+<span class="sd">    * Returns a Boolean representing whether two opinions Disagrees With one another.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Determines whether two opinions disagree as:</span>
+<span class="sd">            * For Categorical or Yes/No opinions: the two opinions are different.</span>
+<span class="sd">            * For Likert or Scale Value opinions:</span>
+<span class="sd">                * Determines whether the two opinions are Far Away: Compares whether the difference is greater than a configurable threshold value (default value of 1.7).</span>
+<span class="sd">                * Maps each opinion to a Summarized Opinions (Negative, Neutral, or Positive).</span>
+<span class="sd">                * Determines whether the Summarized Opinions Disagree: Determines whether their values are different.</span>
+<span class="sd">                * Determines whether the two opinions are Far Away and their Summarized Opinions Disagree.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="divisiveness_179"><a class="viewcode-back" href="../../insights.html#insights.disagreement.divisiveness_179">[docs]</a><span class="k">def</span> <span class="nf">divisiveness_179</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    OUTPUT: Response</span>
+<span class="sd">    INPUT: Responses</span>
+<span class="sd">    CONTEXT: Question</span>
+<span class="sd">    INSIGHT: Disagreement</span>
+<span class="sd">    PROCESSING: Context-Only</span>
+
+<span class="sd">    * Defines Divisiveness as the standard deviation of Summarized Opinions reflected in Meeting Question responses.</span>
+<span class="sd">    * Returns a Statistic representing Divisiveness.</span>
+<span class="sd">    * Returns Null in the following cases:</span>
+<span class="sd">        * Fewer than two People respond to a Question.</span>
+<span class="sd">        * The Question has Categorical Responses.</span>
+<span class="sd">    * This is produced by the following operation(s):</span>
+<span class="sd">        * Maps opinions to [Summarized Opinions](https://blakea-analytics-registry.dev.principled.io/detail?analytic=168).</span>
+<span class="sd">        * Calculates the standard deviation of the Summarized Opinions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
 <div class="viewcode-block" id="contradictory_action_164"><a class="viewcode-back" href="../../insights.html#insights.disagreement.contradictory_action_164">[docs]</a><span class="k">def</span> <span class="nf">contradictory_action_164</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    OUTPUT: AssertionSet</span>
@@ -467,15 +535,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.uniqueness">Uniqueness</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.utils">Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../insights.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html">Core Functionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.activity">Activity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.contribution">Contribution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.disagreement">Disagreement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.interaction">Interaction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.sentiment">Sentiment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.uniqueness">Uniqueness</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.utils">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html">Analytics Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.activity">Activity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.disagreement">Disagreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.sentiment">Sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.utils">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#indices-and-tables">Indices and tables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../objects.html">Domain Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.objects">Domain</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.meta">Base</a></li>

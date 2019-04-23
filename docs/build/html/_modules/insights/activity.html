@@ -34,66 +34,87 @@
             
   <h1>Source code for insights.activity</h1><div class="highlight"><pre>
 <span></span>
+<span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">from</span> <span class="nn">src</span> <span class="k">import</span> <span class="n">objects</span>
+<span class="kn">from</span> <span class="nn">analytics</span> <span class="k">import</span> <span class="n">activity</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Core functionality for Activity</span>
+<span class="sd">Insights on Activities</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="actions_in_meeting_156"><a class="viewcode-back" href="../../insights.html#insights.activity.actions_in_meeting_156">[docs]</a><span class="k">def</span> <span class="nf">actions_in_meeting_156</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+<div class="viewcode-block" id="actions_in_meeting_156"><a class="viewcode-back" href="../../insights.html#insights.activity.actions_in_meeting_156">[docs]</a><span class="k">def</span> <span class="nf">actions_in_meeting_156</span><span class="p">(</span><span class="n">dots</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">DotCollection</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: AssertionSet</span>
-<span class="sd">    INPUT: Dots</span>
-<span class="sd">    CONTEXT: Meeting</span>
-<span class="sd">    INSIGHT: Activity</span>
-<span class="sd">    PROCESSING: Context-Only</span>
-
-<span class="sd">    * Selects Meeting Tracker Actions performed by Subjects in Meeting Sections by inspecting the Dots given.</span>
-<span class="sd">    * Returns a List representing of all Actions which Have Occurred, where each list item is a Subject and Action pair.</span>
-<span class="sd">    * Returns Null if no Actions have occurred.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * A Subject is deemed to have performed a Meeting Tracker Action during a Meeting Section if he or she received Dots on any of the Attributes defined as Required Attributes of the Action.  Determines which, if any, Meeting Tracker Actions occurred in a Meeting Section by checking the Dots given to each Subject against the list of Required Attributes for each Meeting Tracker Action.</span>
-<span class="sd">        * Selects unique Subject and Action pairs matching the previous condition.</span>
+<span class="sd">    ```DEPRECATED``` The domain model provides this functionality for free.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="primary_actions_157"><a class="viewcode-back" href="../../insights.html#insights.activity.primary_actions_157">[docs]</a><span class="k">def</span> <span class="nf">primary_actions_157</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+<div class="viewcode-block" id="primary_actions_157"><a class="viewcode-back" href="../../insights.html#insights.activity.primary_actions_157">[docs]</a><span class="k">def</span> <span class="nf">primary_actions_157</span><span class="p">(</span><span class="n">dots</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">DotCollection</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: AssertionSet</span>
-<span class="sd">    INPUT: Dots</span>
-<span class="sd">    CONTEXT: Meeting</span>
-<span class="sd">    INSIGHT: Activity</span>
-<span class="sd">    PROCESSING: Context-Only</span>
+<span class="sd">    Defines Primary Actions in a Meeting based on :class:`objects.DotCollection`</span>
 
-<span class="sd">    * Selects the Actions that are considered Primary in a Meeting, based on their [Relevance scores](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=158).</span>
-<span class="sd">    * Returns a list of Actions from a Meeting that are considered Primary.</span>
-<span class="sd">    * Returns an empty list if there were no Actions in the Meeting.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Assumes the list of Participants is already sorted by total number of Dots received (on Attributes associated with each Participant’s Actions).</span>
-<span class="sd">        * Maps each Participant with Actions in the Meeting to a list of their Actions.</span>
-<span class="sd">        * Sorts each Participant’s list of Actions by the [Relevance score](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=158).</span>
-<span class="sd">        * Selects up to a configurable maximum number of Primary Actions, choosing the next most relevant action from each Participant in a round robin fashion.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        dots (objects.DotCollection): A set of :class:`objects.Dot`.</span>
+<span class="sd">        *args: Variable length argument list.</span>
+<span class="sd">        **kwargs: Arbitrary keyword arguments.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        objects.RelevanceCollection: A set of :class:`objects.RelevanceScore`, or an empty set if none exist.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
+    <span class="n">relevant_actions</span> <span class="o">=</span> <span class="n">action_relevance_158</span><span class="p">(</span><span class="n">dots</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">relevant_actions</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># top 3 scores</span></div>
 
 
-<div class="viewcode-block" id="primary_participants_in_meeting_138"><a class="viewcode-back" href="../../insights.html#insights.activity.primary_participants_in_meeting_138">[docs]</a><span class="k">def</span> <span class="nf">primary_participants_in_meeting_138</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+<div class="viewcode-block" id="primary_participants_in_meeting_138"><a class="viewcode-back" href="../../insights.html#insights.activity.primary_participants_in_meeting_138">[docs]</a><span class="k">def</span> <span class="nf">primary_participants_in_meeting_138</span><span class="p">(</span><span class="n">dots</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">DotCollection</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: AssertionSet</span>
-<span class="sd">    INPUT: Dots</span>
-<span class="sd">    CONTEXT: Meeting</span>
-<span class="sd">    INSIGHT: Activity</span>
-<span class="sd">    PROCESSING: Comparing [Person vs. Overall]</span>
+<span class="sd">    Defines Primary Participants in a Meeting based on :class:`objects.DotCollection`</span>
 
-<span class="sd">    * Identifies whether a Person received more than 20% of Dots (or more than 10% of Dots if they receive at least 10 Dots) during a Meeting</span>
-<span class="sd">    * Returns a boolean representing whether a Person is a Primary Participant in a Meeting.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Determines whether a Person is a Primary Participant in a Meeting if either of the following conditions are true:</span>
-<span class="sd">        * Determines whether a Person received more than 20% of Dots in a Meeting</span>
-<span class="sd">        * Determines whether a Person received more than 10% of Dots and more than 10 Dots in a Meeting</span>
+<span class="sd">    Args:</span>
+<span class="sd">        dots (objects.DotCollection): A set of :class:`objects.Dot`.</span>
+<span class="sd">        *args: Variable length argument list.</span>
+<span class="sd">        **kwargs: Arbitrary keyword arguments.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        objects.RelevanceCollection: A set of :class:`objects.RelevanceScore`, or an empty set if none exist.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
+    <span class="n">total_participation</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dots</span><span class="p">)</span>
+    <span class="n">dots</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">person</span><span class="p">,</span> <span class="n">dots</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">dots</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">target</span><span class="p">):</span>
+        <span class="n">person_dots</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">dots</span><span class="p">))</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">person_dots</span> <span class="o">/</span> <span class="n">total_participation</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.2</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">person_dots</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="ow">and</span> <span class="p">((</span><span class="n">person_dots</span> <span class="o">/</span> <span class="n">total_participation</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">)):</span>
+            <span class="k">yield</span> <span class="n">objects</span><span class="o">.</span><span class="n">Judgement</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">(),</span> <span class="n">target</span><span class="o">=</span><span class="n">person</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">objects</span><span class="o">.</span><span class="n">Judgement</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">(),</span> <span class="n">target</span><span class="o">=</span><span class="n">person</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="action_relevance_158"><a class="viewcode-back" href="../../insights.html#insights.activity.action_relevance_158">[docs]</a><span class="k">def</span> <span class="nf">action_relevance_158</span><span class="p">(</span><span class="n">dots</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">DotCollection</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Defines Action Relevance in a Meeting based on :class:`objects.DotCollection`</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dots (objects.DotCollection): A set of :class:`objects.Dot`.</span>
+<span class="sd">        *args: Variable length argument list.</span>
+<span class="sd">        **kwargs: Arbitrary keyword arguments.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        objects.RelevanceCollection: A set of :class:`objects.RelevanceScore`, or an empty set if none exist.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">activity</span><span class="o">.</span><span class="n">relevance_of_dots</span><span class="p">(</span><span class="n">dots</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="attention_participant_received_155"><a class="viewcode-back" href="../../insights.html#insights.activity.attention_participant_received_155">[docs]</a><span class="k">def</span> <span class="nf">attention_participant_received_155</span><span class="p">(</span><span class="n">dots</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">DotCollection</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Defines Relevance People in a Meeting based on :class:`objects.DotCollection`</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dots (objects.DotCollection): A set of :class:`objects.Dot`.</span>
+<span class="sd">        *args: Variable length argument list.</span>
+<span class="sd">        **kwargs: Arbitrary keyword arguments.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        objects.RelevanceCollection: A set of :class:`objects.RelevanceScore`, or an empty set if none exist.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">activity</span><span class="o">.</span><span class="n">relevance_of_people</span><span class="p">(</span><span class="n">dots</span><span class="p">)</span></div>
 </pre></div>
 
           </div>
@@ -122,15 +143,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.uniqueness">Uniqueness</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.utils">Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../insights.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html">Core Functionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.activity">Activity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.contribution">Contribution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.disagreement">Disagreement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.interaction">Interaction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.sentiment">Sentiment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.uniqueness">Uniqueness</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.utils">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html">Analytics Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.activity">Activity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.disagreement">Disagreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.sentiment">Sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.utils">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#indices-and-tables">Indices and tables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../objects.html">Domain Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.objects">Domain</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.meta">Base</a></li>

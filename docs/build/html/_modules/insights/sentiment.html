@@ -328,38 +328,6 @@
 <span class="sd">        * Selects Attributes that had at least one Positive Dot.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="expected_view_on_action_165"><a class="viewcode-back" href="../../insights.html#insights.sentiment.expected_view_on_action_165">[docs]</a><span class="k">def</span> <span class="nf">expected_view_on_action_165</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: AssertionSet</span>
-<span class="sd">    INPUT: All-Stream</span>
-<span class="sd">    CONTEXT: Meeting</span>
-<span class="sd">    INSIGHT: Synthesis</span>
-<span class="sd">    PROCESSING: Context-Only</span>
-
-<span class="sd">    * Defines the &quot;Expected View&quot; of a Person performing an Action in a Meeting based on the Person’s All-Stream scores for the Attributes associated with that Action.</span>
-<span class="sd">    * Returns a Scale Value representing their All Stream Action Value.</span>
-<span class="sd">    * Returns Null if the Person is missing All Stream Values for every Attribute associated with the Meeting Tracker Action.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="overall_view_on_action_160"><a class="viewcode-back" href="../../insights.html#insights.sentiment.overall_view_on_action_160">[docs]</a><span class="k">def</span> <span class="nf">overall_view_on_action_160</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: AssertionSet</span>
-<span class="sd">    INPUT: Dots</span>
-<span class="sd">    CONTEXT: Meeting</span>
-<span class="sd">    INSIGHT: Synthesis</span>
-<span class="sd">    PROCESSING: Context-Only</span>
-
-<span class="sd">    * Defines the Overall View of an Action in a Meeting as the [Weighted Dots Mean](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186) of all Dots associated with that Action - that is, all Dots received by a Subject on the Attributes associated with the Meeting Tracker Action.</span>
-<span class="sd">    * Returns a Scale Value representing the Overall View of an Action in a Meeting.</span>
-<span class="sd">    * Returns Null if called with an empty list - i.e. if no Meeting Participants have authored Dots to the Subject on Attributes associated with the Action.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Calculates the Overall View of the Dots given to a Subject on Attributes associated with a Meeting Tracker Action using the [Weighted Dots Mean](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186) method.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
 </pre></div>
 
           </div>
@@ -388,15 +356,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.uniqueness">Uniqueness</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.utils">Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../insights.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html">Core Functionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.activity">Activity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.contribution">Contribution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.disagreement">Disagreement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.interaction">Interaction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.sentiment">Sentiment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.uniqueness">Uniqueness</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#module-core.utils">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../core.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html">Analytics Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.activity">Activity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.disagreement">Disagreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.sentiment">Sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.utils">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#indices-and-tables">Indices and tables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../objects.html">Domain Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.objects">Domain</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.meta">Base</a></li>

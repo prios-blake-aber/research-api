@@ -16,7 +16,7 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Core Functionality" href="core.html" />
+    <link rel="prev" title="Analytics Functionality" href="analytics.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -71,6 +71,12 @@
 <dd></dd></dl>
 
 <dl class="class">
+<dt id="src.objects.DotCollection">
+<em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">DotCollection</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/objects.html#DotCollection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.DotCollection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collection of Dots</p>
+</dd></dl>
+
+<dl class="class">
 <dt id="src.objects.Judgement">
 <em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">Judgement</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/objects.html#Judgement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.Judgement" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -102,8 +108,31 @@
 <dd></dd></dl>
 
 <dl class="class">
+<dt id="src.objects.RelevanceCollection">
+<em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">RelevanceCollection</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/objects.html#RelevanceCollection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.RelevanceCollection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collection of Relevance Scores</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="src.objects.RelevanceScore">
+<em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">RelevanceScore</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/objects.html#RelevanceScore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.RelevanceScore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Relevance Score</p>
+</dd></dl>
+
+<dl class="class">
 <dt id="src.objects.Response">
 <em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">Response</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/objects.html#Response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.Response" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="src.objects.ResponseCollection">
+<em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">ResponseCollection</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/objects.html#ResponseCollection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.ResponseCollection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collection of Responses</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="src.objects.System">
+<em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">System</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/objects.html#System"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.System" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
@@ -117,37 +146,45 @@
 <dl class="class">
 <dt id="src.meta.Assertion">
 <em class="property">class </em><code class="descclassname">src.meta.</code><code class="descname">Assertion</code><span class="sig-paren">(</span><em>source</em>, <em>target</em>, <em>value</em>, <em>measure=None</em>, <em>context=None</em>, <em>description=None</em>, <em>confidence=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/meta.html#Assertion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.meta.Assertion" title="Permalink to this definition">¶</a></dt>
-<dd><p>A generic Assertion object
-1) The “source” and “target” attributes should both be an Entity
-2) The “value” should be some numerical value
-3) The “confidence” should be some numerical value
-4) The “description” should be a free-form text field
-5) The “measure” should be the Entity ascribing semantic meaning to the “value”
-6) The “context” should be a list of Tags, Entities, etc that contextualize assertions</p>
+<dd><p>A generic Assertion object:</p>
+<ul class="simple">
+<li>The “source” and “target” attributes should both be an Entity</li>
+<li>The “value” should be some numerical value</li>
+<li>The “confidence” should be some numerical value</li>
+<li>The “description” should be a free-form text field</li>
+<li>The “measure” should be the Entity ascribing semantic meaning to the “value”</li>
+<li>The “context” should be a list of Tags, Entities, etc that contextualize assertions</li>
+</ul>
 </dd></dl>
 
 <dl class="class">
 <dt id="src.meta.Entity">
 <em class="property">class </em><code class="descclassname">src.meta.</code><code class="descname">Entity</code><span class="sig-paren">(</span><em>allowable_attributes=None</em>, <em>allowable_collections=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/meta.html#Entity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.meta.Entity" title="Permalink to this definition">¶</a></dt>
-<dd><p>A generic Entity object with attributes, containers and dynamically generated methods
-* Attributes can be defined on instantiation via kwargs
-* Container attributes have special functionality:</p>
-<blockquote>
-<div><ul class="simple">
+<dd><p>A generic Entity object with attributes, containers and dynamically generated methods</p>
+<ul class="simple">
+<li>Attributes can be defined on instantiation via kwargs</li>
+<li><dl class="first docutils">
+<dt>Container attributes have special functionality:</dt>
+<dd><ul class="first last">
 <li>Instantiates with a list</li>
 <li>Generates a special method that appends to this list</li>
 <li>This class is expected to act as a MixIn for Domain Objects</li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
+</li>
+</ul>
 </dd></dl>
 
 <dl class="class">
 <dt id="src.meta.EntityCollection">
 <em class="property">class </em><code class="descclassname">src.meta.</code><code class="descname">EntityCollection</code><span class="sig-paren">(</span><em>list_of_entities</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/meta.html#EntityCollection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.meta.EntityCollection" title="Permalink to this definition">¶</a></dt>
-<dd><p>A collection of Entity objects sharing the same type
-1) Used to instantiate container-like attributes in an Entity
-2) Type checks all elements of the container
-3) Has append() method to add new elements to container</p>
+<dd><p>A collection of Entity objects sharing the same type:</p>
+<ul class="simple">
+<li>Used to instantiate container-like attributes in an Entity</li>
+<li>Type checks all elements of the container</li>
+<li>Has append() method to add new elements to container</li>
+</ul>
 <dl class="method">
 <dt id="src.meta.EntityCollection.append">
 <code class="descname">append</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/meta.html#EntityCollection.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.meta.EntityCollection.append" title="Permalink to this definition">¶</a></dt>
@@ -189,7 +226,6 @@
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="insights.html">Insights Functionality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.activity">Activity</a></li>
@@ -200,15 +236,12 @@
 <li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.uniqueness">Uniqueness</a></li>
 <li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.utils">Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="insights.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="core.html">Core Functionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="core.html#module-core.activity">Activity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="core.html#module-core.contribution">Contribution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="core.html#module-core.disagreement">Disagreement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="core.html#module-core.interaction">Interaction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="core.html#module-core.sentiment">Sentiment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="core.html#module-core.uniqueness">Uniqueness</a></li>
-<li class="toctree-l1"><a class="reference internal" href="core.html#module-core.utils">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="core.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.html">Analytics Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.html#module-analytics.activity">Activity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.html#module-analytics.disagreement">Disagreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.html#module-analytics.sentiment">Sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.html#module-analytics.utils">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.html#indices-and-tables">Indices and tables</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Domain Objects</a><ul class="simple">
 </ul>
 </li>
@@ -221,7 +254,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="core.html" title="previous chapter">Core Functionality</a></li>
+      <li>Previous: <a href="analytics.html" title="previous chapter">Analytics Functionality</a></li>
   </ul></li>
 </ul>
 </div>
