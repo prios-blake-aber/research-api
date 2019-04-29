@@ -20,7 +20,7 @@ def action_is_polarizing_161(x: objects.Meeting):
     * Identifies Meeting Tracker Actions in a Meeting that are [polarizing](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=141) based on Dots associated with the Action.
     * Returns a Boolean representing whether an Action in a Meeting Is Polarizing.
     """
-    pass
+    return 'Natalie was here'
 
 
 def meeting_section_sentiment_is_polarizing_118(x: objects.Meeting):
@@ -182,7 +182,7 @@ def consensus_exists_131(x: objects.Question):
     pass
 
 
-def quorum_exists_145(x: objects.Meeting):
+def quorum_exists_145(responses: objects.ResponseCollection):
     """
     OUTPUT: Question
     INPUT: Responses
