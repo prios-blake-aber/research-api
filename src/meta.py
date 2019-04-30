@@ -46,21 +46,27 @@ class Entity(object):
     def __init__(self, allowable_attributes=None, allowable_collections=None, **kwargs):
         self.created_at = time.time()
         defined_attributes = set(kwargs.keys())
-        expected_attributes = set(allowable_attributes) if allowable_attributes else set()
-        expected_collections = set(allowable_collections.keys()) if allowable_collections else set()
+        self.expected_attributes = set(allowable_attributes) if allowable_attributes else set()
+        self.expected_collections = set(allowable_collections.keys()) if allowable_collections else set()
 
-        for kw in expected_attributes.union(defined_attributes).difference(expected_collections):
-            if kw not in expected_attributes.difference(defined_attributes):
+        for kw in self.expected_attributes.union(defined_attributes).difference(self.expected_collections):
+            if kw not in self.expected_attributes.difference(defined_attributes):
                 setattr(self, kw, kwargs[kw])
             else:
                 setattr(self, kw, None)
 
-        for kw in expected_collections:
+        for kw in self.expected_collections:
             if kw in defined_attributes:
                 self._add_collection(kw, kwargs[kw])
             else:
                 self._add_collection(kw)
             self._instantiate_collection_functions(kw, allowable_collections)
+
+    def empty(self):
+        for attribute in self.expected_attributes:
+            setattr(self, attribute, None)
+        for attribute in self.expected_collections:
+            self._add_collection(attribute)
 
     def _update_created_at(self, timestamp):
         """Update the entity timestamp (Not recommended for ad hoc use)"""
