@@ -1,5 +1,8 @@
-
 from src import objects
+from analytics import utils
+
+_QUORUM_THRESH_DEFAULT = 0.8
+
 
 """
 Polarizing - distribution at the poles
@@ -20,7 +23,7 @@ def action_is_polarizing_161(x: objects.Meeting):
     * Identifies Meeting Tracker Actions in a Meeting that are [polarizing](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=141) based on Dots associated with the Action.
     * Returns a Boolean representing whether an Action in a Meeting Is Polarizing.
     """
-    return 'Natalie was here'
+    pass
 
 
 def meeting_section_sentiment_is_polarizing_118(x: objects.Meeting):
@@ -182,7 +185,10 @@ def consensus_exists_131(x: objects.Question):
     pass
 
 
-def quorum_exists_145(responses: objects.ResponseCollection):
+@utils.select_participants_from_meeting
+@utils.select_responses_from_question
+def quorum_exists_145(participants: objects.Meeting, responses: objects.Question,
+                      quorum_threshold=_QUORUM_THRESH_DEFAULT):
     """
     OUTPUT: Question
     INPUT: Responses
@@ -195,9 +201,58 @@ def quorum_exists_145(responses: objects.ResponseCollection):
     * Returns Null if there are zero People in a Meeting Section.
     * This is produced by the following operation(s):
         * Determines whether the ratio between the number of People who give a non-N/A Response on a Question to the total number of People in a Meeting Section exceeds 0.8 (which is a configurable parameter).
-    """
-    pass
 
+    Quorum Exists v1 Analytic Implementation
+
+    https://github.principled.io/vgs/core-access/tree/master/docs/analytic-implementations/83357bac-d082-4085-8fda-07ade37bfb86.pdf
+
+    Parameters
+    ----------
+    num_responses : int
+        Number of responses
+    num_persons : int
+        Number of people
+    quorum_threshold : float
+        The threshold above which quorum exists. Defaults to :data:`_QUORUM_THRESH_DEFAULT`
+
+    Returns
+    -------
+    bool: Whether quorum exists. Returns None if num_persons is 0.
+
+    >>> quorum_exists_145(80, 100)
+    ... participants = objects.Meeting(participants=[objects.Person(), objects.Person()])
+    ... responses = objects.Question(responses=[objects.Response(), objects.Response()])
+    False
+    >>> quorum_exists_145(81, 100)
+    ... participants = objects.Meeting(participants=[objects.Person(), objects.Person()])
+    ... responses = objects.Question(responses=[objects.Response(), objects.Response()])
+    True
+    >>> quorum_exists_145(70, 100, quorum_threshold=0.70)
+    ... participants = objects.Meeting(participants=[objects.Person(), objects.Person()])
+    ... responses = objects.Question(responses=[objects.Response(), objects.Response()])
+    False
+    >>> quorum_exists_145(71, 100, quorum_threshold=0.70)
+    ... participants = objects.Meeting(participants=[objects.Person(), objects.Person()])
+    ... responses = objects.Question(responses=[objects.Response(), objects.Response()])
+    True
+    >>> quorum_exists_145(1, 0)
+    ... participants = objects.Meeting(participants=[objects.Person(), objects.Person()])
+    ... responses = objects.Question(responses=[objects.Response(), objects.Response()])
+    >>> quorum_exists_145(0, 10)
+    ... participants = objects.Meeting(participants=[objects.Person(), objects.Person()])
+    ... responses = objects.Question(responses=[objects.Response(), objects.Response()])
+    False
+    """
+    num_participants = len(participants)
+    num_responses = len(responses)
+    try:
+        return num_responses / num_participants > quorum_threshold
+    except ZeroDivisionError:
+        return None
+
+
+test = quorum_exists_145(participants=80, responses=100, quorum_threshold=_QUORUM_THRESH_DEFAULT)
+print(test)
 
 def meeting_section_nubbiness_149(x: objects.Meeting):
     """
