@@ -183,7 +183,7 @@ def consensus_exists_131(x: objects.Question):
     pass
 
 
-@utils.select_participants_and_responses_from_meeting
+@utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
 def quorum_exists_145(meeting: objects.Meeting):
     """
     OUTPUT: Question
@@ -198,7 +198,7 @@ def quorum_exists_145(meeting: objects.Meeting):
     * This is produced by the following operation(s):
         * Determines whether the ratio between the number of People who give a non-N/A Response on a Question to the total number of People in a Meeting Section exceeds 0.8 (which is a configurable parameter).
     """
-    print(meeting.name)
+    print(meeting.participants)
 
 
 

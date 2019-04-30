@@ -33,3 +33,20 @@ def select_participants_and_responses_from_meeting(original_function):
         meeting.questions = questions
         return original_function(meeting, *args,**kwargs)
     return new_function
+
+
+def scope_required_data_within_object(
+        attributes_to_keep=None, collections_to_keep=None
+):
+    """This decorator scopes the required data for an object
+    and passes it into the decorated function"""
+    assert (not attributes_to_keep) | (not collections_to_keep), 'Must specify some data to retain in object!'
+
+    def actual_filtering_decorator(function):
+        def wrapper(original_object, **kwargs):
+            modified_object = original_object.empty(
+                attributes_to_keep, collections_to_keep
+            )
+            return function(modified_object, **kwargs)
+        return wrapper
+    return actual_filtering_decorator

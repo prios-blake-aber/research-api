@@ -62,11 +62,14 @@ class Entity(object):
                 self._add_collection(kw)
             self._instantiate_collection_functions(kw, allowable_collections)
 
-    def empty(self):
+    def empty(self, attributes_to_keep, collections_to_keep):
+        """Filters data from instantiated object (Not recommended for ad hoc use)"""
         for attribute in self.expected_attributes:
-            setattr(self, attribute, None)
+            if attribute not in attributes_to_keep:
+                setattr(self, attribute, None)
         for attribute in self.expected_collections:
-            self._add_collection(attribute)
+            if attribute not in collections_to_keep:
+                self._add_collection(attribute)
 
     def _update_created_at(self, timestamp):
         """Update the entity timestamp (Not recommended for ad hoc use)"""
