@@ -86,8 +86,6 @@ class RelevanceScore(meta.Assertion):
     """RelevanceScore"""
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.source = System
-        self.measure = self.__class__
 
     def check_value(self, value):
         if value not in range(0, 1):
@@ -95,7 +93,7 @@ class RelevanceScore(meta.Assertion):
 
 
 class IsQuorum(meta.Assertion):
-    """RelevanceScore"""
+    """IsQuorum"""
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
