@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Callable, Optional
 import numpy as np
 from src import objects
 
@@ -29,3 +29,40 @@ def map_values(x: List[float], from_type: objects.NumericRange):
         return x
 
     return np.digitize(x, [low_thresh, high_thresh])
+
+
+def standard_deviation(x: List[float]) -> float:
+    return np.nanstd(np.array(x))
+
+
+def percent_satisfying_condition(ar: List[float], condition: Callable) -> Optional[float]:
+    """
+    Percent of values in an array that satisfy condition.
+
+    Parameters
+    ----------
+    ar
+        List of numeric values
+    condition
+        Calculates percent of values that satisfy this condition.
+
+    Returns
+    -------
+    Percentage (between 0 and 1, inclusive) if `x` has 1 or more elements. Otherwise it returns
+    None.
+
+    Examples
+    --------
+    >>> greater_than_two = lambda x: x > 2
+    >>> percent_satisfying_condition([1, 2, 3, 4], greater_than_two)
+    0.5
+    >>> greater_than_four = lambda x: x > 4
+    >>> percent_satisfying_condition([1, 2, 3, 4], greater_than_four)
+    0.0
+    >>> percent_satisfying_condition([], greater_than_four)
+    """
+    if len(ar) > 0:
+        subset = [x for x in ar if condition(x)]
+        return len(subset) / len(ar)
+    else:
+        return None

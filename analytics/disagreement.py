@@ -1,8 +1,10 @@
 from src import objects, meta
-from analytics.foundation import map_values
+from analytics.foundation import map_values, percent_satisfying_condition, standard_deviation
 from src.objects import NumericRange
 _THRESHOLD_HIGH = 1.7
-
+_THRESHOLD_STD_SCALE = 1.0
+_THRESHOLD_STD_MAPPED_SCALE = 0.5
+_THRESHOLD_POLES = 0.25
 
 """
 Core functionality for Disagreement
@@ -48,33 +50,59 @@ def substantive_disagreement(x1: meta.Assertion, x2: meta.Assertion,
     return objects.Judgement(source=x1.source, target=x2.source, value=result)
 
 
-def is_polarizing(x: objects.AssertionSet):
+@utils.scope_required_data_within_object(collections_to_keep=['expected_collections'])
+def is_polarizing(scale_assertions: objects.CollectionOfScaleValues):
     """
-    Note:
-        * Identifies a Polarizing event when Scale Values on a Person are spread out and there exist comparable numbers of positive (8 and above) and negative (4 and below) Scale Values
-        * Returns a boolean
-        * This is produced by the following operation(s):
-            * Calculates the standard deviation of Scale Values
-            * Calculates the Bucketed Standard Deviation of Scale Values:
-                * Maps the Scale Values to their Summarized Opinion
-                * Calculates the standard deviation
-            * Calculates the Relative Incidence Ratio of positive/negative Scale Values
-                * Calculates the numerator as the minimum count of positive/negative Scale Values
-                * Calculates the Denominator as the maximum count of positive/negative Scale Values
-            * Combines the following conditions to determine whether the Scale Values are polarizing:
-                * Calculates the standard deviation of Scale Values is greater than 0.5
-                * Calculates the Bucketed Standard Deviation of Scale Values is greater than 1.0
-                * Calculates the Relative Incidence Ratio of positive/negative Scale Values is greater than 0.25
+    Is Polarizing
 
-    Args:
-        dots (objects.AssertionSet): A set of :class:`objects.Assertion`.
-        *args: Variable length argument list.
-        **kwargs: Arbitrary keyword arguments.
+    * Identifies a Polarizing event when Scale Values on a Person are spread out and there exist
+    comparable numbers of positive (8 and above) and negative (4 and below) Scale Values
+    * Returns a boolean
+    * This is produced by the following operation(s):
+        * Calculates the standard deviation of Scale Values
+        * Calculates the Bucketed Standard Deviation of Scale Values:
+            * Maps the Scale Values to their Summarized Opinion
+            * Calculates the standard deviation
+        * Calculates the Relative Incidence Ratio of positive/negative Scale Values
+            * Calculates the numerator as the minimum count of positive/negative Scale Values
+            * Calculates the Denominator as the maximum count of positive/negative Scale Values
+        * Combines the following conditions to determine whether the Scale Values are polarizing:
+            * Calculates the standard deviation of Scale Values is greater than 0.5
+            * Calculates the Bucketed Standard Deviation of Scale Values is greater than 1.0
+            * Calculates the Relative Incidence Ratio of positive/negative Scale Values is greater than 0.25
 
-    Returns:
-        objects.AssertionSet: A set of relevant :class:`objects.Assertion` in a :class:`objects.Context`, or an empty set if none exist.
+    Parameters
+    ----------
+    x
+        List of assertions with scale values.
+
+    Returns
+    -------
+    object.Judgement
+        Whether a set of scale values are polarizing.
     """
-    pass
+    values = [xi.value for xi in scale_assertions.expected_collections]
+    mapped_values = [map_values(vi, NumericRange.ONE_TO_TEN) for vi in values]
+
+    def negative_sentiment(x):
+        return x == 1
+
+    def positive_sentiment(x):
+        return x == 3
+
+    percent_negative = percent_satisfying_condition(mapped_values, negative_sentiment)
+    percent_positive = percent_satisfying_condition(mapped_values, positive_sentiment)
+
+    if percent_negative > 0 and percent_positive > 0:
+        pole_ratio = min(percent_positive/percent_negative, percent_negative/percent_positive)
+    else:
+        pole_ratio = 0
+
+    std_values_condition = standard_deviation(values) > _THRESHOLD_STD_SCALE
+    std_mapped_values_condition = standard_deviation(mapped_values) > _THRESHOLD_STD_MAPPED_SCALE
+    pole_condition = pole_ratio > _THRESHOLD_POLES
+    return std_values_condition and std_mapped_values_condition and pole_condition
+
 
 
 def disagrees_with(questions: objects.AssertionSet):

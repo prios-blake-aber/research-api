@@ -57,7 +57,14 @@ class AssertionSet(meta.Entity):
         super().__init__(allowable_collections=_allowable_collections, **kwargs)
 
 
-class DotCollection(AssertionSet):
+class CollectionOfScaleValues(AssertionSet):
+    """AssertionSet (Useful for Logic"""
+    def __init__(self, **kwargs):
+        _allowable_collections = {'members': meta.Assertion}
+        super().__init__(allowable_collections=_allowable_collections, **kwargs)
+
+
+class DotCollection(CollectionOfScaleValues):
     """Collection of Dots"""
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
