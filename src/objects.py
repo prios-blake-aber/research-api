@@ -3,6 +3,15 @@ from src import meta
 from enum import Enum
 
 
+class NumericRange(Enum):
+    """
+    Enumeration that fixes the range of numerical values.
+    """
+    ONE_TO_TEN = 1
+    ONE_TO_FIVE = 2
+    ONE_TO_THREE = 3
+
+
 class QuestionType(Enum):
     """Stub for the possible enumerations of Question Type"""
     LIKERT = 'Likert'
@@ -48,7 +57,14 @@ class AssertionSet(meta.Entity):
         super().__init__(allowable_collections=_allowable_collections, **kwargs)
 
 
-class DotCollection(AssertionSet):
+class CollectionOfScaleValues(AssertionSet):
+    """AssertionSet (Useful for Logic"""
+    def __init__(self, **kwargs):
+        _allowable_collections = {'members': meta.Assertion}
+        super().__init__(allowable_collections=_allowable_collections, **kwargs)
+
+
+class DotCollection(CollectionOfScaleValues):
     """Collection of Dots"""
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
