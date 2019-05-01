@@ -88,7 +88,7 @@ def divisiveness(questions: objects.AssertionSet):
 
 def believable_choice(question: objects.Question):
     """
-    INSERT DOCSTRING
+    TK
     """
     total_believability = sum([response.source.believability for response in question.responses.data])
     # TODO: Terrible factorization using QuestionType
