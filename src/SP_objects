@@ -1,0 +1,88 @@
+from dataclasses import dataclass, field
+from typing import List, Union
+from enum import Enum
+
+
+class QuestionType(Enum):
+    """Stub for the possible enumerations of Question Type"""
+    LIKERT = 'Likert'
+    SCALE = 'Scale'
+    CATEGORICAL = 'Categorical'
+    BINARY = 'Binary'
+
+
+class Attribute(Enum):
+    # enter ontology possible so it's not strings?
+    pass
+
+
+@dataclass
+class Dot:
+    subject: str
+    author: str
+    value: int
+    attribute: Attribute
+
+
+@dataclass
+class Person:
+    name: str
+    role: str
+    manager: str
+    description: str
+    dots: List[Dot]
+
+
+@dataclass
+class Response:
+    name: Union[str, int]
+
+
+@dataclass
+class Question:
+    name: str
+    description: str
+    question_type: QuestionType
+    responses: List[Response]
+
+
+@dataclass
+class Meeting:
+    name: str
+    description: str
+    dots: List[Dot] = field(default_factory=list)
+    questions: List[Question] = field(default_factory=list)
+    participants: List[Person] = field(default_factory=list)
+
+
+@dataclass
+class Question:
+    name: str
+    description: str
+    question_type: QuestionType
+    responses: List[Response] = field(default_factory=list)
+
+
+test_object1 = Meeting(name='hi', description='no')
+test_object1.crazy = True
+test_object2 = Meeting(name='hi', description='no', crazy='hi')
+print(test_object1)
+
+# bounding all possible inputs
+Dot
+Question
+Response
+Meeting
+Person
+Resume
+SlackChannel
+GoogleDoc
+int, float, bool
+etc
+List[Dots]
+List[Questions]
+List[Responses]
+List[Meeting]
+List[Person]
+List[Resume]
+etc
