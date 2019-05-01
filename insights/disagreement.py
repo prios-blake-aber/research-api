@@ -1,6 +1,6 @@
 
 from src import objects
-from analytics import utils
+from analytics import utils, activity
 
 _QUORUM_THRESH_DEFAULT = 0.80
 
@@ -210,16 +210,12 @@ def quorum_exists_in_meeting(meeting: objects.Meeting):
 
 
 @utils.scope_required_data_within_object(collections_to_keep=['responses'])
-def quorum_exists_on_question_145(question: objects.Question, number_participants, quorum_threshold = _QUORUM_THRESH_DEFAULT):
+def quorum_exists_on_question_145(question: objects.Question, number_participants,
+                                  quorum_threshold = _QUORUM_THRESH_DEFAULT):
     """
-    INSERT DOCSTRING HERE
+    Quorum exists on a question.
     """
-    if number_participants:
-        number_responses = len(question.responses.data)
-        quorum_flag = number_responses / number_participants > quorum_threshold
-        return objects.IsQuorum(source=objects.System, target=question, value=quorum_flag)
-    else:
-        return objects.IsQuorum(source=objects.System, target=question, value=None)
+    return activity.quorum_exists_on_question(question, number_participants, quorum_threshold)
 
 
 def meeting_section_nubbiness_149(x: objects.Meeting):
