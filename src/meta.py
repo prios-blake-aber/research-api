@@ -62,11 +62,20 @@ class Entity(object):
                 self._add_collection(kw)
             self._instantiate_collection_functions(kw, allowable_collections)
 
-    def empty(self):
-        for attribute in self.expected_attributes:
-            setattr(self, attribute, None)
-        for attribute in self.expected_collections:
-            self._add_collection(attribute)
+    def empty(self, attributes_to_keep=None, collections_to_keep=None):
+        """Filters data from instantiated object (Not recommended for ad hoc use)"""
+        assert isinstance(attributes_to_keep, list) | \
+            isinstance(collections_to_keep, list), 'Must specify some data to retain in object!'
+
+        if attributes_to_keep:
+            for attribute in self.expected_attributes:
+                if attribute not in attributes_to_keep:
+                    setattr(self, attribute, None)
+
+        if collections_to_keep:
+            for attribute in self.expected_collections:
+                if attribute not in collections_to_keep:
+                    self._add_collection(attribute)
 
     def _update_created_at(self, timestamp):
         """Update the entity timestamp (Not recommended for ad hoc use)"""

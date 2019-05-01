@@ -185,7 +185,7 @@ def consensus_exists_131(x: objects.Question):
     pass
 
 
-@utils.select_participants_and_responses_from_meeting
+@utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
 def quorum_exists_145(meeting: objects.Meeting, quorum_threshold = _QUORUM_THRESH_DEFAULT):
     """
     Defines a "Quorum" for each :class:`objects.Questions` as a function of the number of Meeting Participants and Question Responses. https://github.principled.io/vgs/core-access/tree/master/docs/analytic-implementations/83357bac-d082-4085-8fda-07ade37bfb86.pdf
@@ -199,7 +199,6 @@ def quorum_exists_145(meeting: objects.Meeting, quorum_threshold = _QUORUM_THRES
     Returns:
         bool : Whether quorum exists. Returns None if num_participants is 0.
     """
-
 
     num_participants = len(meeting.participants)
     for question in meeting.questions:

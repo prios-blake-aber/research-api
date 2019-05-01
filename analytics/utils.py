@@ -21,15 +21,13 @@ def select_dots_from_meeting(original_function):
     return new_function
 
 
-def select_participants_and_responses_from_meeting(original_function):
-    """This decorator selects dots from the Meeting object and
-    passes it into the decorated function"""
-    def new_function(meeting, *args,**kwargs):
-        participants = meeting.participants.data
-        questions = meeting.questions.data
-
-        meeting.empty()
-        meeting.participants = participants
-        meeting.questions = questions
-        return original_function(meeting, *args,**kwargs)
-    return new_function
+def scope_required_data_within_object(attributes_to_keep=None, collections_to_keep=None):
+    """This decorator scopes the required data for an object
+    and passes it into the decorated function"""
+    def actual_filtering_decorator(function):
+        def wrapper(original_object, **kwargs):
+            original_object.empty(attributes_to_keep, collections_to_keep)
+            print(dir(original_object))
+            return function(original_object, **kwargs)
+        return wrapper
+    return actual_filtering_decorator
