@@ -108,14 +108,35 @@ class RelevanceScore(meta.Assertion):
             raise ValueError('rating must be a float from 0 to 1')
 
 
-class IsQuorum(meta.Assertion):
-    """IsQuorum"""
+
+class BooleanOption(meta.Assertion):
+    """BooleanOption"""
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
     def check_value(self, value):
         if (not isinstance(value, bool)) or not None:
-            raise ValueError('IsQuorum must be boolean or None')
+            raise ValueError('Output type must be Boolean or None')
+
+
+class FloatOption(meta.Assertion):
+    """FloatOption"""
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def check_value(self, value):
+        if (not isinstance(value, float)) or not None:
+            raise ValueError('Output type must be Float or None')
+
+
+class StringOption(meta.Assertion):
+    """StringOption"""
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def check_value(self, value):
+        if (not isinstance(value, str)) or not None:
+            raise ValueError('Output type must be String or None')
 
 
 class System(meta.Entity):

@@ -1,9 +1,12 @@
+
+from src import objects, meta
 from analytics import utils
-from src import objects
+
 """
 Analytics on Activities
 """
 
+_QUORUM_THRESH_DEFAULT = 0.80
 
 def relevance(dots: objects.AssertionSet):
     """
@@ -48,7 +51,6 @@ def relevance_of_people(dots: objects.DotCollection):
         objects.RelevanceCollection: A set of :class:`objects.RelevanceScore`, or an empty set if none exist.
     """
     pass
-
 
 @utils.scope_required_data_within_object(collections_to_keep=['responses'])
 def quorum_exists_on_question(question: objects.Question, number_participants, quorum_threshold):

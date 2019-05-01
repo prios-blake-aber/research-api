@@ -1,3 +1,8 @@
+
+
+import itertools
+import numpy as np
+from src import objects, meta
 from src import objects
 
 
@@ -9,6 +14,29 @@ def group_assertions_by_criteria(x: objects.AssertionSet):
     functions that exist for summaries
     """
     pass
+
+
+def believable_choice_numeric(question: objects.Question, total_believability=None):
+    if not total_believability:
+        result = None
+    else:
+        result = np.average(
+            [response.value for response in question.responses.data],
+            weights=[response.source.believability for response in question.responses.data]
+        )
+    return meta.Assertion(source=objects.System, target=question, value=result, measure=objects.FloatOption)
+
+
+def believable_choice_categorical_binary(question: objects.Question, total_believability=None):
+    if not total_believability:
+        result = None
+    else:
+        result = None
+        sorted_responses = sorted(question.responses.data, key=lambda x: x.value)
+        for response_choice, response_set in itertools.groupby(sorted_responses, key=lambda x: x.value):
+            if sum([i.source.believability for i in response_set]) / total_believability > 0.7:
+                result = response_choice
+    return meta.Assertion(source=objects.System, target=question, value=result, measure=objects.BooleanOption)
 
 
 def select_dots_from_meeting(original_function):
