@@ -1,9 +1,51 @@
+from src import objects, meta
+from analytics.foundation import map_values
+from src.objects import NumericRange
+_THRESHOLD_HIGH = 1.7
 
-from src import objects
 
 """
 Core functionality for Disagreement
 """
+
+
+def substantive_disagreement(x1: meta.Assertion, x2: meta.Assertion,
+                             threshold_high: float = _THRESHOLD_HIGH):
+    """
+    Substantive disagreement
+
+    * Identifies a pair of Scale Values that Substantively Disagree.
+    * Returns a Boolean representing whether Substantive Disagreement exists.
+    * This is produced by the following operation(s):
+        * Calculates the absolute difference between the two values.
+        * Determines whether the values are Far Away: Compares whether the difference is greater
+        than a threshold of 1.7.
+        * Maps Responses into Summarized Opinions.
+        * Determines whether the Summarized Opinions Disagree: determines whether their values are
+        different.
+        * Returns True if both of the above conditions are True.
+
+    Parameters
+    ----------
+    x1
+        Assertion 1
+    x2
+        Assertion 2
+    threshold_high
+        Returns False if difference between raw values is less than this quantity.
+
+    Returns
+    -------
+    object.Judgement
+        Whether there's substantive disagreement between two assertions.
+    """
+    diff = abs(x1.value - x2.value)
+    far_away = diff > threshold_high
+    mapped_x1 = map_values(x1.value, NumericRange.ONE_TO_TEN)
+    mapped_x2 = map_values(x2.value, NumericRange.ONE_TO_TEN)
+    mapped_diff = abs(mapped_x1 - mapped_x2)
+    result = far_away and mapped_diff
+    return objects.Judgement(source=x1.source, target=x2.source, value=result)
 
 
 def is_polarizing(x: objects.AssertionSet):

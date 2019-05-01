@@ -1,6 +1,4 @@
-from typing import List
 from src import objects
-import numpy as np
 
 
 def group_assertions_by_criteria(x: objects.AssertionSet):
@@ -32,31 +30,3 @@ def scope_required_data_within_object(attributes_to_keep=None, collections_to_ke
             return function(original_object, **kwargs)
         return wrapper
     return actual_filtering_decorator
-
-
-def map_values(x: List[float], from_type: objects.NumericRange):
-    """
-    Maps values from one numeric range to a different numeric range.
-
-    TODO: Add parameter for mapping lambda and to_type.
-    TODO: Hard-coded to map 1-to-10 or 1-to-5 values to "Semantic Buckets".
-
-    Parameters
-    ----------
-    x
-        Input data
-    from_type
-
-    Returns
-    -------
-    List[float]
-        Numeric values on different scale. Currently hard-coded to legacy semantic bucket scale.
-    """
-    if from_type == objects.NumericRange.ONE_TO_TEN:
-        (low_thresh, high_thresh) = (5, 7)
-    elif from_type == objects.NumericRange.ONE_TO_FIVE:
-        (low_thresh, high_thresh) = (2.5, 3.5)
-    else:
-        return x
-
-    return np.digitize(x, [low_thresh, high_thresh])
