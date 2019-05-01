@@ -1,5 +1,6 @@
 
 from src import objects
+from analytics import utils
 
 """
 Polarizing - distribution at the poles
@@ -182,7 +183,8 @@ def consensus_exists_131(x: objects.Question):
     pass
 
 
-def quorum_exists_145(x: objects.Meeting):
+@utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
+def quorum_exists_145(meeting: objects.Meeting):
     """
     OUTPUT: Question
     INPUT: Responses
@@ -196,7 +198,8 @@ def quorum_exists_145(x: objects.Meeting):
     * This is produced by the following operation(s):
         * Determines whether the ratio between the number of People who give a non-N/A Response on a Question to the total number of People in a Meeting Section exceeds 0.8 (which is a configurable parameter).
     """
-    pass
+    print(meeting.participants)
+
 
 
 def meeting_section_nubbiness_149(x: objects.Meeting):
