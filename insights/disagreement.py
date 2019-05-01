@@ -2,6 +2,8 @@
 from src import objects
 from analytics import utils
 
+_QUORUM_THRESH_DEFAULT = 0.80
+
 """
 Polarizing - distribution at the poles
 Divisiveness - standard deviation
@@ -184,22 +186,27 @@ def consensus_exists_131(x: objects.Question):
 
 
 @utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
-def quorum_exists_145(meeting: objects.Meeting):
+def quorum_exists_145(meeting: objects.Meeting, quorum_threshold = _QUORUM_THRESH_DEFAULT):
     """
-    OUTPUT: Question
-    INPUT: Responses
-    CONTEXT: Meeting
-    INSIGHT: Activity
-    PROCESSING: Comparing [Collections of People]
+    Defines a "Quorum" for each :class:`objects.Questions` as a function of the number of Meeting Participants and Question Responses. https://github.principled.io/vgs/core-access/tree/master/docs/analytic-implementations/83357bac-d082-4085-8fda-07ade37bfb86.pdf
 
-    * Defines "Quorum Exists" for a Question when the proportion of People in a Meeting Section Responding to it exceeds a configurable threshold (default is 80%).
-    * Returns a Boolean representing whether a Quorum Exists.
-    * Returns Null if there are zero People in a Meeting Section.
-    * This is produced by the following operation(s):
-        * Determines whether the ratio between the number of People who give a non-N/A Response on a Question to the total number of People in a Meeting Section exceeds 0.8 (which is a configurable parameter).
+    Args:
+        meeting (objects.Meeting): A set of :class:`objects.Assertion`.
+        quorum_threshold : The threshold above which quorum exists. Defaults to :data:`_QUORUM_THRESH_DEFAULT`
+        *args: Variable length argument list.
+        **kwargs: Arbitrary keyword arguments.
+
+    Returns:
+        bool : Whether quorum exists. Returns None if num_participants is 0.
     """
-    print(meeting.participants)
 
+    num_participants = len(meeting.participants)
+    for question in meeting.questions:
+        num_responses = len(question.responses.data)
+    try:
+        return num_responses / num_participants > quorum_threshold
+    except ZeroDivisionError:
+        return None
 
 
 def meeting_section_nubbiness_149(x: objects.Meeting):

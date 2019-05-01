@@ -13,7 +13,6 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
@@ -81,21 +80,27 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">allowable_attributes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">allowable_collections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">created_at</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="n">defined_attributes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="n">expected_attributes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">allowable_attributes</span><span class="p">)</span>
-        <span class="n">expected_collections</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">allowable_collections</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expected_attributes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">allowable_attributes</span><span class="p">)</span> <span class="k">if</span> <span class="n">allowable_attributes</span> <span class="k">else</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expected_collections</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">allowable_collections</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="k">if</span> <span class="n">allowable_collections</span> <span class="k">else</span> <span class="nb">set</span><span class="p">()</span>
 
-        <span class="k">for</span> <span class="n">kw</span> <span class="ow">in</span> <span class="n">expected_attributes</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">defined_attributes</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">expected_collections</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">kw</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">expected_attributes</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">defined_attributes</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">kw</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">expected_attributes</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">defined_attributes</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expected_collections</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">kw</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">expected_attributes</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">defined_attributes</span><span class="p">):</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kw</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">kw</span><span class="p">])</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kw</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">kw</span> <span class="ow">in</span> <span class="n">expected_collections</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">kw</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">expected_collections</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">kw</span> <span class="ow">in</span> <span class="n">defined_attributes</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_add_collection</span><span class="p">(</span><span class="n">kw</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">kw</span><span class="p">])</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_add_collection</span><span class="p">(</span><span class="n">kw</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_instantiate_collection_functions</span><span class="p">(</span><span class="n">kw</span><span class="p">,</span> <span class="n">allowable_collections</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">attribute</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">expected_attributes</span><span class="p">:</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">attribute</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">expected_collections</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_collection</span><span class="p">(</span><span class="n">attribute</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_update_created_at</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Update the entity timestamp (Not recommended for ad hoc use)&quot;&quot;&quot;</span>
@@ -229,7 +234,7 @@
       &copy;2019, Research.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>

@@ -13,7 +13,6 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
@@ -53,6 +52,20 @@
     <span class="k">def</span> <span class="nf">new_function</span><span class="p">(</span><span class="n">meeting</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">dots</span> <span class="o">=</span> <span class="n">meeting</span><span class="o">.</span><span class="n">dots</span><span class="o">.</span><span class="n">data</span>
         <span class="k">return</span> <span class="n">original_function</span><span class="p">(</span><span class="n">dots</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">new_function</span></div>
+
+
+<div class="viewcode-block" id="select_participants_and_responses_from_meeting"><a class="viewcode-back" href="../../analytics.html#analytics.utils.select_participants_and_responses_from_meeting">[docs]</a><span class="k">def</span> <span class="nf">select_participants_and_responses_from_meeting</span><span class="p">(</span><span class="n">original_function</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This decorator selects dots from the Meeting object and</span>
+<span class="sd">    passes it into the decorated function&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">new_function</span><span class="p">(</span><span class="n">meeting</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">participants</span> <span class="o">=</span> <span class="n">meeting</span><span class="o">.</span><span class="n">participants</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">questions</span> <span class="o">=</span> <span class="n">meeting</span><span class="o">.</span><span class="n">questions</span><span class="o">.</span><span class="n">data</span>
+
+        <span class="n">meeting</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
+        <span class="n">meeting</span><span class="o">.</span><span class="n">participants</span> <span class="o">=</span> <span class="n">participants</span>
+        <span class="n">meeting</span><span class="o">.</span><span class="n">questions</span> <span class="o">=</span> <span class="n">questions</span>
+        <span class="k">return</span> <span class="n">original_function</span><span class="p">(</span><span class="n">meeting</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">new_function</span></div>
 </pre></div>
 
@@ -131,7 +144,7 @@
       &copy;2019, Research.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>
