@@ -2,8 +2,6 @@
 from src import objects
 from analytics import utils
 
-_QUORUM_THRESH_DEFAULT = 0.80
-
 """
 Polarizing - distribution at the poles
 Divisiveness - standard deviation
@@ -183,41 +181,6 @@ def consensus_exists_131(x: objects.Question):
         * Determines whether the previous three conditions are True.
     """
     pass
-
-
-@utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
-def quorum_exists_in_meeting(meeting: objects.Meeting):
-    """
-    Defines a "Quorum" for each :class:`objects.Questions` as a function of the number of Meeting Participants and Question Responses. https://github.principled.io/vgs/core-access/tree/master/docs/analytic-implementations/83357bac-d082-4085-8fda-07ade37bfb86.pdf
-
-    Args:
-        meeting (objects.Meeting): A set of :class:`objects.Assertion`.
-        quorum_threshold : The threshold above which quorum exists. Defaults to :data:`_QUORUM_THRESH_DEFAULT`
-        *args: Variable length argument list.
-        **kwargs: Arbitrary keyword arguments.
-
-    Returns:
-        bool : Whether quorum exists. Returns None if num_participants is 0.
-    """
-
-    number_participants = len(meeting.participants.data)
-    return [
-        quorum_exists_on_question_145(question, number_participants=number_participants)
-        for question in meeting.questions.data
-    ]
-
-
-@utils.scope_required_data_within_object(collections_to_keep=['responses'])
-def quorum_exists_on_question_145(question: objects.Question, number_participants, quorum_threshold = _QUORUM_THRESH_DEFAULT):
-    """
-    INSERT DOCSTRING HERE
-    """
-    if number_participants:
-        number_responses = len(question.responses.data)
-        quorum_flag = number_responses / number_participants > quorum_threshold
-        return objects.IsQuorum(source=objects.System, target=question, value=quorum_flag)
-    else:
-        return objects.IsQuorum(source=objects.System, target=question, value=None)
 
 
 def meeting_section_nubbiness_149(x: objects.Meeting):
