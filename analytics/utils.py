@@ -1,7 +1,9 @@
 
+
 import itertools
 import numpy as np
 from src import objects, meta
+from src import objects
 
 
 def group_assertions_by_criteria(x: objects.AssertionSet):

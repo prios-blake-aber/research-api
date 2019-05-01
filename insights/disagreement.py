@@ -1,6 +1,6 @@
 
 from src import objects
-from analytics import utils
+from analytics import utils, activity
 
 """
 Polarizing - distribution at the poles
@@ -142,8 +142,10 @@ def partition_teams_128(x: objects.Meeting):
     pass
 
 
-def substantive_disagreement_129(x: objects.Question):
+def substantive_disagreement_129():
     """
+    This is a building-block function.
+
     OUTPUT: Response
     INPUT: Responses
     CONTEXT: Question
