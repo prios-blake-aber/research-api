@@ -1,9 +1,8 @@
 
 
 import itertools
-import numpy as np
 from src import objects, meta
-from src import objects
+from analytics import foundation
 
 
 def group_assertions_by_criteria(x: objects.AssertionSet):
@@ -20,10 +19,9 @@ def believable_choice_numeric(question: objects.Question, total_believability=No
     if not total_believability:
         result = None
     else:
-        result = np.average(
-            [response.value for response in question.responses.data],
-            weights=[response.source.believability for response in question.responses.data]
-        )
+        values = [response.value for response in question.responses.data]
+        weights = [response.source.believability for response in question.responses.data]
+        result = foundation.weighted_average(values, weights)
     return meta.Assertion(source=objects.System, target=question, value=result, measure=objects.FloatOption)
 
 

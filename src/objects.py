@@ -57,14 +57,15 @@ class AssertionSet(meta.Entity):
         super().__init__(allowable_collections=_allowable_collections, **kwargs)
 
 
-class CollectionOfScaleValues(AssertionSet):
+class ScaleValueSet(AssertionSet):
     """AssertionSet (Useful for Logic"""
+    # TODO: add post-init to check all values are floats between 1-10
     def __init__(self, **kwargs):
         _allowable_collections = {'members': meta.Assertion}
         super().__init__(allowable_collections=_allowable_collections, **kwargs)
 
 
-class DotCollection(CollectionOfScaleValues):
+class DotCollection(ScaleValueSet):
     """Collection of Dots"""
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -106,7 +107,6 @@ class RelevanceScore(meta.Assertion):
     def check_value(self, value):
         if value not in range(0, 1):
             raise ValueError('rating must be a float from 0 to 1')
-
 
 
 class BooleanOption(meta.Assertion):

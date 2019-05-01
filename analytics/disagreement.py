@@ -54,10 +54,10 @@ def substantive_disagreement(x1: meta.Assertion, x2: meta.Assertion,
     return objects.Judgement(source=x1.source, target=x2.source, value=result)
 
 
-def is_polarizing(scale_assertions: objects.CollectionOfScaleValues,
+def is_polarizing(scale_assertions: objects.ScaleValueSet,
                   thresh_on_std_scale: float = _THRESHOLD_STD_SCALE,
                   thresh_on_std_mapped_scale: float = _THRESHOLD_STD_MAPPED_SCALE,
-                  thresh_on_poles: float = _THRESHOLD_POLES) -> object.Judgement:
+                  thresh_on_poles: float = _THRESHOLD_POLES) -> objects.Judgement:
     """
     Is Polarizing
 
@@ -95,9 +95,10 @@ def is_polarizing(scale_assertions: objects.CollectionOfScaleValues,
     object.Judgement
         Whether a set of scale values are polarizing.
     """
-    values = [xi.value for xi in scale_assertions.expected_collections]
+    values = [xi.value for xi in scale_assertions.members]
     mapped_values = [map_values(vi, NumericRange.ONE_TO_TEN) for vi in values]
 
+    # TODO: nesting functions here is terrible; why not use the sentiment module?
     def negative_sentiment(x):
         return x == 1
 
