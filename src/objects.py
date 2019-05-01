@@ -3,6 +3,15 @@ from src import meta
 from enum import Enum
 
 
+class NumericRange(Enum):
+    """
+    Enumeration that fixes the range of numerical values.
+    """
+    ONE_TO_TEN = 1
+    ONE_TO_FIVE = 2
+    ONE_TO_THREE = 3
+
+
 class QuestionType(Enum):
     """Stub for the possible enumerations of Question Type"""
     LIKERT = 'Likert'
