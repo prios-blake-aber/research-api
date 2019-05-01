@@ -186,7 +186,7 @@ def consensus_exists_131(x: objects.Question):
 
 
 @utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
-def quorum_exists_145(meeting: objects.Meeting):
+def quorum_exists_in_meeting(meeting: objects.Meeting):
     """
     Defines a "Quorum" for each :class:`objects.Questions` as a function of the number of Meeting Participants and Question Responses. https://github.principled.io/vgs/core-access/tree/master/docs/analytic-implementations/83357bac-d082-4085-8fda-07ade37bfb86.pdf
 
@@ -208,7 +208,7 @@ def quorum_exists_145(meeting: objects.Meeting):
 
 
 @utils.scope_required_data_within_object(collections_to_keep=['responses'])
-def quorum_exists_on_question(question: objects.Question, number_participants, quorum_threshold = _QUORUM_THRESH_DEFAULT):
+def quorum_exists_on_question_145(question: objects.Question, number_participants, quorum_threshold = _QUORUM_THRESH_DEFAULT):
     """
     INSERT DOCSTRING HERE
     """
