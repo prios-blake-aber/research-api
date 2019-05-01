@@ -202,7 +202,7 @@ def quorum_exists_in_meeting(meeting: objects.Meeting):
 
     number_participants = len(meeting.participants.data)
     return [
-        quorum_exists_on_question(question, number_participants=number_participants)
+        quorum_exists_on_question_145(question, number_participants=number_participants)
         for question in meeting.questions.data
     ]
 
