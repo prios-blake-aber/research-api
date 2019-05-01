@@ -51,10 +51,14 @@ def substantive_disagreement(x1: meta.Assertion, x2: meta.Assertion,
 
 
 @utils.scope_required_data_within_object(collections_to_keep=['expected_collections'])
-def is_polarizing(scale_assertions: objects.CollectionOfScaleValues):
+def is_polarizing(scale_assertions: objects.CollectionOfScaleValues,
+                  thresh_on_std_scale: float = _THRESHOLD_STD_SCALE,
+                  thresh_on_std_mapped_scale: float = _THRESHOLD_STD_MAPPED_SCALE,
+                  thresh_on_poles: float = _THRESHOLD_POLES) -> object.Judgement:
     """
     Is Polarizing
 
+    From Key Points
     * Identifies a Polarizing event when Scale Values on a Person are spread out and there exist
     comparable numbers of positive (8 and above) and negative (4 and below) Scale Values
     * Returns a boolean
@@ -69,12 +73,19 @@ def is_polarizing(scale_assertions: objects.CollectionOfScaleValues):
         * Combines the following conditions to determine whether the Scale Values are polarizing:
             * Calculates the standard deviation of Scale Values is greater than 0.5
             * Calculates the Bucketed Standard Deviation of Scale Values is greater than 1.0
-            * Calculates the Relative Incidence Ratio of positive/negative Scale Values is greater than 0.25
+            * Calculates the Relative Incidence Ratio of positive/negative Scale Values is greater
+            than 0.25
 
     Parameters
     ----------
-    x
+    scale_assertions
         List of assertions with scale values.
+    thresh_on_std_scale
+        Threshold on standard deviation of scale values.
+    thresh_on_std_mapped_scale
+        Threshold on standard deviation of scale values mapped to 1, 2, and 3
+    thresh_on_poles
+        Threshold on ratio between poles
 
     Returns
     -------
@@ -98,11 +109,10 @@ def is_polarizing(scale_assertions: objects.CollectionOfScaleValues):
     else:
         pole_ratio = 0
 
-    std_values_condition = standard_deviation(values) > _THRESHOLD_STD_SCALE
-    std_mapped_values_condition = standard_deviation(mapped_values) > _THRESHOLD_STD_MAPPED_SCALE
-    pole_condition = pole_ratio > _THRESHOLD_POLES
+    std_values_condition = standard_deviation(values) > thresh_on_std_scale
+    std_mapped_values_condition = standard_deviation(mapped_values) > thresh_on_std_mapped_scale
+    pole_condition = pole_ratio > thresh_on_poles
     return std_values_condition and std_mapped_values_condition and pole_condition
-
 
 
 def disagrees_with(questions: objects.AssertionSet):
