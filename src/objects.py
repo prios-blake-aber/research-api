@@ -102,7 +102,7 @@ class System(meta.Entity):
 class Person(meta.Entity):
     """Person"""
     def __init__(self, **kwargs):
-        _allowable_attributes = {'name', 'role', 'description'}
+        _allowable_attributes = {'name', 'role', 'description', 'believability'}
         _allowable_collections = {'dots': Dot}
         super().__init__(_allowable_attributes, _allowable_collections, **kwargs)
 
