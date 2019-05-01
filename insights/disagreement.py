@@ -186,7 +186,7 @@ def consensus_exists_131(x: objects.Question):
 
 
 @utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
-def quorum_exists_145(meeting: objects.Meeting, quorum_threshold = _QUORUM_THRESH_DEFAULT):
+def quorum_exists_145(meeting: objects.Meeting):
     """
     Defines a "Quorum" for each :class:`objects.Questions` as a function of the number of Meeting Participants and Question Responses. https://github.principled.io/vgs/core-access/tree/master/docs/analytic-implementations/83357bac-d082-4085-8fda-07ade37bfb86.pdf
 
@@ -200,13 +200,24 @@ def quorum_exists_145(meeting: objects.Meeting, quorum_threshold = _QUORUM_THRES
         bool : Whether quorum exists. Returns None if num_participants is 0.
     """
 
-    num_participants = len(meeting.participants)
-    for question in meeting.questions:
-        num_responses = len(question.responses.data)
-    try:
-        return num_responses / num_participants > quorum_threshold
-    except ZeroDivisionError:
-        return None
+    number_participants = len(meeting.participants.data)
+    return [
+        quorum_exists_on_question(question, number_participants=number_participants)
+        for question in meeting.questions.data
+    ]
+
+
+@utils.scope_required_data_within_object(collections_to_keep=['responses'])
+def quorum_exists_on_question(question: objects.Question, number_participants, quorum_threshold = _QUORUM_THRESH_DEFAULT):
+    """
+    INSERT DOCSTRING HERE
+    """
+    if number_participants:
+        number_responses = len(question.responses.data)
+        quorum_flag = number_responses / number_participants > quorum_threshold
+        return objects.IsQuorum(source=objects.System, target=question, value=quorum_flag)
+    else:
+        return objects.IsQuorum(source=objects.System, target=question, value=None)
 
 
 def meeting_section_nubbiness_149(x: objects.Meeting):

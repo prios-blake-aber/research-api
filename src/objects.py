@@ -82,15 +82,26 @@ class Attribute(meta.Entity):
         super().__init__(_allowable_attributes, _allowable_collections, **kwargs)
 
 
-class RelevanceScore(meta.Entity):
-    """Relevance Score"""
+class RelevanceScore(meta.Assertion):
+    """RelevanceScore"""
     def __init__(self, **kwargs):
-        _allowable_attributes = {'name', 'description'}
-        super().__init__(allowable_attributes=_allowable_attributes, **kwargs)
+        super().__init__(**kwargs)
+        self.source = System
+        self.measure = self.__class__
 
     def check_value(self, value):
         if value not in range(0, 1):
             raise ValueError('rating must be a float from 0 to 1')
+
+
+class IsQuorum(meta.Assertion):
+    """RelevanceScore"""
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def check_value(self, value):
+        if (not isinstance(value, bool)) or not None:
+            raise ValueError('IsQuorum must be boolean or None')
 
 
 class System(meta.Entity):
