@@ -164,7 +164,7 @@ def substantive_disagreement_129():
     pass
 
 
-def consensus_exists_131(x: objects.Question):
+def consensus_exists_131(activity.quorum_exists_on_question_145, ):
     """
     OUTPUT: Response
     INPUT: Believability
@@ -182,7 +182,29 @@ def consensus_exists_131(x: objects.Question):
         * Determines whether there is Sufficient Believability: determines whether Total Believability exceeds $0.75$.
         * Determines whether the previous three conditions are True.
     """
-    pass
+
+
+
+@utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
+def quorum_exists_in_meeting(meeting: objects.Meeting, quorum_threshold = _QUORUM_THRESH_DEFAULT):
+    """
+    Defines a "Quorum" for each :class:`objects.Questions` as a function of the number of Meeting Participants and Question Responses. https://github.principled.io/vgs/core-access/tree/master/docs/analytic-implementations/83357bac-d082-4085-8fda-07ade37bfb86.pdf
+
+    Args:
+        meeting (objects.Meeting): A set of :class:`objects.Assertion`.
+        quorum_threshold : The threshold above which quorum exists. Defaults to :data:`_QUORUM_THRESH_DEFAULT`
+        *args: Variable length argument list.
+        **kwargs: Arbitrary keyword arguments.
+
+    Returns:
+        bool : Whether quorum exists. Returns None if num_participants is 0.
+    """
+
+    number_participants = len(meeting.participants.data)
+    return [
+        activity.quorum_exists_on_question_145(question, number_participants=number_participants, quorum_threshold = _QUORUM_THRESH_DEFAULT)
+        for question in meeting.questions.data
+    ]
 
 
 def meeting_section_nubbiness_149(x: objects.Meeting):

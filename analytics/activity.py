@@ -53,7 +53,7 @@ def relevance_of_people(dots: objects.DotCollection):
     pass
 
 @utils.scope_required_data_within_object(collections_to_keep=['responses'])
-def quorum_exists_on_question(question: objects.Question, number_participants, quorum_threshold):
+def quorum_exists_on_question_145(question: objects.Question, number_participants, quorum_threshold):
     """
     Quorum of Responses on a Question.
 
@@ -69,7 +69,7 @@ def quorum_exists_on_question(question: objects.Question, number_participants, q
     """
     if number_participants:
         number_responses = len(question.responses.data)
-        quorum_flag = number_responses / number_participants > quorum_threshold
+        quorum_flag = number_responses / number_participants > quorum_threshold and number_responses > 3
         return objects.IsQuorum(source=objects.System, target=question, value=quorum_flag)
     else:
         return objects.IsQuorum(source=objects.System, target=question, value=None)
