@@ -1,6 +1,10 @@
 from typing import List, Dict
+import itertools
 from src import objects
-from analytics import utils, disagreement, activity
+from analytics import utils, activity, disagreement
+from typing import List
+
+_QUORUM_THRESH_DEFAULT = 0.80
 
 """
 Polarizing - distribution at the poles
@@ -24,8 +28,12 @@ def action_is_polarizing_161(x: objects.Meeting):
     pass
 
 
-def meeting_section_sentiment_is_polarizing_118(x: objects.Meeting):
+@utils.scope_required_data_within_object(collections_to_keep=['dots'])
+def meeting_section_sentiment_is_polarizing_118(meeting: objects.Meeting):
     """
+    TODO: The role of sentiment in this analytic isn't clear from the Key Points.
+    TODO: Logic in this function probably doesn't match original code. Need to update.
+
     OUTPUT: Meeting
     INPUT: Dots
     CONTEXT: Meeting
@@ -35,7 +43,8 @@ def meeting_section_sentiment_is_polarizing_118(x: objects.Meeting):
     * Identifies Meetings in which the sentiment based on all Dots is [Polarizing](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=141).
     * Returns a Boolean representing whether the Meeting Sentiment is Polarizing.
     """
-    pass
+    dots = [dot for dot in meeting.dots]
+    return disagreement.is_polarizing(dots)
 
 
 def is_polarizing_141(x: objects.AssertionSet):
@@ -164,7 +173,7 @@ def substantive_disagreement_129():
     pass
 
 
-def consensus_exists_131(x: objects.Question):
+def consensus_exists_131(question: objects.Question):
     """
     OUTPUT: Response
     INPUT: Believability
@@ -182,7 +191,34 @@ def consensus_exists_131(x: objects.Question):
         * Determines whether there is Sufficient Believability: determines whether Total Believability exceeds $0.75$.
         * Determines whether the previous three conditions are True.
     """
-    pass
+    if (activity.sufficient_question_engagement(question)) and (disagreement.believable_choice(question) is True or float):
+        return True
+    else:
+        return False
+
+
+
+
+
+@utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
+def quorum_exists_in_meeting(meeting: objects.Meeting):
+    """
+    Defines a "Quorum" for each :class:`objects.Questions` as a function of the number of Meeting Participants and Question Responses. https://github.principled.io/vgs/core-access/tree/master/docs/analytic-implementations/83357bac-d082-4085-8fda-07ade37bfb86.pdf
+
+    Args:
+        meeting (objects.Meeting): A set of :class:`objects.Assertion`.
+        quorum_threshold : The threshold above which quorum exists. Defaults to :data:`_QUORUM_THRESH_DEFAULT`
+        *args: Variable length argument list.
+        **kwargs: Arbitrary keyword arguments.
+
+    Returns:
+        bool : Whether quorum exists. Returns None if num_participants is 0.
+    """
+    number_participants = activity.participants(meeting)
+    return [
+        activity.quorum_exists_on_question_145(question, number_participants=number_participants, quorum_threshold = _QUORUM_THRESH_DEFAULT)
+        for question in meeting.questions.data
+    ]
 
 
 def meeting_section_nubbiness_149(x: objects.Meeting):

@@ -1,6 +1,7 @@
 from typing import List
 from src import objects, meta
 from analytics import utils
+from typing import List, Any
 
 """
 Analytics on Activities
@@ -54,7 +55,7 @@ def relevance_of_people(dots: objects.DotCollection):
 
 
 @utils.scope_required_data_within_object(collections_to_keep=['responses'])
-def quorum_exists_on_question(question: objects.Question, number_participants, quorum_threshold):
+def quorum_exists_on_question_145(question: objects.Question, number_participants, quorum_threshold):
     """
     Quorum of Responses on a Question.
 
@@ -70,10 +71,28 @@ def quorum_exists_on_question(question: objects.Question, number_participants, q
     """
     if number_participants:
         number_responses = len(question.responses.data)
-        quorum_flag = number_responses / number_participants > quorum_threshold
-        return objects.IsQuorum(source=objects.System, target=question, value=quorum_flag)
+        quorum_flag = (number_responses / number_participants > quorum_threshold) and (number_responses > 3)
+        return meta.Assertion(source=objects.System, target=question, value=quorum_flag, measure=objects.BooleanOption)
     else:
-        return objects.IsQuorum(source=objects.System, target=question, value=None)
+        return meta.Assertion(source=objects.System, target=question, value=None, measure=objects.BooleanOption)
+
+
+def engagement(values: List[Any]):
+    return len(values)
+
+
+def engagement_in_meeting(meeting: objects.Meeting):
+    return engagement(meeting.participants.data)
+
+
+def engagement_in_question(question: objects.Question):
+    return engagement(question.responses.data)
+
+
+def sufficient_question_engagement(question: objects.Question):
+    total_responses = engagement_in_question(question)
+    sufficient_engagement_flag = total_responses > 3
+    return sufficient_engagement_flag
 
 
 def frequently_dotted_subjects(dots: List[objects.Dot],
@@ -175,5 +194,3 @@ def combine_results(*args):
 
     """
     pass
-
-
