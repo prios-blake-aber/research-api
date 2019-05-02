@@ -50,7 +50,10 @@ def uniquely_out_of_sync_on_question_136(question: objects.Question):
                                          measure=objects.FloatOption))
             return people
         else:
-            return False
+            result = False
+            response_source = response.source
+            people.append(meta.Assertion(source=objects.System, target=response_source, value=result, measure=objects.FloatOption))
+            return people
 
 
 
