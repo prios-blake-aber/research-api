@@ -1,6 +1,6 @@
 
 import itertools
-from typing import Tuple
+from typing import Tuple, List
 from analytics import foundation, utils
 from src import objects, meta
 
@@ -116,6 +116,46 @@ def is_polarizing(scale_assertions: objects.ScaleValueSet,
     pole_condition = pole_ratio > thresh_on_poles
     result = std_values_condition and std_mapped_values_condition and pole_condition
     return objects.Judgement(source=objects.System, target=objects.System, value=result)
+
+
+def polarizing_topics(dots: List[objects.Dot]) -> List[objects.Judgement]:
+    """
+    TODO: Generalize input type beyond Dots.
+
+    Parameters
+    ----------
+    dots
+
+    Returns
+    -------
+    List[objects.Judgement]
+    """
+    target = set([dot.target for dot in dots])
+    result = []
+    for s in target:
+        target_dots = [dot for dot in dots if dot.source == s]
+        author_syntheses = syntheses(target_dots)
+        subject_is_polarizing = is_polarizing(author_syntheses)
+        subject_is_polarizing.target = s
+        result += [subject_is_polarizing]
+    return result
+
+
+def syntheses(dots: List[objects.Dot]) -> List[meta.Assertion]:
+    """
+    TODO: Synthesize Ratings in a list of Assertions by Source.
+    TODO: Find a better home for this.
+    TODO: Add keyword arguments for specifying how syntheses are performed
+
+    Parameters
+    ----------
+    dots
+
+    Returns
+    -------
+    List[meta.Assertion]
+    """
+    pass
 
 
 def disagrees_with(questions: objects.AssertionSet):
