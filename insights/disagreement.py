@@ -6,7 +6,6 @@ from typing import List
 
 _QUORUM_THRESH_DEFAULT = 0.80
 
-
 """
 Polarizing - distribution at the poles
 Divisiveness - standard deviation
@@ -29,8 +28,12 @@ def action_is_polarizing_161(x: objects.Meeting):
     pass
 
 
-def meeting_section_sentiment_is_polarizing_118(x: objects.Meeting):
+@utils.scope_required_data_within_object(collections_to_keep=['dots'])
+def meeting_section_sentiment_is_polarizing_118(meeting: objects.Meeting):
     """
+    TODO: The role of sentiment in this analytic isn't clear from the Key Points.
+    TODO: Logic in this function probably doesn't match original code. Need to update.
+
     OUTPUT: Meeting
     INPUT: Dots
     CONTEXT: Meeting
@@ -40,7 +43,8 @@ def meeting_section_sentiment_is_polarizing_118(x: objects.Meeting):
     * Identifies Meetings in which the sentiment based on all Dots is [Polarizing](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=141).
     * Returns a Boolean representing whether the Meeting Sentiment is Polarizing.
     """
-    pass
+    dots = [dot for dot in meeting.dots]
+    return disagreement.is_polarizing(dots)
 
 
 def is_polarizing_141(x: objects.AssertionSet):
