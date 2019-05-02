@@ -35,6 +35,10 @@ def standard_deviation(x: List[float]) -> float:
     return np.nanstd(np.array(x))
 
 
+def weighted_average(values: List[float], **kwargs) -> float:
+    return np.average(values, **kwargs)
+
+
 def percent_satisfying_condition(ar: List[float], condition: Callable) -> Optional[float]:
     """
     Percent of values in an array that satisfy condition.

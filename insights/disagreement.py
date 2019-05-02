@@ -1,8 +1,11 @@
+
 import itertools
 from src import objects
 from analytics import utils, activity, disagreement
+from typing import List
 
 _QUORUM_THRESH_DEFAULT = 0.80
+
 
 """
 Polarizing - distribution at the poles
@@ -274,8 +277,11 @@ def nubby_attributes_in_meeting_39(x: objects.Meeting):
     pass
 
 
-def nubby_people_in_meeting_38(x: objects.Meeting):
+@utils.scope_required_data_within_object(collections_to_keep=['dots'])
+def polarizing_participants_38(meeting: objects.Meeting) -> List[objects.Judgement]:
     """
+    TODO: Add frequently dotted.
+
     OUTPUT: Person
     INPUT: Dots
     CONTEXT: Meeting
@@ -302,6 +308,30 @@ def nubby_people_in_meeting_38(x: objects.Meeting):
             * Determines whether the three conditions above are all True.
         * Determines whether a Subject is both Frequently Dotted and Polarizing.
         * Selects all Subjects that satisfy the condition above.
+    """
+    frequently_dotted = activity.frequently_dotted_subjects(meeting.dots)
+    polarizing = disagreement.polarizing_topics(meeting.dots)
+
+    # TODO: Write function for determining whether values are True in two (or more) lists of
+    #  Judgements. Elements of each list should have the same targets, which only appear once.
+    return combine_results(frequently_dotted, polarizing)
+
+
+def combine_results(*args):
+    """
+    Determines whether values are True in two (or more) lists of
+    Judgements. Elements of each list should have the same targets, which only appear once.
+
+    Not an insight (just a placeholder)
+
+    # TODO: Find better home.
+    Parameters
+    ----------
+    args
+
+    Returns
+    -------
+
     """
     pass
 
