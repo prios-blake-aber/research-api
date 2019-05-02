@@ -1,4 +1,5 @@
 
+import itertools
 from src import objects, meta
 from analytics import sentiment, disagreement
 
@@ -101,7 +102,7 @@ def believable_sentiment_disagrees_with_overall_sentiment_142(x: objects.Meeting
     pass
 
 
-def believable_view_disagrees_with_overall_view_on_action_162(x: objects.Meeting):
+def believable_view_disagrees_with_overall_view_on_action_162(meeting: objects.Meeting):
     """
     OUTPUT: AssertionSet
     INPUT: Dots
@@ -114,4 +115,37 @@ def believable_view_disagrees_with_overall_view_on_action_162(x: objects.Meeting
     * This is produced by the following operation(s):
       * Compares the [Overall View](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=117) to the [Believable View](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=116) using the [Substantive Disagreement](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129) library method.
     """
-    pass
+    # TODO: how do we roll-up an arbitrarily deep attribute taxonomy into actions?
+    # TODO: is the attribute taxonomy a function input?
+    # TODO: should a Meeting have actions (pre-populated) separately on the object? (YES)... why?
+    # TODO:    1) researchers will likely want to modify the taxonomy on the fly
+    # TODO:    2) hierarchical queries should be run on the server, not grpc
+    def sort_by_measure(x):
+        return x.measure.name
+
+    results = []
+    dots_by_attribute = sorted(meeting.dots.data, key=sort_by_measure)
+    for attribute, dot_set in itertools.groupby(dots_by_attribute, key=sort_by_measure):
+        materialized_dot_set = meta.EntityCollection(list(dot_set))  # TODO: materialization and instantiation is shitty here
+        result = believable_view_disagrees_with_overall_view_on_action(materialized_dot_set, attribute)
+        results.append(result)
+    return results
+
+
+def believable_view_disagrees_with_overall_view_on_action(dots: objects.DotCollection, attribute):
+    """
+    TK
+    """
+    # TODO: This function assumes non-zero believabilities for every person
+    weights = [dot.source.believability for dot in dots.data]  # TODO: the data attribute is used confusingly; need dataclasses
+
+    if not weights:  # TODO: add better check that dots exist
+        return None
+
+    believable_view = sentiment.sentiment(dots, weights=weights)
+    overall_view = sentiment.sentiment(dots)
+
+    sentiment_comparison = (believable_view, overall_view)
+
+    result = disagreement.substantive_disagreement(sentiment_comparison)
+    return meta.Assertion(source=objects.System, target=attribute, value=result)
