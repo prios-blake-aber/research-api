@@ -1,6 +1,7 @@
 
 from src import objects, meta
 from analytics import utils
+from typing import List, Any
 
 """
 Analytics on Activities
@@ -69,7 +70,21 @@ def quorum_exists_on_question_145(question: objects.Question, number_participant
     """
     if number_participants:
         number_responses = len(question.responses.data)
-        quorum_flag = number_responses / number_participants > quorum_threshold and number_responses > 3
-        return objects.IsQuorum(source=objects.System, target=question, value=quorum_flag)
+        # print(number_responses)
+        quorum_flag = (number_responses / number_participants > quorum_threshold) and (number_responses > 3)
+        # print(quorum_flag)
+        return meta.Assertion(source=objects.System, target=question, value=quorum_flag, measure=objects.BooleanOption)
     else:
-        return objects.IsQuorum(source=objects.System, target=question, value=None)
+        return meta.Assertion(source=objects.System, target=question, value=None, measure=objects.BooleanOption)
+
+
+def engagement(values: List[Any]):
+    return len(values)
+
+
+def engagement_in_meeting(meeting: objects.Meeting):
+    return engagement(meeting.participants.data)
+
+
+def engagement_in_question(question: objects.Question):
+    return engagement(question.responses.data)

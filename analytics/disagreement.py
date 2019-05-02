@@ -1,6 +1,4 @@
 
-import itertools
-import numpy as np
 from analytics import utils
 from src import objects, meta
 from analytics.foundation import map_values, percent_satisfying_condition, standard_deviation
@@ -54,10 +52,10 @@ def substantive_disagreement(x1: meta.Assertion, x2: meta.Assertion,
     return objects.Judgement(source=x1.source, target=x2.source, value=result)
 
 
-def is_polarizing(scale_assertions: objects.CollectionOfScaleValues,
-                  thresh_on_std_scale: float = _THRESHOLD_STD_SCALE,
-                  thresh_on_std_mapped_scale: float = _THRESHOLD_STD_MAPPED_SCALE,
-                  thresh_on_poles: float = _THRESHOLD_POLES) -> object.Judgement:
+# def is_polarizing(scale_assertions: objects.CollectionOfScaleValues,
+#                   thresh_on_std_scale: float = _THRESHOLD_STD_SCALE,
+#                   thresh_on_std_mapped_scale: float = _THRESHOLD_STD_MAPPED_SCALE,
+#                   thresh_on_poles: float = _THRESHOLD_POLES) -> object.Judgement:
     """
     Is Polarizing
 

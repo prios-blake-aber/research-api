@@ -1,6 +1,8 @@
-
+import itertools
 from src import objects
-from analytics import utils, activity
+from analytics import utils, activity, disagreement
+
+_QUORUM_THRESH_DEFAULT = 0.80
 
 """
 Polarizing - distribution at the poles
@@ -164,7 +166,7 @@ def substantive_disagreement_129():
     pass
 
 
-def consensus_exists_131(activity.quorum_exists_on_question_145, ):
+def consensus_exists_131(question: objects.Question):
     """
     OUTPUT: Response
     INPUT: Believability
@@ -183,10 +185,21 @@ def consensus_exists_131(activity.quorum_exists_on_question_145, ):
         * Determines whether the previous three conditions are True.
     """
 
+    # quorum = quorum_exists_in_meeting(meeting)
+    # print(quorum)
+    # for assertion in quorum:
+    #     quorum_result = assertion.value
+    if activity.quorum_exists_on_question_145(question) and disagreement.believable_choice(question) is True or float:
+        return True
+    else:
+        None
+
+
+
 
 
 @utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
-def quorum_exists_in_meeting(meeting: objects.Meeting, quorum_threshold = _QUORUM_THRESH_DEFAULT):
+def quorum_exists_in_meeting(meeting: objects.Meeting):
     """
     Defines a "Quorum" for each :class:`objects.Questions` as a function of the number of Meeting Participants and Question Responses. https://github.principled.io/vgs/core-access/tree/master/docs/analytic-implementations/83357bac-d082-4085-8fda-07ade37bfb86.pdf
 
@@ -199,8 +212,7 @@ def quorum_exists_in_meeting(meeting: objects.Meeting, quorum_threshold = _QUORU
     Returns:
         bool : Whether quorum exists. Returns None if num_participants is 0.
     """
-
-    number_participants = len(meeting.participants.data)
+    number_participants = activity.participants(meeting)
     return [
         activity.quorum_exists_on_question_145(question, number_participants=number_participants, quorum_threshold = _QUORUM_THRESH_DEFAULT)
         for question in meeting.questions.data
