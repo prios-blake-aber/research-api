@@ -37,7 +37,7 @@ def action_is_polarizing_161(meeting: objects.Meeting):
     for attribute, dot_set in itertools.groupby(dots_by_attribute, key=sort_by_measure):
         materialized_dot_set = meta.EntityCollection(list(dot_set))
         # TODO: materialization and instantiation is shitty here
-        result = disagreement(materialized_dot_set)
+        result = disagreement.is_polarizing(materialized_dot_set)
         results.append(result)
 
     return results
