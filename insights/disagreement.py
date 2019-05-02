@@ -212,9 +212,6 @@ def consensus_exists_131(question: objects.Question):
         return False
 
 
-
-
-
 @utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
 def quorum_exists_in_meeting(meeting: objects.Meeting):
     """
@@ -459,7 +456,7 @@ def question_nubbiness_popup_49(x: objects.Meeting):
     pass
 
 
-def out_of_sync_people_on_question_41(x: objects.Question):
+def out_of_sync_people_on_question_41(question: objects.Question):
     """
     OUTPUT: Person
     INPUT: Responses
@@ -475,7 +472,16 @@ def out_of_sync_people_on_question_41(x: objects.Question):
         * Determines whether a Person [disagrees with](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167) the [Believable Choice](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130).
         * Selects People for which the condition above is True.
     """
-    pass
+    believable_choice_result = disagreement.believable_choice(question)
+    disagrees_with_result = disagreement.disagrees_with(question)
+    people=[]
+    for response in question.responses.data:
+        if disagrees_with_result and (believable_choice_result or isinstance(believable_choice_result, float)):
+            response_source = response.source
+            people.append(response_source)
+            return people
+        else:
+            return False
 
 
 def split_question_48(x: objects.Question):

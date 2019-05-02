@@ -1,6 +1,6 @@
 
 import itertools
-from typing import Tuple, List
+from typing import Tuple, List, Any
 from analytics import foundation, utils
 from src import objects, meta
 
@@ -160,7 +160,7 @@ def syntheses(dots: List[objects.Dot]) -> List[meta.Assertion]:
     pass
 
 
-def disagrees_with(questions: objects.AssertionSet):
+def disagrees_with(question: objects.Question):
     """
     Note:
         * Defines "Disagreement" between two opinions on a Question. Two opinions disagree when they are classified into different [groups](https://blakea-analytics-registry.dev.principled.io/detail?analytic=168) and, if they are Question Responses with Likert or Scale Values, also have a difference greater than a configurable threshold (with a default value of 1.7).
@@ -182,7 +182,45 @@ def disagrees_with(questions: objects.AssertionSet):
     Returns:
         objects.AssertionSet: A set of relevant :class:`objects.Assertion` in a :class:`objects.Context`, or an empty set if none exist.
     """
-    pass
+    categorical_binary = ('CATEGORICAL' in objects.QuestionType.__members__.keys()) | (
+            'BINARY' in objects.QuestionType.__members__.keys())
+    numeric = ('LIKERT' in objects.QuestionType.__members__.keys()) | (
+            'SCALE' in objects.QuestionType.__members__.keys())
+
+    answer_to_compare = believable_choice(question)
+
+    for response in question.responses.data:
+        response_to_compare = response
+    if response_to_compare is None or answer_to_compare is None:
+        return False
+    elif categorical_binary:
+        return disagrees_with_categorical_binary(response_to_compare, answer_to_compare)
+    elif numeric:
+        return disagrees_with_numeric(response_to_compare, answer_to_compare)
+    else:
+        return None
+
+
+def disagrees_with_categorical_binary(response_to_compare, answer_to_compare):
+    if response_to_compare != answer_to_compare:
+        result = True
+        return meta.Assertion(source=objects.System, target=response_to_compare, value=result, measure=objects.BooleanOption)
+    else:
+        False
+
+
+def disagrees_with_numeric(response_to_compare, answer_to_compare, far_away=_THRESHOLD_HIGH):
+    buckets = foundation.map_values([response_to_compare, answer_to_compare], objects.NumericRange)
+    same_bucket = buckets[0] == buckets[1]
+
+    try:
+        far_away = abs(response_to_compare - answer_to_compare) > far_away
+
+        result = far_away and not same_bucket
+        return meta.Assertion(source=objects.System, target=response_to_compare, value=result, measure=objects.FloatOption)
+
+    except TypeError:
+        return not same_bucket
 
 
 def divisiveness(questions: objects.AssertionSet):
