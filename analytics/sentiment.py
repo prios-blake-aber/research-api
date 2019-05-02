@@ -35,7 +35,7 @@ def sentiment(scale_assertions: objects.ScaleValueSet):
     Returns:
         objects.Assertion: A value representing sentiment, or None.
     """
-    result = foundation.weighted_average([i.value for i in scale_assertions.members])
+    result = foundation.weighted_average([i.value for i in scale_assertions.data])
     return meta.Assertion(source=objects.System, target=scale_assertions, value=result)
 
 
