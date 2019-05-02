@@ -146,6 +146,7 @@ def syntheses(dots: List[objects.Dot]) -> List[meta.Assertion]:
     TODO: Synthesize Ratings in a list of Assertions by Source.
     TODO: Find a better home for this.
     TODO: Add keyword arguments for specifying how syntheses are performed
+    TODO: Potentially as a utility function
 
     Parameters
     ----------

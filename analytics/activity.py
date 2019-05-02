@@ -86,6 +86,8 @@ def frequently_dotted_subjects(dots: List[objects.Dot],
     * 10% of all Dot Ratings OR
     * 5% of all Dot Ratings along with 10 Dot Ratings.
 
+    TODO: Reconcile with Primary Participants
+
     Parameters
     ----------
     dots
