@@ -23,7 +23,7 @@ def quality(x: objects.AssertionSet):
     pass
 
 
-def sentiment(scale_assertions: objects.ScaleValueSet):
+def sentiment(scale_assertions: objects.ScaleValueSet, **kwargs):
     """
     Defines "Sentiment" as the [Dots Summary](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186) of all Dots in a Meeting.
 
@@ -35,7 +35,7 @@ def sentiment(scale_assertions: objects.ScaleValueSet):
     Returns:
         objects.Assertion: A value representing sentiment, or None.
     """
-    result = foundation.weighted_average([i.value for i in scale_assertions.data])
+    result = foundation.weighted_average([i.value for i in scale_assertions.data], **kwargs)
     return meta.Assertion(source=objects.System, target=scale_assertions, value=result)
 
 

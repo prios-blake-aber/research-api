@@ -1,5 +1,6 @@
 
-from src import objects
+from src import objects, meta
+from analytics import sentiment, disagreement
 
 
 def negative_dot_on_a_better_subject_popup_46(x: objects.Meeting):
@@ -57,7 +58,7 @@ def believable_and_overall_meeting_section_quality_disagree_143(x: objects.Quest
     pass
 
 
-def believable_and_overall_meeting_section_sentiment_disagree_119(x: objects.Meeting):
+def believable_and_overall_meeting_section_sentiment_disagree_119(question: objects.Question):
     """
     OUTPUT: Meeting
     INPUT: Dots
@@ -68,7 +69,16 @@ def believable_and_overall_meeting_section_sentiment_disagree_119(x: objects.Mee
     * Identifies Meetings in which the [Believable Meeting Section Sentiment](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=116) [Substantively Disagrees](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=129) with the [Overall Meeting Section Sentiment](https://blakea-analytics-registry.dev.principled.io/detail?writeup=117).
     * Returns a Boolean representing whether the Believable and Overall Meeting Section Sentiment Disagree.
     """
-    pass
+    # TODO: This function assumes non-zero believabilities for every person
+    weights = [response.source.believability for response in question.responses.data]
+
+    believable_sentiment = sentiment.sentiment(question.responses, weights=weights)
+    overall_sentiment = sentiment.sentiment(question.responses)
+
+    sentiment_comparison = (believable_sentiment, overall_sentiment)
+
+    result = disagreement.substantive_disagreement(sentiment_comparison)
+    return meta.Assertion(source=objects.System, target=question, value=result)
 
 
 def believable_sentiment_disagrees_with_overall_sentiment_142(x: objects.Meeting):
