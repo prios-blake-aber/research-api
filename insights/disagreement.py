@@ -27,6 +27,8 @@ def action_is_polarizing_161(x: objects.Meeting):
 @utils.scope_required_data_within_object(collections_to_keep=['dots'])
 def meeting_section_sentiment_is_polarizing_118(meeting: objects.Meeting):
     """
+    TODO: The role of sentiment in this analytic isn't clear from the Key Points.
+    TODO: Current logic is probably wrong. Update after looking at original code.
     OUTPUT: Meeting
     INPUT: Dots
     CONTEXT: Meeting
