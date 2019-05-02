@@ -28,7 +28,8 @@ def action_is_polarizing_161(x: objects.Meeting):
 def meeting_section_sentiment_is_polarizing_118(meeting: objects.Meeting):
     """
     TODO: The role of sentiment in this analytic isn't clear from the Key Points.
-    TODO: Current logic is probably wrong. Update after looking at original code.
+    TODO: Logic in this function probably doesn't match original code. Need to update.
+    
     OUTPUT: Meeting
     INPUT: Dots
     CONTEXT: Meeting
