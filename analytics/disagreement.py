@@ -265,7 +265,7 @@ def is_nubby_question(question: objects.Question,
         result = False
     else:
         mapped_values = foundation.map_values(values)
-        result = divisiveness(mapped_values, question.question_type) > _THRESHOLD_STD_MAPPED_SCALE
+        result = divisiveness(mapped_values, question.question_type) > threshold
 
     return meta.Assertion(source=objects.System, target=question, value=result,
                           measure=objects.BooleanOption)
