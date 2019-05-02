@@ -1,6 +1,9 @@
-from typing import List, Callable, Optional
+from typing import List, Callable, Optional, TypeVar, Dict
+from collections import Counter
 import numpy as np
 from src import objects
+
+StringOrFloat = TypeVar("StringOrFloat", str, float)
 
 
 def map_values(x: List[float], from_type: objects.NumericRange):
@@ -70,3 +73,37 @@ def percent_satisfying_condition(ar: List[float], condition: Callable) -> Option
         return len(subset) / len(ar)
     else:
         return None
+
+
+def counts(ar: List[StringOrFloat], normalize: bool = False) -> Dict[StringOrFloat, float]:
+    """
+    Gets proportions of each
+    Parameters
+    ----------
+    ar
+    normalize
+
+
+    Returns
+    -------
+    Dict[StringOrFloat, float]
+
+    Examples
+    --------
+    >>> counts([])
+    {}
+    >>> counts(['a', 'a', 'a','b'])
+    {'a': 0.75, 'b': 0.25}
+    >>> counts([1, 1, 1, 2])
+    {1: 0.75, 2: 0.25}
+    >>> counts([1, 1, 1, 2])
+    {1: 0.75, 2: 0.25}
+    """
+    if len(ar) == 0:
+        return dict()
+    c = Counter(ar)
+
+    if normalize:
+        return {i: c[i] / len(ar) for i in c}
+    else:
+        return {i: c[i] for i in c}
