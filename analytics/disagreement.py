@@ -1,10 +1,9 @@
 
 import itertools
-import numpy as np
-from analytics import utils
+from typing import Tuple
+from analytics import foundation, utils
 from src import objects, meta
-from analytics.foundation import map_values, percent_satisfying_condition, standard_deviation
-from src.objects import NumericRange
+
 _THRESHOLD_HIGH = 1.7
 _THRESHOLD_STD_SCALE = 1.0
 _THRESHOLD_STD_MAPPED_SCALE = 0.5
@@ -15,7 +14,7 @@ Core functionality for Disagreement
 """
 
 
-def substantive_disagreement(x1: meta.Assertion, x2: meta.Assertion,
+def substantive_disagreement(scale_values: Tuple[float, float],
                              threshold_high: float = _THRESHOLD_HIGH):
     """
     Substantive disagreement
@@ -33,10 +32,8 @@ def substantive_disagreement(x1: meta.Assertion, x2: meta.Assertion,
 
     Parameters
     ----------
-    x1
-        Assertion 1
-    x2
-        Assertion 2
+    values
+        Scale Value Pair
     threshold_high
         Returns False if difference between raw values is less than this quantity.
 
@@ -45,19 +42,20 @@ def substantive_disagreement(x1: meta.Assertion, x2: meta.Assertion,
     object.Judgement
         Whether there's substantive disagreement between two assertions.
     """
+    x1, x2 = scale_values
     diff = abs(x1.value - x2.value)
     far_away = diff > threshold_high
-    mapped_x1 = map_values(x1.value, NumericRange.ONE_TO_TEN)
-    mapped_x2 = map_values(x2.value, NumericRange.ONE_TO_TEN)
+    mapped_x1 = foundation.map_values(x1.value, objects.NumericRange.ONE_TO_TEN)
+    mapped_x2 = foundation.map_values(x2.value, objects.NumericRange.ONE_TO_TEN)
     mapped_diff = abs(mapped_x1 - mapped_x2)
     result = far_away and mapped_diff
-    return objects.Judgement(source=x1.source, target=x2.source, value=result)
+    return result
 
 
-def is_polarizing(scale_assertions: objects.CollectionOfScaleValues,
+def is_polarizing(scale_assertions: objects.ScaleValueSet,
                   thresh_on_std_scale: float = _THRESHOLD_STD_SCALE,
                   thresh_on_std_mapped_scale: float = _THRESHOLD_STD_MAPPED_SCALE,
-                  thresh_on_poles: float = _THRESHOLD_POLES) -> object.Judgement:
+                  thresh_on_poles: float = _THRESHOLD_POLES) -> objects.Judgement:
     """
     Is Polarizing
 
@@ -95,25 +93,26 @@ def is_polarizing(scale_assertions: objects.CollectionOfScaleValues,
     object.Judgement
         Whether a set of scale values are polarizing.
     """
-    values = [xi.value for xi in scale_assertions.expected_collections]
-    mapped_values = [map_values(vi, NumericRange.ONE_TO_TEN) for vi in values]
+    values = [xi.value for xi in scale_assertions.data]
+    mapped_values = [foundation.map_values(vi, objects.NumericRange.ONE_TO_TEN) for vi in values]
 
+    # TODO: nesting functions here is terrible; why not use the sentiment module?
     def negative_sentiment(x):
         return x == 1
 
     def positive_sentiment(x):
         return x == 3
 
-    percent_negative = percent_satisfying_condition(mapped_values, negative_sentiment)
-    percent_positive = percent_satisfying_condition(mapped_values, positive_sentiment)
+    percent_negative = foundation.percent_satisfying_condition(mapped_values, negative_sentiment)
+    percent_positive = foundation.percent_satisfying_condition(mapped_values, positive_sentiment)
 
     if percent_negative > 0 and percent_positive > 0:
         pole_ratio = min(percent_positive/percent_negative, percent_negative/percent_positive)
     else:
         pole_ratio = 0
 
-    std_values_condition = standard_deviation(values) > thresh_on_std_scale
-    std_mapped_values_condition = standard_deviation(mapped_values) > thresh_on_std_mapped_scale
+    std_values_condition = foundation.standard_deviation(values) > thresh_on_std_scale
+    std_mapped_values_condition = foundation.standard_deviation(mapped_values) > thresh_on_std_mapped_scale
     pole_condition = pole_ratio > thresh_on_poles
     result = std_values_condition and std_mapped_values_condition and pole_condition
     return objects.Judgement(source=objects.System, target=objects.System, value=result)
@@ -178,14 +177,29 @@ def believable_choice(question: objects.Question):
     numeric = ('LIKERT' in objects.QuestionType.__members__.keys()) | (
             'SCALE' in objects.QuestionType.__members__.keys())
 
-    if categorical_binary:
-        return utils.believable_choice_categorical_binary(question, total_believability)
+    if not total_believability:
+        return None
+    elif categorical_binary:
+        return believable_choice_categorical_binary(question, total_believability)
     elif numeric:
-        return utils.believable_choice_numeric(question, total_believability)
+        return believable_choice_numeric(question, total_believability)
     else:
         return None
 
 
+def believable_choice_numeric(question: objects.Question):
+    values = [response.value for response in question.responses.data]
+    weights = [response.source.believability for response in question.responses.data]
+    result = foundation.weighted_average(values, weights)
+    return meta.Assertion(source=objects.System, target=question, value=result, measure=objects.FloatOption)
+
+
+def believable_choice_categorical_binary(question: objects.Question, total_believability=None):
+    sorted_responses = sorted(question.responses.data, key=lambda x: x.value)
+    for response_choice, response_set in itertools.groupby(sorted_responses, key=lambda x: x.value):
+        if sum([i.source.believability for i in response_set]) / total_believability > 0.7:
+            result = response_choice
+    return meta.Assertion(source=objects.System, target=question, value=result, measure=objects.BooleanOption)
 
 
 

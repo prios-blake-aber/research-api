@@ -18,6 +18,7 @@ class QuestionType(Enum):
     SCALE = 'Scale'
     CATEGORICAL = 'Categorical'
     BINARY = 'Binary'
+    RATING = 'Rate This Section'
 
 
 class Judgement(meta.Assertion):
@@ -51,20 +52,21 @@ class Response(Judgement):
 
 
 class AssertionSet(meta.Entity):
-    """AssertionSet (Useful for Logic"""
+    """AssertionSet (Useful for Logic)"""
     def __init__(self, **kwargs):
         _allowable_collections = {'members': meta.Assertion}
         super().__init__(allowable_collections=_allowable_collections, **kwargs)
 
 
-class CollectionOfScaleValues(AssertionSet):
-    """AssertionSet (Useful for Logic"""
+class ScaleValueSet(AssertionSet):
+    """ScaleValueSet (Useful for Logic)"""
+    # TODO: add post-init to check all values are floats between 1-10
     def __init__(self, **kwargs):
         _allowable_collections = {'members': meta.Assertion}
         super().__init__(allowable_collections=_allowable_collections, **kwargs)
 
 
-class DotCollection(CollectionOfScaleValues):
+class DotCollection(ScaleValueSet):
     """Collection of Dots"""
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -108,7 +110,6 @@ class RelevanceScore(meta.Assertion):
             raise ValueError('rating must be a float from 0 to 1')
 
 
-
 class BooleanOption(meta.Assertion):
     """BooleanOption"""
     def __init__(self, **kwargs):
@@ -148,6 +149,7 @@ class System(meta.Entity):
 class Person(meta.Entity):
     """Person"""
     def __init__(self, **kwargs):
+        # TODO: instantiate person object with non-zero believability (e.g. 0.01)
         _allowable_attributes = {'name', 'role', 'description', 'believability'}
         _allowable_collections = {'dots': Dot}
         super().__init__(_allowable_attributes, _allowable_collections, **kwargs)
