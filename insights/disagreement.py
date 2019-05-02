@@ -14,8 +14,12 @@ Consensus
 """
 
 
-def action_is_polarizing_161(x: objects.Meeting):
+@utils.scope_required_data_within_object(collections_to_keep=['dots'])
+def action_is_polarizing_161(meeting: objects.Meeting):
     """
+    TODO: Reconcile data plumbing with:
+    insights.interaction.believable_view_disagrees_with_overall_view_on_action_162
+
     OUTPUT: AssertionSet
     INPUT: Dots
     CONTEXT: Meeting
@@ -25,7 +29,18 @@ def action_is_polarizing_161(x: objects.Meeting):
     * Identifies Meeting Tracker Actions in a Meeting that are [polarizing](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=141) based on Dots associated with the Action.
     * Returns a Boolean representing whether an Action in a Meeting Is Polarizing.
     """
-    pass
+    def sort_by_measure(x):
+        return x.measure.name
+
+    results = []
+    dots_by_attribute = sorted(meeting.dots.data, key=sort_by_measure)
+    for attribute, dot_set in itertools.groupby(dots_by_attribute, key=sort_by_measure):
+        materialized_dot_set = meta.EntityCollection(list(dot_set))
+        # TODO: materialization and instantiation is shitty here
+        result = disagreement.is_polarizing(materialized_dot_set)
+        results.append(result)
+
+    return results
 
 
 @utils.scope_required_data_within_object(collections_to_keep=['dots'])
