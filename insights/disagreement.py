@@ -1,6 +1,10 @@
 
+import itertools
 from src import objects
 from analytics import utils, activity, disagreement
+from typing import List
+
+_QUORUM_THRESH_DEFAULT = 0.80
 
 """
 Polarizing - distribution at the poles
@@ -169,7 +173,7 @@ def substantive_disagreement_129():
     pass
 
 
-def consensus_exists_131(x: objects.Question):
+def consensus_exists_131(question: objects.Question):
     """
     OUTPUT: Response
     INPUT: Believability
@@ -187,7 +191,34 @@ def consensus_exists_131(x: objects.Question):
         * Determines whether there is Sufficient Believability: determines whether Total Believability exceeds $0.75$.
         * Determines whether the previous three conditions are True.
     """
-    pass
+    if (activity.sufficient_question_engagement(question)) and (disagreement.believable_choice(question) is True or float):
+        return True
+    else:
+        return False
+
+
+
+
+
+@utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
+def quorum_exists_in_meeting(meeting: objects.Meeting):
+    """
+    Defines a "Quorum" for each :class:`objects.Questions` as a function of the number of Meeting Participants and Question Responses. https://github.principled.io/vgs/core-access/tree/master/docs/analytic-implementations/83357bac-d082-4085-8fda-07ade37bfb86.pdf
+
+    Args:
+        meeting (objects.Meeting): A set of :class:`objects.Assertion`.
+        quorum_threshold : The threshold above which quorum exists. Defaults to :data:`_QUORUM_THRESH_DEFAULT`
+        *args: Variable length argument list.
+        **kwargs: Arbitrary keyword arguments.
+
+    Returns:
+        bool : Whether quorum exists. Returns None if num_participants is 0.
+    """
+    number_participants = activity.participants(meeting)
+    return [
+        activity.quorum_exists_on_question_145(question, number_participants=number_participants, quorum_threshold = _QUORUM_THRESH_DEFAULT)
+        for question in meeting.questions.data
+    ]
 
 
 def meeting_section_nubbiness_149(x: objects.Meeting):
@@ -250,8 +281,11 @@ def nubby_attributes_in_meeting_39(x: objects.Meeting):
     pass
 
 
-def nubby_people_in_meeting_38(x: objects.Meeting):
+@utils.scope_required_data_within_object(collections_to_keep=['dots'])
+def polarizing_participants_38(meeting: objects.Meeting) -> List[objects.Judgement]:
     """
+    TODO: Add frequently dotted.
+
     OUTPUT: Person
     INPUT: Dots
     CONTEXT: Meeting
@@ -278,6 +312,30 @@ def nubby_people_in_meeting_38(x: objects.Meeting):
             * Determines whether the three conditions above are all True.
         * Determines whether a Subject is both Frequently Dotted and Polarizing.
         * Selects all Subjects that satisfy the condition above.
+    """
+    frequently_dotted = activity.frequently_dotted_subjects(meeting.dots)
+    polarizing = disagreement.polarizing_topics(meeting.dots)
+
+    # TODO: Write function for determining whether values are True in two (or more) lists of
+    #  Judgements. Elements of each list should have the same targets, which only appear once.
+    return combine_results(frequently_dotted, polarizing)
+
+
+def combine_results(*args):
+    """
+    Determines whether values are True in two (or more) lists of
+    Judgements. Elements of each list should have the same targets, which only appear once.
+
+    Not an insight (just a placeholder)
+
+    # TODO: Find better home.
+    Parameters
+    ----------
+    args
+
+    Returns
+    -------
+
     """
     pass
 
