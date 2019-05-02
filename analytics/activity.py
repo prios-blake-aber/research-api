@@ -70,9 +70,7 @@ def quorum_exists_on_question_145(question: objects.Question, number_participant
     """
     if number_participants:
         number_responses = len(question.responses.data)
-        # print(number_responses)
         quorum_flag = (number_responses / number_participants > quorum_threshold) and (number_responses > 3)
-        # print(quorum_flag)
         return meta.Assertion(source=objects.System, target=question, value=quorum_flag, measure=objects.BooleanOption)
     else:
         return meta.Assertion(source=objects.System, target=question, value=None, measure=objects.BooleanOption)
@@ -88,3 +86,9 @@ def engagement_in_meeting(meeting: objects.Meeting):
 
 def engagement_in_question(question: objects.Question):
     return engagement(question.responses.data)
+
+
+def sufficient_question_engagement(question: objects.Question):
+    total_responses = engagement_in_question(question)
+    sufficient_engagement_flag = total_responses > 3
+    return sufficient_engagement_flag

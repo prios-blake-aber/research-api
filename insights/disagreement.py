@@ -184,15 +184,10 @@ def consensus_exists_131(question: objects.Question):
         * Determines whether there is Sufficient Believability: determines whether Total Believability exceeds $0.75$.
         * Determines whether the previous three conditions are True.
     """
-
-    # quorum = quorum_exists_in_meeting(meeting)
-    # print(quorum)
-    # for assertion in quorum:
-    #     quorum_result = assertion.value
-    if activity.quorum_exists_on_question_145(question) and disagreement.believable_choice(question) is True or float:
+    if (activity.sufficient_question_engagement(question)) and (disagreement.believable_choice(question) is True or float):
         return True
     else:
-        None
+        return False
 
 
 
