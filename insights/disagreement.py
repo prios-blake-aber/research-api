@@ -1,6 +1,6 @@
-
+from typing import List
 from src import objects
-from analytics import utils, activity
+from analytics import utils, disagreement
 
 """
 Polarizing - distribution at the poles
@@ -245,7 +245,8 @@ def nubby_attributes_in_meeting_39(x: objects.Meeting):
     pass
 
 
-def nubby_people_in_meeting_38(x: objects.Meeting):
+@utils.scope_required_data_within_object(collections_to_keep=['dots'])
+def polarizing_participants_38(meeting: objects.Meeting) -> List[objects.Judgement]:
     """
     OUTPUT: Person
     INPUT: Dots
@@ -274,7 +275,14 @@ def nubby_people_in_meeting_38(x: objects.Meeting):
         * Determines whether a Subject is both Frequently Dotted and Polarizing.
         * Selects all Subjects that satisfy the condition above.
     """
-    pass
+    subjects = set([x for x in meeting.dots.target])
+    result = []
+    for s in subjects:
+        subject_dots = [dot for dot in meeting.dots if dot.source == s]
+        subject_is_polarizing = disagreement.is_polarizing(subject_dots)
+        subject_is_polarizing.target = s
+        result += [subject_is_polarizing]
+    return result
 
 
 def nubby_question_147(x: objects.Question):
