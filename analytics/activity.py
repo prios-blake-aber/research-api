@@ -111,3 +111,69 @@ def frequently_dotted_subjects(dots: List[objects.Dot],
         result += [subject_is_frequently_dotted]
 
     return result
+
+
+def primary_participants(dots: List[objects.Dot]) -> List[objects.Judgement]:
+    """
+    Primary participants.
+
+    # TODO: Identical to `insights.activity.primary_participants_in_meeting_138`?
+    # TODO: Is it an insight or an analytic?
+
+    Parameters
+    ----------
+    dots
+
+    Returns
+    -------
+    List[objects.Judgement]
+        True/False for whether people are a participant.
+    """
+    pass
+
+
+def notable_participants(meeting: objects.Meeting, **kwargs) -> List[objects.Judgement]:
+    """
+    Returns True/False for whether a list of Participants in a Meeting are Notable Participants.
+    Notable Participants are:
+    * Believable
+    * Primary Participant
+
+    Parameters
+    ----------
+    meeting
+    kwargs
+
+    Returns
+    -------
+    List of people who are primary or believable.
+    """
+
+    # TODO: General utility function for filtering lists on some variable.
+    believable_people = [person for person in meeting.participants if person.believability > 0]
+
+    primary_people = primary_participants(meeting.dots)
+
+    return combine_results(believable_people, primary_people, condition="OR")
+
+
+def combine_results(*args):
+    """
+    Determines whether values are True in two (or more) lists of
+    Judgements. Elements of each list should have the same targets, which only appear once.
+
+    Not an insight (just a placeholder)
+
+    # TODO: Find better home.
+    # TODO: Is this a utils for analytics OR insights? See insights.disagreements.combine_results
+    Parameters
+    ----------
+    args
+
+    Returns
+    -------
+
+    """
+    pass
+
+
