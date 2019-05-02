@@ -56,6 +56,7 @@ def is_polarizing(scale_assertions: objects.ScaleValueSet,
                   thresh_on_std_scale: float = _THRESHOLD_STD_SCALE,
                   thresh_on_std_mapped_scale: float = _THRESHOLD_STD_MAPPED_SCALE,
                   thresh_on_poles: float = _THRESHOLD_POLES) -> objects.Judgement:
+
     """
     Is Polarizing
 
