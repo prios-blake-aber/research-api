@@ -169,3 +169,12 @@ class Meeting(meta.Entity):
         _allowable_attributes = {'name', 'description'}
         _allowable_collections = {'dots': Dot, 'questions': Question, 'participants': Person}
         super().__init__(_allowable_attributes, _allowable_collections, **kwargs)
+
+
+class MeetingNubbyClassification(Enum):
+    # TODO: Generalize Classification Class.
+    NOT_NUBBY = 1
+    LESS_NUBBY = 2
+    SOMEWHAT_NUBBY = 3
+    NUBBY = 4
+    VERY_NUBBY = 5
