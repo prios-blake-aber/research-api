@@ -12,6 +12,7 @@ _THRESHOLD_HIGH = 1.7
 _THRESHOLD_STD_SCALE = 1.0
 _THRESHOLD_STD_MAPPED_SCALE = 0.5
 _THRESHOLD_POLES = 0.25
+_UNIQUE_DISAGREEMENT = 0.88
 
 """
 Core functionality for Disagreement
@@ -224,6 +225,44 @@ def disagrees_with_numeric(response_to_compare, answer_to_compare, far_away=_THR
 
     except TypeError:
         return not same_bucket
+
+
+def is_unique(question: objects.Question, unique_disagreement=_UNIQUE_DISAGREEMENT):
+    """Identify if the given 'response' is unique in relation to the given set of 'responses'.
+
+        Parameters
+        ----------
+        response
+            The specific response that is being tested as unique or not. This should be
+            of the same type as elements of 'responses', though a discrepancy will not necessarily
+            trigger an exception.
+
+        responses : iterable of responses of any type
+            An iterable of responses, corresponding to the `response_type`.
+
+        response_type : :class:`ResponseType`
+            The type of each element of `responses`. This must be one of the elements of the
+            ResponseType enum. This will govern how responses are bucketed.
+
+        Returns
+        -------
+        bool
+            True if `response` is unique among `responses`. False otherwise.  Uniqueness is
+            defined as 88% of other responses being in a different response 'bucket'.
+        """
+    values = [xi.value for xi in question.responses.data]
+    all_buckets = [foundation.map_values(vi, objects.NumericRange) for vi in values]
+
+
+    for value in all_buckets:
+        count_responses_in_diff_bucket = 0
+        if all_buckets[1:] != all_buckets[0]:
+            count_responses_in_diff_bucket += 1
+
+    pct_bucket_disagree = \
+        count_responses_in_diff_bucket / len(values)
+
+    return pct_bucket_disagree > unique_disagreement
 
 
 def divisiveness(questions: objects.AssertionSet):

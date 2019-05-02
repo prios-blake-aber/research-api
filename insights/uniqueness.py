@@ -1,5 +1,6 @@
 
-from src import objects
+from src import objects, meta
+from analytics import disagreement
 
 
 def unexpected_action_163(x: objects.Meeting):
@@ -18,7 +19,7 @@ def unexpected_action_163(x: objects.Meeting):
     pass
 
 
-def uniquely_out_of_sync_on_question_136(x: objects.Question):
+def uniquely_out_of_sync_on_question_136(question: objects.Question):
     """
     OUTPUT: Person
     INPUT: Responses
@@ -36,7 +37,21 @@ def uniquely_out_of_sync_on_question_136(x: objects.Question):
         * Determines whether the both conditions above are True for a Person.
         * Selects People for which the condition above is True.
     """
-    pass
+    disagrees_with_result = disagreement.disagrees_with(question)
+    believable_choice_result = disagreement.disagrees_with(question)
+    is_unique_result = disagreement.is_unique(question)
+    people = []
+    for response in question.responses.data:
+        if disagrees_with_result and (believable_choice_result or isinstance(believable_choice_result, float)) \
+                and is_unique_result:
+            result = True
+            response_source = response.source
+            people.append(meta.Assertion(source=objects.System, target=response_source, value=result, \
+                                         measure=objects.FloatOption))
+            return people
+        else:
+            return False
+
 
 
 def author_disagrees_with_believable_view_on_action_153(x: objects.AssertionSet):
