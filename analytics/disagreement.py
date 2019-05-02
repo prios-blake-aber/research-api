@@ -293,8 +293,8 @@ def meeting_nubbiness_v1(meeting: objects.Meeting,
 
     meeting_nubbiness = scaling_factor * meeting_divisiveness
 
-    # TODO: Generalize classification.
-    # TODO: Abstract classification into Core Concept
+    # TODO: Generalize classification object.
+    # TODO: Add "classify" to Core Concepts.
     classification = objects.MeetingNubbyClassification(np.digitize(meeting_nubbiness, thresholds))
     return meta.Assertion(
         source=objects.System,
@@ -314,4 +314,3 @@ def divisiveness(ar: List[StringOrFloat], value_type: objects.QuestionType):
         max_count = max(count)
         mapped_ar = [0]*max_count + [1]*(len(ar) - max_count)
         return foundation.standard_deviation(mapped_ar)
-
