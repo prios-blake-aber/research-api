@@ -1,3 +1,6 @@
+"""
+Not Implemented: Insights on Contribution
+"""
 
 import itertools
 from typing import List, Dict
@@ -14,56 +17,10 @@ Consensus
 """
 
 
-@utils.scope_required_data_within_object(collections_to_keep=['dots'])
-def action_is_polarizing_161(meeting: objects.Meeting):
-    """
-    TODO: Reconcile data plumbing with:
-    insights.interaction.believable_view_disagrees_with_overall_view_on_action_162
-
-    OUTPUT: AssertionSet
-    INPUT: Dots
-    CONTEXT: Meeting
-    INSIGHT: Disagreement
-    PROCESSING: Context-Only
-
-    * Identifies Meeting Tracker Actions in a Meeting that are [polarizing](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=141) based on Dots associated with the Action.
-    * Returns a Boolean representing whether an Action in a Meeting Is Polarizing.
-    """
-    def sort_by_measure(x):
-        return x.measure.name
-
-    results = []
-    dots_by_attribute = sorted(meeting.dots.data, key=sort_by_measure)
-    for attribute, dot_set in itertools.groupby(dots_by_attribute, key=sort_by_measure):
-        materialized_dot_set = meta.EntityCollection(list(dot_set))
-        # TODO: materialization and instantiation is shitty here
-        result = disagreement.is_polarizing(materialized_dot_set)
-        results.append(result)
-
-    return results
-
-
-@utils.scope_required_data_within_object(collections_to_keep=['dots'])
-def meeting_section_sentiment_is_polarizing_118(meeting: objects.Meeting):
-    """
-    TODO: The role of sentiment in this analytic isn't clear from the Key Points.
-    TODO: Logic in this function probably doesn't match original code. Need to update.
-
-    OUTPUT: Meeting
-    INPUT: Dots
-    CONTEXT: Meeting
-    INSIGHT: Sentiment, Disagreement
-    PROCESSING: Context-Only
-
-    * Identifies Meetings in which the sentiment based on all Dots is [Polarizing](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=141).
-    * Returns a Boolean representing whether the Meeting Sentiment is Polarizing.
-    """
-    dots = [dot for dot in meeting.dots]
-    return disagreement.is_polarizing(dots)
-
-
 def is_polarizing_141(x: objects.AssertionSet):
     """
+    Note: This is within Analytics folder.
+
     OUTPUT: Person
     INPUT: Dots
     CONTEXT: AssertionSet
@@ -88,9 +45,10 @@ def is_polarizing_141(x: objects.AssertionSet):
     pass
 
 
-
 def divisiveness_179(x: objects.Question):
     """
+    Note: This is within Analytics folder.
+
     OUTPUT: Response
     INPUT: Responses
     CONTEXT: Question
@@ -167,51 +125,6 @@ def substantive_disagreement_129():
     pass
 
 
-def consensus_exists_131(question: objects.Question):
-    """
-    OUTPUT: Response
-    INPUT: Believability
-    CONTEXT: Question
-    INSIGHT: Consensus
-    PROCESSING: Context-Only
-
-    * Identifies whether the [believability-weighted](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) vote on a Question exceeds 90% for one Response.
-    * Returns a Boolean representing Believable Consensus Exists.
-    * This is produced by the following operation(s):
-        * Calculates Total Believability: Calculates the sum of the [Believability](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) of all People who respond to a Question.
-        * Calculates Response Believability for each possible Response: Calculates the sum of the [Believability](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) of People who give the same Response.
-        * Determines whether there is Agreement Among Believable Respondents: determines whether the ratio of Response Believability to Total Believability exceeds $0.9$ for any Response.
-        * Determines whether there are Enough Respondents: determines whether there are more than $3$ People who give Responses.
-        * Determines whether there is Sufficient Believability: determines whether Total Believability exceeds $0.75$.
-        * Determines whether the previous three conditions are True.
-    """
-    if (activity.sufficient_question_engagement(question)) and (disagreement.believable_choice(question) is True or float):
-        return True
-    else:
-        return False
-
-
-@utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
-def quorum_exists_in_meeting(meeting: objects.Meeting):
-    """
-    Defines a "Quorum" for each :class:`objects.Questions` as a function of the number of Meeting Participants and Question Responses. https://github.principled.io/vgs/core-access/tree/master/docs/analytic-implementations/83357bac-d082-4085-8fda-07ade37bfb86.pdf
-
-    Args:
-        meeting (objects.Meeting): A set of :class:`objects.Assertion`.
-        quorum_threshold : The threshold above which quorum exists. Defaults to :data:`_QUORUM_THRESH_DEFAULT`
-        *args: Variable length argument list.
-        **kwargs: Arbitrary keyword arguments.
-
-    Returns:
-        bool : Whether quorum exists. Returns None if num_participants is 0.
-    """
-    number_participants = activity.participants(meeting)
-    return [
-        activity.quorum_exists_on_question_145(question, number_participants=number_participants, quorum_threshold = _QUORUM_THRESH_DEFAULT)
-        for question in meeting.questions.data
-    ]
-
-
 def meeting_section_nubbiness_149(x: objects.Meeting):
     """
     OUTPUT: Meeting
@@ -272,69 +185,10 @@ def nubby_attributes_in_meeting_39(x: objects.Meeting):
     pass
 
 
-@utils.scope_required_data_within_object(collections_to_keep=['dots'])
-def polarizing_participants_38(meeting: objects.Meeting) -> List[objects.Judgement]:
-    """
-    TODO: Add frequently dotted.
-
-    OUTPUT: Person
-    INPUT: Dots
-    CONTEXT: Meeting
-    INSIGHT: Disagreement
-    PROCESSING: Context-Only
-
-    * Selects all People who are viewed as being [polarizing](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=141)  based on Dots in a Meeting Section.
-    * Returns a list of People who were identified as Nubby People in Meeting.
-    * Returns an empty list if there are no Subjects whose Dot Ratings satisfy the criteria below.
-    * This is produced by the following operation(s):
-        * Calculates the number of Dots that a Subject receives.
-        * Calculates the percent of Dots that a Subject receives as a fraction of all Dots given in a Meeting Section.
-        * Determines whether a Subject is Frequently Dotted: receives more than either:
-            * 10% of all Dot Ratings OR
-            * 5% of all Dot Ratings along with 10 Dot Ratings.
-        * Determines whether a Subject is viewed as being [Polarizing](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=141) from Dot Ratings that they receive:
-            * Calculates each Author's Synthesized View of the Subject: Calculates the average of the Author's Dot Ratings on a Subject.
-            * Maps each Author's Synthesized View of the Subject to Summarized Synthesized Views (Negative, Neutral, or Positive).
-            * Determines whether the proportions of Positive and Negative view are roughly equal: both of the following conditions must hold:
-                * The ratio of the number of Positive views to the number of Neutral views exceeds 0.25.
-                * The ratio of the number of Negative views to the number of Positive views exceeds 0.25.
-            * Determines whether the standard deviation of Authors' Synthesized Views exceeds 1.
-            * Determines whether the standard deviation of Authors' Summarized Synthesized Views exceeds 0.5 (after mapping Negative Views to 1, Neutral Views to 2, and Positive Views to 3).
-            * Determines whether the three conditions above are all True.
-        * Determines whether a Subject is both Frequently Dotted and Polarizing.
-        * Selects all Subjects that satisfy the condition above.
-    """
-    frequently_dotted = activity.frequently_dotted_subjects(meeting.dots)
-    polarizing = disagreement.polarizing_topics(meeting.dots)
-
-    # TODO: Write function for determining whether values are True in two (or more) lists of
-    #  Judgements. Elements of each list should have the same targets, which only appear once.
-    return combine_results(frequently_dotted, polarizing)
-
-
-def combine_results(*args):
-    """
-    Determines whether values are True in two (or more) lists of
-    Judgements. Elements of each list should have the same targets, which only appear once.
-
-    Not an insight (just a placeholder)
-
-    # TODO: Find better home.
-    # TODO: Is this a utils for analytics OR insights? See analytics.activity.combine_results
-
-    Parameters
-    ----------
-    args
-
-    Returns
-    -------
-
-    """
-    pass
-
-
 def nubby_question_147(x: objects.Question):
     """
+    Note: This is within Analytics folder.
+
     OUTPUT: Question
     INPUT: Responses
     CONTEXT: Question
@@ -437,32 +291,6 @@ def question_nubbiness_popup_49(x: objects.Meeting):
     pass
 
 
-def out_of_sync_people_on_question_41(question: objects.Question):
-    """
-    OUTPUT: Person
-    INPUT: Responses
-    CONTEXT: Question
-    INSIGHT: Disagreement
-    PROCESSING: Comparing [Person vs. Believable]
-
-    * Identifies all People who [disagree with](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167) the [believable choice](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130) on a Question (if one exists).
-    * Returns a list of Out of Sync People on Question.
-    * Returns an empty list if there is no Believable Choice or there are no People who disagree with it.
-    * This is produced by the following operation(s):
-        * Calculates the [Believable Choice](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130) Response to a Question.
-        * Determines whether a Person [disagrees with](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167) the [Believable Choice](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130).
-        * Selects People for which the condition above is True.
-    """
-    believable_choice_result = disagreement.believable_choice(question)
-    disagrees_with_result = disagreement.disagrees_with_167(question)
-    people = []
-    for response in question.responses.data:
-        result = disagrees_with_result and (believable_choice_result or isinstance(believable_choice_result, float))
-        people.append(meta.Assertion(source=objects.System, target=response.source, value=result,
-                                     measure=objects.AssertionSet))
-    return people
-
-
 def split_question_48(x: objects.Question):
     """
     OUTPUT: Person
@@ -521,61 +349,3 @@ def teams_locking_arms_43(x: objects.Question):
         * Determines whether the two criteria above are both True.
     """
     pass
-
-
-def significantly_out_of_sync_114(meeting: objects.Meeting,
-                                  threshold_low=0.8,
-                                  threshold_high=1.2) -> List[objects.Judgement]:
-    """
-
-    # TODO: Figure out how to factor this better by Disentangling logic and data plumbing.
-    # TODO: Where are parameters called and its default values set?
-
-    Parameters
-    ----------
-    meeting
-    threshold_low
-    threshold_high
-
-    Returns
-    -------
-    List[objects.Judgement]
-        Value = True if person is Significantly OOS.
-    """
-    notable = activity.notable_participants(meeting)
-    # TODO: Util function to convert List of Assertions to Dictionary (doable with Dataclasses)
-    notable_dict = {
-        p.id: p.value for p in notable
-    }
-
-    oos = {
-        q.id: out_of_sync_people_on_question_41(q.id) for q in meeting.questions
-    }
-
-    oos_count = {
-        person: 0 for person in meeting.partcipants
-    }
-
-    for k, v in oos:
-        for person in v:
-            oos_count[person] += 1
-
-    def to_zscore(x: Dict[objects.Person, int]) -> Dict[objects.Person, float]:
-        """Placeholder.
-        TODO: Find better home. analytics.foundation?
-        TODO: Think through function signature.
-        """
-        pass
-
-    oos_z_score = to_zscore(oos_count)
-    results = []
-    for person, v in oos_z_score:
-        if notable_dict[person.id]:
-            result_person = v > threshold_low
-        else:
-            result_person = v > threshold_high
-
-        results += [
-            objects.Judgement(source=objects.System, target=person, value=result_person)
-        ]
-    return results
