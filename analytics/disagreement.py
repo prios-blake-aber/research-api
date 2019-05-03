@@ -12,6 +12,7 @@ _THRESHOLD_HIGH = 1.7
 _THRESHOLD_STD_SCALE = 1.0
 _THRESHOLD_STD_MAPPED_SCALE = 0.5
 _THRESHOLD_POLES = 0.25
+_UNIQUE_DISAGREEMENT = 0.88
 
 """
 Core functionality for Disagreement
@@ -187,7 +188,7 @@ def synthesize(dots: List[objects.Dot]) -> List[meta.Assertion]:
     return result
 
 
-def disagrees_with_167(question: objects.Question, *args, **kwargs) -> objects.AssertionSet:
+def disagrees_with_167(values : Tuple[Any, Any], question_type) -> objects.Assertion:
     """
 
     TODO: other analytics that use disagrees_with are Out of Sync People, Uniquely Out of Sync,
@@ -202,23 +203,16 @@ def disagrees_with_167(question: objects.Question, *args, **kwargs) -> objects.A
     objects.AssertionSet
         Empty set, if none exists.
     """
-    categorical_binary = ('CATEGORICAL' in objects.QuestionType.__members__.keys()) | (
-            'BINARY' in objects.QuestionType.__members__.keys())
-    numeric = ('LIKERT' in objects.QuestionType.__members__.keys()) | (
-            'SCALE' in objects.QuestionType.__members__.keys())
+    response, response_value = values
+    categorical_binary = question_type in (objects.QuestionType.CATEGORICAL, objects.QuestionType.BINARY)
+    numeric = question_type in (objects.QuestionType.LIKERT, objects.QuestionType.SCALE)
 
-    answer_to_compare = believable_choice(question)
-
-    for response in question.responses.data:
-        response_to_compare = response
-        if response_to_compare is None or answer_to_compare is None:
-            return False
-        elif categorical_binary:
-            return disagrees_with_categorical_binary(response_to_compare, answer_to_compare)
-        elif numeric:
-            return disagrees_with_numeric(response_to_compare, answer_to_compare)
-        else:
-            return None
+    if categorical_binary:
+        return disagrees_with_categorical_binary(response, response_value)
+    elif numeric:
+        return disagrees_with_numeric(response, response_value)
+    else:
+        return None
 
 
 def disagrees_with_categorical_binary(response_to_compare: StringOrFloat,
@@ -275,6 +269,53 @@ def disagrees_with_numeric(response_to_compare: float,
         return not same_bucket
 
 
+def is_unique(question: objects.Question, unique_disagreement=_UNIQUE_DISAGREEMENT):
+    """
+    TODO: bucketing should live in it's own function
+    Identify if the given 'response' is unique in relation to the given set of 'responses'.
+
+        Parameters
+        ----------
+        response
+            The specific response that is being tested as unique or not. This should be
+            of the same type as elements of 'responses', though a discrepancy will not necessarily
+            trigger an exception.
+
+        responses : iterable of responses of any type
+            An iterable of responses, corresponding to the `response_type`.
+
+        response_type : :class:`ResponseType`
+            The type of each element of `responses`. This must be one of the elements of the
+            ResponseType enum. This will govern how responses are bucketed.
+
+        Returns
+        -------
+        bool
+            True if `response` is unique among `responses`. False otherwise.  Uniqueness is
+            defined as 88% of other responses being in a different response 'bucket'.
+        """
+    values = [xi.value for xi in question.responses.data]
+    all_buckets = foundation.map_values(values, objects.NumericRange)
+    consensus_choice = unique_consensus_choice(all_buckets)
+    assertions = []
+    if not consensus_choice:
+        return None
+    else:
+        for response in all_buckets:
+            uniquely_oos = response == consensus_choice
+            assertions.append(meta.Assertion(source=objects.System, target=response, value=uniquely_oos, measure=objects.BooleanOption))
+        return assertions
+
+
+def unique_consensus_choice(values: List[Any], threshold=_UNIQUE_DISAGREEMENT):
+    value_count = len(values)
+    sorted_values = sorted(values)
+    for value, data in itertools.groupby(sorted_values):
+        if len(list(data)) / value_count >= threshold:
+            return value
+    return None
+
+
 def believable_choice(question: objects.Question) -> meta.Assertion:
     """
     What is the believable choice on a question?
@@ -290,10 +331,8 @@ def believable_choice(question: objects.Question) -> meta.Assertion:
 
     total_believability = sum([response.source.believability for response in question.responses.data])
     # TODO: Terrible factorization using QuestionType
-    categorical_binary = ('CATEGORICAL' in objects.QuestionType.__members__.keys()) | (
-            'BINARY' in objects.QuestionType.__members__.keys())
-    numeric = ('LIKERT' in objects.QuestionType.__members__.keys()) | (
-            'SCALE' in objects.QuestionType.__members__.keys())
+    categorical_binary = question.question_type in (objects.QuestionType.CATEGORICAL, objects.QuestionType.BINARY)
+    numeric = question.question_type in (objects.QuestionType.LIKERT, objects.QuestionType.SCALE)
 
     if not total_believability:
         return meta.Assertion(source=objects.System, target=question,

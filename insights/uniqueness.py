@@ -1,5 +1,6 @@
 
-from src import objects
+from src import objects, meta
+from analytics import disagreement
 
 
 def unexpected_action_163(x: objects.Meeting):
@@ -18,8 +19,10 @@ def unexpected_action_163(x: objects.Meeting):
     pass
 
 
-def uniquely_out_of_sync_on_question_136(x: objects.Question):
+def uniquely_out_of_sync_on_question_136(question: objects.Question):
     """
+    TODO: this function only returns True assertions
+    TODO: Zip code factorization is bad
     OUTPUT: Person
     INPUT: Responses
     CONTEXT: Question
@@ -36,7 +39,21 @@ def uniquely_out_of_sync_on_question_136(x: objects.Question):
         * Determines whether the both conditions above are True for a Person.
         * Selects People for which the condition above is True.
     """
-    pass
+    believable_choice_result = disagreement.believable_choice(question)
+    if believable_choice_result:
+        believable_choice_result = believable_choice_result.value
+    people = []
+    unique_responses = disagreement.is_unique(question)
+    if not unique_responses:
+        return None
+    for assertion, response in zip(unique_responses, question.responses.data):
+        if assertion.value:
+            disagrees_with_result = disagreement.disagrees_with_167([response.value, believable_choice_result], question.question_type)
+        result = disagrees_with_result.value and believable_choice_result
+        people.append(meta.Assertion(source=objects.System, target=response.source, value=result,
+                                     measure=objects.FloatOption))
+    return people
+
 
 
 def author_disagrees_with_believable_view_on_action_153(x: objects.AssertionSet):
