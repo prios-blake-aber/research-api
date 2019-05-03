@@ -1,8 +1,8 @@
-from typing import List, Dict
+
 import itertools
-from src import objects
-from analytics import utils, activity, disagreement
-from typing import List
+from typing import List, Dict
+from src import objects, meta
+from analytics import utils, disagreement, activity
 
 _QUORUM_THRESH_DEFAULT = 0.80
 
@@ -87,27 +87,6 @@ def is_polarizing_141(x: objects.AssertionSet):
     """
     pass
 
-
-def disagrees_with_167(x: objects.Question):
-    """
-    OUTPUT: Response
-    INPUT: Responses
-    CONTEXT: Question
-    INSIGHT: Disagreement
-    PROCESSING: Comparing [Collections of People]
-
-    * Defines "Disagreement" between two opinions on a Question. Two opinions disagree when they are classified into different [groups](https://blakea-analytics-registry.dev.principled.io/detail?analytic=168) and, if they are Question Responses with Likert or Scale Values, also have a difference greater than a configurable threshold (with a default value of 1.7).
-    * Returns a Boolean representing whether two opinions Disagrees With one another.
-    * This is produced by the following operation(s):
-        * Determines whether two opinions disagree as:
-            * For Categorical or Yes/No opinions: the two opinions are different.
-            * For Likert or Scale Value opinions:
-                * Determines whether the two opinions are Far Away: Compares whether the difference is greater than a configurable threshold value (default value of 1.7).
-                * Maps each opinion to a Summarized Opinions (Negative, Neutral, or Positive).
-                * Determines whether the Summarized Opinions Disagree: Determines whether their values are different.
-                * Determines whether the two opinions are Far Away and their Summarized Opinions Disagree.
-    """
-    pass
 
 
 def divisiveness_179(x: objects.Question):
@@ -210,9 +189,6 @@ def consensus_exists_131(question: objects.Question):
         return True
     else:
         return False
-
-
-
 
 
 @utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
@@ -461,7 +437,7 @@ def question_nubbiness_popup_49(x: objects.Meeting):
     pass
 
 
-def out_of_sync_people_on_question_41(x: objects.Question):
+def out_of_sync_people_on_question_41(question: objects.Question):
     """
     OUTPUT: Person
     INPUT: Responses
@@ -477,7 +453,14 @@ def out_of_sync_people_on_question_41(x: objects.Question):
         * Determines whether a Person [disagrees with](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167) the [Believable Choice](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130).
         * Selects People for which the condition above is True.
     """
-    pass
+    believable_choice_result = disagreement.believable_choice(question)
+    disagrees_with_result = disagreement.disagrees_with_167(question)
+    people = []
+    for response in question.responses.data:
+        result = disagrees_with_result and (believable_choice_result or isinstance(believable_choice_result, float))
+        people.append(meta.Assertion(source=objects.System, target=response.source, value=result,
+                                     measure=objects.AssertionSet))
+    return people
 
 
 def split_question_48(x: objects.Question):
