@@ -252,17 +252,16 @@ def is_unique(question: objects.Question, unique_disagreement=_UNIQUE_DISAGREEME
         """
     values = [xi.value for xi in question.responses.data]
     all_buckets = [foundation.map_values(vi, objects.NumericRange) for vi in values]
-
-
+    assertions = []
     for value in all_buckets:
         count_responses_in_diff_bucket = 0
         if all_buckets[1:] != all_buckets[0]:
             count_responses_in_diff_bucket += 1
+        pct_bucket_disagree = count_responses_in_diff_bucket / len(values)
+        result = pct_bucket_disagree > unique_disagreement
+        assertions.append(meta.Assertion(source=objects.System, target=values, value=result, measure=objects.BooleanOption))
+    return assertions
 
-    pct_bucket_disagree = \
-        count_responses_in_diff_bucket / len(values)
-
-    return pct_bucket_disagree > unique_disagreement
 
 
 def divisiveness(questions: objects.AssertionSet):
