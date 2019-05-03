@@ -226,7 +226,7 @@
 <span class="sd">    INSIGHT: Activity</span>
 <span class="sd">    PROCESSING: Comparing [Collections of People]</span>
 
-<span class="sd">    * Defines &quot;Quorum Exists&quot; for a Question when the proportion of People in a Meeting Section Responding to it exceeds a configurable threshold (default is 80%).</span>
+<span class="sd">    * Defines &quot;Quorum Exists&quot; for a Question when the counts of People in a Meeting Section Responding to it exceeds a configurable threshold (default is 80%).</span>
 <span class="sd">    * Returns a Boolean representing whether a Quorum Exists.</span>
 <span class="sd">    * Returns Null if there are zero People in a Meeting Section.</span>
 <span class="sd">    * This is produced by the following operation(s):</span>
@@ -374,7 +374,7 @@
 <span class="sd">        * Calculates Question Divisiveness, which depends on the type of Question Response:</span>
 <span class="sd">            * For Response types with Scale Values, Likert Values, or Yes/No Values: Calculates [Divisiveness](https://blakea-analytics-registry.dev.principled.io/detail?analytic=179) from Responses to a Question.</span>
 <span class="sd">            * For Categorical response types:</span>
-<span class="sd">                 * Determines the Most Common Choice: Choice with highest proportion of Responses.</span>
+<span class="sd">                 * Determines the Most Common Choice: Choice with highest counts of Responses.</span>
 <span class="sd">                 * Maps responses of the Most Common Choice to 1 and all other Responses (including N/A&#39;s) to 2.</span>
 <span class="sd">                 * Calculates the standard deviation of the mapped Responses.</span>
 <span class="sd">        * Determines whether Question Divisiveness exceeds a configurable threshold which depends on the Response Type:</span>

@@ -348,7 +348,7 @@ def nubby_question_147(x: objects.Question):
         * Calculates Question Divisiveness, which depends on the type of Question Response:
             * For Response types with Scale Values, Likert Values, or Yes/No Values: Calculates [Divisiveness](https://blakea-analytics-registry.dev.principled.io/detail?analytic=179) from Responses to a Question.
             * For Categorical response types:
-                 * Determines the Most Common Choice: Choice with highest proportion of Responses.
+                 * Determines the Most Common Choice: Choice with highest counts of Responses.
                  * Maps responses of the Most Common Choice to 1 and all other Responses (including N/A's) to 2.
                  * Calculates the standard deviation of the mapped Responses.
         * Determines whether Question Divisiveness exceeds a configurable threshold which depends on the Response Type:

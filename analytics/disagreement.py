@@ -1,8 +1,12 @@
 
 import itertools
-from typing import Tuple, List, Any
+import numpy as np
+from typing import Tuple, List, TypeVar, Any
 from analytics import foundation, utils
 from src import objects, meta
+
+
+StringOrFloat = TypeVar("StringOrFloat", str, float)
 
 _THRESHOLD_HIGH = 1.7
 _THRESHOLD_STD_SCALE = 1.0
@@ -32,7 +36,7 @@ def substantive_disagreement(scale_values: Tuple[float, float],
 
     Parameters
     ----------
-    values
+    scale_values
         Scale Value Pair
     threshold_high
         Returns False if difference between raw values is less than this quantity.
@@ -281,5 +285,69 @@ def believable_choice_categorical_binary(question: objects.Question, total_belie
     return meta.Assertion(source=objects.System, target=question, value=result, measure=objects.BooleanOption)
 
 
+def is_nubby_question(question: objects.Question,
+                      threshold: float = _THRESHOLD_STD_MAPPED_SCALE) -> meta.Assertion:
+    """
+    Is a question Nubby?
+
+    Parameters
+    ----------
+    question
+
+    Returns
+    -------
+    meta.Assertion
+    """
+    # TODO: Create extractor method in `objects.Question` that returns list of responses?
+    values = [response.value for response in question.responses.data]
+    if len(values) < 2:
+        result = False
+    else:
+        mapped_values = foundation.map_values(values)
+        result = divisiveness(mapped_values, question.question_type) > threshold
+
+    return meta.Assertion(source=objects.System, target=question, value=result,
+                          measure=objects.BooleanOption)
 
 
+def meeting_nubbiness_v1(meeting: objects.Meeting,
+                         thresholds: List[float] = [0.2, 0.4, 0.6, 0.8]) -> meta.Assertion:
+    # TODO: Public.
+    # TODO: Default Thresholds are wrong.
+    nubby_questions = [q for q in meeting.questions if is_nubby_question(q)]
+
+    def responses_to_list(question):
+        return [q.response.value for q in nubby_questions.responses.data]
+
+    if len(nubby_questions) == 0:
+        meeting_divisiveness = 0.0
+    else:
+        meeting_divisiveness = [
+            divisiveness(responses_to_list(q)) for q in nubby_questions
+        ]
+
+    scaling_factor = 0.5 if len(nubby_questions) == 1 else 0
+
+    meeting_nubbiness = scaling_factor * meeting_divisiveness
+
+    # TODO: Generalize classification object.
+    # TODO: Add "classify" to Core Concepts.
+    classification = objects.MeetingNubbyClassification(np.digitize(meeting_nubbiness, thresholds))
+    return meta.Assertion(
+        source=objects.System,
+        target= meeting.id,
+        value=classification,
+        measure=objects.MeetingNubbyClassification
+    )
+
+
+def divisiveness(ar: List[StringOrFloat], value_type: objects.QuestionType):
+    # TODO: Core Concept.
+    # TODO: How are N/A's being represented? We shouldn't assume they're being filtered.
+    if value_type in [objects.QuestionType.SCALE, objects.QuestionType.LIKERT]:
+        return foundation.standard_deviation(ar)
+    elif value_type == objects.QuestionType.CATEGORICAL:
+        count = [v for k, v in foundation.counts(ar).items()]
+        max_count = max(count)
+        mapped_ar = [0]*max_count + [1]*(len(ar) - max_count)
+        return foundation.standard_deviation(mapped_ar)
