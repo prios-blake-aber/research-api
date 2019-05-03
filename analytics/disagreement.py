@@ -124,35 +124,14 @@ def is_polarizing(scale_assertions: objects.ScaleValueSet,
     return objects.Judgement(source=objects.System, target=objects.System, value=result)
 
 
-def polarizing_topics(dots: List[objects.Dot]) -> List[objects.Judgement]:
+def polarizing_topics(dots: List[objects.Dot]) -> List[meta.Assertion]:
     """
+    Is a "topic" polarizing? A topic is a collection of Assertions on a single target.
+
+    1. Values about a target given by each source is synthesized.
+    2. Determines whether the synthesized values have a polarizing distribution.
     TODO: Generalize input type beyond Dots.
-
-    Parameters
-    ----------
-    dots
-
-    Returns
-    -------
-    List[objects.Judgement]
-    """
-    target = set([dot.target for dot in dots])
-    result = []
-    for s in target:
-        target_dots = [dot for dot in dots if dot.source == s]
-        author_syntheses = syntheses(target_dots)
-        subject_is_polarizing = is_polarizing(author_syntheses)
-        subject_is_polarizing.target = s
-        result += [subject_is_polarizing]
-    return result
-
-
-def syntheses(dots: List[objects.Dot]) -> List[meta.Assertion]:
-    """
-    TODO: Synthesize Ratings in a list of Assertions by Source.
-    TODO: Find a better home for this.
-    TODO: Add keyword arguments for specifying how syntheses are performed
-    TODO: Potentially as a utility function
+    TODO: Disentangle into core concepts.
 
     Parameters
     ----------
@@ -161,32 +140,68 @@ def syntheses(dots: List[objects.Dot]) -> List[meta.Assertion]:
     Returns
     -------
     List[meta.Assertion]
+        Target of each Assertion is a topic/subject. Value is True if it is polarizing.
     """
-    pass
+    syntheses = synthesize(dots)
+    targets = set([s.target for s in syntheses])
+    result = []
+    for t in targets:
+        target_syntheses = [s for s in syntheses if s.target == t]
+        target_is_polarizing = is_polarizing(target_syntheses)
+        target_is_polarizing.target = t
+        result += [target_is_polarizing]
+    return result
 
 
-def disagrees_with_167(values : Tuple[Any, Any], question_type):
+def synthesize(dots: List[objects.Dot]) -> List[meta.Assertion]:
     """
-    TODO: other analytics that use disagrees_with are Out of Sync People, Uniquely Out of Sync, Significantly OOS, etc.
-    Note:
-        * Defines "Disagreement" between two opinions on a Question. Two opinions disagree when they are classified into different [groups](https://blakea-analytics-registry.dev.principled.io/detail?analytic=168) and, if they are Question Responses with Likert or Scale Values, also have a difference greater than a configurable threshold (with a default value of 1.7).
-        * Returns a Boolean representing whether two opinions Disagrees With one another.
-        * This is produced by the following operation(s):
-            * Determines whether two opinions disagree as:
-                * For Categorical or Yes/No opinions: the two opinions are different.
-                * For Likert or Scale Value opinions:
-                    * Determines whether the two opinions are Far Away: Compares whether the difference is greater than a configurable threshold value (default value of 1.7).
-                    * Maps each opinion to a Summarized Opinions (Negative, Neutral, or Positive).
-                    * Determines whether the Summarized Opinions Disagree: Determines whether their values are different.
-                    * Determines whether the two opinions are Far Away and their Summarized Opinions Disagree.
+    Synthesize dots given by each author (source) about a single subject (target) into a single
+    assertion.
+    TODO: Synthesis is a core concept.
+    TODO: Add keyword arguments for specifying how syntheses are performed
 
-    Args:
-        dots (objects.AssertionSet): A set of :class:`objects.Assertion`.
-        *args: Variable length argument list.
-        **kwargs: Arbitrary keyword arguments.
+    Parameters
+    ----------
+    dots
 
-    Returns:
-        objects.AssertionSet: A set of relevant :class:`objects.Assertion` in a :class:`objects.Context`, or an empty set if none exist.
+    Returns
+    -------
+    List[meta.Assertion]
+
+    """
+    sources = set([dot.source for dot in dots])
+    targets = set([dot.target for dot in dots])
+
+    result = list()
+    for s in sources:
+        for t in targets:
+            subset_dots = [dot for dot in dots if dot.source == s and dot.target == t]
+            values = [dot.value for dot in subset_dots]
+            synthesized_value = foundation.weighted_average(values)
+            result.append(
+                meta.Assertion(
+                    source=s,
+                    target=t,
+                    value=synthesized_value
+                )
+            )
+    return result
+
+
+def disagrees_with_167(values : Tuple[Any, Any], question_type) -> objects.Assertion:
+    """
+
+    TODO: other analytics that use disagrees_with are Out of Sync People, Uniquely Out of Sync,
+    Significantly OOS, etc.
+
+    Parameters
+    ----------
+    question
+
+    Returns
+    -------
+    objects.AssertionSet
+        Empty set, if none exists.
     """
     response, response_value = values
     categorical_binary = question_type in (objects.QuestionType.CATEGORICAL, objects.QuestionType.BINARY)
@@ -200,13 +215,46 @@ def disagrees_with_167(values : Tuple[Any, Any], question_type):
         return None
 
 
-def disagrees_with_categorical_binary(response_to_compare, answer_to_compare):
+def disagrees_with_categorical_binary(response_to_compare: StringOrFloat,
+                                      answer_to_compare: StringOrFloat) -> meta.Assertion:
+    """
+    Disagrees With logic for Categorical/Binary values.
+
+    TODO: Find better home -> is this a core concept?
+
+    Parameters
+    ----------
+    response_to_compare
+    answer_to_compare
+
+    Returns
+    -------
+    meta.Assertion
+        Value is True, if there is a disagreement.
+    """
     result = response_to_compare != answer_to_compare
     return meta.Assertion(source=objects.System, target=response_to_compare, value=result,
                           measure=objects.BooleanOption)
 
 
-def disagrees_with_numeric(response_to_compare, answer_to_compare, far_away=_THRESHOLD_HIGH):
+def disagrees_with_numeric(response_to_compare: float,
+                           answer_to_compare: float,
+                           far_away: float=_THRESHOLD_HIGH) -> meta.Assertion:
+    """
+    Disagrees With logic for Scale values (1-to-10 or 1-to-5).
+
+    TODO: Find better home -> is this a core concept?
+
+    Parameters
+    ----------
+    response_to_compare
+    answer_to_compare
+
+    Returns
+    -------
+    meta.Assertion
+        Value is True, if there is a disagreement.
+    """
     buckets = foundation.map_values([response_to_compare, answer_to_compare], objects.NumericRange)
     same_bucket = buckets[0] == buckets[1]
 
@@ -214,7 +262,8 @@ def disagrees_with_numeric(response_to_compare, answer_to_compare, far_away=_THR
         far_away = abs(response_to_compare - answer_to_compare) > far_away
 
         result = far_away and not same_bucket
-        return meta.Assertion(source=objects.System, target=response_to_compare, value=result, measure=objects.FloatOption)
+        return meta.Assertion(source=objects.System, target=response_to_compare, value=result,
+                              measure=objects.FloatOption)
 
     except TypeError:
         return not same_bucket
@@ -267,61 +316,77 @@ def unique_consensus_choice(values: List[Any], threshold=_UNIQUE_DISAGREEMENT):
     return None
 
 
-def divisiveness(questions: objects.AssertionSet):
+def believable_choice(question: objects.Question) -> meta.Assertion:
     """
-    Note:
-        * Defines Divisiveness as the standard deviation of Summarized Opinions reflected in Meeting Question responses.
-        * Returns a Statistic representing Divisiveness.
-        * Returns Null in the following cases:
-            * Fewer than two People respond to a Question.
-            * The Question has Categorical Responses.
-        * This is produced by the following operation(s):
-            * Maps opinions to [Summarized Opinions](https://blakea-analytics-registry.dev.principled.io/detail?analytic=168).
-            * Calculates the standard deviation of the Summarized Opinions.
+    What is the believable choice on a question?
 
-    Args:
-        dots (objects.AssertionSet): A set of :class:`objects.Assertion`.
-        *args: Variable length argument list.
-        **kwargs: Arbitrary keyword arguments.
+    Parameters
+    ----------
+    question
 
-    Returns:
-        objects.AssertionSet: A set of relevant :class:`objects.Assertion` in a :class:`objects.Context`, or an empty set if none exist.
+    Returns
+    -------
+    meta.Assertion
     """
-    pass
 
-
-def believable_choice(question: objects.Question):
-    """
-    TK
-    """
     total_believability = sum([response.source.believability for response in question.responses.data])
     # TODO: Terrible factorization using QuestionType
     categorical_binary = question.question_type in (objects.QuestionType.CATEGORICAL, objects.QuestionType.BINARY)
     numeric = question.question_type in (objects.QuestionType.LIKERT, objects.QuestionType.SCALE)
 
     if not total_believability:
-        return None
+        return meta.Assertion(source=objects.System, target=question,
+                              value=None, measure=objects.BooleanOption)
     elif categorical_binary:
         return believable_choice_categorical_binary(question, total_believability)
     elif numeric:
         return believable_choice_numeric(question, total_believability)
     else:
-        return None
+        return meta.Assertion(source=objects.System, target=question,
+                              value=None, measure=objects.BooleanOption)
 
 
-def believable_choice_numeric(question: objects.Question):
+def believable_choice_numeric(question: objects.Question) -> meta.Assertion:
+    """
+    "Believable Choice" logic for Numeric responses.
+
+    Parameters
+    ----------
+    question
+
+    Returns
+    -------
+    meta.Assertion
+        Value is Believable choice (or None if there isn't any which exists).
+    """
     values = [response.value for response in question.responses.data]
     weights = [response.source.believability for response in question.responses.data]
     result = foundation.weighted_average(values, weights)
-    return meta.Assertion(source=objects.System, target=question, value=result, measure=objects.FloatOption)
+    return meta.Assertion(source=objects.System, target=question, value=result,
+                          measure=objects.FloatOption)
 
 
-def believable_choice_categorical_binary(question: objects.Question, total_believability=None):
+def believable_choice_categorical_binary(question: objects.Question,
+                                         total_believability: float = None) -> meta.Assertion:
+    """
+    Disagrees With logic for Categorical/Binary responses.
+
+    Parameters
+    ----------
+    question
+    total_believability
+
+    Returns
+    -------
+    meta.Assertion
+        Value is Believable choice (or None if there isn't any which exists).
+    """
     sorted_responses = sorted(question.responses.data, key=lambda x: x.value)
     for response_choice, response_set in itertools.groupby(sorted_responses, key=lambda x: x.value):
         if sum([i.source.believability for i in response_set]) / total_believability > 0.7:
             result = response_choice
-    return meta.Assertion(source=objects.System, target=question, value=result, measure=objects.BooleanOption)
+    return meta.Assertion(source=objects.System, target=question, value=result,
+                          measure=objects.BooleanOption)
 
 
 def is_nubby_question(question: objects.Question,
@@ -332,10 +397,13 @@ def is_nubby_question(question: objects.Question,
     Parameters
     ----------
     question
+    threshold
+        Question is Nubby if its divisiveness value exceeds this quantity.
 
     Returns
     -------
     meta.Assertion
+        Value is True if the question is Nubby.
     """
     # TODO: Create extractor method in `objects.Question` that returns list of responses?
     values = [response.value for response in question.responses.data]
@@ -351,8 +419,22 @@ def is_nubby_question(question: objects.Question,
 
 def meeting_nubbiness_v1(meeting: objects.Meeting,
                          thresholds: List[float] = [0.2, 0.4, 0.6, 0.8]) -> meta.Assertion:
-    # TODO: Public.
-    # TODO: Default Thresholds are wrong.
+    """
+    Is a Meeting Nubby?
+
+    TODO: Public.
+    TODO: Default Thresholds are wrong.
+
+    Parameters
+    ----------
+    meeting
+    thresholds
+
+    Returns
+    -------
+    meta.Assertion
+        Value is a Classification.
+    """
     nubby_questions = [q for q in meeting.questions if is_nubby_question(q)]
 
     def responses_to_list(question):
@@ -380,9 +462,23 @@ def meeting_nubbiness_v1(meeting: objects.Meeting,
     )
 
 
-def divisiveness(ar: List[StringOrFloat], value_type: objects.QuestionType):
+def divisiveness(ar: List[StringOrFloat], value_type: objects.QuestionType) -> float:
+    """
+    Divisiveness.
+
     # TODO: Core Concept.
     # TODO: How are N/A's being represented? We shouldn't assume they're being filtered.
+
+    Parameters
+    ----------
+    ar
+    value_type
+
+    Returns
+    -------
+    float
+        Divisiveness value
+    """
     if value_type in [objects.QuestionType.SCALE, objects.QuestionType.LIKERT]:
         return foundation.standard_deviation(ar)
     elif value_type == objects.QuestionType.CATEGORICAL:
