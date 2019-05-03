@@ -1,4 +1,4 @@
-
+from typing import List, Dict
 import itertools
 from src import objects
 from analytics import utils, activity, disagreement
@@ -344,6 +344,8 @@ def combine_results(*args):
     Not an insight (just a placeholder)
 
     # TODO: Find better home.
+    # TODO: Is this a utils for analytics OR insights? See analytics.activity.combine_results
+
     Parameters
     ----------
     args
@@ -536,3 +538,61 @@ def teams_locking_arms_43(x: objects.Question):
         * Determines whether the two criteria above are both True.
     """
     pass
+
+
+def significantly_out_of_sync_114(meeting: objects.Meeting,
+                                  threshold_low=0.8,
+                                  threshold_high=1.2) -> List[objects.Judgement]:
+    """
+
+    # TODO: Figure out how to factor this better by Disentangling logic and data plumbing.
+    # TODO: Where are parameters called and its default values set?
+
+    Parameters
+    ----------
+    meeting
+    threshold_low
+    threshold_high
+
+    Returns
+    -------
+    List[objects.Judgement]
+        Value = True if person is Significantly OOS.
+    """
+    notable = activity.notable_participants(meeting)
+    # TODO: Util function to convert List of Assertions to Dictionary (doable with Dataclasses)
+    notable_dict = {
+        p.id: p.value for p in notable
+    }
+
+    oos = {
+        q.id: out_of_sync_people_on_question_41(q.id) for q in meeting.questions
+    }
+
+    oos_count = {
+        person: 0 for person in meeting.partcipants
+    }
+
+    for k, v in oos:
+        for person in v:
+            oos_count[person] += 1
+
+    def to_zscore(x: Dict[objects.Person, int]) -> Dict[objects.Person, float]:
+        """Placeholder.
+        TODO: Find better home. analytics.foundation?
+        TODO: Think through function signature.
+        """
+        pass
+
+    oos_z_score = to_zscore(oos_count)
+    results = []
+    for person, v in oos_z_score:
+        if notable_dict[person.id]:
+            result_person = v > threshold_low
+        else:
+            result_person = v > threshold_high
+
+        results += [
+            objects.Judgement(source=objects.System, target=person, value=result_person)
+        ]
+    return results
