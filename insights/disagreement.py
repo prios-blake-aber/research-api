@@ -1,8 +1,8 @@
 
 import itertools
-from src import objects
-from analytics import utils, activity, disagreement
-from typing import List
+from typing import List, Dict
+from src import objects, meta
+from analytics import utils, disagreement, activity
 
 _QUORUM_THRESH_DEFAULT = 0.80
 
@@ -87,27 +87,6 @@ def is_polarizing_141(x: objects.AssertionSet):
     """
     pass
 
-
-def disagrees_with_167(x: objects.Question):
-    """
-    OUTPUT: Response
-    INPUT: Responses
-    CONTEXT: Question
-    INSIGHT: Disagreement
-    PROCESSING: Comparing [Collections of People]
-
-    * Defines "Disagreement" between two opinions on a Question. Two opinions disagree when they are classified into different [groups](https://blakea-analytics-registry.dev.principled.io/detail?analytic=168) and, if they are Question Responses with Likert or Scale Values, also have a difference greater than a configurable threshold (with a default value of 1.7).
-    * Returns a Boolean representing whether two opinions Disagrees With one another.
-    * This is produced by the following operation(s):
-        * Determines whether two opinions disagree as:
-            * For Categorical or Yes/No opinions: the two opinions are different.
-            * For Likert or Scale Value opinions:
-                * Determines whether the two opinions are Far Away: Compares whether the difference is greater than a configurable threshold value (default value of 1.7).
-                * Maps each opinion to a Summarized Opinions (Negative, Neutral, or Positive).
-                * Determines whether the Summarized Opinions Disagree: Determines whether their values are different.
-                * Determines whether the two opinions are Far Away and their Summarized Opinions Disagree.
-    """
-    pass
 
 
 def divisiveness_179(x: objects.Question):
@@ -210,9 +189,6 @@ def consensus_exists_131(question: objects.Question):
         return True
     else:
         return False
-
-
-
 
 
 @utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
@@ -344,6 +320,8 @@ def combine_results(*args):
     Not an insight (just a placeholder)
 
     # TODO: Find better home.
+    # TODO: Is this a utils for analytics OR insights? See analytics.activity.combine_results
+
     Parameters
     ----------
     args
@@ -459,7 +437,7 @@ def question_nubbiness_popup_49(x: objects.Meeting):
     pass
 
 
-def out_of_sync_people_on_question_41(x: objects.Question):
+def out_of_sync_people_on_question_41(question: objects.Question):
     """
     OUTPUT: Person
     INPUT: Responses
@@ -475,7 +453,14 @@ def out_of_sync_people_on_question_41(x: objects.Question):
         * Determines whether a Person [disagrees with](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167) the [Believable Choice](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130).
         * Selects People for which the condition above is True.
     """
-    pass
+    believable_choice_result = disagreement.believable_choice(question)
+    disagrees_with_result = disagreement.disagrees_with_167(question)
+    people = []
+    for response in question.responses.data:
+        result = disagrees_with_result and (believable_choice_result or isinstance(believable_choice_result, float))
+        people.append(meta.Assertion(source=objects.System, target=response.source, value=result,
+                                     measure=objects.AssertionSet))
+    return people
 
 
 def split_question_48(x: objects.Question):
@@ -536,3 +521,61 @@ def teams_locking_arms_43(x: objects.Question):
         * Determines whether the two criteria above are both True.
     """
     pass
+
+
+def significantly_out_of_sync_114(meeting: objects.Meeting,
+                                  threshold_low=0.8,
+                                  threshold_high=1.2) -> List[objects.Judgement]:
+    """
+
+    # TODO: Figure out how to factor this better by Disentangling logic and data plumbing.
+    # TODO: Where are parameters called and its default values set?
+
+    Parameters
+    ----------
+    meeting
+    threshold_low
+    threshold_high
+
+    Returns
+    -------
+    List[objects.Judgement]
+        Value = True if person is Significantly OOS.
+    """
+    notable = activity.notable_participants(meeting)
+    # TODO: Util function to convert List of Assertions to Dictionary (doable with Dataclasses)
+    notable_dict = {
+        p.id: p.value for p in notable
+    }
+
+    oos = {
+        q.id: out_of_sync_people_on_question_41(q.id) for q in meeting.questions
+    }
+
+    oos_count = {
+        person: 0 for person in meeting.partcipants
+    }
+
+    for k, v in oos:
+        for person in v:
+            oos_count[person] += 1
+
+    def to_zscore(x: Dict[objects.Person, int]) -> Dict[objects.Person, float]:
+        """Placeholder.
+        TODO: Find better home. analytics.foundation?
+        TODO: Think through function signature.
+        """
+        pass
+
+    oos_z_score = to_zscore(oos_count)
+    results = []
+    for person, v in oos_z_score:
+        if notable_dict[person.id]:
+            result_person = v > threshold_low
+        else:
+            result_person = v > threshold_high
+
+        results += [
+            objects.Judgement(source=objects.System, target=person, value=result_person)
+        ]
+    return results
