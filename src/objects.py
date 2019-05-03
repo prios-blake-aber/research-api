@@ -47,6 +47,7 @@ class Ranking(Judgement):
 
 class Response(Judgement):
     """Response"""
+    # TODO: Index by Person who gave the response along with value.
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
