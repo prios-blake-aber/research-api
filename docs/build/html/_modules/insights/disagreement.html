@@ -1,564 +1,82 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>insights.disagreement &#8212; DomainAPI 0.0.1 documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>insights.disagreement &mdash; DomainAPI 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
    
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  <div class="wy-grid-for-nav">
 
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
           
 
-          <div class="body" role="main">
+          
+            <a href="../../index.html" class="icon icon-home"> DomainAPI
+          
+
+          
+          </a>
+
+          
             
-  <h1>Source code for insights.disagreement</h1><div class="highlight"><pre>
-<span></span>
-<span class="kn">from</span> <span class="nn">src</span> <span class="k">import</span> <span class="n">objects</span>
-<span class="kn">from</span> <span class="nn">analytics</span> <span class="k">import</span> <span class="n">utils</span>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Polarizing - distribution at the poles</span>
-<span class="sd">Divisiveness - standard deviation</span>
-<span class="sd">Nubbiness - divisiveness with &quot;enough&quot; observations</span>
-<span class="sd">Consensus</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-
-<div class="viewcode-block" id="action_is_polarizing_161"><a class="viewcode-back" href="../../insights.html#insights.disagreement.action_is_polarizing_161">[docs]</a><span class="k">def</span> <span class="nf">action_is_polarizing_161</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: AssertionSet</span>
-<span class="sd">    INPUT: Dots</span>
-<span class="sd">    CONTEXT: Meeting</span>
-<span class="sd">    INSIGHT: Disagreement</span>
-<span class="sd">    PROCESSING: Context-Only</span>
-
-<span class="sd">    * Identifies Meeting Tracker Actions in a Meeting that are [polarizing](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=141) based on Dots associated with the Action.</span>
-<span class="sd">    * Returns a Boolean representing whether an Action in a Meeting Is Polarizing.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="meeting_section_sentiment_is_polarizing_118"><a class="viewcode-back" href="../../insights.html#insights.disagreement.meeting_section_sentiment_is_polarizing_118">[docs]</a><span class="k">def</span> <span class="nf">meeting_section_sentiment_is_polarizing_118</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: Meeting</span>
-<span class="sd">    INPUT: Dots</span>
-<span class="sd">    CONTEXT: Meeting</span>
-<span class="sd">    INSIGHT: Sentiment, Disagreement</span>
-<span class="sd">    PROCESSING: Context-Only</span>
-
-<span class="sd">    * Identifies Meetings in which the sentiment based on all Dots is [Polarizing](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=141).</span>
-<span class="sd">    * Returns a Boolean representing whether the Meeting Sentiment is Polarizing.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="is_polarizing_141"><a class="viewcode-back" href="../../insights.html#insights.disagreement.is_polarizing_141">[docs]</a><span class="k">def</span> <span class="nf">is_polarizing_141</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: Person</span>
-<span class="sd">    INPUT: Dots</span>
-<span class="sd">    CONTEXT: AssertionSet</span>
-<span class="sd">    INSIGHT: Disagreement</span>
-<span class="sd">    PROCESSING: Context-Only</span>
-
-<span class="sd">    * Identifies a Polarizing event when Scale Values on a Person are spread out and there exist comparable numbers of positive (8 and above) and negative (4 and below) Scale Values</span>
-<span class="sd">    * Returns a boolean</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Calculates the standard deviation of Scale Values</span>
-<span class="sd">        * Calculates the Bucketed Standard Deviation of Scale Values:</span>
-<span class="sd">            * Maps the Scale Values to their Summarized Opinion</span>
-<span class="sd">            * Calculates the standard deviation</span>
-<span class="sd">        * Calculates the Relative Incidence Ratio of positive/negative Scale Values</span>
-<span class="sd">            * Calculates the numerator as the minimum count of positive/negative Scale Values</span>
-<span class="sd">            * Calculates the Denominator as the maximum count of positive/negative Scale Values</span>
-<span class="sd">        * Combines the following conditions to determine whether the Scale Values are polarizing:</span>
-<span class="sd">            * Calculates the standard deviation of Scale Values is greater than 0.5</span>
-<span class="sd">            * Calculates the Bucketed Standard Deviation of Scale Values is greater than 1.0</span>
-<span class="sd">            * Calculates the Relative Incidence Ratio of positive/negative Scale Values is greater than 0.25</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="disagrees_with_167"><a class="viewcode-back" href="../../insights.html#insights.disagreement.disagrees_with_167">[docs]</a><span class="k">def</span> <span class="nf">disagrees_with_167</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: Response</span>
-<span class="sd">    INPUT: Responses</span>
-<span class="sd">    CONTEXT: Question</span>
-<span class="sd">    INSIGHT: Disagreement</span>
-<span class="sd">    PROCESSING: Comparing [Collections of People]</span>
-
-<span class="sd">    * Defines &quot;Disagreement&quot; between two opinions on a Question. Two opinions disagree when they are classified into different [groups](https://blakea-analytics-registry.dev.principled.io/detail?analytic=168) and, if they are Question Responses with Likert or Scale Values, also have a difference greater than a configurable threshold (with a default value of 1.7).</span>
-<span class="sd">    * Returns a Boolean representing whether two opinions Disagrees With one another.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Determines whether two opinions disagree as:</span>
-<span class="sd">            * For Categorical or Yes/No opinions: the two opinions are different.</span>
-<span class="sd">            * For Likert or Scale Value opinions:</span>
-<span class="sd">                * Determines whether the two opinions are Far Away: Compares whether the difference is greater than a configurable threshold value (default value of 1.7).</span>
-<span class="sd">                * Maps each opinion to a Summarized Opinions (Negative, Neutral, or Positive).</span>
-<span class="sd">                * Determines whether the Summarized Opinions Disagree: Determines whether their values are different.</span>
-<span class="sd">                * Determines whether the two opinions are Far Away and their Summarized Opinions Disagree.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="divisiveness_179"><a class="viewcode-back" href="../../insights.html#insights.disagreement.divisiveness_179">[docs]</a><span class="k">def</span> <span class="nf">divisiveness_179</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: Response</span>
-<span class="sd">    INPUT: Responses</span>
-<span class="sd">    CONTEXT: Question</span>
-<span class="sd">    INSIGHT: Disagreement</span>
-<span class="sd">    PROCESSING: Context-Only</span>
-
-<span class="sd">    * Defines Divisiveness as the standard deviation of Summarized Opinions reflected in Meeting Question responses.</span>
-<span class="sd">    * Returns a Statistic representing Divisiveness.</span>
-<span class="sd">    * Returns Null in the following cases:</span>
-<span class="sd">        * Fewer than two People respond to a Question.</span>
-<span class="sd">        * The Question has Categorical Responses.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Maps opinions to [Summarized Opinions](https://blakea-analytics-registry.dev.principled.io/detail?analytic=168).</span>
-<span class="sd">        * Calculates the standard deviation of the Summarized Opinions.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="contradictory_action_164"><a class="viewcode-back" href="../../insights.html#insights.disagreement.contradictory_action_164">[docs]</a><span class="k">def</span> <span class="nf">contradictory_action_164</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: AssertionSet</span>
-<span class="sd">    INPUT: Dots</span>
-<span class="sd">    CONTEXT: AssertionSet</span>
-<span class="sd">    INSIGHT: Disagreement</span>
-<span class="sd">    PROCESSING: Comparing [Believable vs. All-Stream]</span>
-
-<span class="sd">    * Identifies whether the [Believable View](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=159) on an Action in a Meeting contradicts the [Expected View](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=165) derived from the Subject’s All-Stream scores - that is, whether one view is Negative while the other is Positive.</span>
-<span class="sd">    * Returns a Boolean representing the above.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Buckets the Believable and Expected Views on the Action into Summarized Opinions - Negative, Neutral, and Positive.</span>
-<span class="sd">        * Determines whether one View is Negative while the other is Positive.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="partition_teams_128"><a class="viewcode-back" href="../../insights.html#insights.disagreement.partition_teams_128">[docs]</a><span class="k">def</span> <span class="nf">partition_teams_128</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: Person</span>
-<span class="sd">    INPUT: Responses</span>
-<span class="sd">    CONTEXT: Meeting</span>
-<span class="sd">    INSIGHT: Disagreement</span>
-<span class="sd">    PROCESSING: Comparing [Collections of People]</span>
-
-<span class="sd">    * Identifies Managers (Person managing a Team) whose Team predominantly (greater than 60%) agreed with them</span>
-<span class="sd">    * Returns a map of Responses to sets of Managers (Person managing a Team) whose Team sided with them.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Selects sets of Managers (Person managing a Team) who meet the following conditions:</span>
-<span class="sd">            * Determines when more than 3 people on the Team responded</span>
-<span class="sd">            * Determines when more than 60% of the Team responded in the same way as the Manager (Person managing a Team)</span>
-<span class="sd">        * Maps Responses to Managers whose Teams agreed with them on that Response</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="substantive_disagreement_129"><a class="viewcode-back" href="../../insights.html#insights.disagreement.substantive_disagreement_129">[docs]</a><span class="k">def</span> <span class="nf">substantive_disagreement_129</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: Response</span>
-<span class="sd">    INPUT: Responses</span>
-<span class="sd">    CONTEXT: Question</span>
-<span class="sd">    INSIGHT: Disagreement</span>
-<span class="sd">    PROCESSING: Context-Only</span>
-
-<span class="sd">    * Identifies a pair of Scale Values that Substantively Disagree.</span>
-<span class="sd">    * Returns a Boolean representing whether Substantive Disagreement exists.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Calculates the absolute difference between the two values.</span>
-<span class="sd">        * Determines whether the values are Far Away: Compares whether the difference is greater than a threshold of 1.7.</span>
-<span class="sd">        * Maps Responses into Summarized Opinions.</span>
-<span class="sd">        * Determines whether the Summarized Opinions Disagree: determines whether their values are different.</span>
-<span class="sd">        * Returns True if both of the above conditions are True.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="consensus_exists_131"><a class="viewcode-back" href="../../insights.html#insights.disagreement.consensus_exists_131">[docs]</a><span class="k">def</span> <span class="nf">consensus_exists_131</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: Response</span>
-<span class="sd">    INPUT: Believability</span>
-<span class="sd">    CONTEXT: Question</span>
-<span class="sd">    INSIGHT: Consensus</span>
-<span class="sd">    PROCESSING: Context-Only</span>
-
-<span class="sd">    * Identifies whether the [believability-weighted](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) vote on a Question exceeds 90% for one Response.</span>
-<span class="sd">    * Returns a Boolean representing Believable Consensus Exists.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Calculates Total Believability: Calculates the sum of the [Believability](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) of all People who respond to a Question.</span>
-<span class="sd">        * Calculates Response Believability for each possible Response: Calculates the sum of the [Believability](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) of People who give the same Response.</span>
-<span class="sd">        * Determines whether there is Agreement Among Believable Respondents: determines whether the ratio of Response Believability to Total Believability exceeds $0.9$ for any Response.</span>
-<span class="sd">        * Determines whether there are Enough Respondents: determines whether there are more than $3$ People who give Responses.</span>
-<span class="sd">        * Determines whether there is Sufficient Believability: determines whether Total Believability exceeds $0.75$.</span>
-<span class="sd">        * Determines whether the previous three conditions are True.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<span class="nd">@utils</span><span class="o">.</span><span class="n">select_participants_and_responses_from_meeting</span>
-<span class="k">def</span> <span class="nf">quorum_exists_145</span><span class="p">(</span><span class="n">meeting</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: Question</span>
-<span class="sd">    INPUT: Responses</span>
-<span class="sd">    CONTEXT: Meeting</span>
-<span class="sd">    INSIGHT: Activity</span>
-<span class="sd">    PROCESSING: Comparing [Collections of People]</span>
-
-<span class="sd">    * Defines &quot;Quorum Exists&quot; for a Question when the counts of People in a Meeting Section Responding to it exceeds a configurable threshold (default is 80%).</span>
-<span class="sd">    * Returns a Boolean representing whether a Quorum Exists.</span>
-<span class="sd">    * Returns Null if there are zero People in a Meeting Section.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Determines whether the ratio between the number of People who give a non-N/A Response on a Question to the total number of People in a Meeting Section exceeds 0.8 (which is a configurable parameter).</span>
-
-<span class="sd">    https://github.principled.io/vgs/core-access/tree/master/docs/analytic-implementations/83357bac-d082-4085-8fda-07ade37bfb86.pdf</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    num_responses : int</span>
-<span class="sd">        Number of responses</span>
-<span class="sd">    num_persons : int</span>
-<span class="sd">        Number of people</span>
-<span class="sd">    quorum_threshold : float</span>
-<span class="sd">        The threshold above which quorum exists. Defaults to :data:`_QUORUM_THRESH_DEFAULT`</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    bool: Whether quorum exists. Returns None if num_persons is 0.</span>
-
-<span class="sd">    &gt;&gt;&gt; quorum_exists_v1(80, 100)</span>
-<span class="sd">    False</span>
-<span class="sd">    &gt;&gt;&gt; quorum_exists_v1(81, 100)</span>
-<span class="sd">    True</span>
-<span class="sd">    &gt;&gt;&gt; quorum_exists_v1(70, 100, quorum_threshold=0.70)</span>
-<span class="sd">    False</span>
-<span class="sd">    &gt;&gt;&gt; quorum_exists_v1(71, 100, quorum_threshold=0.70)</span>
-<span class="sd">    True</span>
-<span class="sd">    &gt;&gt;&gt; quorum_exists_v1(1, 0)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">num_participants</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">meeting</span><span class="o">.</span><span class="n">participants</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">question</span> <span class="ow">in</span> <span class="n">meeting</span><span class="o">.</span><span class="n">questions</span><span class="p">:</span>
-        <span class="n">num_responses</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">question</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">num_participants</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">num_responses</span><span class="p">)</span>
-
-
-
-
-
-<div class="viewcode-block" id="meeting_section_nubbiness_149"><a class="viewcode-back" href="../../insights.html#insights.disagreement.meeting_section_nubbiness_149">[docs]</a><span class="k">def</span> <span class="nf">meeting_section_nubbiness_149</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: Meeting</span>
-<span class="sd">    INPUT: Question</span>
-<span class="sd">    CONTEXT: Meeting</span>
-<span class="sd">    INSIGHT: Disagreement</span>
-<span class="sd">    PROCESSING: Context-Only</span>
-
-<span class="sd">    * Classifies Meeting Sections as Very Nubby, Nubby, Somewhat Nubby, Less Nubby and Not Nubby based on the number of [Nubby Questions](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=40) in the Meeting and how much disagreement there was in each Question.</span>
-<span class="sd">    * Returns a Statistic between 0-1 that represents a classification of a Meeting Section&#39;s Nubbiness.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Calculates the Nubby Question Scaling Value:</span>
-<span class="sd">           * Calculates the product of 0.5 and the number of Nubby Questions.</span>
-<span class="sd">           * Determines the minimum between 1 and the result of the previous step.</span>
-<span class="sd">        * Calculates the Meeting Section [Divisiveness](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=179).</span>
-<span class="sd">        * Calculates the product of the Nubby Question Scaling Value and Meeting Section Divisiveness.</span>
-<span class="sd">        * Determines which classification to apply from a list of labels.</span>
-<span class="sd">    * To produce a result at the Meeting level (as opposed to Meeting Section Level), there is code living in the application which labels a Meeting based on the results from this analytic for the first Meeting Section only.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="nubby_attributes_in_meeting_39"><a class="viewcode-back" href="../../insights.html#insights.disagreement.nubby_attributes_in_meeting_39">[docs]</a><span class="k">def</span> <span class="nf">nubby_attributes_in_meeting_39</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: AssertionSet</span>
-<span class="sd">    INPUT: Dots</span>
-<span class="sd">    CONTEXT: Meeting</span>
-<span class="sd">    INSIGHT: Disagreement</span>
-<span class="sd">    PROCESSING: Context-Only</span>
-
-<span class="sd">    * Identifies all Attribute-Subject pairs for which Dotters in a Meeting Section gave conflicting Dots.</span>
-<span class="sd">    * Returns a Dictionary mapping Attributes to  Lists of People, that represents Subjects whose Dots on the respective Attribute was viewed as being Nubby.</span>
-<span class="sd">    * Returns an empty mapping if no Subject was deemed to have a Nubby Attribute based on criteria below.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Determines whether a Subject receives at least 5 Dots on an Attribute.</span>
-<span class="sd">        * Determines whether a Subject received a substantial portion of their Dots about an Attribute :</span>
-<span class="sd">             *  Calculates the Attribute Ratio: the number of Dots that a Subject receives on an Attribute divided by the number of Dots that a Subject receives on all Attributes.</span>
-<span class="sd">             * Calculates the number of unique triples of an Author giving a Dot to a Subject on an Attribute.</span>
-<span class="sd">             *  Calculates the Author Ratio: the number of unique Author-Subject-Attribute triples divided by the number of Authors who gave a Dot to the Subject.</span>
-<span class="sd">             * Determines whether the Attribute Ratio is greater than 0.05.</span>
-<span class="sd">             * Determines whether Authors Frequently Dot Subject on an Attribute if either of the following are True:</span>
-<span class="sd">                  * The Author Ratio is greater than 0.2 or there are at least 10 unique Author-Subject-Attribute triples.</span>
-<span class="sd">                  * The Attribute Ratio is greater than 0.33.</span>
-<span class="sd">             * Determines whether the two conditions above are True.</span>
-<span class="sd">        * Calculates each Author&#39;s average Dot Rating on the Subject about an Attribute.</span>
-<span class="sd">        * Determines whether an Attribute of a Subject is viewed as being Polarizing from Dot Ratings that they receive:</span>
-<span class="sd">            * Calculates each Author&#39;s Synthesized View of the Subject: Calculates the average of the Author&#39;s Dot Ratings on a Subject about an Attribute.</span>
-<span class="sd">            * Maps each Author&#39;s Synthesized View of the Subject to Summarized Synthesized Views (Negative, Neutral, or Positive).</span>
-<span class="sd">            * Determines whether the proportions of Positive and Negative views are roughly equal: both of the following conditions must hold:</span>
-<span class="sd">                * The ratio of the number of Positive views to the number of Neutral views exceeds 0.25.</span>
-<span class="sd">                * The ratio of the number of Negative views to the number of Positive views exceeds 0.25.</span>
-<span class="sd">            * Determines whether the standard deviation of Authors&#39; Synthesized Views exceeds 1.</span>
-<span class="sd">            * Determines whether the standard deviation of Authors&#39; Summarized Synthesized Views exceeds 0.5 (after mapping Negative Views to 1, Neutral Views to 2, and Positive Views to 3).</span>
-<span class="sd">            * Determines whether the three conditions above are all True.</span>
-<span class="sd">        * Determines whether the three conditions above (Subject&#39;s Attribute is Polarizing, Subject receives at least 5 Dots on an  Attribute, and Subject received a substantial portion of their Dots about an Attribute) are all True.</span>
-<span class="sd">        * Selects Subject-Attribute pairs where the condition above is True.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="nubby_people_in_meeting_38"><a class="viewcode-back" href="../../insights.html#insights.disagreement.nubby_people_in_meeting_38">[docs]</a><span class="k">def</span> <span class="nf">nubby_people_in_meeting_38</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: Person</span>
-<span class="sd">    INPUT: Dots</span>
-<span class="sd">    CONTEXT: Meeting</span>
-<span class="sd">    INSIGHT: Disagreement</span>
-<span class="sd">    PROCESSING: Context-Only</span>
-
-<span class="sd">    * Selects all People who are viewed as being [polarizing](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=141)  based on Dots in a Meeting Section.</span>
-<span class="sd">    * Returns a list of People who were identified as Nubby People in Meeting.</span>
-<span class="sd">    * Returns an empty list if there are no Subjects whose Dot Ratings satisfy the criteria below.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Calculates the number of Dots that a Subject receives.</span>
-<span class="sd">        * Calculates the percent of Dots that a Subject receives as a fraction of all Dots given in a Meeting Section.</span>
-<span class="sd">        * Determines whether a Subject is Frequently Dotted: receives more than either:</span>
-<span class="sd">            * 10% of all Dot Ratings OR</span>
-<span class="sd">            * 5% of all Dot Ratings along with 10 Dot Ratings.</span>
-<span class="sd">        * Determines whether a Subject is viewed as being [Polarizing](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=141) from Dot Ratings that they receive:</span>
-<span class="sd">            * Calculates each Author&#39;s Synthesized View of the Subject: Calculates the average of the Author&#39;s Dot Ratings on a Subject.</span>
-<span class="sd">            * Maps each Author&#39;s Synthesized View of the Subject to Summarized Synthesized Views (Negative, Neutral, or Positive).</span>
-<span class="sd">            * Determines whether the proportions of Positive and Negative view are roughly equal: both of the following conditions must hold:</span>
-<span class="sd">                * The ratio of the number of Positive views to the number of Neutral views exceeds 0.25.</span>
-<span class="sd">                * The ratio of the number of Negative views to the number of Positive views exceeds 0.25.</span>
-<span class="sd">            * Determines whether the standard deviation of Authors&#39; Synthesized Views exceeds 1.</span>
-<span class="sd">            * Determines whether the standard deviation of Authors&#39; Summarized Synthesized Views exceeds 0.5 (after mapping Negative Views to 1, Neutral Views to 2, and Positive Views to 3).</span>
-<span class="sd">            * Determines whether the three conditions above are all True.</span>
-<span class="sd">        * Determines whether a Subject is both Frequently Dotted and Polarizing.</span>
-<span class="sd">        * Selects all Subjects that satisfy the condition above.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="nubby_question_147"><a class="viewcode-back" href="../../insights.html#insights.disagreement.nubby_question_147">[docs]</a><span class="k">def</span> <span class="nf">nubby_question_147</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: Question</span>
-<span class="sd">    INPUT: Responses</span>
-<span class="sd">    CONTEXT: Question</span>
-<span class="sd">    INSIGHT: Disagreement</span>
-<span class="sd">    PROCESSING: Context-Only</span>
-
-<span class="sd">    * Defines a Nubby Question as one where there is a disagreement between People who Respond to it.</span>
-<span class="sd">    * Returns a Boolean representing whether the Question is Nubby.</span>
-<span class="sd">    * Returns False if fewer than 2 People responded to a Question.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Calculates Question Divisiveness, which depends on the type of Question Response:</span>
-<span class="sd">            * For Response types with Scale Values, Likert Values, or Yes/No Values: Calculates [Divisiveness](https://blakea-analytics-registry.dev.principled.io/detail?analytic=179) from Responses to a Question.</span>
-<span class="sd">            * For Categorical response types:</span>
-<span class="sd">                 * Determines the Most Common Choice: Choice with highest counts of Responses.</span>
-<span class="sd">                 * Maps responses of the Most Common Choice to 1 and all other Responses (including N/A&#39;s) to 2.</span>
-<span class="sd">                 * Calculates the standard deviation of the mapped Responses.</span>
-<span class="sd">        * Determines whether Question Divisiveness exceeds a configurable threshold which depends on the Response Type:</span>
-<span class="sd">            * 0.5 for Categorical, Yes/No, Scale, and Likert Value Responses</span>
-<span class="sd">            * 1.0 for Numerical Valued Responses</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="percent_chance_responder_is_wrong_popup_144"><a class="viewcode-back" href="../../insights.html#insights.disagreement.percent_chance_responder_is_wrong_popup_144">[docs]</a><span class="k">def</span> <span class="nf">percent_chance_responder_is_wrong_popup_144</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: Person</span>
-<span class="sd">    INPUT: Responses</span>
-<span class="sd">    CONTEXT: Question</span>
-<span class="sd">    INSIGHT: Disagreement</span>
-<span class="sd">    PROCESSING: Comparing [Person vs. Believable]</span>
-
-<span class="sd">    * Notifies People who [disagree](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167) with the [Believable Choice](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130) on a Question. It also informs them of the percentage of the [Believability](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16)-weighted vote going to the Believable Choice.</span>
-<span class="sd">    * Returns a mapping of each Person to a Statistic, which represents their Percent Chance of Being Wrong.</span>
-<span class="sd">    * Returns a mapping of each Person to zero if any of the following conditions are True:</span>
-<span class="sd">        * There is no Believable Choice Response.</span>
-<span class="sd">        * People who Respond do not have Sufficient Believability.</span>
-<span class="sd">        * No Person disagrees with the Believable Choice.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Calculates the Total Participant Believability as the sum of the [Believability](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=16) of every Person in a Meeting Section and the Total Response Believability as the sum of the Believability of every Person who responded to the Question.</span>
-<span class="sd">        * Calculates the Response Believability Ratio as the ratio of the Total Response Believability to the Total Participant Believability.</span>
-<span class="sd">        * Determines whether there is Sufficient Believability in Responses if the following are both true:</span>
-<span class="sd">            * The Response Believability Ratio is greater than 0.8.</span>
-<span class="sd">            * The Total Participant Believability is greater than 0.</span>
-<span class="sd">        * Calculates the [Believable Choice](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130).</span>
-<span class="sd">        * Determines whether each Person [Disagrees With](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167) the Believable Choice.</span>
-<span class="sd">        * Determines whether a &quot;Person is Wrong&quot; by assessing if both conditions below are both True:</span>
-<span class="sd">            * There exists Sufficient Believability.</span>
-<span class="sd">            * The Person Disagrees with the Believable Choice.</span>
-<span class="sd">        * Defines a Person&#39;s Believability Adjustment Factor as:</span>
-<span class="sd">            * A small fixed positive quantity if a Person&#39;s Believability is greater than zero.</span>
-<span class="sd">            * Zero if a Person&#39;s Believability equals zero.</span>
-<span class="sd">        * Defines the Adjusted Believability for each Person as the sum of each Person&#39;s Believability and Believability Adjustment Factor.</span>
-<span class="sd">        * Calculates the &quot;Adjusted Believability in Agreement with the Believable Choice&quot; as the sum of Adjusted Believability of People who agree with the Believable Choice.</span>
-<span class="sd">        * Calculates the &quot;Total Adjusted Believability&quot; as the sum of Adjusted Believability of all People.</span>
-<span class="sd">        * Calculates the Percent Chance of Being Wrong as the minimum of the following two quantities:</span>
-<span class="sd">            * Ratio of &quot;Adjusted Believability in Agreement with Believable Choice&quot; to the &quot;Total Adjusted Believability&quot;.</span>
-<span class="sd">            * A transformation of Total Adjusted Believability to a value between 0.5 and 1.</span>
-<span class="sd">        * Maps the following quantities to each Person depending on whether the &quot;Person is Wrong&quot;:</span>
-<span class="sd">            * &quot;Percent Chance of Being Wrong&quot; if &quot;Person is Wrong&quot; is True.</span>
-<span class="sd">            * Zero if &quot;Person is Wrong&quot; is False.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="not_perceiving_problems_popup_47"><a class="viewcode-back" href="../../insights.html#insights.disagreement.not_perceiving_problems_popup_47">[docs]</a><span class="k">def</span> <span class="nf">not_perceiving_problems_popup_47</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: Person</span>
-<span class="sd">    INPUT: Dots</span>
-<span class="sd">    CONTEXT: Meeting</span>
-<span class="sd">    INSIGHT: Activity, Disagreement</span>
-<span class="sd">    PROCESSING: Comparing [Person vs. Overall]</span>
-
-<span class="sd">    * Notifies a Person who hasn&#39;t given any negative Dots in a Meeting Section despite the majority of other Participants giving negative feedback.</span>
-<span class="sd">    * Returns a List of Meeting Section Participants who are Not Perceiving Problems.</span>
-<span class="sd">    * Returns an empty List if:</span>
-<span class="sd">        * Fewer than 5 Meeting Section Participants gave Negative Dots</span>
-<span class="sd">        * Half or fewer of Meeting Section Participants gave Negative Dots</span>
-<span class="sd">        * All Meeting Section Participants gave Negative Dots</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Determines whether a majority of Meeting Section Participants gave Negative Dots:</span>
-<span class="sd">            * Selects Meeting Section Participants who gave Negative Dots.</span>
-<span class="sd">            * Determines whether more than half of the Meeting Section Participants gave Negative Dots.</span>
-<span class="sd">        * Determines whether there are at least 5 Meeting Section Participants who gave Negative Dots.</span>
-<span class="sd">        * Selects Meeting Section Participants who have not given a Negative Dot in the Meeting Section if the two previous conditions are True.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="question_nubbiness_popup_49"><a class="viewcode-back" href="../../insights.html#insights.disagreement.question_nubbiness_popup_49">[docs]</a><span class="k">def</span> <span class="nf">question_nubbiness_popup_49</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: Question</span>
-<span class="sd">    INPUT: Responses</span>
-<span class="sd">    CONTEXT: Meeting</span>
-<span class="sd">    INSIGHT: Disagreement</span>
-<span class="sd">    PROCESSING: Context-Only</span>
-
-<span class="sd">    * Notifies the Responsible Party and Navigator for a Meeting when a [Question is Nubby](https://blakea-analytics-registry.dev.principled.io/detail?analytic=147) and a [Quorum Exists](https://blakea-analytics-registry.dev.principled.io/detail?analytic=145).</span>
-<span class="sd">    * Returns a Boolean representing Question Nubbiness Pop-Up.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="out_of_sync_people_on_question_41"><a class="viewcode-back" href="../../insights.html#insights.disagreement.out_of_sync_people_on_question_41">[docs]</a><span class="k">def</span> <span class="nf">out_of_sync_people_on_question_41</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: Person</span>
-<span class="sd">    INPUT: Responses</span>
-<span class="sd">    CONTEXT: Question</span>
-<span class="sd">    INSIGHT: Disagreement</span>
-<span class="sd">    PROCESSING: Comparing [Person vs. Believable]</span>
-
-<span class="sd">    * Identifies all People who [disagree with](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167) the [believable choice](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130) on a Question (if one exists).</span>
-<span class="sd">    * Returns a list of Out of Sync People on Question.</span>
-<span class="sd">    * Returns an empty list if there is no Believable Choice or there are no People who disagree with it.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Calculates the [Believable Choice](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130) Response to a Question.</span>
-<span class="sd">        * Determines whether a Person [disagrees with](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167) the [Believable Choice](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130).</span>
-<span class="sd">        * Selects People for which the condition above is True.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="split_question_48"><a class="viewcode-back" href="../../insights.html#insights.disagreement.split_question_48">[docs]</a><span class="k">def</span> <span class="nf">split_question_48</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: Person</span>
-<span class="sd">    INPUT: Responses</span>
-<span class="sd">    CONTEXT: Question</span>
-<span class="sd">    INSIGHT: Disagreement</span>
-<span class="sd">    PROCESSING: Comparing [Collections of People]</span>
-
-<span class="sd">    * Determines whether there are two sizable groups of People (each containing &gt;35% of all Responses) whose opinions on a Question are diametrically opposed.</span>
-<span class="sd">    * Returns a Boolean representing whether a given Question was Split.</span>
-<span class="sd">    * Returns False if Question Responses are not Scale, Likert, or Yes/No Values.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Maps Responses to Summarized Opinions (excludes N/A&#39;s).</span>
-<span class="sd">        * Calculates the counts of Positive Summarized Opinions, Negative Summarized Opinions, and All Summarized Opinions.</span>
-<span class="sd">        * Calculates the &quot;Positive Ratio&quot; as the ratio of Positive Summarized Opinions and All Summarized Opinions.</span>
-<span class="sd">        * Calculates the &quot;Negative Ratio&quot; as the ratio of Negative Summarized Opinions and All Summarized Opinions.</span>
-<span class="sd">        * Determines whether the &quot;Positive Ratio&quot; and the  &quot;Negative Ratio&quot; are both greater than 0.35.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="team_pair_locking_arms_135"><a class="viewcode-back" href="../../insights.html#insights.disagreement.team_pair_locking_arms_135">[docs]</a><span class="k">def</span> <span class="nf">team_pair_locking_arms_135</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: Person</span>
-<span class="sd">    INPUT: Responses</span>
-<span class="sd">    CONTEXT: Question</span>
-<span class="sd">    INSIGHT: Disagreement</span>
-<span class="sd">    PROCESSING: Comparing [Collections of People]</span>
-
-<span class="sd">    * Identifies whether &quot;Two Teams Are Locking Arms&quot; for a Question when two Teams&#39; managers give different Question Responses and a majority of their respective Teams side with them (&gt;60%).</span>
-<span class="sd">    * Returns a Boolean representing Team Pair Locking Arms.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Determines whether a Team Agrees with their manager:</span>
-<span class="sd">            * Determines whether a Team has at least 3 People with the same manager.</span>
-<span class="sd">            * Determines whether more than 60% of the Team gave the same Response as their manager.</span>
-<span class="sd">        * Determines whether two Teams Agree with their respective managers.</span>
-<span class="sd">        * Determines whether the two Teams&#39; managers gave different Responses.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="teams_locking_arms_43"><a class="viewcode-back" href="../../insights.html#insights.disagreement.teams_locking_arms_43">[docs]</a><span class="k">def</span> <span class="nf">teams_locking_arms_43</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OUTPUT: Person</span>
-<span class="sd">    INPUT: Responses</span>
-<span class="sd">    CONTEXT: Question</span>
-<span class="sd">    INSIGHT: Activity</span>
-<span class="sd">    PROCESSING: Comparing [Collections of People]</span>
-
-<span class="sd">    * Determines whether there is least one [Team Pair is Locking Arms](https://blakea-analytics-registry.dev.principled.io/detail?analytic=135) in Responses to a Question.</span>
-<span class="sd">    * Returns a Boolean representing Teams Locking Arms.</span>
-<span class="sd">    * Returns Null if the number of [Team Pair Locking Arms](https://blakea-analytics-registry.dev.principled.io/detail?analytic=135) signals that have not been calculated for every pair of Teams in the Meeting section.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Determines whether [Team Pair Locking Arms](https://blakea-analytics-registry.dev.principled.io/detail?analytic=135) signals have been calculated for every pair of Teams in the Meeting Section.</span>
-<span class="sd">        * Determines whether [Team Pair is Locking Arms](https://blakea-analytics-registry.dev.principled.io/detail?analytic=135) is True for at least one pair of Teams in a Poll Section.</span>
-<span class="sd">        * Determines whether the two criteria above are both True.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-</pre></div>
-
-          </div>
           
         </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">DomainAPI</a></h1>
 
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<ul>
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../insights.html">Insights Functionality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.activity">Activity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.contribution">Contribution</a></li>
@@ -580,50 +98,424 @@
 <li class="toctree-l1"><a class="reference internal" href="../../objects.html#indices-and-tables">Indices and tables</a></li>
 </ul>
 
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="../index.html">Module code</a><ul>
-  </ul></li>
-  </ul></li>
-</ul>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DomainAPI</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>insights.disagreement</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
 </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for insights.disagreement</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Insights on Disagreement</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">src</span> <span class="k">import</span> <span class="n">objects</span><span class="p">,</span> <span class="n">meta</span>
+<span class="kn">from</span> <span class="nn">analytics</span> <span class="k">import</span> <span class="n">utils</span><span class="p">,</span> <span class="n">disagreement</span><span class="p">,</span> <span class="n">activity</span>
+
+<span class="n">_QUORUM_THRESH_DEFAULT</span> <span class="o">=</span> <span class="mf">0.80</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Polarizing - distribution at the poles</span>
+<span class="sd">Divisiveness - standard deviation</span>
+<span class="sd">Nubbiness - divisiveness with &quot;enough&quot; observations</span>
+<span class="sd">Consensus</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 
+<div class="viewcode-block" id="believable_choice_130"><a class="viewcode-back" href="../../insights.html#insights.disagreement.believable_choice_130">[docs]</a><span class="k">def</span> <span class="nf">believable_choice_130</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">QuestionType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Believable choice.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    question</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    meta.Assertion</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">disagreement</span><span class="o">.</span><span class="n">believable_choice_on_question</span><span class="p">(</span><span class="n">question</span><span class="p">)</span></div>
 
 
+<span class="nd">@utils</span><span class="o">.</span><span class="n">scope_required_data_within_object</span><span class="p">(</span><span class="n">collections_to_keep</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;dots&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">action_is_polarizing_161</span><span class="p">(</span><span class="n">meeting</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Identifies Meeting Tracker Actions in a Meeting that are polarizing.</span>
+
+<span class="sd">    TODO: Reconcile with:</span>
+<span class="sd">    insights.interaction.believable_view_disagrees_with_overall_view_on_action_162</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    meeting</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    List[objects.Judgement]</span>
+<span class="sd">        List of Assertions on whether Action is Polarizing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">sort_by_measure</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">dots_by_attribute</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">meeting</span><span class="o">.</span><span class="n">dots</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">sort_by_measure</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">dot_set</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">dots_by_attribute</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">sort_by_measure</span><span class="p">):</span>
+        <span class="n">materialized_dot_set</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">EntityCollection</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">dot_set</span><span class="p">))</span>
+        <span class="c1"># TODO: materialization and instantiation is shitty here</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">disagreement</span><span class="o">.</span><span class="n">is_polarizing</span><span class="p">(</span><span class="n">materialized_dot_set</span><span class="p">)</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">results</span>
 
 
+<span class="nd">@utils</span><span class="o">.</span><span class="n">scope_required_data_within_object</span><span class="p">(</span><span class="n">collections_to_keep</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;dots&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">meeting_section_sentiment_is_polarizing_118</span><span class="p">(</span><span class="n">meeting</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">objects</span><span class="o">.</span><span class="n">Judgement</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Determines if Meeting Section Sentiment is polarizing, based on Dots.</span>
 
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    meeting</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    objects.Judgement</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dots</span> <span class="o">=</span> <span class="p">[</span><span class="n">dot</span> <span class="k">for</span> <span class="n">dot</span> <span class="ow">in</span> <span class="n">meeting</span><span class="o">.</span><span class="n">dots</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">disagreement</span><span class="o">.</span><span class="n">is_polarizing</span><span class="p">(</span><span class="n">dots</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="consensus_exists_131"><a class="viewcode-back" href="../../insights.html#insights.disagreement.consensus_exists_131">[docs]</a><span class="k">def</span> <span class="nf">consensus_exists_131</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Consensus exists on a question.</span>
+
+<span class="sd">    TODO: Logic is core-functionality. It is also used by a Sig Gen, for the case of questions.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    question</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bool</span>
+<span class="sd">        Whether there is a consensus answer.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">activity</span><span class="o">.</span><span class="n">sufficient_question_engagement</span><span class="p">(</span><span class="n">question</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="n">disagreement</span><span class="o">.</span><span class="n">believable_choice_on_question</span><span class="p">(</span><span class="n">question</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span> <span class="ow">or</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<span class="nd">@utils</span><span class="o">.</span><span class="n">scope_required_data_within_object</span><span class="p">(</span><span class="n">collections_to_keep</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;participants&#39;</span><span class="p">,</span> <span class="s1">&#39;questions&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">quorum_exists_in_meeting</span><span class="p">(</span><span class="n">meeting</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">,</span>
+                             <span class="n">quorum_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">_QUORUM_THRESH_DEFAULT</span><span class="p">,</span>
+                             <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Determines whether a sufficient percentage of Participants answered each question</span>
+<span class="sd">    asked during a Meeting.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    meeting</span>
+<span class="sd">    quorum_threshold : The threshold above which quorum exists. Defaults to :data:`_QUORUM_THRESH_DEFAULT`</span>
+<span class="sd">    *args: Variable length argument list.</span>
+<span class="sd">    **kwargs: Arbitrary keyword arguments.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    List[meta.Assertion]</span>
+<span class="sd">        Value is True if Quorum exists on respective question. V</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">number_participants</span> <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="n">participants</span><span class="p">(</span><span class="n">meeting</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">activity</span><span class="o">.</span><span class="n">quorum_exists_on_question_145</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">number_participants</span><span class="o">=</span><span class="n">number_participants</span><span class="p">,</span>
+                                               <span class="n">quorum_threshold</span><span class="o">=</span><span class="n">quorum_threshold</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">question</span> <span class="ow">in</span> <span class="n">meeting</span><span class="o">.</span><span class="n">questions</span><span class="o">.</span><span class="n">data</span>
+    <span class="p">]</span>
+
+
+<div class="viewcode-block" id="meeting_section_nubbiness_149"><a class="viewcode-back" href="../../insights.html#insights.disagreement.meeting_section_nubbiness_149">[docs]</a><span class="k">def</span> <span class="nf">meeting_section_nubbiness_149</span><span class="p">(</span><span class="n">meeting</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classifies Nubbiness level of a Meeting Section.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    meeting</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    meta.Assertion</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">disagreement</span><span class="o">.</span><span class="n">meeting_nubbiness_v1</span><span class="p">(</span><span class="n">meeting</span><span class="p">)</span></div>
+
+
+<span class="nd">@utils</span><span class="o">.</span><span class="n">scope_required_data_within_object</span><span class="p">(</span><span class="n">collections_to_keep</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;dots&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">polarizing_participants_38</span><span class="p">(</span><span class="n">meeting</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    People who are polarizing, based on their dots.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    meeting</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    List[meta.Assertion]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">frequently_dotted</span> <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="n">frequently_dotted_subjects</span><span class="p">(</span><span class="n">meeting</span><span class="o">.</span><span class="n">dots</span><span class="p">)</span>
+    <span class="n">polarizing</span> <span class="o">=</span> <span class="n">disagreement</span><span class="o">.</span><span class="n">polarizing_topics</span><span class="p">(</span><span class="n">meeting</span><span class="o">.</span><span class="n">dots</span><span class="p">)</span>
+
+    <span class="c1"># TODO: Write function for determining whether values are True in two (or more) lists of</span>
+    <span class="c1">#  Judgements. Elements of each list should have the same targets, which only appear once.</span>
+
+    <span class="n">frequently_dotted_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="n">person</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">frequently_dotted</span>
+    <span class="p">}</span>
+
+    <span class="n">polarizing_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="n">person</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">polarizing</span>
+    <span class="p">}</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">person</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">polarizing_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">is_frequently_dotted</span> <span class="o">=</span> <span class="n">frequently_dotted_dict</span><span class="p">[</span><span class="n">person</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">and</span> <span class="n">is_frequently_dotted</span><span class="p">:</span>
+            <span class="n">person_is_polarizing</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">person_is_polarizing</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">,</span>
+                           <span class="n">target</span><span class="o">=</span><span class="n">person</span><span class="p">,</span>
+                           <span class="n">value</span><span class="o">=</span><span class="n">person_is_polarizing</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<div class="viewcode-block" id="nubby_question_147"><a class="viewcode-back" href="../../insights.html#insights.disagreement.nubby_question_147">[docs]</a><span class="k">def</span> <span class="nf">nubby_question_147</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Is a Question Nubby?</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    question</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    meta.Assertion</span>
+<span class="sd">        Value is True if the Question is Nubby.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">disagreement</span><span class="o">.</span><span class="n">is_nubby_question</span><span class="p">(</span><span class="n">question</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="question_nubbiness_popup_49"><a class="viewcode-back" href="../../insights.html#insights.disagreement.question_nubbiness_popup_49">[docs]</a><span class="k">def</span> <span class="nf">question_nubbiness_popup_49</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns True if question is nubby and a quorum exists.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    question</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    meta.Assertion</span>
+<span class="sd">        Value is True if the Question is Nubby.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nubby</span> <span class="o">=</span> <span class="n">disagreement</span><span class="o">.</span><span class="n">is_nubby_question</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+    <span class="n">quorum</span> <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="n">quorum_exists_on_question_145</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">(</span>
+        <span class="n">source</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">,</span>
+        <span class="n">target</span><span class="o">=</span><span class="n">question</span><span class="p">,</span>
+        <span class="n">value</span><span class="o">=</span><span class="n">nubby</span> <span class="ow">and</span> <span class="n">quorum</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="out_of_sync_people_on_question_41"><a class="viewcode-back" href="../../insights.html#insights.disagreement.out_of_sync_people_on_question_41">[docs]</a><span class="k">def</span> <span class="nf">out_of_sync_people_on_question_41</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Identifies people who are out-of-sync on a question.</span>
+
+<span class="sd">    TODO: Move logic to analytics.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    question</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    List[meta.Assertion]</span>
+<span class="sd">        Values are True if person is out-of-sync on the question.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">disagreement</span><span class="o">.</span><span class="n">out_of_sync_people_on_question</span><span class="p">(</span><span class="n">question</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="significantly_out_of_sync_114"><a class="viewcode-back" href="../../insights.html#insights.disagreement.significantly_out_of_sync_114">[docs]</a><span class="k">def</span> <span class="nf">significantly_out_of_sync_114</span><span class="p">(</span><span class="n">meeting</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">,</span>
+                                  <span class="n">threshold_low</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+                                  <span class="n">threshold_high</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">objects</span><span class="o">.</span><span class="n">Judgement</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A person is out of sync on significantly higher number of questions than others in a meeting.</span>
+<span class="sd">    # TODO: Figure out how to factor this better by Disentangling logic and data plumbing.</span>
+<span class="sd">    # TODO: Where are parameters called and its default values set?</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    meeting</span>
+<span class="sd">    threshold_low</span>
+<span class="sd">    threshold_high</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    List[objects.Judgement]</span>
+<span class="sd">        Value = True if person is Significantly OOS.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">notable</span> <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="n">notable_participants</span><span class="p">(</span><span class="n">meeting</span><span class="p">)</span>
+    <span class="c1"># TODO: Util function to convert List of Assertions to Dictionary (doable with Dataclasses)</span>
+    <span class="n">notable_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">notable</span>
+    <span class="p">}</span>
+
+    <span class="n">oos</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">q</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="n">out_of_sync_people_on_question_41</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">meeting</span><span class="o">.</span><span class="n">questions</span>
+    <span class="p">}</span>
+
+    <span class="n">oos_count</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">person</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">meeting</span><span class="o">.</span><span class="n">partcipants</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">oos</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
+            <span class="n">oos_count</span><span class="p">[</span><span class="n">person</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">to_zscore</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">objects</span><span class="o">.</span><span class="n">Person</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">objects</span><span class="o">.</span><span class="n">Person</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Placeholder.</span>
+<span class="sd">        TODO: Find better home. analytics.foundation?</span>
+<span class="sd">        TODO: Think through function signature.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="n">oos_z_score</span> <span class="o">=</span> <span class="n">to_zscore</span><span class="p">(</span><span class="n">oos_count</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">person</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">oos_z_score</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">notable_dict</span><span class="p">[</span><span class="n">person</span><span class="o">.</span><span class="n">id</span><span class="p">]:</span>
+            <span class="n">result_person</span> <span class="o">=</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="n">threshold_low</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result_person</span> <span class="o">=</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="n">threshold_high</span>
+
+        <span class="n">results</span> <span class="o">+=</span> <span class="p">[</span>
+            <span class="n">objects</span><span class="o">.</span><span class="n">Judgement</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">person</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">result_person</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="k">return</span> <span class="n">results</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Research.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
 
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2019, Research.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-    </div>
 
-    
+    </section>
 
-    
-  </body>
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>
