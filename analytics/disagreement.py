@@ -4,6 +4,7 @@ import numpy as np
 from typing import Tuple, List, TypeVar, Any
 from analytics import foundation, utils
 from src import objects, meta
+from analytics.concepts import believable_choice
 
 
 StringOrFloat = TypeVar("StringOrFloat", str, float)
@@ -188,7 +189,7 @@ def synthesize(dots: List[objects.Dot]) -> List[meta.Assertion]:
     return result
 
 
-def disagrees_with_167(values : Tuple[Any, Any], question_type) -> objects.Assertion:
+def disagrees_with_167(values : Tuple[Any, Any], question_type) -> meta.Assertion:
     """
 
     TODO: other analytics that use disagrees_with are Out of Sync People, Uniquely Out of Sync,
@@ -196,7 +197,7 @@ def disagrees_with_167(values : Tuple[Any, Any], question_type) -> objects.Asser
 
     Parameters
     ----------
-    question
+    values
 
     Returns
     -------
@@ -269,54 +270,40 @@ def disagrees_with_numeric(response_to_compare: float,
         return not same_bucket
 
 
-def is_unique(question: objects.Question, unique_disagreement=_UNIQUE_DISAGREEMENT):
+def is_unique(question: objects.Question, unique_disagreement=_UNIQUE_DISAGREEMENT) -> List[
+    meta.Assertion]:
     """
+    Determines whether responses are in small minority of responses.
+
     TODO: bucketing should live in it's own function
     Identify if the given 'response' is unique in relation to the given set of 'responses'.
 
-        Parameters
-        ----------
-        response
-            The specific response that is being tested as unique or not. This should be
-            of the same type as elements of 'responses', though a discrepancy will not necessarily
-            trigger an exception.
 
-        responses : iterable of responses of any type
-            An iterable of responses, corresponding to the `response_type`.
+    Parameters
+    ----------
+    question
+    unique_disagreement
+        Response is unique if its percentage (compared to all responses) is less than this value
 
-        response_type : :class:`ResponseType`
-            The type of each element of `responses`. This must be one of the elements of the
-            ResponseType enum. This will govern how responses are bucketed.
-
-        Returns
-        -------
-        bool
-            True if `response` is unique among `responses`. False otherwise.  Uniqueness is
-            defined as 88% of other responses being in a different response 'bucket'.
-        """
+    Returns
+    -------
+    List[meta.Assertion]
+        System assertions of whether each response is unique
+    """
     values = [xi.value for xi in question.responses.data]
     all_buckets = foundation.map_values(values, objects.NumericRange)
-    consensus_choice = unique_consensus_choice(all_buckets)
-    assertions = []
-    if not consensus_choice:
-        return None
-    else:
-        for response in all_buckets:
-            uniquely_oos = response == consensus_choice
-            assertions.append(meta.Assertion(source=objects.System, target=response, value=uniquely_oos, measure=objects.BooleanOption))
-        return assertions
+    percent = foundation.counts(all_buckets, normalize=True)
+    results = list()
+    for response in question.responses.data:
+        if percent[response.value] < unique_disagreement:
+            unique = True
+        else:
+            unique = False
+        results.append(meta.Assertion(source=objects.System, target=response.source, value=unique))
+    return results
 
 
-def unique_consensus_choice(values: List[Any], threshold=_UNIQUE_DISAGREEMENT):
-    value_count = len(values)
-    sorted_values = sorted(values)
-    for value, data in itertools.groupby(sorted_values):
-        if len(list(data)) / value_count >= threshold:
-            return value
-    return None
-
-
-def believable_choice(question: objects.Question) -> meta.Assertion:
+def believable_choice_on_question(question: objects.Question) -> meta.Assertion:
     """
     What is the believable choice on a question?
 
@@ -327,66 +314,22 @@ def believable_choice(question: objects.Question) -> meta.Assertion:
     Returns
     -------
     meta.Assertion
+        Value
     """
 
-    total_believability = sum([response.source.believability for response in question.responses.data])
-    # TODO: Terrible factorization using QuestionType
-    categorical_binary = question.question_type in (objects.QuestionType.CATEGORICAL, objects.QuestionType.BINARY)
-    numeric = question.question_type in (objects.QuestionType.LIKERT, objects.QuestionType.SCALE)
+    # Extract responses and question data.
+    values_and_weights = [(response.value, response.source.believability)
+                          for response in question.responses.data]
+    value_type = question.question_type
 
-    if not total_believability:
-        return meta.Assertion(source=objects.System, target=question,
-                              value=None, measure=objects.BooleanOption)
-    elif categorical_binary:
-        return believable_choice_categorical_binary(question, total_believability)
-    elif numeric:
-        return believable_choice_numeric(question, total_believability)
-    else:
-        return meta.Assertion(source=objects.System, target=question,
-                              value=None, measure=objects.BooleanOption)
+    # Get the Believable choice
+    choice = believable_choice(values_and_weights, value_type)
 
-
-def believable_choice_numeric(question: objects.Question) -> meta.Assertion:
-    """
-    "Believable Choice" logic for Numeric responses.
-
-    Parameters
-    ----------
-    question
-
-    Returns
-    -------
-    meta.Assertion
-        Value is Believable choice (or None if there isn't any which exists).
-    """
-    values = [response.value for response in question.responses.data]
-    weights = [response.source.believability for response in question.responses.data]
-    result = foundation.weighted_average(values, weights)
-    return meta.Assertion(source=objects.System, target=question, value=result,
-                          measure=objects.FloatOption)
-
-
-def believable_choice_categorical_binary(question: objects.Question,
-                                         total_believability: float = None) -> meta.Assertion:
-    """
-    Disagrees With logic for Categorical/Binary responses.
-
-    Parameters
-    ----------
-    question
-    total_believability
-
-    Returns
-    -------
-    meta.Assertion
-        Value is Believable choice (or None if there isn't any which exists).
-    """
-    sorted_responses = sorted(question.responses.data, key=lambda x: x.value)
-    for response_choice, response_set in itertools.groupby(sorted_responses, key=lambda x: x.value):
-        if sum([i.source.believability for i in response_set]) / total_believability > 0.7:
-            result = response_choice
-    return meta.Assertion(source=objects.System, target=question, value=result,
-                          measure=objects.BooleanOption)
+    return meta.Assertion(
+        source=objects.System,
+        target=question,
+        value=choice
+    )
 
 
 def is_nubby_question(question: objects.Question,
@@ -486,3 +429,30 @@ def divisiveness(ar: List[StringOrFloat], value_type: objects.QuestionType) -> f
         max_count = max(count)
         mapped_ar = [0]*max_count + [1]*(len(ar) - max_count)
         return foundation.standard_deviation(mapped_ar)
+
+
+def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Assertion]:
+    """
+    Identifies people who are out-of-sync on a question.
+
+    TODO: Move logic to analytics.
+
+    Parameters
+    ----------
+    question
+
+    Returns
+    -------
+    List[meta.Assertion]
+        Values are True if person is out-of-sync on the question.
+    """
+    believable_choice_result = believable_choice_on_question(question)
+    disagrees_with_result = disagrees_with_167(question)
+    people = []
+    for response in question.responses.data:
+        result = disagrees_with_result and (believable_choice_result or isinstance(believable_choice_result, float))
+        people.append(meta.Assertion(source=objects.System, target=response.source, value=result,
+                                     measure=objects.AssertionSet))
+    return people
+
+

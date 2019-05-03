@@ -17,6 +17,21 @@ Consensus
 """
 
 
+def believable_choice_130(question: objects.QuestionType) -> meta.Assertion:
+    """
+    Believable choice.
+
+    Parameters
+    ----------
+    question
+
+    Returns
+    -------
+    meta.Assertion
+    """
+    return disagreement.believable_choice_on_question(question)
+
+
 @utils.scope_required_data_within_object(collections_to_keep=['dots'])
 def action_is_polarizing_161(meeting: objects.Meeting):
     """
@@ -80,7 +95,7 @@ def consensus_exists_131(question: objects.Question) -> bool:
     bool
         Whether there is a consensus answer.
     """
-    if (activity.sufficient_question_engagement(question)) and (disagreement.believable_choice(question) is True or float):
+    if (activity.sufficient_question_engagement(question)) and (disagreement.believable_choice_on_question(question) is True or float):
         return True
     else:
         return False
@@ -225,14 +240,7 @@ def out_of_sync_people_on_question_41(question: objects.Question) -> List[meta.A
     List[meta.Assertion]
         Values are True if person is out-of-sync on the question.
     """
-    believable_choice_result = disagreement.believable_choice(question)
-    disagrees_with_result = disagreement.disagrees_with_167(question)
-    people = []
-    for response in question.responses.data:
-        result = disagrees_with_result and (believable_choice_result or isinstance(believable_choice_result, float))
-        people.append(meta.Assertion(source=objects.System, target=response.source, value=result,
-                                     measure=objects.AssertionSet))
-    return people
+    return disagreement.out_of_sync_people_on_question(question)
 
 
 def significantly_out_of_sync_114(meeting: objects.Meeting,

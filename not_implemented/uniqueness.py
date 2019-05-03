@@ -18,27 +18,6 @@ def unexpected_action_163(x: objects.Meeting):
     pass
 
 
-def uniquely_out_of_sync_on_question_136(x: objects.Question):
-    """
-    OUTPUT: Person
-    INPUT: Responses
-    CONTEXT: Question
-    INSIGHT: Disagreement
-    PROCESSING: Comparing [Person vs. Believable]
-
-    * Identifies every Person whose Opinion is [out of sync with the believable consensus](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=41) on a Question and is shared by a small minority of people (<12%).
-    * Returns a list of People who were Uniquely Out of Sync on Question.
-    * Returns an empty list if there is no Believable Choice or there are no People who satisfy the criteria below.
-    * This is produced by the following operation(s):
-        * Calculates the [Believable Choice](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130) Response to a Question.
-        * Determines whether a Person [disagrees with](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167) with the [Believable Choice](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=130).
-        * Determines whether the Person [disagrees with](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=167) more than 88% of People.
-        * Determines whether the both conditions above are True for a Person.
-        * Selects People for which the condition above is True.
-    """
-    pass
-
-
 def author_disagrees_with_believable_view_on_action_153(x: objects.AssertionSet):
     """
     OUTPUT: Person
