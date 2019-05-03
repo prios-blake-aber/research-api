@@ -1,11 +1,10 @@
+"""
+Insights on Activities
+"""
 
 import itertools
 from src import objects
 from analytics import utils, activity
-
-"""
-Insights on Activities
-"""
 
 
 def primary_actions_157(dots: objects.DotCollection, *args, **kwargs):
