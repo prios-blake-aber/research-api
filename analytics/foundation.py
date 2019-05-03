@@ -1,7 +1,8 @@
-from typing import List, Callable, Optional, TypeVar, Dict
+from typing import List, Callable, Optional, TypeVar, Dict, Tuple
 from collections import Counter
 import numpy as np
 from src import objects
+import itertools
 
 StringOrFloat = TypeVar("StringOrFloat", str, float)
 
@@ -107,3 +108,26 @@ def counts(ar: List[StringOrFloat], normalize: bool = False) -> Dict[StringOrFlo
         return {i: c[i] / len(ar) for i in c}
     else:
         return {i: c[i] for i in c}
+
+
+def percent_of_total(values_and_weights: List[Tuple[StringOrFloat, float]]) -> Dict[StringOrFloat, float]:
+    """
+    Percent
+
+    TODO: Describe the function better.
+
+    Parameters
+    ----------
+    values_and_weights
+
+    Returns
+    -------
+    Dict[StringOrFloat, float]
+    """
+    total = sum([x[1] for x in values_and_weights])
+    sorted_responses = sorted(values_and_weights, key=lambda x: x[0])
+    result = dict()
+    for choice, weight in itertools.groupby(sorted_responses, key=lambda x: x[0]):
+        result[choice] = sum(list(weight)) / total
+    return result
+

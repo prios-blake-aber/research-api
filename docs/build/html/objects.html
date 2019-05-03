@@ -1,36 +1,167 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Domain Objects &#8212; DomainAPI 0.0.1 documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Domain Objects &mdash; DomainAPI 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Analytics Functionality" href="analytics.html" />
+    <link rel="prev" title="Analytics Functionality" href="analytics.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
    
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  <div class="wy-grid-for-nav">
 
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
           
 
-          <div class="body" role="main">
+          
+            <a href="index.html" class="icon icon-home"> DomainAPI
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="insights.html">Insights Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.activity">Activity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.contribution">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.disagreement">Disagreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.interaction">Interaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.sentiment">Sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.uniqueness">Uniqueness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.utils">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insights.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.html">Analytics Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.html#module-analytics.activity">Activity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.html#module-analytics.disagreement">Disagreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.html#module-analytics.sentiment">Sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.html#module-analytics.utils">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Domain Objects</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#module-src.objects">Domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-src.meta">Base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DomainAPI</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Domain Objects</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/objects.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="domain-objects">
 <h1><a class="toc-backref" href="#id1">Domain Objects</a><a class="headerlink" href="#domain-objects" title="Permalink to this headline">¶</a></h1>
@@ -39,10 +170,10 @@
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#domain-objects" id="id1">Domain Objects</a></li>
-<li><a class="reference internal" href="#module-src.objects" id="id2">Domain</a></li>
-<li><a class="reference internal" href="#module-src.meta" id="id3">Base</a></li>
-<li><a class="reference internal" href="#indices-and-tables" id="id4">Indices and tables</a></li>
+<li><p><a class="reference internal" href="#domain-objects" id="id1">Domain Objects</a></p></li>
+<li><p><a class="reference internal" href="#module-src.objects" id="id2">Domain</a></p></li>
+<li><p><a class="reference internal" href="#module-src.meta" id="id3">Base</a></p></li>
+<li><p><a class="reference internal" href="#indices-and-tables" id="id4">Indices and tables</a></p></li>
 </ul>
 </div>
 </div>
@@ -50,13 +181,17 @@
 <span id="domain"></span><h1><a class="toc-backref" href="#id2">Domain</a><a class="headerlink" href="#module-src.objects" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="src.objects.AssertionSet">
-<em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">AssertionSet</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/objects.html#AssertionSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.AssertionSet" title="Permalink to this definition">¶</a></dt>
-<dd><p>AssertionSet (Useful for Logic</p>
-</dd></dl>
+<em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">AssertionSet</code><span class="sig-paren">(</span><em>Useful for Logic</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/objects.html#AssertionSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.AssertionSet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="class">
 <dt id="src.objects.Attribute">
 <em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">Attribute</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/objects.html#Attribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.Attribute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="src.objects.BooleanOption">
+<em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">BooleanOption</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/objects.html#BooleanOption"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.BooleanOption" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
@@ -76,6 +211,11 @@
 </dd></dl>
 
 <dl class="class">
+<dt id="src.objects.FloatOption">
+<em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">FloatOption</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/objects.html#FloatOption"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.FloatOption" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
 <dt id="src.objects.Judgement">
 <em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">Judgement</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/objects.html#Judgement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.Judgement" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -84,6 +224,18 @@
 <dt id="src.objects.Meeting">
 <em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">Meeting</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/objects.html#Meeting"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.Meeting" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="class">
+<dt id="src.objects.MeetingNubbyClassification">
+<em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">MeetingNubbyClassification</code><a class="reference internal" href="_modules/src/objects.html#MeetingNubbyClassification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.MeetingNubbyClassification" title="Permalink to this definition">¶</a></dt>
+<dd><p>An enumeration.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="src.objects.NumericRange">
+<em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">NumericRange</code><a class="reference internal" href="_modules/src/objects.html#NumericRange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.NumericRange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enumeration that fixes the range of numerical values.</p>
+</dd></dl>
 
 <dl class="class">
 <dt id="src.objects.Person">
@@ -115,8 +267,7 @@
 <dl class="class">
 <dt id="src.objects.RelevanceScore">
 <em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">RelevanceScore</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/objects.html#RelevanceScore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.RelevanceScore" title="Permalink to this definition">¶</a></dt>
-<dd><p>Relevance Score</p>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="class">
 <dt id="src.objects.Response">
@@ -128,6 +279,16 @@
 <em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">ResponseCollection</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/objects.html#ResponseCollection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.ResponseCollection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collection of Responses</p>
 </dd></dl>
+
+<dl class="class">
+<dt id="src.objects.ScaleValueSet">
+<em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">ScaleValueSet</code><span class="sig-paren">(</span><em>Useful for Logic</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/objects.html#ScaleValueSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.ScaleValueSet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="src.objects.StringOption">
+<em class="property">class </em><code class="descclassname">src.objects.</code><code class="descname">StringOption</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/objects.html#StringOption"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.objects.StringOption" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="class">
 <dt id="src.objects.System">
@@ -147,12 +308,12 @@
 <em class="property">class </em><code class="descclassname">src.meta.</code><code class="descname">Assertion</code><span class="sig-paren">(</span><em>source</em>, <em>target</em>, <em>value</em>, <em>measure=None</em>, <em>context=None</em>, <em>description=None</em>, <em>confidence=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/meta.html#Assertion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.meta.Assertion" title="Permalink to this definition">¶</a></dt>
 <dd><p>A generic Assertion object:</p>
 <ul class="simple">
-<li>The “source” and “target” attributes should both be an Entity</li>
-<li>The “value” should be some numerical value</li>
-<li>The “confidence” should be some numerical value</li>
-<li>The “description” should be a free-form text field</li>
-<li>The “measure” should be the Entity ascribing semantic meaning to the “value”</li>
-<li>The “context” should be a list of Tags, Entities, etc that contextualize assertions</li>
+<li><p>The “source” and “target” attributes should both be an Entity</p></li>
+<li><p>The “value” should be some numerical value</p></li>
+<li><p>The “confidence” should be some numerical value</p></li>
+<li><p>The “description” should be a free-form text field</p></li>
+<li><p>The “measure” should be the Entity ascribing semantic meaning to the “value”</p></li>
+<li><p>The “context” should be a list of Tags, Entities, etc that contextualize assertions</p></li>
 </ul>
 </dd></dl>
 
@@ -161,18 +322,23 @@
 <em class="property">class </em><code class="descclassname">src.meta.</code><code class="descname">Entity</code><span class="sig-paren">(</span><em>allowable_attributes=None</em>, <em>allowable_collections=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/meta.html#Entity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.meta.Entity" title="Permalink to this definition">¶</a></dt>
 <dd><p>A generic Entity object with attributes, containers and dynamically generated methods</p>
 <ul class="simple">
-<li>Attributes can be defined on instantiation via kwargs</li>
-<li><dl class="first docutils">
-<dt>Container attributes have special functionality:</dt>
-<dd><ul class="first last">
-<li>Instantiates with a list</li>
-<li>Generates a special method that appends to this list</li>
-<li>This class is expected to act as a MixIn for Domain Objects</li>
+<li><p>Attributes can be defined on instantiation via kwargs</p></li>
+<li><dl class="simple">
+<dt>Container attributes have special functionality:</dt><dd><ul>
+<li><p>Instantiates with a list</p></li>
+<li><p>Generates a special method that appends to this list</p></li>
+<li><p>This class is expected to act as a MixIn for Domain Objects</p></li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
+<dl class="method">
+<dt id="src.meta.Entity.empty">
+<code class="descname">empty</code><span class="sig-paren">(</span><em>attributes_to_keep=None</em>, <em>collections_to_keep=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/meta.html#Entity.empty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.meta.Entity.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters data from instantiated object (Not recommended for ad hoc use)</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -180,9 +346,9 @@
 <em class="property">class </em><code class="descclassname">src.meta.</code><code class="descname">EntityCollection</code><span class="sig-paren">(</span><em>list_of_entities</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/meta.html#EntityCollection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.meta.EntityCollection" title="Permalink to this definition">¶</a></dt>
 <dd><p>A collection of Entity objects sharing the same type:</p>
 <ul class="simple">
-<li>Used to instantiate container-like attributes in an Entity</li>
-<li>Type checks all elements of the container</li>
-<li>Has append() method to add new elements to container</li>
+<li><p>Used to instantiate container-like attributes in an Entity</p></li>
+<li><p>Type checks all elements of the container</p></li>
+<li><p>Has append() method to add new elements to container</p></li>
 </ul>
 <dl class="method">
 <dt id="src.meta.EntityCollection.append">
@@ -202,99 +368,74 @@
 <div class="section" id="indices-and-tables">
 <h1><a class="toc-backref" href="#id4">Indices and tables</a><a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
 </div>
 
 
+           </div>
+           
           </div>
-          
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">DomainAPI</a></h1>
-
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="insights.html">Insights Functionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.activity">Activity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.contribution">Contribution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.disagreement">Disagreement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.interaction">Interaction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.sentiment">Sentiment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.uniqueness">Uniqueness</a></li>
-<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.utils">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="insights.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analytics.html">Analytics Functionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analytics.html#module-analytics.activity">Activity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analytics.html#module-analytics.disagreement">Disagreement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analytics.html#module-analytics.sentiment">Sentiment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analytics.html#module-analytics.utils">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analytics.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Domain Objects</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#module-src.objects">Domain</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#module-src.meta">Base</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="analytics.html" title="previous chapter">Analytics Functionality</a></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="analytics.html" class="btn btn-neutral" title="Analytics Functionality" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+  
 
+  <hr/>
 
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Research.
 
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-
-
-
+</footer>
 
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2019, Research.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/objects.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
 
-    
+    </section>
 
-    
-  </body>
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>
