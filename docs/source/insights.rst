@@ -3,53 +3,49 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Insights Functionality
-======================
+Application Logic
+*****************
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-.. contents::
+New Logic can be expressed in terms of an API that applies Core Concepts to Domain objects.
 
 Activity
-========
+^^^^^^^^
+
 .. automodule:: insights.activity
-   :members:
+    :members:
 
 Contribution
-============
+^^^^^^^^^^^^
+
 .. automodule:: insights.contribution
-   :members:
+    :members:
 
 Disagreement
-============
+^^^^^^^^^^^^
+
 .. automodule:: insights.disagreement
-   :members:
+    :members:
 
 Interaction
-===========
+^^^^^^^^^^^
+
 .. automodule:: insights.interaction
-   :members:
+    :members:
 
 Sentiment
-=========
+^^^^^^^^^
+
 .. automodule:: insights.sentiment
-   :members:
+    :members:
+
+Summaries
+^^^^^^^^^
+
+.. automodule:: insights.summaries
+    :members:
 
 Uniqueness
-==========
+^^^^^^^^^^
+
 .. automodule:: insights.uniqueness
-   :members:
-
-Utilities
-=========
-.. automodule:: insights.utils
-   :members:
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+    :members:

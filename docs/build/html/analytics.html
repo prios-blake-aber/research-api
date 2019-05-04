@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Analytics Functionality &mdash; DomainAPI 0.0.1 documentation</title>
+  <title>API Methods &mdash; Research API 0.0.1 documentation</title>
   
 
   
@@ -17,38 +17,40 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Domain Objects" href="objects.html" />
-    <link rel="prev" title="Insights Functionality" href="insights.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
+    <link rel="next" title="Core Concepts" href="analytics.concepts.html" />
+    <link rel="prev" title="Application Logic" href="insights.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
-            <a href="index.html" class="icon icon-home"> DomainAPI
+            <a href="index.html" class="icon icon-home"> Research API
           
 
           
@@ -78,28 +80,26 @@
               
             
             
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="insights.html">Insights Functionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.activity">Activity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.contribution">Contribution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.disagreement">Disagreement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.interaction">Interaction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.sentiment">Sentiment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.uniqueness">Uniqueness</a></li>
-<li class="toctree-l1"><a class="reference internal" href="insights.html#module-insights.utils">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="insights.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Analytics Functionality</a><ul class="simple">
+              <p class="caption"><span class="caption-text">Developing New Logic</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="insights.html">Application Logic</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-analytics.activity">Activity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-analytics.disagreement">Disagreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-analytics.sentiment">Sentiment</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#module-analytics.activity">Activity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#module-analytics.disagreement">Disagreement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#module-analytics.sentiment">Sentiment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#module-analytics.utils">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="objects.html">Domain Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="objects.html#module-src.objects">Domain</a></li>
-<li class="toctree-l1"><a class="reference internal" href="objects.html#module-src.meta">Base</a></li>
-<li class="toctree-l1"><a class="reference internal" href="objects.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.concepts.html">Core Concepts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Operations on Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="src.objects.html">Domain Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.meta.html">Meta-Model Interface</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Helper Functions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="analytics.foundation.html">Mathematical Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.utils.html">Utilities</a></li>
 </ul>
 
             
@@ -114,7 +114,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">DomainAPI</a>
+          <a href="index.html">Research API</a>
         
       </nav>
 
@@ -145,7 +145,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Analytics Functionality</li>
+      <li>API Methods</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -164,24 +164,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="analytics-functionality">
-<h1><a class="toc-backref" href="#id1">Analytics Functionality</a><a class="headerlink" href="#analytics-functionality" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-</div>
-<div class="contents topic" id="contents">
-<p class="topic-title first">Contents</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#analytics-functionality" id="id1">Analytics Functionality</a></p></li>
-<li><p><a class="reference internal" href="#module-analytics.activity" id="id2">Activity</a></p></li>
-<li><p><a class="reference internal" href="#module-analytics.disagreement" id="id3">Disagreement</a></p></li>
-<li><p><a class="reference internal" href="#module-analytics.sentiment" id="id4">Sentiment</a></p></li>
-<li><p><a class="reference internal" href="#module-analytics.utils" id="id5">Utilities</a></p></li>
-<li><p><a class="reference internal" href="#indices-and-tables" id="id6">Indices and tables</a></p></li>
-</ul>
-</div>
-</div>
+  <div class="section" id="api-methods">
+<h1>API Methods<a class="headerlink" href="#api-methods" title="Permalink to this headline">¶</a></h1>
+<p>New Logic can be expressed in terms of an API that applies Core Concepts to Domain objects.</p>
 <div class="section" id="module-analytics.activity">
-<span id="activity"></span><h1><a class="toc-backref" href="#id2">Activity</a><a class="headerlink" href="#module-analytics.activity" title="Permalink to this headline">¶</a></h1>
+<span id="activity"></span><h2>Activity<a class="headerlink" href="#module-analytics.activity" title="Permalink to this headline">¶</a></h2>
+<p>TBD</p>
 <dl class="function">
 <dt id="analytics.activity.combine_results">
 <code class="descclassname">analytics.activity.</code><code class="descname">combine_results</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analytics/activity.html#combine_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.activity.combine_results" title="Permalink to this definition">¶</a></dt>
@@ -197,22 +185,23 @@ Judgements. Elements of each list should have the same targets, which only appea
 <dt id="analytics.activity.frequently_dotted_subjects">
 <code class="descclassname">analytics.activity.</code><code class="descname">frequently_dotted_subjects</code><span class="sig-paren">(</span><em>dots: List[src.objects.Dot], min_percent_1: float = 0.1, min_count_1: int = 0, min_percent_2: float = 0.05, min_count_2: int = 5</em><span class="sig-paren">)</span> &#x2192; List[src.objects.Judgement]<a class="reference internal" href="_modules/analytics/activity.html#frequently_dotted_subjects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.activity.frequently_dotted_subjects" title="Permalink to this definition">¶</a></dt>
 <dd><ul class="simple">
-<li><p>Determines whether a Subject is Frequently Dotted: receives more than either:</p></li>
-<li><p>10% of all Dot Ratings OR</p></li>
-<li><p>5% of all Dot Ratings along with 10 Dot Ratings.</p></li>
+<li>Determines whether a Subject is Frequently Dotted: receives more than either:</li>
+<li>10% of all Dot Ratings OR</li>
+<li>5% of all Dot Ratings along with 10 Dot Ratings.</li>
 </ul>
 <p>TODO: Reconcile with Primary Participants</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>dots</strong> – </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Determines whether each subject in a collection of Dots is frequently dotted.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>List[<a class="reference internal" href="objects.html#src.objects.Judgement" title="src.objects.Judgement">objects.Judgement</a>]</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dots</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Determines whether each subject in a collection of Dots is frequently dotted.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[<a class="reference internal" href="src.objects.html#src.objects.Judgement" title="src.objects.Judgement">objects.Judgement</a>]</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -222,182 +211,46 @@ Judgements. Elements of each list should have the same targets, which only appea
 Notable Participants are:
 * Believable
 * Primary Participant</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>meeting</strong> – </p></li>
-<li><p><strong>kwargs</strong> – </p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>meeting</strong> – </li>
+<li><strong>kwargs</strong> – </li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>List of people who are primary or believable.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="analytics.activity.primary_participants">
-<code class="descclassname">analytics.activity.</code><code class="descname">primary_participants</code><span class="sig-paren">(</span><em>dots: List[src.objects.Dot]</em><span class="sig-paren">)</span> &#x2192; List[src.objects.Judgement]<a class="reference internal" href="_modules/analytics/activity.html#primary_participants"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.activity.primary_participants" title="Permalink to this definition">¶</a></dt>
-<dd><p>Primary participants.</p>
-<p># TODO: Identical to <cite>insights.activity.primary_participants_in_meeting_138</cite>?
-# TODO: Is it an insight or an analytic?</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>dots</strong> – </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>True/False for whether people are a participant.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>List[<a class="reference internal" href="objects.html#src.objects.Judgement" title="src.objects.Judgement">objects.Judgement</a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="analytics.activity.relevance">
-<code class="descclassname">analytics.activity.</code><code class="descname">relevance</code><span class="sig-paren">(</span><em>dots: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analytics/activity.html#relevance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.activity.relevance" title="Permalink to this definition">¶</a></dt>
-<dd><p>Defines a “Relevance” score for each <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.Assertion</span></code> as a function of the number of of relevant Dots given.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dots</strong> (<a class="reference internal" href="objects.html#src.objects.AssertionSet" title="src.objects.AssertionSet"><em>objects.AssertionSet</em></a>) – A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.Assertion</span></code>.</p></li>
-<li><p><strong>*args</strong> – Variable length argument list.</p></li>
-<li><p><strong>**kwargs</strong> – Arbitrary keyword arguments.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A set of relevant <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.Assertion</span></code>, or an empty set if none exist.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="objects.html#src.objects.AssertionSet" title="src.objects.AssertionSet">objects.AssertionSet</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="analytics.activity.relevance_of_dots">
-<code class="descclassname">analytics.activity.</code><code class="descname">relevance_of_dots</code><span class="sig-paren">(</span><em>dots: src.objects.DotCollection</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analytics/activity.html#relevance_of_dots"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.activity.relevance_of_dots" title="Permalink to this definition">¶</a></dt>
-<dd><p>Defines a “Relevance” score for each <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.Attribute</span></code> as a function of the number of of relevant Dots given.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dots</strong> (<a class="reference internal" href="objects.html#src.objects.DotCollection" title="src.objects.DotCollection"><em>objects.DotCollection</em></a>) – A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.Dot</span></code>.</p></li>
-<li><p><strong>*args</strong> – Variable length argument list.</p></li>
-<li><p><strong>**kwargs</strong> – Arbitrary keyword arguments.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.RelevanceScore</span></code>, or an empty set if none exist.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="objects.html#src.objects.RelevanceCollection" title="src.objects.RelevanceCollection">objects.RelevanceCollection</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="analytics.activity.relevance_of_people">
-<code class="descclassname">analytics.activity.</code><code class="descname">relevance_of_people</code><span class="sig-paren">(</span><em>dots: src.objects.DotCollection</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analytics/activity.html#relevance_of_people"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.activity.relevance_of_people" title="Permalink to this definition">¶</a></dt>
-<dd><p>Defines a “Relevance” score for each <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.Person</span></code> as a function of the number of of relevant Dots given.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dots</strong> (<a class="reference internal" href="objects.html#src.objects.DotCollection" title="src.objects.DotCollection"><em>objects.DotCollection</em></a>) – A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.Dot</span></code>.</p></li>
-<li><p><strong>*args</strong> – Variable length argument list.</p></li>
-<li><p><strong>**kwargs</strong> – Arbitrary keyword arguments.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.RelevanceScore</span></code>, or an empty set if none exist.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="objects.html#src.objects.RelevanceCollection" title="src.objects.RelevanceCollection">objects.RelevanceCollection</a></p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List of people who are primary or believable.</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
 <div class="section" id="module-analytics.disagreement">
-<span id="disagreement"></span><h1><a class="toc-backref" href="#id3">Disagreement</a><a class="headerlink" href="#module-analytics.disagreement" title="Permalink to this headline">¶</a></h1>
+<span id="disagreement"></span><h2>Disagreement<a class="headerlink" href="#module-analytics.disagreement" title="Permalink to this headline">¶</a></h2>
+<p>TBD</p>
 <dl class="function">
 <dt id="analytics.disagreement.believable_choice_on_question">
 <code class="descclassname">analytics.disagreement.</code><code class="descname">believable_choice_on_question</code><span class="sig-paren">(</span><em>question: src.objects.Question</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/analytics/disagreement.html#believable_choice_on_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.believable_choice_on_question" title="Permalink to this definition">¶</a></dt>
 <dd><p>What is the believable choice on a question?</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>question</strong> – </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Value</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="objects.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="analytics.disagreement.disagrees_with_167">
-<code class="descclassname">analytics.disagreement.</code><code class="descname">disagrees_with_167</code><span class="sig-paren">(</span><em>values: Tuple[Any, Any], question_type</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/analytics/disagreement.html#disagrees_with_167"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.disagrees_with_167" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO: other analytics that use disagrees_with are Out of Sync People, Uniquely Out of Sync,
-Significantly OOS, etc.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>question</strong> – </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Empty set, if none exists.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="objects.html#src.objects.AssertionSet" title="src.objects.AssertionSet">objects.AssertionSet</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="analytics.disagreement.disagrees_with_categorical_binary">
-<code class="descclassname">analytics.disagreement.</code><code class="descname">disagrees_with_categorical_binary</code><span class="sig-paren">(</span><em>response_to_compare: StringOrFloat</em>, <em>answer_to_compare: StringOrFloat</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/analytics/disagreement.html#disagrees_with_categorical_binary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.disagrees_with_categorical_binary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Disagrees With logic for Categorical/Binary values.</p>
-<p>TODO: Find better home -&gt; is this a core concept?</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>response_to_compare</strong> – </p></li>
-<li><p><strong>answer_to_compare</strong> – </p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Value is True, if there is a disagreement.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="objects.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="analytics.disagreement.disagrees_with_numeric">
-<code class="descclassname">analytics.disagreement.</code><code class="descname">disagrees_with_numeric</code><span class="sig-paren">(</span><em>response_to_compare: float</em>, <em>answer_to_compare: float</em>, <em>far_away: float = 1.7</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/analytics/disagreement.html#disagrees_with_numeric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.disagrees_with_numeric" title="Permalink to this definition">¶</a></dt>
-<dd><p>Disagrees With logic for Scale values (1-to-10 or 1-to-5).</p>
-<p>TODO: Find better home -&gt; is this a core concept?</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>response_to_compare</strong> – </p></li>
-<li><p><strong>answer_to_compare</strong> – </p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Value is True, if there is a disagreement.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="objects.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>question</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Value</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -406,98 +259,48 @@ Significantly OOS, etc.</p>
 <dd><p>Divisiveness.</p>
 <p># TODO: Core Concept.
 # TODO: How are N/A’s being represented? We shouldn’t assume they’re being filtered.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ar</strong> – </p></li>
-<li><p><strong>value_type</strong> – </p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ar</strong> – </li>
+<li><strong>value_type</strong> – </li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Divisiveness value</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Divisiveness value</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="analytics.disagreement.is_nubby_question">
 <code class="descclassname">analytics.disagreement.</code><code class="descname">is_nubby_question</code><span class="sig-paren">(</span><em>question: src.objects.Question</em>, <em>threshold: float = 0.5</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/analytics/disagreement.html#is_nubby_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.is_nubby_question" title="Permalink to this definition">¶</a></dt>
 <dd><p>Is a question Nubby?</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>question</strong> – </p></li>
-<li><p><strong>threshold</strong> – Question is Nubby if its divisiveness value exceeds this quantity.</p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>question</strong> – </li>
+<li><strong>threshold</strong> – Question is Nubby if its divisiveness value exceeds this quantity.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Value is True if the question is Nubby.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="objects.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="analytics.disagreement.is_polarizing">
-<code class="descclassname">analytics.disagreement.</code><code class="descname">is_polarizing</code><span class="sig-paren">(</span><em>scale_assertions: src.objects.ScaleValueSet</em>, <em>thresh_on_std_scale: float = 1.0</em>, <em>thresh_on_std_mapped_scale: float = 0.5</em>, <em>thresh_on_poles: float = 0.25</em><span class="sig-paren">)</span> &#x2192; src.objects.Judgement<a class="reference internal" href="_modules/analytics/disagreement.html#is_polarizing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.is_polarizing" title="Permalink to this definition">¶</a></dt>
-<dd><p>Is Polarizing</p>
-<p>From Key Points
-* Identifies a Polarizing event when Scale Values on a Person are spread out and there exist
-comparable numbers of positive (8 and above) and negative (4 and below) Scale Values
-* Returns a boolean
-* This is produced by the following operation(s):</p>
-<blockquote>
-<div><ul>
-<li><p>Calculates the standard deviation of Scale Values</p></li>
-<li><dl class="simple">
-<dt>Calculates the Bucketed Standard Deviation of Scale Values:</dt><dd><ul class="simple">
-<li><p>Maps the Scale Values to their Summarized Opinion</p></li>
-<li><p>Calculates the standard deviation</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Calculates the Relative Incidence Ratio of positive/negative Scale Values</dt><dd><ul class="simple">
-<li><p>Calculates the numerator as the minimum count of positive/negative Scale Values</p></li>
-<li><p>Calculates the Denominator as the maximum count of positive/negative Scale Values</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt>Combines the following conditions to determine whether the Scale Values are polarizing:</dt><dd><ul class="simple">
-<li><p>Calculates the standard deviation of Scale Values is greater than 0.5</p></li>
-<li><p>Calculates the Bucketed Standard Deviation of Scale Values is greater than 1.0</p></li>
-<li><p>Calculates the Relative Incidence Ratio of positive/negative Scale Values is greater</p></li>
-</ul>
-<p>than 0.25</p>
-</dd>
-</dl>
-</li>
-</ul>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>scale_assertions</strong> – List of assertions with scale values.</p></li>
-<li><p><strong>thresh_on_std_scale</strong> – Threshold on standard deviation of scale values.</p></li>
-<li><p><strong>thresh_on_std_mapped_scale</strong> – Threshold on standard deviation of scale values mapped to 1, 2, and 3</p></li>
-<li><p><strong>thresh_on_poles</strong> – Threshold on ratio between poles</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Whether a set of scale values are polarizing.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>object.Judgement</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Value is True if the question is Nubby.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -506,20 +309,24 @@ comparable numbers of positive (8 and above) and negative (4 and below) Scale Va
 <dd><p>Determines whether responses are in small minority of responses.</p>
 <p>TODO: bucketing should live in it’s own function
 Identify if the given ‘response’ is unique in relation to the given set of ‘responses’.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>question</strong> – </p></li>
-<li><p><strong>unique_disagreement</strong> – Response is unique if its percentage (compared to all responses) is less than this value</p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>question</strong> – </li>
+<li><strong>unique_disagreement</strong> – Response is unique if its percentage (compared to all responses) is less than this value</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>System assertions of whether each response is unique</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>List[<a class="reference internal" href="objects.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">System assertions of whether each response is unique</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List[<a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -528,20 +335,24 @@ Identify if the given ‘response’ is unique in relation to the given set of �
 <dd><p>Is a Meeting Nubby?</p>
 <p>TODO: Public.
 TODO: Default Thresholds are wrong.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>meeting</strong> – </p></li>
-<li><p><strong>thresholds</strong> – </p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>meeting</strong> – </li>
+<li><strong>thresholds</strong> – </li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Value is a Classification.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="objects.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Value is a Classification.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -549,17 +360,18 @@ TODO: Default Thresholds are wrong.</p>
 <code class="descclassname">analytics.disagreement.</code><code class="descname">out_of_sync_people_on_question</code><span class="sig-paren">(</span><em>question: src.objects.Question</em><span class="sig-paren">)</span> &#x2192; List[src.meta.Assertion]<a class="reference internal" href="_modules/analytics/disagreement.html#out_of_sync_people_on_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.out_of_sync_people_on_question" title="Permalink to this definition">¶</a></dt>
 <dd><p>Identifies people who are out-of-sync on a question.</p>
 <p>TODO: Move logic to analytics.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>question</strong> – </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Values are True if person is out-of-sync on the question.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>List[<a class="reference internal" href="objects.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>question</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Values are True if person is out-of-sync on the question.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[<a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -567,59 +379,23 @@ TODO: Default Thresholds are wrong.</p>
 <code class="descclassname">analytics.disagreement.</code><code class="descname">polarizing_topics</code><span class="sig-paren">(</span><em>dots: List[src.objects.Dot]</em><span class="sig-paren">)</span> &#x2192; List[src.meta.Assertion]<a class="reference internal" href="_modules/analytics/disagreement.html#polarizing_topics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.polarizing_topics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Is a “topic” polarizing? A topic is a collection of Assertions on a single target.</p>
 <ol class="arabic simple">
-<li><p>Values about a target given by each source is synthesized.</p></li>
+<li>Values about a target given by each source is synthesized.</li>
 </ol>
 <p>2. Determines whether the synthesized values have a polarizing distribution.
 TODO: Generalize input type beyond Dots.
 TODO: Disentangle into core concepts.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>dots</strong> – </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Target of each Assertion is a topic/subject. Value is True if it is polarizing.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>List[<a class="reference internal" href="objects.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="analytics.disagreement.substantive_disagreement">
-<code class="descclassname">analytics.disagreement.</code><code class="descname">substantive_disagreement</code><span class="sig-paren">(</span><em>scale_values: Tuple[float, float], threshold_high: float = 1.7</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analytics/disagreement.html#substantive_disagreement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.substantive_disagreement" title="Permalink to this definition">¶</a></dt>
-<dd><p>Substantive disagreement</p>
-<ul>
-<li><p>Identifies a pair of Scale Values that Substantively Disagree.</p></li>
-<li><p>Returns a Boolean representing whether Substantive Disagreement exists.</p></li>
-<li><dl>
-<dt>This is produced by the following operation(s):</dt><dd><ul class="simple">
-<li><p>Calculates the absolute difference between the two values.</p></li>
-<li><p>Determines whether the values are Far Away: Compares whether the difference is greater</p></li>
-</ul>
-<p>than a threshold of 1.7.
-* Maps Responses into Summarized Opinions.
-* Determines whether the Summarized Opinions Disagree: determines whether their values are
-different.
-* Returns True if both of the above conditions are True.</p>
-</dd>
-</dl>
-</li>
-</ul>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>scale_values</strong> – Scale Value Pair</p></li>
-<li><p><strong>threshold_high</strong> – Returns False if difference between raw values is less than this quantity.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Whether there’s substantive disagreement between two assertions.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>object.Judgement</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dots</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Target of each Assertion is a topic/subject. Value is True if it is polarizing.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[<a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -629,145 +405,74 @@ different.
 assertion.
 TODO: Synthesis is a core concept.
 TODO: Add keyword arguments for specifying how syntheses are performed</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>dots</strong> – </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>List[<a class="reference internal" href="objects.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dots</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[<a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
 <div class="section" id="module-analytics.sentiment">
-<span id="sentiment"></span><h1><a class="toc-backref" href="#id4">Sentiment</a><a class="headerlink" href="#module-analytics.sentiment" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="analytics.sentiment.importance">
-<code class="descclassname">analytics.sentiment.</code><code class="descname">importance</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analytics/sentiment.html#importance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.sentiment.importance" title="Permalink to this definition">¶</a></dt>
-<dd><div class="admonition note">
-<p class="admonition-title">Note</p>
-<ul class="simple">
-<li><p>Classifies Meeting Sections as Critical, Very Important, Important, Typical, or Unremarkable based on the number of Important People in the Meeting Section and the number of generated Dots and Questions.</p></li>
-<li><p>Returns a Statistic between 0-1 that represents the classification of a Meeting Section’s Importance.</p></li>
-<li><dl class="simple">
-<dt>This is produced by the following operation(s):</dt><dd><ul>
-<li><p>Calculates a Person Importance Value for each Participant based on their General Believability, and if provided, job level and whether they belong to particular Management Groups (job level and membership to management groups are not currently provided in the pilot). Defaults to zero.</p></li>
-<li><p>Calculates the Important People Scaling Factor: calculates how many People had nonzero Person Importance (capped at 4).</p></li>
-<li><p>Calculates the Activity Scaling Factor: calculates a statistic representing how much activity occurred in the Meeting Section based on Dots and Questions and achieves its maximum value at 100 Dots or 10 Questions.</p></li>
-<li><p>Calculates the Dot Scaling Factor, which is a function of how many Dots were given in a Meeting Section and achieves its maximum value at 20 Dots.</p></li>
-<li><p>Calculates the Total Importance: calculates the sum of all Meeting Section Participants’ Person Importance.</p></li>
-<li><p>Calculates the overall Meeting Section Importance Value: calculates the product of the Total Importance and the three Scaling Factors above.</p></li>
-<li><p>Determines which classification the Meeting Section Importance Value receives and returns the associated text label (Critical, Very Important, Important, Typical, or Unremarkable).</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><p>To produce a result at the Meeting level (as opposed to Meeting Section Level), there is code living in the application which labels a Meeting based on the results from this analytic for the first Meeting Section only.</p></li>
-</ul>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dots</strong> (<a class="reference internal" href="objects.html#src.objects.AssertionSet" title="src.objects.AssertionSet"><em>objects.AssertionSet</em></a>) – A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.Dot</span></code>.</p></li>
-<li><p><strong>*args</strong> – Variable length argument list.</p></li>
-<li><p><strong>**kwargs</strong> – Arbitrary keyword arguments.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A set of relevant actions in a meeting, or an empty set if none exist.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="objects.html#src.objects.AssertionSet" title="src.objects.AssertionSet">objects.AssertionSet</a></p>
-</dd>
-</dl>
-</dd></dl>
-
+<span id="sentiment"></span><h2>Sentiment<a class="headerlink" href="#module-analytics.sentiment" title="Permalink to this headline">¶</a></h2>
+<p>TBD</p>
 <dl class="function">
 <dt id="analytics.sentiment.quality">
 <code class="descclassname">analytics.sentiment.</code><code class="descname">quality</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analytics/sentiment.html#quality"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.sentiment.quality" title="Permalink to this definition">¶</a></dt>
-<dd><div class="admonition note">
-<p class="admonition-title">Note</p>
-<ul class="simple">
-<li><p>Defines “Meeting Section Quality” as the average of Rankings reflected in Question Responses to “Rate the Section”.</p></li>
-<li><p>Returns a Scale Value representing the Meeting Section Quality.</p></li>
-<li><p>Returns Null if there are no “Rate the Section” Questions or Responses.</p></li>
-<li><dl class="simple">
-<dt>This is produced by the following operation(s):</dt><dd><ul>
-<li><p>Calculates the average of all Question Responses to “Rate the Section”.</p></li>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dots</strong> (<a class="reference internal" href="src.objects.html#src.objects.AssertionSet" title="src.objects.AssertionSet"><em>objects.AssertionSet</em></a>) – A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.Dot</span></code>.</li>
+<li><strong>*args</strong> – Variable length argument list.</li>
+<li><strong>**kwargs</strong> – Arbitrary keyword arguments.</li>
 </ul>
-</dd>
-</dl>
-</li>
-</ul>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dots</strong> (<a class="reference internal" href="objects.html#src.objects.AssertionSet" title="src.objects.AssertionSet"><em>objects.AssertionSet</em></a>) – A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.Dot</span></code>.</p></li>
-<li><p><strong>*args</strong> – Variable length argument list.</p></li>
-<li><p><strong>**kwargs</strong> – Arbitrary keyword arguments.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A set of relevant actions in a meeting, or an empty set if none exist.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="objects.html#src.objects.AssertionSet" title="src.objects.AssertionSet">objects.AssertionSet</a></p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A set of relevant actions in a meeting, or an empty set if none exist.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="src.objects.html#src.objects.AssertionSet" title="src.objects.AssertionSet">objects.AssertionSet</a></p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="analytics.sentiment.sentiment">
 <code class="descclassname">analytics.sentiment.</code><code class="descname">sentiment</code><span class="sig-paren">(</span><em>scale_assertions: src.objects.ScaleValueSet</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analytics/sentiment.html#sentiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.sentiment.sentiment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines “Sentiment” as the [Dots Summary](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186</a>) of all Dots in a Meeting.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>scale_assertions</strong> (<em>objects.CollectionOfScaleValues</em>) – A set of :type:float.</p></li>
-<li><p><strong>*args</strong> – Variable length argument list.</p></li>
-<li><p><strong>**kwargs</strong> – Arbitrary keyword arguments.</p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>scale_assertions</strong> (<em>objects.CollectionOfScaleValues</em>) – A set of :type:float.</li>
+<li><strong>*args</strong> – Variable length argument list.</li>
+<li><strong>**kwargs</strong> – Arbitrary keyword arguments.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A value representing sentiment, or None.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>objects.Assertion</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A value representing sentiment, or None.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">objects.Assertion</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
-<div class="section" id="module-analytics.utils">
-<span id="utilities"></span><h1><a class="toc-backref" href="#id5">Utilities</a><a class="headerlink" href="#module-analytics.utils" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="analytics.utils.group_assertions_by_criteria">
-<code class="descclassname">analytics.utils.</code><code class="descname">group_assertions_by_criteria</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analytics/utils.html#group_assertions_by_criteria"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.utils.group_assertions_by_criteria" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO: Define generalization for grouping summary data</p>
-<p>This function is a catch-all for the multiple grouping
-functions that exist for summaries</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="analytics.utils.scope_required_data_within_object">
-<code class="descclassname">analytics.utils.</code><code class="descname">scope_required_data_within_object</code><span class="sig-paren">(</span><em>attributes_to_keep=None</em>, <em>collections_to_keep=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analytics/utils.html#scope_required_data_within_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.utils.scope_required_data_within_object" title="Permalink to this definition">¶</a></dt>
-<dd><p>This decorator scopes the required data for an object
-and passes it into the decorated function</p>
-</dd></dl>
-
-</div>
-<div class="section" id="indices-and-tables">
-<h1><a class="toc-backref" href="#id6">Indices and tables</a><a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
-</ul>
 </div>
 
 
@@ -778,10 +483,10 @@ and passes it into the decorated function</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="objects.html" class="btn btn-neutral float-right" title="Domain Objects" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="analytics.concepts.html" class="btn btn-neutral float-right" title="Core Concepts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="insights.html" class="btn btn-neutral" title="Insights Functionality" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="insights.html" class="btn btn-neutral float-left" title="Application Logic" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -790,7 +495,7 @@ and passes it into the decorated function</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Research.
+        &copy; Copyright 2019, Research
 
     </p>
   </div>
@@ -807,33 +512,16 @@ and passes it into the decorated function</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.0.1',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

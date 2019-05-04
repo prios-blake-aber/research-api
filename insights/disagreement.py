@@ -1,5 +1,6 @@
+
 """
-Insights on Disagreement
+TBD
 """
 
 import itertools
@@ -7,14 +8,8 @@ from typing import List, Dict
 from src import objects, meta
 from analytics import utils, disagreement, activity
 
-_QUORUM_THRESH_DEFAULT = 0.80
 
-"""
-Polarizing - distribution at the poles
-Divisiveness - standard deviation
-Nubbiness - divisiveness with "enough" observations
-Consensus
-"""
+_QUORUM_THRESH_DEFAULT = 0.80
 
 
 def believable_choice_130(question: objects.QuestionType) -> meta.Assertion:

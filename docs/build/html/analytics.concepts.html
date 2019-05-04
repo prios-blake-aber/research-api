@@ -1,0 +1,437 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Core Concepts &mdash; Research API 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Domain Objects" href="src.objects.html" />
+    <link rel="prev" title="API Methods" href="analytics.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Research API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Developing New Logic</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="insights.html">Application Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.html">API Methods</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Core Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-analytics.concepts.activity">Activity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-analytics.concepts.disagreement">Disagreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-analytics.concepts.sentiment">Sentiment</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Operations on Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="src.objects.html">Domain Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.meta.html">Meta-Model Interface</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Helper Functions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="analytics.foundation.html">Mathematical Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.utils.html">Utilities</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Research API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Core Concepts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/analytics.concepts.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="core-concepts">
+<h1>Core Concepts<a class="headerlink" href="#core-concepts" title="Permalink to this headline">¶</a></h1>
+<p>New Logic can be expressed in terms of an API that applies Core Concepts to Domain objects.</p>
+<div class="section" id="module-analytics.concepts.activity">
+<span id="activity"></span><h2>Activity<a class="headerlink" href="#module-analytics.concepts.activity" title="Permalink to this headline">¶</a></h2>
+<p>TBD</p>
+<dl class="function">
+<dt id="analytics.concepts.activity.primary_participants">
+<code class="descclassname">analytics.concepts.activity.</code><code class="descname">primary_participants</code><span class="sig-paren">(</span><em>dots: List[src.objects.Dot]</em><span class="sig-paren">)</span> &#x2192; List[src.objects.Judgement]<a class="reference internal" href="_modules/analytics/concepts/activity.html#primary_participants"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.activity.primary_participants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Primary participants.</p>
+<p># TODO: Identical to <cite>insights.activity.primary_participants_in_meeting_138</cite>?
+# TODO: Is it an insight or an analytic?</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dots</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True/False for whether people are a participant.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[<a class="reference internal" href="src.objects.html#src.objects.Judgement" title="src.objects.Judgement">objects.Judgement</a>]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-analytics.concepts.disagreement">
+<span id="disagreement"></span><h2>Disagreement<a class="headerlink" href="#module-analytics.concepts.disagreement" title="Permalink to this headline">¶</a></h2>
+<p>TBD</p>
+<dl class="function">
+<dt id="analytics.concepts.disagreement.believable_choice">
+<code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">believable_choice</code><span class="sig-paren">(</span><em>values_and_weights: List[Tuple[StringOrFloat, float]], value_type: src.objects.QuestionType</em><span class="sig-paren">)</span> &#x2192; Optional[StringOrFloat]<a class="reference internal" href="_modules/analytics/concepts/disagreement.html#believable_choice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.believable_choice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Believable choice</p>
+<p>TODO: Change to ValueType.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>values_and_weights</strong> – Values and Believability weights.</li>
+<li><strong>value_type</strong> – Type of value</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Value or None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Optional[StringOrFloat]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.concepts.disagreement.believable_choice_categorical_binary">
+<code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">believable_choice_categorical_binary</code><span class="sig-paren">(</span><em>values_and_weights: List[Tuple[str, float]], minimum_vote: float = 0.7</em><span class="sig-paren">)</span> &#x2192; Optional[str]<a class="reference internal" href="_modules/analytics/concepts/disagreement.html#believable_choice_categorical_binary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.believable_choice_categorical_binary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disagrees With logic for Categorical/Binary responses.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>values_and_weights</strong> – Strings values and corresponding believability</li>
+<li><strong>minimum_vote</strong> – Believable choice has greater than this quantity of the believability-weighted vote.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Believable choice, or None (if there isn’t one).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Optional[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a>]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.concepts.disagreement.believable_choice_numeric">
+<code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">believable_choice_numeric</code><span class="sig-paren">(</span><em>values_and_weights: List[Tuple[float, float]]</em><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="_modules/analytics/concepts/disagreement.html#believable_choice_numeric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.believable_choice_numeric" title="Permalink to this definition">¶</a></dt>
+<dd><p>“Believable Choice” logic for Numeric responses.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>values_and_weights</strong> – Numeric values and corresponding believability.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Believability-weighted average</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.concepts.disagreement.disagrees_with_167">
+<code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">disagrees_with_167</code><span class="sig-paren">(</span><em>values: Tuple[Any, Any], question_type</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/analytics/concepts/disagreement.html#disagrees_with_167"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.disagrees_with_167" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO: other analytics that use disagrees_with are Out of Sync People, Uniquely Out of Sync,
+Significantly OOS, etc.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>values</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Empty set, if none exists.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="src.objects.html#src.objects.AssertionSet" title="src.objects.AssertionSet">objects.AssertionSet</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.concepts.disagreement.disagrees_with_categorical_binary">
+<code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">disagrees_with_categorical_binary</code><span class="sig-paren">(</span><em>response_to_compare: StringOrFloat</em>, <em>answer_to_compare: StringOrFloat</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/analytics/concepts/disagreement.html#disagrees_with_categorical_binary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.disagrees_with_categorical_binary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disagrees With logic for Categorical/Binary values.</p>
+<p>TODO: Find better home -&gt; is this a core concept?</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>response_to_compare</strong> – </li>
+<li><strong>answer_to_compare</strong> – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Value is True, if there is a disagreement.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.concepts.disagreement.disagrees_with_numeric">
+<code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">disagrees_with_numeric</code><span class="sig-paren">(</span><em>response_to_compare: float</em>, <em>answer_to_compare: float</em>, <em>far_away: float = 1.7</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/analytics/concepts/disagreement.html#disagrees_with_numeric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.disagrees_with_numeric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disagrees With logic for Scale values (1-to-10 or 1-to-5).</p>
+<p>TODO: Find better home -&gt; is this a core concept?</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>response_to_compare</strong> – </li>
+<li><strong>answer_to_compare</strong> – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Value is True, if there is a disagreement.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.concepts.disagreement.is_polarizing">
+<code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">is_polarizing</code><span class="sig-paren">(</span><em>scale_assertions: src.objects.ScaleValueSet</em>, <em>thresh_on_std_scale: float = 1.0</em>, <em>thresh_on_std_mapped_scale: float = 0.5</em>, <em>thresh_on_poles: float = 0.25</em><span class="sig-paren">)</span> &#x2192; src.objects.Judgement<a class="reference internal" href="_modules/analytics/concepts/disagreement.html#is_polarizing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.is_polarizing" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>scale_assertions</strong> – List of assertions with scale values.</li>
+<li><strong>thresh_on_std_scale</strong> – Threshold on standard deviation of scale values.</li>
+<li><strong>thresh_on_std_mapped_scale</strong> – Threshold on standard deviation of scale values mapped to 1, 2, and 3</li>
+<li><strong>thresh_on_poles</strong> – Threshold on ratio between poles</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Whether a set of scale values are polarizing.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">object.Judgement</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.concepts.disagreement.substantive_disagreement">
+<code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">substantive_disagreement</code><span class="sig-paren">(</span><em>scale_values: Tuple[float, float], threshold_high: float = 1.7</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analytics/concepts/disagreement.html#substantive_disagreement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.substantive_disagreement" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>scale_values</strong> – Scale Value Pair</li>
+<li><strong>threshold_high</strong> – Returns False if difference between raw values is less than this quantity.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Whether there’s substantive disagreement between two assertions.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">object.Judgement</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-analytics.concepts.sentiment">
+<span id="sentiment"></span><h2>Sentiment<a class="headerlink" href="#module-analytics.concepts.sentiment" title="Permalink to this headline">¶</a></h2>
+<p>TBD</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="src.objects.html" class="btn btn-neutral float-right" title="Domain Objects" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="analytics.html" class="btn btn-neutral float-left" title="API Methods" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

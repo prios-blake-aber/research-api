@@ -3,38 +3,25 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Analytics Functionality
-=======================
+API Methods
+***********
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-.. contents::
+New Logic can be expressed in terms of an API that applies Core Concepts to Domain objects.
 
 Activity
-========
+^^^^^^^^
+
 .. automodule:: analytics.activity
-   :members:
+    :members:
 
 Disagreement
-============
+^^^^^^^^^^^^
+
 .. automodule:: analytics.disagreement
-   :members:
+    :members:
 
 Sentiment
-=========
+^^^^^^^^^
+
 .. automodule:: analytics.sentiment
-   :members:
-
-Utilities
-=========
-.. automodule:: analytics.utils
-   :members:
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+    :members:
