@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>analytics.sentiment &mdash; DomainAPI 0.0.1 documentation</title>
+  <title>analytics.sentiment &mdash; Research API 0.0.1 documentation</title>
   
 
   
@@ -17,36 +17,38 @@
   
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
-            <a href="../../index.html" class="icon icon-home"> DomainAPI
+            <a href="../../index.html" class="icon icon-home"> Research API
           
 
           
@@ -76,26 +78,21 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html">Insights Functionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.activity">Activity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.contribution">Contribution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.disagreement">Disagreement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.interaction">Interaction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.sentiment">Sentiment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.uniqueness">Uniqueness</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.utils">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html">Analytics Functionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.activity">Activity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.disagreement">Disagreement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.sentiment">Sentiment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.utils">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../objects.html">Domain Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.objects">Domain</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.meta">Base</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../objects.html#indices-and-tables">Indices and tables</a></li>
+              <p class="caption"><span class="caption-text">Developing New Logic</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html">Application Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html">API Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.concepts.html">Core Concepts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Operations on Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../src.objects.html">Domain Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../src.meta.html">Meta-Model Interface</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Helper Functions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.foundation.html">Mathematical Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.utils.html">Utilities</a></li>
 </ul>
 
             
@@ -110,7 +107,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">DomainAPI</a>
+          <a href="../../index.html">Research API</a>
         
       </nav>
 
@@ -160,19 +157,16 @@
             
   <h1>Source code for analytics.sentiment</h1><div class="highlight"><pre>
 <span></span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">TBD</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
 <span class="kn">from</span> <span class="nn">src</span> <span class="k">import</span> <span class="n">objects</span><span class="p">,</span> <span class="n">meta</span>
 <span class="kn">from</span> <span class="nn">analytics</span> <span class="k">import</span> <span class="n">foundation</span>
 
 
 <div class="viewcode-block" id="quality"><a class="viewcode-back" href="../../analytics.html#analytics.sentiment.quality">[docs]</a><span class="k">def</span> <span class="nf">quality</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Note:</span>
-<span class="sd">        * Defines &quot;Meeting Section Quality&quot; as the average of Rankings reflected in Question Responses to &quot;Rate the Section&quot;.</span>
-<span class="sd">        * Returns a Scale Value representing the Meeting Section Quality.</span>
-<span class="sd">        * Returns Null if there are no &quot;Rate the Section&quot; Questions or Responses.</span>
-<span class="sd">        * This is produced by the following operation(s):</span>
-<span class="sd">            * Calculates the average of all Question Responses to &quot;Rate the Section&quot;.</span>
-
 <span class="sd">    Args:</span>
 <span class="sd">        dots (objects.AssertionSet): A set of :class:`objects.Dot`.</span>
 <span class="sd">        *args: Variable length argument list.</span>
@@ -198,33 +192,6 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">foundation</span><span class="o">.</span><span class="n">weighted_average</span><span class="p">([</span><span class="n">i</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">scale_assertions</span><span class="o">.</span><span class="n">data</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">scale_assertions</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">result</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="importance"><a class="viewcode-back" href="../../analytics.html#analytics.sentiment.importance">[docs]</a><span class="k">def</span> <span class="nf">importance</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Note:</span>
-<span class="sd">        * Classifies Meeting Sections as Critical, Very Important, Important, Typical, or Unremarkable based on the number of Important People in the Meeting Section and the number of generated Dots and Questions.</span>
-<span class="sd">        * Returns a Statistic between 0-1 that represents the classification of a Meeting Section&#39;s Importance.</span>
-<span class="sd">        * This is produced by the following operation(s):</span>
-<span class="sd">            * Calculates a Person Importance Value for each Participant based on their General Believability, and if provided, job level and whether they belong to particular Management Groups (job level and membership to management groups are not currently provided in the pilot). Defaults to zero.</span>
-<span class="sd">            * Calculates the Important People Scaling Factor: calculates how many People had nonzero Person Importance (capped at 4).</span>
-<span class="sd">            * Calculates the Activity Scaling Factor: calculates a statistic representing how much activity occurred in the Meeting Section based on Dots and Questions and achieves its maximum value at 100 Dots or 10 Questions.</span>
-<span class="sd">            * Calculates the Dot Scaling Factor, which is a function of how many Dots were given in a Meeting Section and achieves its maximum value at 20 Dots.</span>
-<span class="sd">            * Calculates the Total Importance: calculates the sum of all Meeting Section Participants&#39; Person Importance.</span>
-<span class="sd">            * Calculates the overall Meeting Section Importance Value: calculates the product of the Total Importance and the three Scaling Factors above.</span>
-<span class="sd">            * Determines which classification the Meeting Section Importance Value receives and returns the associated text label (Critical, Very Important, Important, Typical, or Unremarkable).</span>
-<span class="sd">        * To produce a result at the Meeting level (as opposed to Meeting Section Level), there is code living in the application which labels a Meeting based on the results from this analytic for the first Meeting Section only.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        dots (objects.AssertionSet): A set of :class:`objects.Dot`.</span>
-<span class="sd">        *args: Variable length argument list.</span>
-<span class="sd">        **kwargs: Arbitrary keyword arguments.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        objects.AssertionSet: A set of relevant actions in a meeting, or an empty set if none exist.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
 </pre></div>
 
            </div>
@@ -237,7 +204,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Research.
+        &copy; Copyright 2019, Research
 
     </p>
   </div>
@@ -254,33 +221,16 @@
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'0.0.1',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="../../_static/language_data.js"></script>
-
-  
-
-  <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

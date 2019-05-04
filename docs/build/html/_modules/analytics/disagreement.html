@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>analytics.disagreement &mdash; DomainAPI 0.0.1 documentation</title>
+  <title>analytics.disagreement &mdash; Research API 0.0.1 documentation</title>
   
 
   
@@ -17,36 +17,38 @@
   
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
-            <a href="../../index.html" class="icon icon-home"> DomainAPI
+            <a href="../../index.html" class="icon icon-home"> Research API
           
 
           
@@ -76,26 +78,21 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html">Insights Functionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.activity">Activity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.contribution">Contribution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.disagreement">Disagreement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.interaction">Interaction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.sentiment">Sentiment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.uniqueness">Uniqueness</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.utils">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html">Analytics Functionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.activity">Activity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.disagreement">Disagreement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.sentiment">Sentiment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.utils">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../objects.html">Domain Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.objects">Domain</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.meta">Base</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../objects.html#indices-and-tables">Indices and tables</a></li>
+              <p class="caption"><span class="caption-text">Developing New Logic</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html">Application Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html">API Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.concepts.html">Core Concepts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Operations on Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../src.objects.html">Domain Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../src.meta.html">Meta-Model Interface</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Helper Functions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.foundation.html">Mathematical Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.utils.html">Utilities</a></li>
 </ul>
 
             
@@ -110,7 +107,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">DomainAPI</a>
+          <a href="../../index.html">Research API</a>
         
       </nav>
 
@@ -160,130 +157,21 @@
             
   <h1>Source code for analytics.disagreement</h1><div class="highlight"><pre>
 <span></span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">TBD</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
 <span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Any</span>
-<span class="kn">from</span> <span class="nn">analytics</span> <span class="k">import</span> <span class="n">foundation</span><span class="p">,</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">analytics</span> <span class="k">import</span> <span class="n">foundation</span><span class="p">,</span> <span class="n">concepts</span><span class="p">,</span> <span class="n">utils</span>
 <span class="kn">from</span> <span class="nn">src</span> <span class="k">import</span> <span class="n">objects</span><span class="p">,</span> <span class="n">meta</span>
-<span class="kn">from</span> <span class="nn">analytics.concepts</span> <span class="k">import</span> <span class="n">believable_choice</span>
 
 
 <span class="n">StringOrFloat</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;StringOrFloat&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
 
-<span class="n">_THRESHOLD_HIGH</span> <span class="o">=</span> <span class="mf">1.7</span>
-<span class="n">_THRESHOLD_STD_SCALE</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">_THRESHOLD_STD_MAPPED_SCALE</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">_THRESHOLD_POLES</span> <span class="o">=</span> <span class="mf">0.25</span>
 <span class="n">_UNIQUE_DISAGREEMENT</span> <span class="o">=</span> <span class="mf">0.88</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Core functionality for Disagreement</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-
-<div class="viewcode-block" id="substantive_disagreement"><a class="viewcode-back" href="../../analytics.html#analytics.disagreement.substantive_disagreement">[docs]</a><span class="k">def</span> <span class="nf">substantive_disagreement</span><span class="p">(</span><span class="n">scale_values</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
-                             <span class="n">threshold_high</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">_THRESHOLD_HIGH</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Substantive disagreement</span>
-
-<span class="sd">    * Identifies a pair of Scale Values that Substantively Disagree.</span>
-<span class="sd">    * Returns a Boolean representing whether Substantive Disagreement exists.</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Calculates the absolute difference between the two values.</span>
-<span class="sd">        * Determines whether the values are Far Away: Compares whether the difference is greater</span>
-<span class="sd">        than a threshold of 1.7.</span>
-<span class="sd">        * Maps Responses into Summarized Opinions.</span>
-<span class="sd">        * Determines whether the Summarized Opinions Disagree: determines whether their values are</span>
-<span class="sd">        different.</span>
-<span class="sd">        * Returns True if both of the above conditions are True.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    scale_values</span>
-<span class="sd">        Scale Value Pair</span>
-<span class="sd">    threshold_high</span>
-<span class="sd">        Returns False if difference between raw values is less than this quantity.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    object.Judgement</span>
-<span class="sd">        Whether there&#39;s substantive disagreement between two assertions.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">scale_values</span>
-    <span class="n">diff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x1</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="n">x2</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-    <span class="n">far_away</span> <span class="o">=</span> <span class="n">diff</span> <span class="o">&gt;</span> <span class="n">threshold_high</span>
-    <span class="n">mapped_x1</span> <span class="o">=</span> <span class="n">foundation</span><span class="o">.</span><span class="n">map_values</span><span class="p">(</span><span class="n">x1</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">objects</span><span class="o">.</span><span class="n">NumericRange</span><span class="o">.</span><span class="n">ONE_TO_TEN</span><span class="p">)</span>
-    <span class="n">mapped_x2</span> <span class="o">=</span> <span class="n">foundation</span><span class="o">.</span><span class="n">map_values</span><span class="p">(</span><span class="n">x2</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">objects</span><span class="o">.</span><span class="n">NumericRange</span><span class="o">.</span><span class="n">ONE_TO_TEN</span><span class="p">)</span>
-    <span class="n">mapped_diff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">mapped_x1</span> <span class="o">-</span> <span class="n">mapped_x2</span><span class="p">)</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">far_away</span> <span class="ow">and</span> <span class="n">mapped_diff</span>
-    <span class="k">return</span> <span class="n">result</span></div>
-
-
-<div class="viewcode-block" id="is_polarizing"><a class="viewcode-back" href="../../analytics.html#analytics.disagreement.is_polarizing">[docs]</a><span class="k">def</span> <span class="nf">is_polarizing</span><span class="p">(</span><span class="n">scale_assertions</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">ScaleValueSet</span><span class="p">,</span>
-                  <span class="n">thresh_on_std_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">_THRESHOLD_STD_SCALE</span><span class="p">,</span>
-                  <span class="n">thresh_on_std_mapped_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">_THRESHOLD_STD_MAPPED_SCALE</span><span class="p">,</span>
-                  <span class="n">thresh_on_poles</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">_THRESHOLD_POLES</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">objects</span><span class="o">.</span><span class="n">Judgement</span><span class="p">:</span>
-
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Is Polarizing</span>
-
-<span class="sd">    From Key Points</span>
-<span class="sd">    * Identifies a Polarizing event when Scale Values on a Person are spread out and there exist</span>
-<span class="sd">    comparable numbers of positive (8 and above) and negative (4 and below) Scale Values</span>
-<span class="sd">    * Returns a boolean</span>
-<span class="sd">    * This is produced by the following operation(s):</span>
-<span class="sd">        * Calculates the standard deviation of Scale Values</span>
-<span class="sd">        * Calculates the Bucketed Standard Deviation of Scale Values:</span>
-<span class="sd">            * Maps the Scale Values to their Summarized Opinion</span>
-<span class="sd">            * Calculates the standard deviation</span>
-<span class="sd">        * Calculates the Relative Incidence Ratio of positive/negative Scale Values</span>
-<span class="sd">            * Calculates the numerator as the minimum count of positive/negative Scale Values</span>
-<span class="sd">            * Calculates the Denominator as the maximum count of positive/negative Scale Values</span>
-<span class="sd">        * Combines the following conditions to determine whether the Scale Values are polarizing:</span>
-<span class="sd">            * Calculates the standard deviation of Scale Values is greater than 0.5</span>
-<span class="sd">            * Calculates the Bucketed Standard Deviation of Scale Values is greater than 1.0</span>
-<span class="sd">            * Calculates the Relative Incidence Ratio of positive/negative Scale Values is greater</span>
-<span class="sd">            than 0.25</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    scale_assertions</span>
-<span class="sd">        List of assertions with scale values.</span>
-<span class="sd">    thresh_on_std_scale</span>
-<span class="sd">        Threshold on standard deviation of scale values.</span>
-<span class="sd">    thresh_on_std_mapped_scale</span>
-<span class="sd">        Threshold on standard deviation of scale values mapped to 1, 2, and 3</span>
-<span class="sd">    thresh_on_poles</span>
-<span class="sd">        Threshold on ratio between poles</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    object.Judgement</span>
-<span class="sd">        Whether a set of scale values are polarizing.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">xi</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">scale_assertions</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
-    <span class="n">mapped_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">foundation</span><span class="o">.</span><span class="n">map_values</span><span class="p">(</span><span class="n">vi</span><span class="p">,</span> <span class="n">objects</span><span class="o">.</span><span class="n">NumericRange</span><span class="o">.</span><span class="n">ONE_TO_TEN</span><span class="p">)</span> <span class="k">for</span> <span class="n">vi</span> <span class="ow">in</span> <span class="n">values</span><span class="p">]</span>
-
-    <span class="c1"># TODO: nesting functions here is terrible; why not use the sentiment module?</span>
-    <span class="k">def</span> <span class="nf">negative_sentiment</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span>
-
-    <span class="k">def</span> <span class="nf">positive_sentiment</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">3</span>
-
-    <span class="n">percent_negative</span> <span class="o">=</span> <span class="n">foundation</span><span class="o">.</span><span class="n">percent_satisfying_condition</span><span class="p">(</span><span class="n">mapped_values</span><span class="p">,</span> <span class="n">negative_sentiment</span><span class="p">)</span>
-    <span class="n">percent_positive</span> <span class="o">=</span> <span class="n">foundation</span><span class="o">.</span><span class="n">percent_satisfying_condition</span><span class="p">(</span><span class="n">mapped_values</span><span class="p">,</span> <span class="n">positive_sentiment</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">percent_negative</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">percent_positive</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">pole_ratio</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">percent_positive</span><span class="o">/</span><span class="n">percent_negative</span><span class="p">,</span> <span class="n">percent_negative</span><span class="o">/</span><span class="n">percent_positive</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">pole_ratio</span> <span class="o">=</span> <span class="mi">0</span>
-
-    <span class="n">std_values_condition</span> <span class="o">=</span> <span class="n">foundation</span><span class="o">.</span><span class="n">standard_deviation</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">thresh_on_std_scale</span>
-    <span class="n">std_mapped_values_condition</span> <span class="o">=</span> <span class="n">foundation</span><span class="o">.</span><span class="n">standard_deviation</span><span class="p">(</span><span class="n">mapped_values</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">thresh_on_std_mapped_scale</span>
-    <span class="n">pole_condition</span> <span class="o">=</span> <span class="n">pole_ratio</span> <span class="o">&gt;</span> <span class="n">thresh_on_poles</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">std_values_condition</span> <span class="ow">and</span> <span class="n">std_mapped_values_condition</span> <span class="ow">and</span> <span class="n">pole_condition</span>
-    <span class="k">return</span> <span class="n">objects</span><span class="o">.</span><span class="n">Judgement</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">result</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="polarizing_topics"><a class="viewcode-back" href="../../analytics.html#analytics.disagreement.polarizing_topics">[docs]</a><span class="k">def</span> <span class="nf">polarizing_topics</span><span class="p">(</span><span class="n">dots</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">objects</span><span class="o">.</span><span class="n">Dot</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">]:</span>
@@ -309,7 +197,7 @@
     <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">targets</span><span class="p">:</span>
         <span class="n">target_syntheses</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">syntheses</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="n">t</span><span class="p">]</span>
-        <span class="n">target_is_polarizing</span> <span class="o">=</span> <span class="n">is_polarizing</span><span class="p">(</span><span class="n">target_syntheses</span><span class="p">)</span>
+        <span class="n">target_is_polarizing</span> <span class="o">=</span> <span class="n">concepts</span><span class="o">.</span><span class="n">disagreement</span><span class="o">.</span><span class="n">is_polarizing</span><span class="p">(</span><span class="n">target_syntheses</span><span class="p">)</span>
         <span class="n">target_is_polarizing</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">t</span>
         <span class="n">result</span> <span class="o">+=</span> <span class="p">[</span><span class="n">target_is_polarizing</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">result</span></div>
@@ -348,87 +236,6 @@
                 <span class="p">)</span>
             <span class="p">)</span>
     <span class="k">return</span> <span class="n">result</span></div>
-
-
-<div class="viewcode-block" id="disagrees_with_167"><a class="viewcode-back" href="../../analytics.html#analytics.disagreement.disagrees_with_167">[docs]</a><span class="k">def</span> <span class="nf">disagrees_with_167</span><span class="p">(</span><span class="n">values</span> <span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">question_type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-
-<span class="sd">    TODO: other analytics that use disagrees_with are Out of Sync People, Uniquely Out of Sync,</span>
-<span class="sd">    Significantly OOS, etc.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    question</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    objects.AssertionSet</span>
-<span class="sd">        Empty set, if none exists.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">response</span><span class="p">,</span> <span class="n">response_value</span> <span class="o">=</span> <span class="n">values</span>
-    <span class="n">categorical_binary</span> <span class="o">=</span> <span class="n">question_type</span> <span class="ow">in</span> <span class="p">(</span><span class="n">objects</span><span class="o">.</span><span class="n">QuestionType</span><span class="o">.</span><span class="n">CATEGORICAL</span><span class="p">,</span> <span class="n">objects</span><span class="o">.</span><span class="n">QuestionType</span><span class="o">.</span><span class="n">BINARY</span><span class="p">)</span>
-    <span class="n">numeric</span> <span class="o">=</span> <span class="n">question_type</span> <span class="ow">in</span> <span class="p">(</span><span class="n">objects</span><span class="o">.</span><span class="n">QuestionType</span><span class="o">.</span><span class="n">LIKERT</span><span class="p">,</span> <span class="n">objects</span><span class="o">.</span><span class="n">QuestionType</span><span class="o">.</span><span class="n">SCALE</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">categorical_binary</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">disagrees_with_categorical_binary</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">response_value</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">numeric</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">disagrees_with_numeric</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">response_value</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">None</span></div>
-
-
-<div class="viewcode-block" id="disagrees_with_categorical_binary"><a class="viewcode-back" href="../../analytics.html#analytics.disagreement.disagrees_with_categorical_binary">[docs]</a><span class="k">def</span> <span class="nf">disagrees_with_categorical_binary</span><span class="p">(</span><span class="n">response_to_compare</span><span class="p">:</span> <span class="n">StringOrFloat</span><span class="p">,</span>
-                                      <span class="n">answer_to_compare</span><span class="p">:</span> <span class="n">StringOrFloat</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Disagrees With logic for Categorical/Binary values.</span>
-
-<span class="sd">    TODO: Find better home -&gt; is this a core concept?</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    response_to_compare</span>
-<span class="sd">    answer_to_compare</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    meta.Assertion</span>
-<span class="sd">        Value is True, if there is a disagreement.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">response_to_compare</span> <span class="o">!=</span> <span class="n">answer_to_compare</span>
-    <span class="k">return</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">response_to_compare</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">result</span><span class="p">,</span>
-                          <span class="n">measure</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">BooleanOption</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="disagrees_with_numeric"><a class="viewcode-back" href="../../analytics.html#analytics.disagreement.disagrees_with_numeric">[docs]</a><span class="k">def</span> <span class="nf">disagrees_with_numeric</span><span class="p">(</span><span class="n">response_to_compare</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-                           <span class="n">answer_to_compare</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-                           <span class="n">far_away</span><span class="p">:</span> <span class="nb">float</span><span class="o">=</span><span class="n">_THRESHOLD_HIGH</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Disagrees With logic for Scale values (1-to-10 or 1-to-5).</span>
-
-<span class="sd">    TODO: Find better home -&gt; is this a core concept?</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    response_to_compare</span>
-<span class="sd">    answer_to_compare</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    meta.Assertion</span>
-<span class="sd">        Value is True, if there is a disagreement.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">buckets</span> <span class="o">=</span> <span class="n">foundation</span><span class="o">.</span><span class="n">map_values</span><span class="p">([</span><span class="n">response_to_compare</span><span class="p">,</span> <span class="n">answer_to_compare</span><span class="p">],</span> <span class="n">objects</span><span class="o">.</span><span class="n">NumericRange</span><span class="p">)</span>
-    <span class="n">same_bucket</span> <span class="o">=</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">far_away</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">response_to_compare</span> <span class="o">-</span> <span class="n">answer_to_compare</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">far_away</span>
-
-        <span class="n">result</span> <span class="o">=</span> <span class="n">far_away</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">same_bucket</span>
-        <span class="k">return</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">response_to_compare</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">result</span><span class="p">,</span>
-                              <span class="n">measure</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">FloatOption</span><span class="p">)</span>
-
-    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-        <span class="k">return</span> <span class="ow">not</span> <span class="n">same_bucket</span></div>
 
 
 <div class="viewcode-block" id="is_unique"><a class="viewcode-back" href="../../analytics.html#analytics.disagreement.is_unique">[docs]</a><span class="k">def</span> <span class="nf">is_unique</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">,</span> <span class="n">unique_disagreement</span><span class="o">=</span><span class="n">_UNIQUE_DISAGREEMENT</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span>
@@ -484,7 +291,7 @@
     <span class="n">value_type</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">question_type</span>
 
     <span class="c1"># Get the Believable choice</span>
-    <span class="n">choice</span> <span class="o">=</span> <span class="n">believable_choice</span><span class="p">(</span><span class="n">values_and_weights</span><span class="p">,</span> <span class="n">value_type</span><span class="p">)</span>
+    <span class="n">choice</span> <span class="o">=</span> <span class="n">concepts</span><span class="o">.</span><span class="n">disagreement</span><span class="o">.</span><span class="n">believable_choice</span><span class="p">(</span><span class="n">values_and_weights</span><span class="p">,</span> <span class="n">value_type</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">(</span>
         <span class="n">source</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">,</span>
@@ -608,7 +415,7 @@
 <span class="sd">        Values are True if person is out-of-sync on the question.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">believable_choice_result</span> <span class="o">=</span> <span class="n">believable_choice_on_question</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
-    <span class="n">disagrees_with_result</span> <span class="o">=</span> <span class="n">disagrees_with_167</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+    <span class="n">disagrees_with_result</span> <span class="o">=</span> <span class="n">concepts</span><span class="o">.</span><span class="n">disagreement</span><span class="o">.</span><span class="n">disagrees_with_167</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
     <span class="n">people</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">question</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">disagrees_with_result</span> <span class="ow">and</span> <span class="p">(</span><span class="n">believable_choice_result</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">believable_choice_result</span><span class="p">,</span> <span class="nb">float</span><span class="p">))</span>
@@ -629,7 +436,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Research.
+        &copy; Copyright 2019, Research
 
     </p>
   </div>
@@ -646,33 +453,16 @@
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'0.0.1',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="../../_static/language_data.js"></script>
-
-  
-
-  <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -1,0 +1,279 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Meta-Model Interface &mdash; Research API 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Mathematical Operations" href="analytics.foundation.html" />
+    <link rel="prev" title="Domain Objects" href="src.objects.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Research API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Developing New Logic</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="insights.html">Application Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.html">API Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.concepts.html">Core Concepts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Operations on Objects</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="src.objects.html">Domain Objects</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Meta-Model Interface</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Helper Functions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="analytics.foundation.html">Mathematical Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.utils.html">Utilities</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Research API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Meta-Model Interface</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/src.meta.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="meta-model-interface">
+<h1>Meta-Model Interface<a class="headerlink" href="#meta-model-interface" title="Permalink to this headline">¶</a></h1>
+<p>Domain objects are expressed in terms of the Meta-Model.</p>
+<span class="target" id="module-src.meta"></span><p>TBD</p>
+<dl class="class">
+<dt id="src.meta.Assertion">
+<em class="property">class </em><code class="descclassname">src.meta.</code><code class="descname">Assertion</code><span class="sig-paren">(</span><em>source</em>, <em>target</em>, <em>value</em>, <em>measure=None</em>, <em>context=None</em>, <em>description=None</em>, <em>confidence=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/meta.html#Assertion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.meta.Assertion" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generic Assertion object:</p>
+<ul class="simple">
+<li>The “source” and “target” attributes should both be an Entity</li>
+<li>The “value” should be some numerical value</li>
+<li>The “confidence” should be some numerical value</li>
+<li>The “description” should be a free-form text field</li>
+<li>The “measure” should be the Entity ascribing semantic meaning to the “value”</li>
+<li>The “context” should be a list of Tags, Entities, etc that contextualize assertions</li>
+</ul>
+</dd></dl>
+
+<dl class="class">
+<dt id="src.meta.Entity">
+<em class="property">class </em><code class="descclassname">src.meta.</code><code class="descname">Entity</code><span class="sig-paren">(</span><em>allowable_attributes=None</em>, <em>allowable_collections=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/meta.html#Entity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.meta.Entity" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generic Entity object with attributes, containers and dynamically generated methods</p>
+<ul class="simple">
+<li>Attributes can be defined on instantiation via kwargs</li>
+<li><dl class="first docutils">
+<dt>Container attributes have special functionality:</dt>
+<dd><ul class="first last">
+<li>Instantiates with a list</li>
+<li>Generates a special method that appends to this list</li>
+<li>This class is expected to act as a MixIn for Domain Objects</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="src.meta.Entity.empty">
+<code class="descname">empty</code><span class="sig-paren">(</span><em>attributes_to_keep=None</em>, <em>collections_to_keep=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/meta.html#Entity.empty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.meta.Entity.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters data from instantiated object (Not recommended for ad hoc use)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="src.meta.EntityCollection">
+<em class="property">class </em><code class="descclassname">src.meta.</code><code class="descname">EntityCollection</code><span class="sig-paren">(</span><em>list_of_entities</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/meta.html#EntityCollection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.meta.EntityCollection" title="Permalink to this definition">¶</a></dt>
+<dd><p>A collection of Entity objects sharing the same type:</p>
+<ul class="simple">
+<li>Used to instantiate container-like attributes in an Entity</li>
+<li>Type checks all elements of the container</li>
+<li>Has append() method to add new elements to container</li>
+</ul>
+<dl class="method">
+<dt id="src.meta.EntityCollection.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/meta.html#EntityCollection.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.meta.EntityCollection.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Appends new items to container, records expected type, checks type consistency</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.meta.EntityCollection.check_consistent_types">
+<code class="descname">check_consistent_types</code><span class="sig-paren">(</span><em>list_of_entities</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/meta.html#EntityCollection.check_consistent_types"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.meta.EntityCollection.check_consistent_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>Records the type of the first appended item and detects inconsistency</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="analytics.foundation.html" class="btn btn-neutral float-right" title="Mathematical Operations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="src.objects.html" class="btn btn-neutral float-left" title="Domain Objects" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

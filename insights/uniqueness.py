@@ -1,3 +1,8 @@
+
+"""
+TBD
+"""
+
 from typing import List
 from src import objects, meta
 from analytics import disagreement
@@ -6,8 +11,8 @@ from analytics import disagreement
 def uniquely_out_of_sync_on_question_136(question: objects.Question) -> List[meta.Assertion]:
     """
     A person is uniquely ouf of sync on a question, if their response is unique (
-    `disagreement.is_unique`) and out-of-sync with the believable consensus (
-    `disagreement.out_of_sync_people_on_question`).
+    analytics.disagreement.is_unique) and out-of-sync with the believable consensus (
+    analytics.disagreement.out_of_sync_people_on_question).
 
     Parameters
     ----------

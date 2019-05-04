@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>src.meta &mdash; DomainAPI 0.0.1 documentation</title>
+  <title>src.meta &mdash; Research API 0.0.1 documentation</title>
   
 
   
@@ -17,36 +17,38 @@
   
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
-            <a href="../../index.html" class="icon icon-home"> DomainAPI
+            <a href="../../index.html" class="icon icon-home"> Research API
           
 
           
@@ -76,26 +78,21 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html">Insights Functionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.activity">Activity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.contribution">Contribution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.disagreement">Disagreement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.interaction">Interaction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.sentiment">Sentiment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.uniqueness">Uniqueness</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.utils">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html">Analytics Functionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.activity">Activity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.disagreement">Disagreement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.sentiment">Sentiment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.utils">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../objects.html">Domain Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.objects">Domain</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.meta">Base</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../objects.html#indices-and-tables">Indices and tables</a></li>
+              <p class="caption"><span class="caption-text">Developing New Logic</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html">Application Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html">API Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.concepts.html">Core Concepts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Operations on Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../src.objects.html">Domain Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../src.meta.html">Meta-Model Interface</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Helper Functions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.foundation.html">Mathematical Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.utils.html">Utilities</a></li>
 </ul>
 
             
@@ -110,7 +107,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">DomainAPI</a>
+          <a href="../../index.html">Research API</a>
         
       </nav>
 
@@ -160,11 +157,14 @@
             
   <h1>Source code for src.meta</h1><div class="highlight"><pre>
 <span></span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">TBD</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">time</span>
 
 
-<div class="viewcode-block" id="EntityCollection"><a class="viewcode-back" href="../../objects.html#src.meta.EntityCollection">[docs]</a><span class="k">class</span> <span class="nc">EntityCollection</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="EntityCollection"><a class="viewcode-back" href="../../src.meta.html#src.meta.EntityCollection">[docs]</a><span class="k">class</span> <span class="nc">EntityCollection</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A collection of Entity objects sharing the same type:</span>
 
 <span class="sd">    * Used to instantiate container-like attributes in an Entity</span>
@@ -180,13 +180,13 @@
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{n}</span><span class="s1"> members of type </span><span class="si">{t}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="n">t</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
 
-<div class="viewcode-block" id="EntityCollection.check_consistent_types"><a class="viewcode-back" href="../../objects.html#src.meta.EntityCollection.check_consistent_types">[docs]</a>    <span class="k">def</span> <span class="nf">check_consistent_types</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">list_of_entities</span><span class="p">):</span>
+<div class="viewcode-block" id="EntityCollection.check_consistent_types"><a class="viewcode-back" href="../../src.meta.html#src.meta.EntityCollection.check_consistent_types">[docs]</a>    <span class="k">def</span> <span class="nf">check_consistent_types</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">list_of_entities</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Records the type of the first appended item and detects inconsistency&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">list_of_entities</span><span class="p">:</span>
             <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list_of_entities</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Entities must share common type!&quot;</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">list_of_entities</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="EntityCollection.append"><a class="viewcode-back" href="../../objects.html#src.meta.EntityCollection.append">[docs]</a>    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<div class="viewcode-block" id="EntityCollection.append"><a class="viewcode-back" href="../../src.meta.html#src.meta.EntityCollection.append">[docs]</a>    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Appends new items to container, records expected type, checks type consistency&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
@@ -195,7 +195,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="Entity"><a class="viewcode-back" href="../../objects.html#src.meta.Entity">[docs]</a><span class="k">class</span> <span class="nc">Entity</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Entity"><a class="viewcode-back" href="../../src.meta.html#src.meta.Entity">[docs]</a><span class="k">class</span> <span class="nc">Entity</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A generic Entity object with attributes, containers and dynamically generated methods</span>
 
 <span class="sd">    * Attributes can be defined on instantiation via kwargs</span>
@@ -223,7 +223,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_add_collection</span><span class="p">(</span><span class="n">kw</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_instantiate_collection_functions</span><span class="p">(</span><span class="n">kw</span><span class="p">,</span> <span class="n">allowable_collections</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Entity.empty"><a class="viewcode-back" href="../../objects.html#src.meta.Entity.empty">[docs]</a>    <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attributes_to_keep</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">collections_to_keep</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Entity.empty"><a class="viewcode-back" href="../../src.meta.html#src.meta.Entity.empty">[docs]</a>    <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attributes_to_keep</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">collections_to_keep</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Filters data from instantiated object (Not recommended for ad hoc use)&quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attributes_to_keep</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="o">|</span> \
             <span class="nb">isinstance</span><span class="p">(</span><span class="n">collections_to_keep</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="s1">&#39;Must specify some data to retain in object!&#39;</span>
@@ -274,7 +274,7 @@
         <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">add_function</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">add_function</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Assertion"><a class="viewcode-back" href="../../objects.html#src.meta.Assertion">[docs]</a><span class="k">class</span> <span class="nc">Assertion</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Assertion"><a class="viewcode-back" href="../../src.meta.html#src.meta.Assertion">[docs]</a><span class="k">class</span> <span class="nc">Assertion</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A generic Assertion object:</span>
 
 <span class="sd">    * The &quot;source&quot; and &quot;target&quot; attributes should both be an Entity</span>
@@ -305,7 +305,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Research.
+        &copy; Copyright 2019, Research
 
     </p>
   </div>
@@ -322,33 +322,16 @@
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'0.0.1',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="../../_static/language_data.js"></script>
-
-  
-
-  <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

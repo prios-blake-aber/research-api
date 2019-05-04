@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>src.objects &mdash; DomainAPI 0.0.1 documentation</title>
+  <title>src.objects &mdash; Research API 0.0.1 documentation</title>
   
 
   
@@ -17,36 +17,38 @@
   
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
-            <a href="../../index.html" class="icon icon-home"> DomainAPI
+            <a href="../../index.html" class="icon icon-home"> Research API
           
 
           
@@ -76,26 +78,21 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html">Insights Functionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.activity">Activity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.contribution">Contribution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.disagreement">Disagreement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.interaction">Interaction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.sentiment">Sentiment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.uniqueness">Uniqueness</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#module-insights.utils">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../insights.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html">Analytics Functionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.activity">Activity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.disagreement">Disagreement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.sentiment">Sentiment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#module-analytics.utils">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analytics.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../objects.html">Domain Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.objects">Domain</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../objects.html#module-src.meta">Base</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../objects.html#indices-and-tables">Indices and tables</a></li>
+              <p class="caption"><span class="caption-text">Developing New Logic</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html">Application Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.html">API Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.concepts.html">Core Concepts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Operations on Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../src.objects.html">Domain Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../src.meta.html">Meta-Model Interface</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Helper Functions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.foundation.html">Mathematical Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analytics.utils.html">Utilities</a></li>
 </ul>
 
             
@@ -110,7 +107,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">DomainAPI</a>
+          <a href="../../index.html">Research API</a>
         
       </nav>
 
@@ -160,11 +157,15 @@
             
   <h1>Source code for src.objects</h1><div class="highlight"><pre>
 <span></span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">TBD</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
 <span class="kn">from</span> <span class="nn">src</span> <span class="k">import</span> <span class="n">meta</span>
 <span class="kn">from</span> <span class="nn">enum</span> <span class="k">import</span> <span class="n">Enum</span>
 
 
-<div class="viewcode-block" id="NumericRange"><a class="viewcode-back" href="../../objects.html#src.objects.NumericRange">[docs]</a><span class="k">class</span> <span class="nc">NumericRange</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<div class="viewcode-block" id="NumericRange"><a class="viewcode-back" href="../../src.objects.html#src.objects.NumericRange">[docs]</a><span class="k">class</span> <span class="nc">NumericRange</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Enumeration that fixes the range of numerical values.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -173,7 +174,7 @@
     <span class="n">ONE_TO_THREE</span> <span class="o">=</span> <span class="mi">3</span></div>
 
 
-<div class="viewcode-block" id="QuestionType"><a class="viewcode-back" href="../../objects.html#src.objects.QuestionType">[docs]</a><span class="k">class</span> <span class="nc">QuestionType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<div class="viewcode-block" id="QuestionType"><a class="viewcode-back" href="../../src.objects.html#src.objects.QuestionType">[docs]</a><span class="k">class</span> <span class="nc">QuestionType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Stub for the possible enumerations of Question Type&quot;&quot;&quot;</span>
     <span class="n">LIKERT</span> <span class="o">=</span> <span class="s1">&#39;Likert&#39;</span>
     <span class="n">SCALE</span> <span class="o">=</span> <span class="s1">&#39;Scale&#39;</span>
@@ -182,45 +183,45 @@
     <span class="n">RATING</span> <span class="o">=</span> <span class="s1">&#39;Rate This Section&#39;</span></div>
 
 
-<div class="viewcode-block" id="Judgement"><a class="viewcode-back" href="../../objects.html#src.objects.Judgement">[docs]</a><span class="k">class</span> <span class="nc">Judgement</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">):</span>
+<div class="viewcode-block" id="Judgement"><a class="viewcode-back" href="../../src.objects.html#src.objects.Judgement">[docs]</a><span class="k">class</span> <span class="nc">Judgement</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Judgement&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Comparison"><a class="viewcode-back" href="../../objects.html#src.objects.Comparison">[docs]</a><span class="k">class</span> <span class="nc">Comparison</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">):</span>
+<div class="viewcode-block" id="Comparison"><a class="viewcode-back" href="../../src.objects.html#src.objects.Comparison">[docs]</a><span class="k">class</span> <span class="nc">Comparison</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Comparison&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Dot"><a class="viewcode-back" href="../../objects.html#src.objects.Dot">[docs]</a><span class="k">class</span> <span class="nc">Dot</span><span class="p">(</span><span class="n">Judgement</span><span class="p">):</span>
+<div class="viewcode-block" id="Dot"><a class="viewcode-back" href="../../src.objects.html#src.objects.Dot">[docs]</a><span class="k">class</span> <span class="nc">Dot</span><span class="p">(</span><span class="n">Judgement</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Dot&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Ranking"><a class="viewcode-back" href="../../objects.html#src.objects.Ranking">[docs]</a><span class="k">class</span> <span class="nc">Ranking</span><span class="p">(</span><span class="n">Judgement</span><span class="p">):</span>
+<div class="viewcode-block" id="Ranking"><a class="viewcode-back" href="../../src.objects.html#src.objects.Ranking">[docs]</a><span class="k">class</span> <span class="nc">Ranking</span><span class="p">(</span><span class="n">Judgement</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Ranking&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Response"><a class="viewcode-back" href="../../objects.html#src.objects.Response">[docs]</a><span class="k">class</span> <span class="nc">Response</span><span class="p">(</span><span class="n">Judgement</span><span class="p">):</span>
+<div class="viewcode-block" id="Response"><a class="viewcode-back" href="../../src.objects.html#src.objects.Response">[docs]</a><span class="k">class</span> <span class="nc">Response</span><span class="p">(</span><span class="n">Judgement</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Response&quot;&quot;&quot;</span>
     <span class="c1"># TODO: Index by Person who gave the response along with value.</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="AssertionSet"><a class="viewcode-back" href="../../objects.html#src.objects.AssertionSet">[docs]</a><span class="k">class</span> <span class="nc">AssertionSet</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
+<div class="viewcode-block" id="AssertionSet"><a class="viewcode-back" href="../../src.objects.html#src.objects.AssertionSet">[docs]</a><span class="k">class</span> <span class="nc">AssertionSet</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;AssertionSet (Useful for Logic)&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">_allowable_collections</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;members&#39;</span><span class="p">:</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">}</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">allowable_collections</span><span class="o">=</span><span class="n">_allowable_collections</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="ScaleValueSet"><a class="viewcode-back" href="../../objects.html#src.objects.ScaleValueSet">[docs]</a><span class="k">class</span> <span class="nc">ScaleValueSet</span><span class="p">(</span><span class="n">AssertionSet</span><span class="p">):</span>
+<div class="viewcode-block" id="ScaleValueSet"><a class="viewcode-back" href="../../src.objects.html#src.objects.ScaleValueSet">[docs]</a><span class="k">class</span> <span class="nc">ScaleValueSet</span><span class="p">(</span><span class="n">AssertionSet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;ScaleValueSet (Useful for Logic)&quot;&quot;&quot;</span>
     <span class="c1"># TODO: add post-init to check all values are floats between 1-10</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -228,25 +229,25 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">allowable_collections</span><span class="o">=</span><span class="n">_allowable_collections</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="DotCollection"><a class="viewcode-back" href="../../objects.html#src.objects.DotCollection">[docs]</a><span class="k">class</span> <span class="nc">DotCollection</span><span class="p">(</span><span class="n">ScaleValueSet</span><span class="p">):</span>
+<div class="viewcode-block" id="DotCollection"><a class="viewcode-back" href="../../src.objects.html#src.objects.DotCollection">[docs]</a><span class="k">class</span> <span class="nc">DotCollection</span><span class="p">(</span><span class="n">ScaleValueSet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Collection of Dots&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="ResponseCollection"><a class="viewcode-back" href="../../objects.html#src.objects.ResponseCollection">[docs]</a><span class="k">class</span> <span class="nc">ResponseCollection</span><span class="p">(</span><span class="n">AssertionSet</span><span class="p">):</span>
+<div class="viewcode-block" id="ResponseCollection"><a class="viewcode-back" href="../../src.objects.html#src.objects.ResponseCollection">[docs]</a><span class="k">class</span> <span class="nc">ResponseCollection</span><span class="p">(</span><span class="n">AssertionSet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Collection of Responses&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="RelevanceCollection"><a class="viewcode-back" href="../../objects.html#src.objects.RelevanceCollection">[docs]</a><span class="k">class</span> <span class="nc">RelevanceCollection</span><span class="p">(</span><span class="n">AssertionSet</span><span class="p">):</span>
+<div class="viewcode-block" id="RelevanceCollection"><a class="viewcode-back" href="../../src.objects.html#src.objects.RelevanceCollection">[docs]</a><span class="k">class</span> <span class="nc">RelevanceCollection</span><span class="p">(</span><span class="n">AssertionSet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Collection of Relevance Scores&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Question"><a class="viewcode-back" href="../../objects.html#src.objects.Question">[docs]</a><span class="k">class</span> <span class="nc">Question</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
+<div class="viewcode-block" id="Question"><a class="viewcode-back" href="../../src.objects.html#src.objects.Question">[docs]</a><span class="k">class</span> <span class="nc">Question</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Question&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">_allowable_attributes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;question_type&#39;</span><span class="p">}</span>
@@ -254,7 +255,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">_allowable_attributes</span><span class="p">,</span> <span class="n">_allowable_collections</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Attribute"><a class="viewcode-back" href="../../objects.html#src.objects.Attribute">[docs]</a><span class="k">class</span> <span class="nc">Attribute</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
+<div class="viewcode-block" id="Attribute"><a class="viewcode-back" href="../../src.objects.html#src.objects.Attribute">[docs]</a><span class="k">class</span> <span class="nc">Attribute</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Attribute&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">_allowable_attributes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">}</span>
@@ -262,7 +263,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">_allowable_attributes</span><span class="p">,</span> <span class="n">_allowable_collections</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="RelevanceScore"><a class="viewcode-back" href="../../objects.html#src.objects.RelevanceScore">[docs]</a><span class="k">class</span> <span class="nc">RelevanceScore</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">):</span>
+<div class="viewcode-block" id="RelevanceScore"><a class="viewcode-back" href="../../src.objects.html#src.objects.RelevanceScore">[docs]</a><span class="k">class</span> <span class="nc">RelevanceScore</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;RelevanceScore&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -272,7 +273,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;rating must be a float from 0 to 1&#39;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="BooleanOption"><a class="viewcode-back" href="../../objects.html#src.objects.BooleanOption">[docs]</a><span class="k">class</span> <span class="nc">BooleanOption</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">):</span>
+<div class="viewcode-block" id="BooleanOption"><a class="viewcode-back" href="../../src.objects.html#src.objects.BooleanOption">[docs]</a><span class="k">class</span> <span class="nc">BooleanOption</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;BooleanOption&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -282,7 +283,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Output type must be Boolean or None&#39;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="FloatOption"><a class="viewcode-back" href="../../objects.html#src.objects.FloatOption">[docs]</a><span class="k">class</span> <span class="nc">FloatOption</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">):</span>
+<div class="viewcode-block" id="FloatOption"><a class="viewcode-back" href="../../src.objects.html#src.objects.FloatOption">[docs]</a><span class="k">class</span> <span class="nc">FloatOption</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;FloatOption&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -292,7 +293,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Output type must be Float or None&#39;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="StringOption"><a class="viewcode-back" href="../../objects.html#src.objects.StringOption">[docs]</a><span class="k">class</span> <span class="nc">StringOption</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">):</span>
+<div class="viewcode-block" id="StringOption"><a class="viewcode-back" href="../../src.objects.html#src.objects.StringOption">[docs]</a><span class="k">class</span> <span class="nc">StringOption</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;StringOption&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -302,13 +303,13 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Output type must be String or None&#39;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="System"><a class="viewcode-back" href="../../objects.html#src.objects.System">[docs]</a><span class="k">class</span> <span class="nc">System</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
+<div class="viewcode-block" id="System"><a class="viewcode-back" href="../../src.objects.html#src.objects.System">[docs]</a><span class="k">class</span> <span class="nc">System</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;System&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Person"><a class="viewcode-back" href="../../objects.html#src.objects.Person">[docs]</a><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
+<div class="viewcode-block" id="Person"><a class="viewcode-back" href="../../src.objects.html#src.objects.Person">[docs]</a><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Person&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="c1"># TODO: instantiate person object with non-zero believability (e.g. 0.01)</span>
@@ -317,7 +318,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">_allowable_attributes</span><span class="p">,</span> <span class="n">_allowable_collections</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Team"><a class="viewcode-back" href="../../objects.html#src.objects.Team">[docs]</a><span class="k">class</span> <span class="nc">Team</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
+<div class="viewcode-block" id="Team"><a class="viewcode-back" href="../../src.objects.html#src.objects.Team">[docs]</a><span class="k">class</span> <span class="nc">Team</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Team&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">_allowable_attributes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">}</span>
@@ -325,7 +326,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">_allowable_attributes</span><span class="p">,</span> <span class="n">_allowable_collections</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Meeting"><a class="viewcode-back" href="../../objects.html#src.objects.Meeting">[docs]</a><span class="k">class</span> <span class="nc">Meeting</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
+<div class="viewcode-block" id="Meeting"><a class="viewcode-back" href="../../src.objects.html#src.objects.Meeting">[docs]</a><span class="k">class</span> <span class="nc">Meeting</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Entity</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Meeting&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">_allowable_attributes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">}</span>
@@ -333,7 +334,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">_allowable_attributes</span><span class="p">,</span> <span class="n">_allowable_collections</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="MeetingNubbyClassification"><a class="viewcode-back" href="../../objects.html#src.objects.MeetingNubbyClassification">[docs]</a><span class="k">class</span> <span class="nc">MeetingNubbyClassification</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<div class="viewcode-block" id="MeetingNubbyClassification"><a class="viewcode-back" href="../../src.objects.html#src.objects.MeetingNubbyClassification">[docs]</a><span class="k">class</span> <span class="nc">MeetingNubbyClassification</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="c1"># TODO: Generalize Classification Class.</span>
     <span class="n">NOT_NUBBY</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">LESS_NUBBY</span> <span class="o">=</span> <span class="mi">2</span>
@@ -352,7 +353,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Research.
+        &copy; Copyright 2019, Research
 
     </p>
   </div>
@@ -369,33 +370,16 @@
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'0.0.1',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="../../_static/language_data.js"></script>
-
-  
-
-  <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

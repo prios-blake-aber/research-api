@@ -1,56 +1,21 @@
-from typing import List
-from src import objects, meta
-from analytics import utils
-from typing import List, Any
 
 """
-Analytics on Activities
+TBD
 """
+
+from typing import List, Any
+from src import objects, meta
+from analytics import concepts, utils
+
 
 _QUORUM_THRESH_DEFAULT = 0.80
 
-def relevance(dots: objects.AssertionSet):
-    """
-    Defines a “Relevance” score for each :class:`objects.Assertion` as a function of the number of of relevant Dots given.
-
-    Args:
-        dots (objects.AssertionSet): A set of :class:`objects.Assertion`.
-        *args: Variable length argument list.
-        **kwargs: Arbitrary keyword arguments.
-
-    Returns:
-        objects.AssertionSet: A set of relevant :class:`objects.Assertion`, or an empty set if none exist.
-    """
-    pass
-
 
 def relevance_of_dots(dots: objects.DotCollection):
-    """
-    Defines a “Relevance” score for each :class:`objects.Attribute` as a function of the number of of relevant Dots given.
-
-    Args:
-        dots (objects.DotCollection): A set of :class:`objects.Dot`.
-        *args: Variable length argument list.
-        **kwargs: Arbitrary keyword arguments.
-
-    Returns:
-        objects.RelevanceCollection: A set of :class:`objects.RelevanceScore`, or an empty set if none exist.
-    """
     pass
 
 
 def relevance_of_people(dots: objects.DotCollection):
-    """
-    Defines a “Relevance” score for each :class:`objects.Person` as a function of the number of of relevant Dots given.
-
-    Args:
-        dots (objects.DotCollection): A set of :class:`objects.Dot`.
-        *args: Variable length argument list.
-        **kwargs: Arbitrary keyword arguments.
-
-    Returns:
-        objects.RelevanceCollection: A set of :class:`objects.RelevanceScore`, or an empty set if none exist.
-    """
     pass
 
 
@@ -77,16 +42,12 @@ def quorum_exists_on_question_145(question: objects.Question, number_participant
         return meta.Assertion(source=objects.System, target=question, value=None, measure=objects.BooleanOption)
 
 
-def engagement(values: List[Any]):
-    return len(values)
-
-
 def engagement_in_meeting(meeting: objects.Meeting):
-    return engagement(meeting.participants.data)
+    return concepts.activity.engagement(meeting.participants.data)
 
 
 def engagement_in_question(question: objects.Question):
-    return engagement(question.responses.data)
+    return concepts.activity.engagement(question.responses.data)
 
 
 def sufficient_question_engagement(question: objects.Question):
@@ -132,25 +93,6 @@ def frequently_dotted_subjects(dots: List[objects.Dot],
     return result
 
 
-def primary_participants(dots: List[objects.Dot]) -> List[objects.Judgement]:
-    """
-    Primary participants.
-
-    # TODO: Identical to `insights.activity.primary_participants_in_meeting_138`?
-    # TODO: Is it an insight or an analytic?
-
-    Parameters
-    ----------
-    dots
-
-    Returns
-    -------
-    List[objects.Judgement]
-        True/False for whether people are a participant.
-    """
-    pass
-
-
 def notable_participants(meeting: objects.Meeting, **kwargs) -> List[objects.Judgement]:
     """
     Returns True/False for whether a list of Participants in a Meeting are Notable Participants.
@@ -171,7 +113,7 @@ def notable_participants(meeting: objects.Meeting, **kwargs) -> List[objects.Jud
     # TODO: General utility function for filtering lists on some variable.
     believable_people = [person for person in meeting.participants if person.believability > 0]
 
-    primary_people = primary_participants(meeting.dots)
+    primary_people = concepts.activity.primary_participants(meeting.dots)
 
     return combine_results(believable_people, primary_people, condition="OR")
 

@@ -4,27 +4,9 @@
    contain the root `toctree` directive.
 
 Domain Objects
-==============
+**************
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+Domain objects are expressed in terms of the Meta-Model.
 
-.. contents::
-
-Domain
-======
 .. automodule:: src.objects
-   :members:
-
-Base
-====
-.. automodule:: src.meta
-   :members:
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+    :members:
