@@ -6,45 +6,67 @@ TBD
 from typing import List, Callable, Optional, TypeVar, Dict, Tuple
 from collections import Counter
 import numpy as np
+from scipy.stats import zscore
 from src import objects
 import itertools
 
 StringOrFloat = TypeVar("StringOrFloat", str, float)
 
 
-def map_values(x: List[float], from_type: objects.NumericRange):
+def map_values(values: List[float], value_type: objects.QuestionType):
     """
-    Maps values from one numeric range to a different numeric range.
+    Maps values from one numeric range to a different numeric range. Currently, mapping is to
+    defined for 1-to-10 or 1-to-5 ranges to "Semantic Buckets" (Positive, Negative, or Neutral).
 
     TODO: Add parameter for mapping lambda and to_type.
     TODO: Hard-coded to map 1-to-10 or 1-to-5 values to "Semantic Buckets".
 
     Parameters
     ----------
-    x
+    values
         Input data
-    from_type
+    value_type
+        Type of
 
     Returns
     -------
     List[float]
         Numeric values on different scale. Currently hard-coded to legacy semantic bucket scale.
     """
-    if from_type == objects.NumericRange.ONE_TO_TEN:
+
+    # TODO: Finalize value-type object.
+    if value_type == objects.NumericRange.ONE_TO_TEN:
+        value_type = objects.QuestionType.SCALE
+    if value_type == objects.NumericRange.ONE_TO_FIVE:
+        value_type = objects.QuestionType.LIKERT
+
+    if value_type == objects.QuestionType.SCALE:
         (low_thresh, high_thresh) = (5, 7)
-    elif from_type == objects.NumericRange.ONE_TO_FIVE:
+    elif value_type == objects.QuestionType:
         (low_thresh, high_thresh) = (2.5, 3.5)
     else:
-        return x
+        return values
 
-    return np.digitize(x, [low_thresh, high_thresh])
+    return np.digitize(values, [low_thresh, high_thresh])
 
 
 def standard_deviation(x: List[float]) -> float:
-    return np.nanstd(np.array(x))
+    return np.nanstd(np.array(x), ddof=1)
 
 
 def weighted_average(values: List[float], **kwargs) -> float:
+    """
+    Average of numeric values.
+
+    Parameters
+    ----------
+    values
+    kwargs
+
+    Returns
+    -------
+    float
+    """
     return np.average(values, **kwargs)
 
 
@@ -117,9 +139,7 @@ def counts(ar: List[StringOrFloat], normalize: bool = False) -> Dict[StringOrFlo
 
 def percent_of_total(values_and_weights: List[Tuple[StringOrFloat, float]]) -> Dict[StringOrFloat, float]:
     """
-    Percent
-
-    TODO: Describe the function better.
+    Percent of total.
 
     Parameters
     ----------
@@ -140,3 +160,23 @@ def percent_of_total(values_and_weights: List[Tuple[StringOrFloat, float]]) -> D
 def addition(values : List[float]):
     return sum(values)
 
+
+def map_to_z_score(values: List[float]) -> List[float]:
+    """
+    Z-score: Subtract values by their mean and divide by standard deviation.
+
+    Parameters
+    ----------
+    values
+
+    Returns
+    -------
+    List[float]
+        Z-scores
+
+    Examples
+    --------
+    >>> map_to_z_score([1,2,3])
+    [-1.224744871391589, 0.0, 1.224744871391589]
+    """
+    return list(zscore(values))

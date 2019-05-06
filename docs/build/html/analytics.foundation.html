@@ -17,36 +17,34 @@
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
 
+  
+  
     
 
   
+
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Utilities" href="analytics.utils.html" />
     <link rel="prev" title="Meta-Model Interface" href="src.meta.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
+
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+        <div class="wy-side-nav-search">
           
 
           
@@ -169,16 +167,14 @@
 <dd><p>Gets proportions of each
 :param ar:
 :param normalize:</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Dict[StringOrFloat, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a>]</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict[StringOrFloat, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a>]</p>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">counts</span><span class="p">([])</span>
 <span class="go">{}</span>
@@ -194,72 +190,63 @@
 
 <dl class="function">
 <dt id="analytics.foundation.map_values">
-<code class="descclassname">analytics.foundation.</code><code class="descname">map_values</code><span class="sig-paren">(</span><em>x: List[float], from_type: src.objects.NumericRange</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analytics/foundation.html#map_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.foundation.map_values" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maps values from one numeric range to a different numeric range.</p>
+<code class="descclassname">analytics.foundation.</code><code class="descname">map_values</code><span class="sig-paren">(</span><em>values: List[float], value_type: src.objects.QuestionType</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analytics/foundation.html#map_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.foundation.map_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maps values from one numeric range to a different numeric range. Currently, mapping is to
+defined for 1-to-10 or 1-to-5 ranges to “Semantic Buckets” (Positive, Negative, or Neutral).</p>
 <p>TODO: Add parameter for mapping lambda and to_type.
 TODO: Hard-coded to map 1-to-10 or 1-to-5 values to “Semantic Buckets”.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>x</strong> – Input data</li>
-<li><strong>from_type</strong> – </li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> – Input data</p></li>
+<li><p><strong>value_type</strong> – Type of</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Numeric values on different scale. Currently hard-coded to legacy semantic bucket scale.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a>]</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Numeric values on different scale. Currently hard-coded to legacy semantic bucket scale.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a>]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="analytics.foundation.percent_of_total">
 <code class="descclassname">analytics.foundation.</code><code class="descname">percent_of_total</code><span class="sig-paren">(</span><em>values_and_weights: List[Tuple[StringOrFloat, float]]</em><span class="sig-paren">)</span> &#x2192; Dict[StringOrFloat, float]<a class="reference internal" href="_modules/analytics/foundation.html#percent_of_total"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.foundation.percent_of_total" title="Permalink to this definition">¶</a></dt>
-<dd><p>Percent</p>
-<p>TODO: Describe the function better.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>values_and_weights</strong> – </td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Dict[StringOrFloat, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a>]</td>
-</tr>
-</tbody>
-</table>
+<dd><p>Percent of total.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>values_and_weights</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict[StringOrFloat, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a>]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="analytics.foundation.percent_satisfying_condition">
 <code class="descclassname">analytics.foundation.</code><code class="descname">percent_satisfying_condition</code><span class="sig-paren">(</span><em>ar: List[float], condition: Callable</em><span class="sig-paren">)</span> &#x2192; Optional[float]<a class="reference internal" href="_modules/analytics/foundation.html#percent_satisfying_condition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.foundation.percent_satisfying_condition" title="Permalink to this definition">¶</a></dt>
 <dd><p>Percent of values in an array that satisfy condition.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>ar</strong> – List of numeric values</li>
-<li><strong>condition</strong> – Calculates percent of values that satisfy this condition.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ar</strong> – List of numeric values</p></li>
+<li><p><strong>condition</strong> – Calculates percent of values that satisfy this condition.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li>Percentage (between 0 and 1, inclusive) if <cite>x</cite> has 1 or more elements. Otherwise it returns</li>
-<li><em>None.</em></li>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>Percentage (between 0 and 1, inclusive) if <cite>x</cite> has 1 or more elements. Otherwise it returns</p></li>
+<li><p><em>None.</em></p></li>
 </ul>
 </p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">greater_than_two</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">percent_satisfying_condition</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">greater_than_two</span><span class="p">)</span>
@@ -270,6 +257,26 @@ TODO: Hard-coded to map 1-to-10 or 1-to-5 values to “Semantic Buckets”.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">percent_satisfying_condition</span><span class="p">([],</span> <span class="n">greater_than_four</span><span class="p">)</span>
 </pre></div>
 </div>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.foundation.weighted_average">
+<code class="descclassname">analytics.foundation.</code><code class="descname">weighted_average</code><span class="sig-paren">(</span><em>values: List[float], **kwargs</em><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="_modules/analytics/foundation.html#weighted_average"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.foundation.weighted_average" title="Permalink to this definition">¶</a></dt>
+<dd><p>Average of numeric values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> – </p></li>
+<li><p><strong>kwargs</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -285,7 +292,7 @@ TODO: Hard-coded to map 1-to-10 or 1-to-5 values to “Semantic Buckets”.</p>
         <a href="analytics.utils.html" class="btn btn-neutral float-right" title="Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="src.meta.html" class="btn btn-neutral float-left" title="Meta-Model Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="src.meta.html" class="btn btn-neutral" title="Meta-Model Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -294,7 +301,7 @@ TODO: Hard-coded to map 1-to-10 or 1-to-5 values to “Semantic Buckets”.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Research
+        &copy; Copyright 2019, Research.
 
     </p>
   </div>
@@ -311,16 +318,33 @@ TODO: Hard-coded to map 1-to-10 or 1-to-5 values to “Semantic Buckets”.</p>
   
 
 
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

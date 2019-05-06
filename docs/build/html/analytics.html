@@ -17,36 +17,34 @@
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
 
+  
+  
     
 
   
+
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Core Concepts" href="analytics.concepts.html" />
     <link rel="prev" title="Application Logic" href="insights.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
+
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+        <div class="wy-side-nav-search">
           
 
           
@@ -185,23 +183,22 @@ Judgements. Elements of each list should have the same targets, which only appea
 <dt id="analytics.activity.frequently_dotted_subjects">
 <code class="descclassname">analytics.activity.</code><code class="descname">frequently_dotted_subjects</code><span class="sig-paren">(</span><em>dots: List[src.objects.Dot], min_percent_1: float = 0.1, min_count_1: int = 0, min_percent_2: float = 0.05, min_count_2: int = 5</em><span class="sig-paren">)</span> &#x2192; List[src.objects.Judgement]<a class="reference internal" href="_modules/analytics/activity.html#frequently_dotted_subjects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.activity.frequently_dotted_subjects" title="Permalink to this definition">¶</a></dt>
 <dd><ul class="simple">
-<li>Determines whether a Subject is Frequently Dotted: receives more than either:</li>
-<li>10% of all Dot Ratings OR</li>
-<li>5% of all Dot Ratings along with 10 Dot Ratings.</li>
+<li><p>Determines whether a Subject is Frequently Dotted: receives more than either:</p></li>
+<li><p>10% of all Dot Ratings OR</p></li>
+<li><p>5% of all Dot Ratings along with 10 Dot Ratings.</p></li>
 </ul>
 <p>TODO: Reconcile with Primary Participants</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dots</strong> – </td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Determines whether each subject in a collection of Dots is frequently dotted.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[<a class="reference internal" href="src.objects.html#src.objects.Judgement" title="src.objects.Judgement">objects.Judgement</a>]</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dots</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Determines whether each subject in a collection of Dots is frequently dotted.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="src.objects.html#src.objects.Judgement" title="src.objects.Judgement">objects.Judgement</a>]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
@@ -211,24 +208,20 @@ Judgements. Elements of each list should have the same targets, which only appea
 Notable Participants are:
 * Believable
 * Primary Participant</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>meeting</strong> – </li>
-<li><strong>kwargs</strong> – </li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>meeting</strong> – </p></li>
+<li><p><strong>kwargs</strong> – </p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List of people who are primary or believable.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List of people who are primary or believable.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -239,18 +232,17 @@ Notable Participants are:
 <dt id="analytics.disagreement.believable_choice_on_question">
 <code class="descclassname">analytics.disagreement.</code><code class="descname">believable_choice_on_question</code><span class="sig-paren">(</span><em>question: src.objects.Question</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/analytics/disagreement.html#believable_choice_on_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.believable_choice_on_question" title="Permalink to this definition">¶</a></dt>
 <dd><p>What is the believable choice on a question?</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>question</strong> – </td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Value</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>question</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
@@ -259,48 +251,65 @@ Notable Participants are:
 <dd><p>Divisiveness.</p>
 <p># TODO: Core Concept.
 # TODO: How are N/A’s being represented? We shouldn’t assume they’re being filtered.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>ar</strong> – </li>
-<li><strong>value_type</strong> – </li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ar</strong> – </p></li>
+<li><p><strong>value_type</strong> – </p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Divisiveness value</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Divisiveness value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.disagreement.dots_on_subject_are_polarizing">
+<code class="descclassname">analytics.disagreement.</code><code class="descname">dots_on_subject_are_polarizing</code><span class="sig-paren">(</span><em>dots: List[src.objects.Dot]</em><span class="sig-paren">)</span> &#x2192; List[src.meta.Assertion]<a class="reference internal" href="_modules/analytics/disagreement.html#dots_on_subject_are_polarizing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.dots_on_subject_are_polarizing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns list of Assertions for each subject (target) in a list of Dots with a True/False
+value on whether the distribution of author-synthesized dot ratings that they received are
+polarizing.</p>
+<ol class="arabic simple">
+<li><p>Values about a target given by each source is synthesized.</p></li>
+</ol>
+<p>2. Determines whether the synthesized values have a polarizing distribution.
+TODO: Generalize input type beyond Dots.
+TODO: Disentangle into core concepts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dots</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Target of each Assertion is a topic/subject. Value is True if it is polarizing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="analytics.disagreement.is_nubby_question">
 <code class="descclassname">analytics.disagreement.</code><code class="descname">is_nubby_question</code><span class="sig-paren">(</span><em>question: src.objects.Question</em>, <em>threshold: float = 0.5</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/analytics/disagreement.html#is_nubby_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.is_nubby_question" title="Permalink to this definition">¶</a></dt>
 <dd><p>Is a question Nubby?</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>question</strong> – </li>
-<li><strong>threshold</strong> – Question is Nubby if its divisiveness value exceeds this quantity.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>question</strong> – </p></li>
+<li><p><strong>threshold</strong> – Question is Nubby if its divisiveness value exceeds this quantity.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Value is True if the question is Nubby.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Value is True if the question is Nubby.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
@@ -309,24 +318,20 @@ Notable Participants are:
 <dd><p>Determines whether responses are in small minority of responses.</p>
 <p>TODO: bucketing should live in it’s own function
 Identify if the given ‘response’ is unique in relation to the given set of ‘responses’.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>question</strong> – </li>
-<li><strong>unique_disagreement</strong> – Response is unique if its percentage (compared to all responses) is less than this value</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>question</strong> – </p></li>
+<li><p><strong>unique_disagreement</strong> – Response is unique if its percentage (compared to all responses) is less than this value</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">System assertions of whether each response is unique</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List[<a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>System assertions of whether each response is unique</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
@@ -335,24 +340,20 @@ Identify if the given ‘response’ is unique in relation to the given set of �
 <dd><p>Is a Meeting Nubby?</p>
 <p>TODO: Public.
 TODO: Default Thresholds are wrong.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>meeting</strong> – </li>
-<li><strong>thresholds</strong> – </li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>meeting</strong> – </p></li>
+<li><p><strong>thresholds</strong> – </p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Value is a Classification.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Value is a Classification.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
@@ -360,63 +361,17 @@ TODO: Default Thresholds are wrong.</p>
 <code class="descclassname">analytics.disagreement.</code><code class="descname">out_of_sync_people_on_question</code><span class="sig-paren">(</span><em>question: src.objects.Question</em><span class="sig-paren">)</span> &#x2192; List[src.meta.Assertion]<a class="reference internal" href="_modules/analytics/disagreement.html#out_of_sync_people_on_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.out_of_sync_people_on_question" title="Permalink to this definition">¶</a></dt>
 <dd><p>Identifies people who are out-of-sync on a question.</p>
 <p>TODO: Move logic to analytics.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>question</strong> – </td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Values are True if person is out-of-sync on the question.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[<a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="analytics.disagreement.polarizing_topics">
-<code class="descclassname">analytics.disagreement.</code><code class="descname">polarizing_topics</code><span class="sig-paren">(</span><em>dots: List[src.objects.Dot]</em><span class="sig-paren">)</span> &#x2192; List[src.meta.Assertion]<a class="reference internal" href="_modules/analytics/disagreement.html#polarizing_topics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.polarizing_topics" title="Permalink to this definition">¶</a></dt>
-<dd><p>Is a “topic” polarizing? A topic is a collection of Assertions on a single target.</p>
-<ol class="arabic simple">
-<li>Values about a target given by each source is synthesized.</li>
-</ol>
-<p>2. Determines whether the synthesized values have a polarizing distribution.
-TODO: Generalize input type beyond Dots.
-TODO: Disentangle into core concepts.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dots</strong> – </td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Target of each Assertion is a topic/subject. Value is True if it is polarizing.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[<a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="analytics.disagreement.synthesize">
-<code class="descclassname">analytics.disagreement.</code><code class="descname">synthesize</code><span class="sig-paren">(</span><em>dots: List[src.objects.Dot]</em><span class="sig-paren">)</span> &#x2192; List[src.meta.Assertion]<a class="reference internal" href="_modules/analytics/disagreement.html#synthesize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.synthesize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Synthesize dots given by each author (source) about a single subject (target) into a single
-assertion.
-TODO: Synthesis is a core concept.
-TODO: Add keyword arguments for specifying how syntheses are performed</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dots</strong> – </td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[<a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>question</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Values are True if person is out-of-sync on the question.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -426,50 +381,42 @@ TODO: Add keyword arguments for specifying how syntheses are performed</p>
 <dl class="function">
 <dt id="analytics.sentiment.quality">
 <code class="descclassname">analytics.sentiment.</code><code class="descname">quality</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analytics/sentiment.html#quality"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.sentiment.quality" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>dots</strong> (<a class="reference internal" href="src.objects.html#src.objects.AssertionSet" title="src.objects.AssertionSet"><em>objects.AssertionSet</em></a>) – A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.Dot</span></code>.</li>
-<li><strong>*args</strong> – Variable length argument list.</li>
-<li><strong>**kwargs</strong> – Arbitrary keyword arguments.</li>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dots</strong> (<a class="reference internal" href="src.objects.html#src.objects.AssertionSet" title="src.objects.AssertionSet"><em>objects.AssertionSet</em></a>) – A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.Dot</span></code>.</p></li>
+<li><p><strong>*args</strong> – Variable length argument list.</p></li>
+<li><p><strong>**kwargs</strong> – Arbitrary keyword arguments.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A set of relevant actions in a meeting, or an empty set if none exist.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="src.objects.html#src.objects.AssertionSet" title="src.objects.AssertionSet">objects.AssertionSet</a></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A set of relevant actions in a meeting, or an empty set if none exist.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="src.objects.html#src.objects.AssertionSet" title="src.objects.AssertionSet">objects.AssertionSet</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="analytics.sentiment.sentiment">
 <code class="descclassname">analytics.sentiment.</code><code class="descname">sentiment</code><span class="sig-paren">(</span><em>scale_assertions: src.objects.ScaleValueSet</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analytics/sentiment.html#sentiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.sentiment.sentiment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines “Sentiment” as the [Dots Summary](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186</a>) of all Dots in a Meeting.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>scale_assertions</strong> (<em>objects.CollectionOfScaleValues</em>) – A set of :type:float.</li>
-<li><strong>*args</strong> – Variable length argument list.</li>
-<li><strong>**kwargs</strong> – Arbitrary keyword arguments.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale_assertions</strong> (<em>objects.CollectionOfScaleValues</em>) – A set of :type:float.</p></li>
+<li><p><strong>*args</strong> – Variable length argument list.</p></li>
+<li><p><strong>**kwargs</strong> – Arbitrary keyword arguments.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A value representing sentiment, or None.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">objects.Assertion</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value representing sentiment, or None.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>objects.Assertion</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -486,7 +433,7 @@ TODO: Add keyword arguments for specifying how syntheses are performed</p>
         <a href="analytics.concepts.html" class="btn btn-neutral float-right" title="Core Concepts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="insights.html" class="btn btn-neutral float-left" title="Application Logic" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="insights.html" class="btn btn-neutral" title="Application Logic" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -495,7 +442,7 @@ TODO: Add keyword arguments for specifying how syntheses are performed</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Research
+        &copy; Copyright 2019, Research.
 
     </p>
   </div>
@@ -512,16 +459,33 @@ TODO: Add keyword arguments for specifying how syntheses are performed</p>
   
 
 
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

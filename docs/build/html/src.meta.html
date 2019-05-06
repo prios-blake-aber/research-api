@@ -17,36 +17,34 @@
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
 
+  
+  
     
 
   
+
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Mathematical Operations" href="analytics.foundation.html" />
     <link rel="prev" title="Domain Objects" href="src.objects.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
+
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+        <div class="wy-side-nav-search">
           
 
           
@@ -168,12 +166,12 @@
 <em class="property">class </em><code class="descclassname">src.meta.</code><code class="descname">Assertion</code><span class="sig-paren">(</span><em>source</em>, <em>target</em>, <em>value</em>, <em>measure=None</em>, <em>context=None</em>, <em>description=None</em>, <em>confidence=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/meta.html#Assertion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.meta.Assertion" title="Permalink to this definition">¶</a></dt>
 <dd><p>A generic Assertion object:</p>
 <ul class="simple">
-<li>The “source” and “target” attributes should both be an Entity</li>
-<li>The “value” should be some numerical value</li>
-<li>The “confidence” should be some numerical value</li>
-<li>The “description” should be a free-form text field</li>
-<li>The “measure” should be the Entity ascribing semantic meaning to the “value”</li>
-<li>The “context” should be a list of Tags, Entities, etc that contextualize assertions</li>
+<li><p>The “source” and “target” attributes should both be an Entity</p></li>
+<li><p>The “value” should be some numerical value</p></li>
+<li><p>The “confidence” should be some numerical value</p></li>
+<li><p>The “description” should be a free-form text field</p></li>
+<li><p>The “measure” should be the Entity ascribing semantic meaning to the “value”</p></li>
+<li><p>The “context” should be a list of Tags, Entities, etc that contextualize assertions</p></li>
 </ul>
 </dd></dl>
 
@@ -182,13 +180,12 @@
 <em class="property">class </em><code class="descclassname">src.meta.</code><code class="descname">Entity</code><span class="sig-paren">(</span><em>allowable_attributes=None</em>, <em>allowable_collections=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/meta.html#Entity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.meta.Entity" title="Permalink to this definition">¶</a></dt>
 <dd><p>A generic Entity object with attributes, containers and dynamically generated methods</p>
 <ul class="simple">
-<li>Attributes can be defined on instantiation via kwargs</li>
-<li><dl class="first docutils">
-<dt>Container attributes have special functionality:</dt>
-<dd><ul class="first last">
-<li>Instantiates with a list</li>
-<li>Generates a special method that appends to this list</li>
-<li>This class is expected to act as a MixIn for Domain Objects</li>
+<li><p>Attributes can be defined on instantiation via kwargs</p></li>
+<li><dl class="simple">
+<dt>Container attributes have special functionality:</dt><dd><ul>
+<li><p>Instantiates with a list</p></li>
+<li><p>Generates a special method that appends to this list</p></li>
+<li><p>This class is expected to act as a MixIn for Domain Objects</p></li>
 </ul>
 </dd>
 </dl>
@@ -207,9 +204,9 @@
 <em class="property">class </em><code class="descclassname">src.meta.</code><code class="descname">EntityCollection</code><span class="sig-paren">(</span><em>list_of_entities</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/meta.html#EntityCollection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.meta.EntityCollection" title="Permalink to this definition">¶</a></dt>
 <dd><p>A collection of Entity objects sharing the same type:</p>
 <ul class="simple">
-<li>Used to instantiate container-like attributes in an Entity</li>
-<li>Type checks all elements of the container</li>
-<li>Has append() method to add new elements to container</li>
+<li><p>Used to instantiate container-like attributes in an Entity</p></li>
+<li><p>Type checks all elements of the container</p></li>
+<li><p>Has append() method to add new elements to container</p></li>
 </ul>
 <dl class="method">
 <dt id="src.meta.EntityCollection.append">
@@ -238,7 +235,7 @@
         <a href="analytics.foundation.html" class="btn btn-neutral float-right" title="Mathematical Operations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="src.objects.html" class="btn btn-neutral float-left" title="Domain Objects" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="src.objects.html" class="btn btn-neutral" title="Domain Objects" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -247,7 +244,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Research
+        &copy; Copyright 2019, Research.
 
     </p>
   </div>
@@ -264,16 +261,33 @@
   
 
 
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
