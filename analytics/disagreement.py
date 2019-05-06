@@ -124,7 +124,7 @@ def believable_choice_on_question(question: objects.Question) -> meta.Assertion:
     Returns
     -------
     meta.Assertion
-        Value
+        A single assertion on whether there is a Believable Choice answer to the question and which answer choice it is.
     """
 
     # Extract responses and question data.

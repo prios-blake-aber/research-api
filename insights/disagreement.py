@@ -23,6 +23,7 @@ def believable_choice_130(question: objects.QuestionType) -> meta.Assertion:
     Returns
     -------
     meta.Assertion
+        A single assertion on whether there is a Believable Choice answer to the question and which answer choice it is.
     """
     return disagreement.believable_choice_on_question(question)
 
@@ -94,34 +95,6 @@ def consensus_exists_131(question: objects.Question) -> bool:
         return True
     else:
         return False
-
-
-@utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
-def quorum_exists_in_meeting(meeting: objects.Meeting,
-                             quorum_threshold: float = _QUORUM_THRESH_DEFAULT,
-                             *args, **kwargs) -> List[meta.Assertion]:
-    """
-    Determines whether a sufficient percentage of Participants answered each question
-    asked during a Meeting.
-
-    Parameters
-    ----------
-    meeting
-    quorum_threshold : The threshold above which quorum exists. Defaults to :data:`_QUORUM_THRESH_DEFAULT`
-    *args: Variable length argument list.
-    **kwargs: Arbitrary keyword arguments.
-
-    Returns
-    -------
-    List[meta.Assertion]
-        Value is True if Quorum exists on respective question. V
-    """
-    number_participants = activity.participants(meeting)
-    return [
-        activity.quorum_exists_on_question_145(question, number_participants=number_participants,
-                                               quorum_threshold=quorum_threshold)
-        for question in meeting.questions.data
-    ]
 
 
 def meeting_section_nubbiness_149(meeting: objects.Meeting) -> meta.Assertion:
@@ -223,8 +196,6 @@ def question_nubbiness_popup_49(question: objects.Question) -> meta.Assertion:
 def out_of_sync_people_on_question_41(question: objects.Question) -> List[meta.Assertion]:
     """
     Identifies people who are out-of-sync on a question.
-
-    TODO: Move logic to analytics.
 
     Parameters
     ----------

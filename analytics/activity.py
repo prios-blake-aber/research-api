@@ -5,6 +5,8 @@ TBD
 
 from typing import List, Any
 from src import objects, meta
+import analytics
+from analytics.concepts import activity
 from analytics import concepts, utils
 
 
@@ -20,23 +22,24 @@ def relevance_of_people(dots: objects.DotCollection):
 
 
 @utils.scope_required_data_within_object(collections_to_keep=['responses'])
-def quorum_exists_on_question_145(question: objects.Question, number_participants, quorum_threshold):
+def quorum_exists_question(question: objects.Question, number_participants, quorum_threshold):
     """
-    Quorum of Responses on a Question.
+    Determines whether a sufficient percentage of Participants answered each question
+    asked during a Meeting.
 
     Parameters
     ----------
     question
     number_participants
-    quorum_threshold
+    quorum_threshold: The threshold above which quorum exists. Defaults to :data:`_QUORUM_THRESH_DEFAULT`
 
     Returns
     -------
-
+    meta.Assertion
+        A single assertion that where the value is True if a Quorum Exists on the Question or None if no Quorum exists.
     """
-    if number_participants:
-        number_responses = len(question.responses.data)
-        quorum_flag = (number_responses / number_participants > quorum_threshold) and (number_responses > 3)
+    quorum_flag = activity.quorum_exists(question.responses.data, number_participants, quorum_threshold)
+    if quorum_flag:
         return meta.Assertion(source=objects.System, target=question, value=quorum_flag, measure=objects.BooleanOption)
     else:
         return meta.Assertion(source=objects.System, target=question, value=None, measure=objects.BooleanOption)
