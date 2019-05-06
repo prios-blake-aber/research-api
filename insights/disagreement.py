@@ -29,7 +29,8 @@ def believable_choice_130(question: objects.QuestionType) -> meta.Assertion:
 
 
 @utils.scope_required_data_within_object(collections_to_keep=['dots'])
-def action_is_polarizing_161(meeting: objects.Meeting):
+def action_is_polarizing_161(meeting: objects.Meeting,
+                             by_action: Dict[str, str] = None) -> List[meta.Assertion]:
     """
     Identifies Meeting Tracker Actions in a Meeting that are polarizing.
 
@@ -39,24 +40,17 @@ def action_is_polarizing_161(meeting: objects.Meeting):
     Parameters
     ----------
     meeting
+        Meeting object
+    by_action
+        Specifies mapping from Attribute to Action. Assumes that Attributes and Actions are
+        represented as strings.
 
     Returns
     -------
-    List[objects.Judgement]
-        List of Assertions on whether Action is Polarizing.
+    List[meta.Assertion]
+        Whether or not Dots are polarizing (by action). Action is indexed in the label attribute.
     """
-    def sort_by_measure(x):
-        return x.measure.name
-
-    results = []
-    dots_by_attribute = sorted(meeting.dots.data, key=sort_by_measure)
-    for attribute, dot_set in itertools.groupby(dots_by_attribute, key=sort_by_measure):
-        materialized_dot_set = meta.EntityCollection(list(dot_set))
-        # TODO: materialization and instantiation is shitty here
-        result = disagreement.is_polarizing(materialized_dot_set)
-        results.append(result)
-
-    return results
+    return disagreement.dots_in_meeting_are_polarizing(meeting, by_action=by_action)
 
 
 @utils.scope_required_data_within_object(collections_to_keep=['dots'])
