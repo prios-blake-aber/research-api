@@ -3,6 +3,7 @@
 TBD
 """
 
+import uuid
 import time
 from dataclasses import dataclass, field
 import typing
@@ -14,6 +15,7 @@ class Entity:
 
     * This class is expected to act as a MixIn for Domain Objects
     """
+    uuid: uuid = uuid.uuid4()
     created_at: int = time.time()
     members: typing.List['Entity'] = field(default_factory=list)
 
@@ -56,3 +58,4 @@ class Assertion:
     attribute: typing.Optional[Attribute] = None
     context: typing.Any = None
     created_at: float = time.time()
+    uuid_id: uuid = uuid.uuid4()
