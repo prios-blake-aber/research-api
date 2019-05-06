@@ -2,64 +2,54 @@
 """
 TBD
 """
-from typing import List, Tuple
+import typing
 from itertools import groupby
 from src import meta
 from prios_api.domain_objects import objects
 
 
-def group_assertion_values_by_source_and_target(assertions: List[meta.Assertion]) -> List[Tuple[
-    Tuple[objects.Person, objects.Person], List[float]]]:
+def group_assertions_by_key(
+        assertions: typing.List[meta.Assertion], keyfunc: typing.Callable) -> \
+        typing.List[typing.Tuple[typing.Any, typing.Any]]:
     """
-    Groups values in list of assertions by source and target.
+    Groups values in list of assertions by user-specified Callable.
 
     Parameters
     ----------
     assertions
         List of assertions
+    keyfunc
+        Callable specifying groupby function
 
     Returns
     -------
-    List[Tuple[Tuple[objects.Person, objects.Person], List[float]]]
-        Each element of list is indexed by a Source-Target tuple of Person objects and with a
-        list of associated values.
+    typing.List[typing.Tuple[typing.Any, typing.Any]]
+        Each element of list is indexed by a defined group with a
+        list of associated assertions.
 
     Examples
     --------
-    >>> Adam = objects.Person(name='Adam')
-    >>> Bob = objects.Person(name='Bob')
-    >>> Charlie = objects.Person(name='Charlie')
-    >>> asserts = list()
-    >>> asserts.append(meta.Assertion(source=Adam, target=Bob, value=10))
-    >>> asserts.append(meta.Assertion(source=Adam, target=Bob, value=5))
-    >>> asserts.append(meta.Assertion(source=Charlie, target=Bob, value=1))
-    >>> asserts.append(meta.Assertion(source=Charlie, target=Adam, value=5))
-    >>> result = group_assertion_values_by_source_and_target(asserts)
-    >>> result_to_print = [((x[0][0].name, x[0][1].name), x[1]) for x in result]
-    >>> result_to_print
-    [(('Adam', 'Bob'), [10, 5]), (('Charlie', 'Bob'), [1]), (('Charlie', 'Adam'), [5])]
+    >>> research = objects.Meeting(name='Research Meeting')
+    >>> adam = objects.Person(name='Adam')
+    >>> bob = objects.Person(name='Bob')
+    >>> charlie = objects.Person(name='Charlie')
+    >>> research.dots.append(objects.Dot(source=adam, target=bob, value=10))
+    >>> research.dots.append(objects.Dot(source=adam, target=bob, value=5))
+    >>> research.dots.append(objects.Dot(source=charlie, target=bob, value=1))
+    >>> research.dots.append(objects.Dot(source=charlie, target=adam, value=5))
+    >>> keyfunc = lambda x: (x.source.uuid, x.target.uuid)
+    >>> result = group_assertions_by_key(research.dots, keyfunc=keyfunc)
+    >>> for key, data in result:
+    ...     for dot in data:
+    ...         print(dot.source.name, dot.target.name, dot.value)
+    Adam Bob 10
+    Adam Bob 5
+    Charlie Bob 1
+    Charlie Adam 5
     """
-    asserts = [
-        {
-            'source': a.source,
-            'target': a.target,
-            'value': a.value
-        } for a in assertions
-    ]
-    asserts_group_by = groupby(asserts, key=lambda x: (x['source'], x['target']))
-    return [
-        (x[0], [y['value'] for y in list(x[1])]) for x in asserts_group_by
-    ]
-
-
-def group_assertions_by_criteria(x: objects.AssertionSet):
-    """
-    TODO: Define generalization for grouping summary data
-
-    This function is a catch-all for the multiple grouping
-    functions that exist for summaries
-    """
-    pass
+    assertion_list = sorted(assertions, key=keyfunc)
+    grouped_assertion_list = groupby(assertion_list, key=keyfunc)
+    return [(k, list(v)) for k, v in grouped_assertion_list]
 
 
 def scope_required_data_within_object(attributes_to_keep=None, collections_to_keep=None):
