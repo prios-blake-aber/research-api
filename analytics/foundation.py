@@ -157,6 +157,10 @@ def percent_of_total(values_and_weights: List[Tuple[StringOrFloat, float]]) -> D
     return result
 
 
+def addition(values : List[float]):
+    return sum(values)
+
+
 def map_to_z_score(values: List[float]) -> List[float]:
     """
     Z-score: Subtract values by their mean and divide by standard deviation.
@@ -176,5 +180,3 @@ def map_to_z_score(values: List[float]) -> List[float]:
     [-1.224744871391589, 0.0, 1.224744871391589]
     """
     return list(zscore(values))
-
-

@@ -76,11 +76,9 @@ def meeting_section_sentiment_is_polarizing_118(meeting: objects.Meeting) -> met
     return disagreement.dots_in_meeting_are_polarizing(meeting)
 
 
-def consensus_exists_131(question: objects.Question) -> bool:
+def believable_consensus_exists_131(question: objects.Question) -> meta.Assertion:
     """
-    Consensus exists on a question.
-
-    TODO: Logic is core-functionality. It is also used by a Sig Gen, for the case of questions.
+    Whether consensus exists on a question.
 
     Parameters
     ----------
@@ -91,10 +89,7 @@ def consensus_exists_131(question: objects.Question) -> bool:
     bool
         Whether there is a consensus answer.
     """
-    if (activity.sufficient_question_engagement(question)) and (disagreement.believable_choice_on_question(question) is True or float):
-        return True
-    else:
-        return False
+    return disagreement.believable_consensus_exists(question)
 
 
 def meeting_section_nubbiness_149(meeting: objects.Meeting) -> meta.Assertion:

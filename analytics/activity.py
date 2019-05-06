@@ -5,12 +5,13 @@ TBD
 
 from typing import List, Any
 from src import objects, meta
-import analytics
+from analytics import utils, foundation
 from analytics.concepts import activity
-from analytics import concepts, utils
 
 
 _QUORUM_THRESH_DEFAULT = 0.80
+_SUFFICIENT_RESPONSE_ENGAGEMENT = 3
+_SUFFICIENT_BELIEVABILITY_ENGAGEMENT = 0.75
 
 
 def relevance_of_dots(dots: objects.DotCollection):
@@ -46,17 +47,37 @@ def quorum_exists_question(question: objects.Question, number_participants, quor
 
 
 def engagement_in_meeting(meeting: objects.Meeting):
-    return concepts.activity.engagement(meeting.participants.data)
+    return activity.engagement(meeting.participants.data)
 
 
 def engagement_in_question(question: objects.Question):
-    return concepts.activity.engagement(question.responses.data)
+    return activity.engagement(question.responses.data)
 
 
-def sufficient_question_engagement(question: objects.Question):
-    total_responses = engagement_in_question(question)
-    sufficient_engagement_flag = total_responses > 3
-    return sufficient_engagement_flag
+def sufficient_believability_engagement(question: objects.Question,
+                                        believability_engagement=_SUFFICIENT_BELIEVABILITY_ENGAGEMENT) -> bool:
+    """
+    TODO: Needs clarification on where it lives conceptually, what the I/O types should be, whether it can be refactored
+    Determines whether there was enough Believability in the question responses.
+
+    Parameters
+    ----------
+    question
+    believability_engagement: threshold at which there is sufficient believability.
+        Defaults at _SUFFICIENT_BELIEVABILITY_ENGAGEMENT
+
+    Return
+    ------
+    Bool
+        True if there is sufficient believability.
+    """
+    individual_believability = [response.source.believability for response in question.responses.data]
+    total_believability = foundation.addition(individual_believability)
+    if total_believability > believability_engagement:
+        return True
+    else:
+        return False
+
 
 
 def frequently_dotted_subjects(dots: List[objects.Dot],
@@ -116,7 +137,7 @@ def notable_participants(meeting: objects.Meeting, **kwargs) -> List[objects.Jud
     # TODO: General utility function for filtering lists on some variable.
     believable_people = [person for person in meeting.participants if person.believability > 0]
 
-    primary_people = concepts.activity.primary_participants(meeting.dots)
+    primary_people = activity.primary_participants(meeting.dots)
 
     return combine_results(believable_people, primary_people, condition="OR")
 

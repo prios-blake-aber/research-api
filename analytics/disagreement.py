@@ -7,8 +7,8 @@ import itertools
 import numpy as np
 import pandas as pd
 from typing import Tuple, List, TypeVar, Any, Dict
-from analytics import foundation, activity
-from analytics import concepts
+from analytics import foundation, activity, utils
+from analytics.concepts import disagreement
 from src import objects, meta
 
 
@@ -32,6 +32,18 @@ def dots_in_meeting_are_polarizing(meeting: objects.Meeting) -> meta.Assertion:
     meta.Assertion
         Whether or not
     """
+    syntheses = synthesize(dots)
+    targets = set([s.target for s in syntheses])
+    result = []
+    for t in targets:
+        target_syntheses = [s for s in syntheses if s.target == t]
+        target_is_polarizing = disagreement.is_polarizing(target_syntheses)
+        target_is_polarizing.target = t
+        result += [target_is_polarizing]
+    return result
+
+
+def synthesize(dots: List[objects.Dot]) -> List[meta.Assertion]:
     dot_ratings = [dot.value for dot in meeting.dots]
     result = concepts.disagreement.is_polarizing(dot_ratings)
     return meta.Assertion(source=objects.System, target=meeting, value=result)
@@ -124,7 +136,7 @@ def believable_choice_on_question(question: objects.Question) -> meta.Assertion:
     Returns
     -------
     meta.Assertion
-        A single assertion on whether there is a Believable Choice answer to the question and which answer choice it is.
+        Value represents the believable choice answer on the question.
     """
 
     # Extract responses and question data.
@@ -133,7 +145,7 @@ def believable_choice_on_question(question: objects.Question) -> meta.Assertion:
     value_type = question.question_type
 
     # Get the Believable choice
-    choice = concepts.disagreement.believable_choice(values_and_weights, value_type)
+    choice = disagreement.believable_choice(values_and_weights, value_type)
 
     return meta.Assertion(
         source=objects.System,
@@ -257,13 +269,39 @@ def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Asse
         Values are True if person is out-of-sync on the question.
     """
     believable_choice_result = believable_choice_on_question(question)
-    disagrees_with_result = concepts.disagreement.disagrees_with_167(question)
+    disagrees_with_result = disagreement.disagrees_with_167(question)
     people = []
     for response in question.responses.data:
         result = disagrees_with_result and (believable_choice_result or isinstance(believable_choice_result, float))
         people.append(meta.Assertion(source=objects.System, target=response.source, value=result,
                                      measure=objects.AssertionSet))
     return people
+
+
+def believable_consensus_exists(question: objects.Question) -> objects.meta.Assertion:
+    """
+    TODO: Needs clarification on where it lives conceptually, what the I/O types should be, whether it can be refactored
+    Consensus exists on a question.
+
+    Parameters
+    ----------
+    question
+
+    Returns
+    -------
+    bool
+        Whether there is a consensus answer.
+    """
+    sufficient_engagement_flag = activity.quorum_exists_on_question_145(question)
+    sufficient_believability_engagement_flag = activity.sufficient_believability_engagement(question)
+    believable_choice_results = believable_choice_on_question(question) or isinstance(
+        believable_choice_on_question(question), float)
+    if sufficient_engagement_flag and sufficient_believability_engagement_flag and believable_choice_results:
+        results = True
+        return meta.Assertion(source=objects.System, target=question, value=results, measure=objects.BooleanOption)
+    else:
+        results = False
+        return meta.Assertion(source=objects.System, target=question, value=results, measure=objects.BooleanOption)
 
 
 def significantly_out_of_sync_meeting(meeting: objects.Meeting,
