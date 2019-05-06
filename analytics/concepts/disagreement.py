@@ -170,13 +170,12 @@ def is_polarizing(scale_assertions: objects.ScaleValueSet,
 
 def disagrees_with_167(values : Tuple[Any, Any], question_type) -> meta.Assertion:
     """
-
-    TODO: other analytics that use disagrees_with are Out of Sync People, Uniquely Out of Sync,
     Significantly OOS, etc.
 
     Parameters
     ----------
     values
+    question_type
 
     Returns
     -------

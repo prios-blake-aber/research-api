@@ -6,7 +6,8 @@ TBD
 import itertools
 import numpy as np
 from typing import Tuple, List, TypeVar, Any
-from analytics import foundation, concepts, activity, utils
+from analytics import foundation, activity, utils
+from analytics.concepts import disagreement
 from src import objects, meta
 
 
@@ -39,7 +40,7 @@ def polarizing_topics(dots: List[objects.Dot]) -> List[meta.Assertion]:
     result = []
     for t in targets:
         target_syntheses = [s for s in syntheses if s.target == t]
-        target_is_polarizing = concepts.disagreement.is_polarizing(target_syntheses)
+        target_is_polarizing = disagreement.is_polarizing(target_syntheses)
         target_is_polarizing.target = t
         result += [target_is_polarizing]
     return result
@@ -133,7 +134,7 @@ def believable_choice_on_question(question: objects.Question) -> meta.Assertion:
     value_type = question.question_type
 
     # Get the Believable choice
-    choice = concepts.disagreement.believable_choice(values_and_weights, value_type)
+    choice = disagreement.believable_choice(values_and_weights, value_type)
 
     return meta.Assertion(
         source=objects.System,
@@ -257,7 +258,7 @@ def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Asse
         Values are True if person is out-of-sync on the question.
     """
     believable_choice_result = believable_choice_on_question(question)
-    disagrees_with_result = concepts.disagreement.disagrees_with_167(question)
+    disagrees_with_result = disagreement.disagrees_with_167(question)
     people = []
     for response in question.responses.data:
         result = disagrees_with_result and (believable_choice_result or isinstance(believable_choice_result, float))
