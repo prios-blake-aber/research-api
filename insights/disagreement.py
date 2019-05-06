@@ -23,6 +23,7 @@ def believable_choice_130(question: objects.QuestionType) -> meta.Assertion:
     Returns
     -------
     meta.Assertion
+        A single assertion on whether there is a Believable Choice answer to the question and which answer choice it is.
     """
     return disagreement.believable_choice_on_question(question)
 
@@ -195,8 +196,6 @@ def question_nubbiness_popup_49(question: objects.Question) -> meta.Assertion:
 def out_of_sync_people_on_question_41(question: objects.Question) -> List[meta.Assertion]:
     """
     Identifies people who are out-of-sync on a question.
-
-    TODO: Move logic to analytics.
 
     Parameters
     ----------

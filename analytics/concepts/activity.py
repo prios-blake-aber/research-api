@@ -31,7 +31,21 @@ def primary_participants(dots: List[objects.Dot]) -> List[objects.Judgement]:
     pass
 
 
-def quorum_exists(values: List[Any], number_participants, quorum_threshold):
+def quorum_exists(values: List[Any], number_participants, quorum_threshold) -> bool:
+    """
+    Whether a quorum exists within a set of meta.objects.Judgements
+
+    Parameters
+    ----------
+    values: any meta.objects.Judgements
+    number_participants:
+    quorum_threshold: The threshold above which quorum exists. Defaults to :data:`_QUORUM_THRESH_DEFAULT`
+
+    Returns
+    -------
+    bool
+        Whether a quorum exists within the set of values. 
+    """
     if number_participants:
         engagement_on = engagement(values)
         quorum_flag = (engagement_on / number_participants > quorum_threshold) and (engagement_on > 3)

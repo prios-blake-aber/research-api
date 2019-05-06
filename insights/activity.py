@@ -120,7 +120,7 @@ def quorum_exists_on_question_145(meeting: objects.Meeting,
     Returns
     -------
     List[meta.Assertion]
-        Value is True if Quorum exists on respective question.
+        List of Assertions where each item is a Question and the Value is True if Quorum exists on respective question.
     """
     number_participants = activity.engagement_in_meeting(meeting)
     return [

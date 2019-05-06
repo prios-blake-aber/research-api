@@ -30,11 +30,12 @@ def quorum_exists_question(question: objects.Question, number_participants, quor
     ----------
     question
     number_participants
-    quorum_threshold
+    quorum_threshold: The threshold above which quorum exists. Defaults to :data:`_QUORUM_THRESH_DEFAULT`
 
     Returns
     -------
-
+    meta.Assertion
+        A single assertion that where the value is True if a Quorum Exists on the Question or None if no Quorum exists.
     """
     quorum_flag = analytics.concepts.activity.quorum_exists(question, number_participants, quorum_threshold)
     if quorum_flag:
