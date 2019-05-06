@@ -6,6 +6,7 @@ TBD
 from typing import List, Any
 from src import objects, meta
 import analytics
+from analytics.concepts import activity
 from analytics import concepts, utils
 
 
@@ -37,7 +38,7 @@ def quorum_exists_question(question: objects.Question, number_participants, quor
     meta.Assertion
         A single assertion that where the value is True if a Quorum Exists on the Question or None if no Quorum exists.
     """
-    quorum_flag = analytics.concepts.activity.quorum_exists(question, number_participants, quorum_threshold)
+    quorum_flag = activity.quorum_exists(question.responses.data, number_participants, quorum_threshold)
     if quorum_flag:
         return meta.Assertion(source=objects.System, target=question, value=quorum_flag, measure=objects.BooleanOption)
     else:
@@ -45,11 +46,11 @@ def quorum_exists_question(question: objects.Question, number_participants, quor
 
 
 def engagement_in_meeting(meeting: objects.Meeting):
-    return analytics.concepts.activity.engagement(meeting.participants.data)
+    return concepts.activity.engagement(meeting.participants.data)
 
 
 def engagement_in_question(question: objects.Question):
-    return analytics.concepts.activity.engagement(question.responses.data)
+    return concepts.activity.engagement(question.responses.data)
 
 
 def sufficient_question_engagement(question: objects.Question):

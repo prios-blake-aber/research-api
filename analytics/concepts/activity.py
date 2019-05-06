@@ -32,6 +32,7 @@ def primary_participants(dots: List[objects.Dot]) -> List[objects.Judgement]:
 
 def quorum_exists(values: List[Any], number_participants, quorum_threshold) -> bool:
     """
+    TODO: generalize the concept of minimum_engagement
     Whether a quorum exists within a set of meta.objects.Judgements
 
     Parameters
