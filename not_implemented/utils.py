@@ -1,5 +1,4 @@
-
-from src import objects
+from prios_api.domain_objects import objects
 
 
 def group_by_question_response_168(x: objects.Question):

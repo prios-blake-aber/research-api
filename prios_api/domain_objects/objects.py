@@ -3,7 +3,7 @@
 TBD
 """
 
-from src import meta
+from prios_api.domain_objects import meta
 from enum import Enum
 
 

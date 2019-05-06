@@ -3,8 +3,8 @@
 TBD
 """
 
-from src import objects, meta
-from prios_api import foundation
+from prios_api.domain_objects import meta, objects
+from prios_api.utils import foundation
 
 
 def quality(x: objects.AssertionSet):

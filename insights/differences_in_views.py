@@ -3,9 +3,8 @@
 TBD
 """
 
-import itertools
 from typing import List, Dict
-from src import objects, meta
+from prios_api.domain_objects import meta, objects
 from prios_api import utils, disagreement, activity
 
 
@@ -217,64 +216,3 @@ def significantly_out_of_sync_114(meeting: objects.Meeting,
     List[objects.Judgement]
         Value = True if person is Significantly OOS.
     """
-    oos = {
-        q.id: out_of_sync_people_on_question_41(q.id) for q in meeting.questions
-    }
-
-    oos_count = {
-        person: 0 for person in meeting.partcipants
-    }
-
-    for q, is_oos in oos.items():
-        for person in is_oos:
-            if person.value:
-                oos_count[person] += 1
-
-
-
-    def to_zscore(x: Dict[objects.Person, int]) -> Dict[objects.Person, float]:
-        """Placeholder.
-        TODO: Find better home. prios_api.foundation?
-        TODO: Think through function signature.
-        """
-        pass
-
-    oos_z_score = to_zscore(oos_count)
-    results = []
-    for person, v in oos_z_score:
-        if notable_dict[person.id]:
-            result_person = v > threshold_low
-        else:
-            result_person = v > threshold_high
-
-        results += [
-            objects.Judgement(source=objects.System, target=person, value=result_person)
-        ]
-    return results
-
-
-    """
-    A person is uniquely out of sync on a question, if their response is unique (
-    prios_api.disagreement.is_unique) and out-of-sync with the believable consensus (
-    prios_api.disagreement.out_of_sync_people_on_question).
-
-    Parameters
-    ----------
-    question
-
-    Returns
-    -------
-    List[meta.Assertion]
-        Assertion for each person who answers the question. Value is whether they are uniquely
-        out of sync.
-    """
-    unique_responses = disagreement.is_unique(question)
-    oos = disagreement.out_of_sync_people_on_question(question)
-    results = list()
-    for person_unique in unique_responses:
-        for person_oos in oos:
-            if person_unique.target == person_oos.target:
-                uniquely_oos = person_oos.value and person_unique.value
-        results.append(meta.Assertion(source=objects.System, target=person_unique,
-                                      value=uniquely_oos))
-    return results

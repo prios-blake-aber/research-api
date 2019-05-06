@@ -1,5 +1,4 @@
-
-from src import objects
+from prios_api.domain_objects import objects
 
 
 def unexpected_action_163(x: objects.Meeting):

@@ -1,7 +1,4 @@
-
-import itertools
-from src import objects, meta
-from prios_api import sentiment, disagreement
+from prios_api.domain_objects import objects
 
 
 def negative_dot_on_a_better_subject_popup_46(x: objects.Meeting):

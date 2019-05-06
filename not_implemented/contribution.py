@@ -1,5 +1,4 @@
-
-from src import objects
+from prios_api.domain_objects import objects
 
 
 def dots_aggregation_5(x: objects.AssertionSet):

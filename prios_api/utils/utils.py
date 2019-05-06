@@ -4,7 +4,8 @@ TBD
 """
 from typing import List, Tuple
 from itertools import groupby
-from src import objects, meta
+from src import meta
+from prios_api.domain_objects import objects
 
 
 def group_assertion_values_by_source_and_target(assertions: List[meta.Assertion]) -> List[Tuple[

@@ -3,10 +3,11 @@
 TBD
 """
 
-from typing import List, Any
-from src import objects, meta
-from prios_api import utils, foundation
-from prios_api.concepts import activity
+from typing import List
+from prios_api.domain_objects import meta, objects
+from prios_api import utils
+from prios_api.utils import foundation
+from prios_api.concepts import ungrouped
 
 
 _QUORUM_THRESH_DEFAULT = 0.80
@@ -39,7 +40,7 @@ def quorum_exists_question(question: objects.Question, number_participants, quor
     meta.Assertion
         A single assertion that where the value is True if a Quorum Exists on the Question or None if no Quorum exists.
     """
-    quorum_flag = activity.quorum_exists(question.responses.data, number_participants, quorum_threshold)
+    quorum_flag = ungrouped.quorum_exists(question.responses.data, number_participants, quorum_threshold)
     if quorum_flag:
         return meta.Assertion(source=objects.System, target=question, value=quorum_flag, measure=objects.BooleanOption)
     else:
@@ -47,11 +48,11 @@ def quorum_exists_question(question: objects.Question, number_participants, quor
 
 
 def engagement_in_meeting(meeting: objects.Meeting):
-    return activity.engagement(meeting.participants.data)
+    return ungrouped.engagement(meeting.participants.data)
 
 
 def engagement_in_question(question: objects.Question):
-    return activity.engagement(question.responses.data)
+    return ungrouped.engagement(question.responses.data)
 
 
 def sufficient_believability_engagement(question: objects.Question,
@@ -137,7 +138,7 @@ def notable_participants(meeting: objects.Meeting, **kwargs) -> List[objects.Jud
     # TODO: General utility function for filtering lists on some variable.
     believable_people = [person for person in meeting.participants if person.believability > 0]
 
-    primary_people = activity.primary_participants(meeting.dots)
+    primary_people = ungrouped.primary_participants(meeting.dots)
 
     return combine_results(believable_people, primary_people, condition="OR")
 

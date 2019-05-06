@@ -4,10 +4,9 @@ TBD
 """
 
 import itertools
-from src import objects, meta
+from prios_api.domain_objects import meta, objects
 from prios_api import utils, activity
-from typing import List, Any
-
+from typing import List
 
 _QUORUM_THRESH_DEFAULT = 0.80
 
@@ -104,8 +103,8 @@ def attention_participant_received_155(dots: objects.DotCollection):
 
 @utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
 def quorum_exists_on_question_145(meeting: objects.Meeting,
-                             quorum_threshold: float = _QUORUM_THRESH_DEFAULT,
-                             *args, **kwargs) -> List[meta.Assertion]:
+                                  quorum_threshold: float = _QUORUM_THRESH_DEFAULT,
+                                  *args, **kwargs) -> List[meta.Assertion]:
     """
     Determines whether a sufficient percentage of Participants answered each question
     asked during a Meeting.

@@ -4,7 +4,7 @@ TBD
 """
 
 from typing import List
-from src import objects, meta
+from prios_api.domain_objects import meta, objects
 from prios_api import disagreement
 
 

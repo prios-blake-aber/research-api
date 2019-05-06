@@ -1,5 +1,5 @@
 from typing import List, Callable, Optional
-from prios_api import foundation
+from prios_api.utils import foundation
 
 
 def synthesize(values: List[float],
