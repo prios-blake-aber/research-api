@@ -268,6 +268,7 @@ def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Asse
 
 def believable_consensus_exists(question: objects.Question) -> objects.meta.Assertion:
     """
+    TODO: Needs clarification on where it lives conceptually, what the I/O types should be, whether it can be refactored
     Consensus exists on a question.
 
     Parameters
@@ -279,10 +280,13 @@ def believable_consensus_exists(question: objects.Question) -> objects.meta.Asse
     bool
         Whether there is a consensus answer.
     """
-    sufficient_engagement = activity.sufficient_question_engagement(question)
+    sufficient_engagement_flag = activity.quorum_exists_on_question_145(question)
+    sufficient_believability_engagement_flag = activity.sufficient_believability_engagement(question)
     believable_choice_results = believable_choice_on_question(question) or isinstance(
         believable_choice_on_question(question), float)
-    if sufficient_engagement and believable_choice_results:
-        return True
+    if sufficient_engagement_flag and sufficient_believability_engagement_flag and believable_choice_results:
+        results = True
+        return meta.Assertion(source=objects.System, target=question, value=results, measure=objects.BooleanOption)
     else:
-        return False
+        results = False
+        return meta.Assertion(source=objects.System, target=question, value=results, measure=objects.BooleanOption)

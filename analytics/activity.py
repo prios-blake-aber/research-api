@@ -52,30 +52,10 @@ def engagement_in_question(question: objects.Question):
     return concepts.activity.engagement(question.responses.data)
 
 
-def sufficient_question_engagement(question: objects.Question) -> bool:
-    """
-    Whether there is sufficient engagement on a question.
-
-    Parameters
-    ----------
-    question
-
-    Returns
-    -------
-    bool
-        Whether there was sufficient engagement on the question.
-    """
-    sufficient_engagement_flag = quorum_exists_on_question_145(question)
-    sufficient_believability_engagement_flag = sufficient_believability_engagement(question)
-    if sufficient_engagement_flag and sufficient_believability_engagement_flag:
-        return True
-    else:
-        return False
-
-
 def sufficient_believability_engagement(question: objects.Question,
                                         believability_engagement=_SUFFICIENT_BELIEVABILITY_ENGAGEMENT) -> bool:
     """
+    TODO: Needs clarification on where it lives conceptually, what the I/O types should be, whether it can be refactored
     Determines whether there was enough Believability in the question responses.
 
     Parameters

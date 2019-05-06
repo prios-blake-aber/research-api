@@ -88,8 +88,7 @@ def believable_consensus_exists_131(question: objects.Question) -> meta.Assertio
     bool
         Whether there is a consensus answer.
     """
-    results = disagreement.consensus_exists(question)
-    return meta.Assertion(source=objects.System, target=question, value=results)
+    return disagreement.believable_consensus_exists(question)
 
 
 @utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
