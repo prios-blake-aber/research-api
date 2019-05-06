@@ -7,7 +7,6 @@ from src import objects, meta
 from typing import List, Any
 
 
-
 def engagement(values: List[Any]):
     return len(values)
 
