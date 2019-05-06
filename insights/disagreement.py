@@ -6,7 +6,7 @@ TBD
 import itertools
 from typing import List, Dict
 from src import objects, meta
-from analytics import utils, disagreement, activity
+from prios_api import utils, disagreement, activity
 
 
 _QUORUM_THRESH_DEFAULT = 0.80
@@ -234,7 +234,7 @@ def significantly_out_of_sync_114(meeting: objects.Meeting,
 
     def to_zscore(x: Dict[objects.Person, int]) -> Dict[objects.Person, float]:
         """Placeholder.
-        TODO: Find better home. analytics.foundation?
+        TODO: Find better home. prios_api.foundation?
         TODO: Think through function signature.
         """
         pass
@@ -255,8 +255,8 @@ def significantly_out_of_sync_114(meeting: objects.Meeting,
 
     """
     A person is uniquely out of sync on a question, if their response is unique (
-    analytics.disagreement.is_unique) and out-of-sync with the believable consensus (
-    analytics.disagreement.out_of_sync_people_on_question).
+    prios_api.disagreement.is_unique) and out-of-sync with the believable consensus (
+    prios_api.disagreement.out_of_sync_people_on_question).
 
     Parameters
     ----------

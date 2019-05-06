@@ -5,7 +5,7 @@ TBD
 
 import itertools
 from src import objects, meta
-from analytics import utils, activity
+from prios_api import utils, activity
 from typing import List, Any
 
 
@@ -33,7 +33,7 @@ def primary_actions_157(dots: objects.DotCollection, *args, **kwargs):
 
 def primary_participants_in_meeting_138(dots: objects.DotCollection, *args, **kwargs):
     """
-    # TODO: Move logic to analytics.
+    # TODO: Move logic to prios_api.
     Defines Primary Participants in a Meeting from Dots.
 
     Parameters

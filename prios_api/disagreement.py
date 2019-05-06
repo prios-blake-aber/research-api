@@ -7,8 +7,8 @@ import itertools
 import numpy as np
 import pandas as pd
 from typing import Tuple, List, TypeVar, Any, Dict
-from analytics import foundation, activity, concepts, utils
-from analytics.concepts import disagreement
+from prios_api import foundation, activity, concepts, utils
+from prios_api.concepts import disagreement
 from src import objects, meta
 
 
@@ -257,7 +257,7 @@ def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Asse
     """
     Identifies people who are out-of-sync on a question.
 
-    TODO: Move logic to analytics.
+    TODO: Move logic to prios_api.
 
     Parameters
     ----------

@@ -6,7 +6,7 @@ TBD
 import itertools
 import numpy as np
 from typing import Tuple, List, TypeVar, Optional, Any
-from analytics import foundation, utils
+from prios_api import foundation, utils
 from src import objects, meta
 
 

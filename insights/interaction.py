@@ -5,7 +5,7 @@ TBD
 
 import itertools
 from src import objects, meta
-from analytics import sentiment, disagreement
+from prios_api import sentiment, disagreement
 
 
 def believable_and_overall_meeting_section_sentiment_disagree_119(question: objects.Question):

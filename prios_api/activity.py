@@ -5,8 +5,8 @@ TBD
 
 from typing import List, Any
 from src import objects, meta
-from analytics import utils, foundation
-from analytics.concepts import activity
+from prios_api import utils, foundation
+from prios_api.concepts import activity
 
 
 _QUORUM_THRESH_DEFAULT = 0.80
@@ -150,7 +150,7 @@ def combine_results(*args):
     Not an insight (just a placeholder)
 
     # TODO: Find better home.
-    # TODO: Is this a utils for analytics OR insights? See insights.disagreements.combine_results
+    # TODO: Is this a utils for prios_api OR insights? See insights.disagreements.combine_results
     Parameters
     ----------
     args
