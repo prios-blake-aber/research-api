@@ -35,7 +35,8 @@ def believable_choice(values_and_weights: List[Tuple[StringOrFloat, float]],
     Returns
     -------
     Optional[StringOrFloat]
-        Value or None
+        Value or None. Value represents either the believability-weighted average or the answer choice on which there is
+         sufficient believability.
     """
 
     total_believability = sum([x[1] for x in values_and_weights])

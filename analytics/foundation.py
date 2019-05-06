@@ -136,3 +136,7 @@ def percent_of_total(values_and_weights: List[Tuple[StringOrFloat, float]]) -> D
         result[choice] = sum(list(weight)) / total
     return result
 
+
+def addition(values : List[float]):
+    return values.sum()
+

@@ -124,7 +124,7 @@ def believable_choice_on_question(question: objects.Question) -> meta.Assertion:
     Returns
     -------
     meta.Assertion
-        Value
+        Value represents the believable choice answer on the question.
     """
 
     # Extract responses and question data.
@@ -266,7 +266,7 @@ def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Asse
     return people
 
 
-def consensus_exists(question: objects.Question) -> bool:
+def believable_consensus_exists(question: objects.Question) -> objects.meta.Assertion:
     """
     Consensus exists on a question.
 
@@ -280,8 +280,9 @@ def consensus_exists(question: objects.Question) -> bool:
         Whether there is a consensus answer.
     """
     sufficient_engagement = activity.sufficient_question_engagement(question)
-    if sufficient_engagement and (believable_choice_on_question(question) or
-                                  isinstance(believable_choice_on_question(question), float)):
+    believable_choice_results = believable_choice_on_question(question) or isinstance(
+        believable_choice_on_question(question), float)
+    if sufficient_engagement and believable_choice_results:
         return True
     else:
         return False

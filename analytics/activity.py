@@ -5,10 +5,12 @@ TBD
 
 from typing import List, Any
 from src import objects, meta
-from analytics import concepts, utils
+from analytics import concepts, utils, foundation
 
 
 _QUORUM_THRESH_DEFAULT = 0.80
+_SUFFICIENT_RESPONSE_ENGAGEMENT = 3
+_SUFFICIENT_BELIEVABILITY_ENGAGEMENT = 0.75
 
 
 def relevance_of_dots(dots: objects.DotCollection):
@@ -50,10 +52,50 @@ def engagement_in_question(question: objects.Question):
     return concepts.activity.engagement(question.responses.data)
 
 
-def sufficient_question_engagement(question: objects.Question):
-    total_responses = engagement_in_question(question)
-    sufficient_engagement_flag = total_responses > 3
-    return sufficient_engagement_flag
+def sufficient_question_engagement(question: objects.Question) -> bool:
+    """
+    Whether there is sufficient engagement on a question.
+
+    Parameters
+    ----------
+    question
+
+    Returns
+    -------
+    bool
+        Whether there was sufficient engagement on the question.
+    """
+    sufficient_engagement_flag = quorum_exists_on_question_145(question)
+    sufficient_believability_engagement_flag = sufficient_believability_engagement(question)
+    if sufficient_engagement_flag and sufficient_believability_engagement_flag:
+        return True
+    else:
+        return False
+
+
+def sufficient_believability_engagement(question: objects.Question,
+                                        believability_engagement=_SUFFICIENT_BELIEVABILITY_ENGAGEMENT) -> bool:
+    """
+    Determines whether there was enough Believability in the question responses.
+
+    Parameters
+    ----------
+    question
+    believability_engagement: threshold at which there is sufficient believability.
+        Defaults at _SUFFICIENT_BELIEVABILITY_ENGAGEMENT
+
+    Return
+    ------
+    Bool
+        True if there is sufficient believability.
+    """
+    individual_believability = [response.source.believability for response in question.responses.data]
+    total_believability = foundation.addition(individual_believability)
+    if total_believability > believability_engagement:
+        return True
+    else:
+        return False
+
 
 
 def frequently_dotted_subjects(dots: List[objects.Dot],

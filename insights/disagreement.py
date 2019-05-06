@@ -75,9 +75,9 @@ def meeting_section_sentiment_is_polarizing_118(meeting: objects.Meeting) -> obj
     return disagreement.is_polarizing(dots)
 
 
-def consensus_exists_131(question: objects.Question) -> bool:
+def believable_consensus_exists_131(question: objects.Question) -> meta.Assertion:
     """
-    Consensus exists on a question.
+    Whether consensus exists on a question.
 
     Parameters
     ----------
@@ -88,7 +88,8 @@ def consensus_exists_131(question: objects.Question) -> bool:
     bool
         Whether there is a consensus answer.
     """
-    return disagreement.consensus_exists(question)
+    results = disagreement.consensus_exists(question)
+    return meta.Assertion(source=objects.System, target=question, value=results)
 
 
 @utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
