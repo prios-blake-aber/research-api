@@ -3,8 +3,9 @@
 TBD
 """
 
-from src import objects
+from src import objects, meta
 from typing import List, Any
+
 
 
 def engagement(values: List[Any]):
@@ -28,3 +29,13 @@ def primary_participants(dots: List[objects.Dot]) -> List[objects.Judgement]:
         True/False for whether people are a participant.
     """
     pass
+
+
+def quorum_exists(values: List[Any], number_participants, quorum_threshold):
+    if number_participants:
+        engagement_on = engagement(values)
+        quorum_flag = (engagement_on / number_participants > quorum_threshold) and (engagement_on > 3)
+        return quorum_flag
+    else:
+        return None
+

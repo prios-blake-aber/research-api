@@ -5,6 +5,7 @@ TBD
 
 from typing import List, Any
 from src import objects, meta
+import analytics
 from analytics import concepts, utils
 
 
@@ -20,9 +21,10 @@ def relevance_of_people(dots: objects.DotCollection):
 
 
 @utils.scope_required_data_within_object(collections_to_keep=['responses'])
-def quorum_exists_on_question_145(question: objects.Question, number_participants, quorum_threshold):
+def quorum_exists_question(question: objects.Question, number_participants, quorum_threshold):
     """
-    Quorum of Responses on a Question.
+    Determines whether a sufficient percentage of Participants answered each question
+    asked during a Meeting.
 
     Parameters
     ----------
@@ -34,20 +36,19 @@ def quorum_exists_on_question_145(question: objects.Question, number_participant
     -------
 
     """
-    if number_participants:
-        number_responses = len(question.responses.data)
-        quorum_flag = (number_responses / number_participants > quorum_threshold) and (number_responses > 3)
+    quorum_flag = analytics.concepts.activity.quorum_exists(question, number_participants, quorum_threshold)
+    if quorum_flag:
         return meta.Assertion(source=objects.System, target=question, value=quorum_flag, measure=objects.BooleanOption)
     else:
         return meta.Assertion(source=objects.System, target=question, value=None, measure=objects.BooleanOption)
 
 
 def engagement_in_meeting(meeting: objects.Meeting):
-    return concepts.activity.engagement(meeting.participants.data)
+    return analytics.concepts.activity.engagement(meeting.participants.data)
 
 
 def engagement_in_question(question: objects.Question):
-    return concepts.activity.engagement(question.responses.data)
+    return analytics.concepts.activity.engagement(question.responses.data)
 
 
 def sufficient_question_engagement(question: objects.Question):
