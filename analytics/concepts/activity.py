@@ -44,7 +44,7 @@ def quorum_exists(values: List[Any], number_participants, quorum_threshold) -> b
     Returns
     -------
     bool
-        Whether a quorum exists within the set of values. 
+        Whether a quorum exists within the set of values.
     """
     if number_participants:
         engagement_on = engagement(values)
