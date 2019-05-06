@@ -6,7 +6,7 @@ TBD
 import itertools
 import numpy as np
 from typing import Tuple, List, TypeVar, Any
-from analytics import foundation, concepts, utils
+from analytics import foundation, concepts, activity, utils
 from src import objects, meta
 
 
@@ -266,3 +266,22 @@ def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Asse
     return people
 
 
+def consensus_exists(question: objects.Question) -> bool:
+    """
+    Consensus exists on a question.
+
+    Parameters
+    ----------
+    question
+
+    Returns
+    -------
+    bool
+        Whether there is a consensus answer.
+    """
+    sufficient_engagement = activity.sufficient_question_engagement(question)
+    if sufficient_engagement and (believable_choice_on_question(question) or
+                                  isinstance(believable_choice_on_question(question), float)):
+        return True
+    else:
+        return False

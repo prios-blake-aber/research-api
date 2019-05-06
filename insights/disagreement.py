@@ -79,8 +79,6 @@ def consensus_exists_131(question: objects.Question) -> bool:
     """
     Consensus exists on a question.
 
-    TODO: Logic is core-functionality. It is also used by a Sig Gen, for the case of questions.
-
     Parameters
     ----------
     question
@@ -90,10 +88,7 @@ def consensus_exists_131(question: objects.Question) -> bool:
     bool
         Whether there is a consensus answer.
     """
-    if (activity.sufficient_question_engagement(question)) and (disagreement.believable_choice_on_question(question) is True or float):
-        return True
-    else:
-        return False
+    return disagreement.consensus_exists(question)
 
 
 @utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
