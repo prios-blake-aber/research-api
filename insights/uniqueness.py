@@ -4,15 +4,15 @@ TBD
 """
 
 from typing import List
-from src import objects, meta
-from analytics import disagreement
+from prios_api.domain_objects import meta, objects
+from prios_api import disagreement
 
 
 def uniquely_out_of_sync_on_question_136(question: objects.Question) -> List[meta.Assertion]:
     """
     A person is uniquely out of sync on a question, if their response is unique (
-    analytics.disagreement.is_unique) and out-of-sync with the believable consensus (
-    analytics.disagreement.out_of_sync_people_on_question).
+    prios_api.disagreement.is_unique) and out-of-sync with the believable consensus (
+    prios_api.disagreement.out_of_sync_people_on_question).
 
     Parameters
     ----------

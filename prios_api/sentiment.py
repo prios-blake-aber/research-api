@@ -3,8 +3,8 @@
 TBD
 """
 
-from src import objects, meta
-from analytics import foundation
+from prios_api.domain_objects import meta, objects
+from prios_api.utils import foundation
 
 
 def quality(x: objects.AssertionSet):
@@ -22,7 +22,7 @@ def quality(x: objects.AssertionSet):
 
 def sentiment(scale_assertions: objects.ScaleValueSet, **kwargs):
     """
-    Defines "Sentiment" as the [Dots Summary](https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186) of all Dots in a Meeting.
+    Defines "Sentiment" as the [Dots Summary](https://blakea-prios_api-registry.dev.principled.io/writeup?analytic=186) of all Dots in a Meeting.
 
     Args:
         scale_assertions (objects.CollectionOfScaleValues): A set of :type:float.

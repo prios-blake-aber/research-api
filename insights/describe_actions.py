@@ -4,10 +4,9 @@ TBD
 """
 
 import itertools
-from src import objects, meta
-from analytics import utils, activity
-from typing import List, Any
-
+from prios_api.domain_objects import meta, objects
+from prios_api import utils, activity
+from typing import List
 
 _QUORUM_THRESH_DEFAULT = 0.80
 
@@ -33,7 +32,7 @@ def primary_actions_157(dots: objects.DotCollection, *args, **kwargs):
 
 def primary_participants_in_meeting_138(dots: objects.DotCollection, *args, **kwargs):
     """
-    # TODO: Move logic to analytics.
+    # TODO: Move logic to prios_api.
     Defines Primary Participants in a Meeting from Dots.
 
     Parameters
@@ -104,8 +103,8 @@ def attention_participant_received_155(dots: objects.DotCollection):
 
 @utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
 def quorum_exists_on_question_145(meeting: objects.Meeting,
-                             quorum_threshold: float = _QUORUM_THRESH_DEFAULT,
-                             *args, **kwargs) -> List[meta.Assertion]:
+                                  quorum_threshold: float = _QUORUM_THRESH_DEFAULT,
+                                  *args, **kwargs) -> List[meta.Assertion]:
     """
     Determines whether a sufficient percentage of Participants answered each question
     asked during a Meeting.

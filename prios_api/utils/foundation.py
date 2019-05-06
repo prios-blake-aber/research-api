@@ -7,7 +7,7 @@ from typing import List, Callable, Optional, TypeVar, Dict, Tuple
 from collections import Counter
 import numpy as np
 from scipy.stats import zscore
-from src import objects
+from prios_api.domain_objects import objects
 import itertools
 
 StringOrFloat = TypeVar("StringOrFloat", str, float)

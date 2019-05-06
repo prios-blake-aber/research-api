@@ -3,14 +3,13 @@
 TBD
 """
 
-import itertools
 import numpy as np
 import pandas as pd
-from typing import Tuple, List, TypeVar, Any, Dict
-from analytics import foundation, activity, concepts, utils
-from analytics.concepts import disagreement
-from src import objects, meta
-
+from typing import List, TypeVar, Dict
+from prios_api import activity, concepts
+from prios_api.utils import foundation
+from prios_api.concepts import disagreement, believable_choice
+from prios_api.domain_objects import meta, objects
 
 StringOrFloat = TypeVar("StringOrFloat", str, float)
 
@@ -145,7 +144,7 @@ def believable_choice_on_question(question: objects.Question) -> meta.Assertion:
     value_type = question.question_type
 
     # Get the Believable choice
-    choice = disagreement.believable_choice(values_and_weights, value_type)
+    choice = concepts.believable_choice.believable_choice(values_and_weights, value_type)
 
     return meta.Assertion(
         source=objects.System,
@@ -257,7 +256,7 @@ def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Asse
     """
     Identifies people who are out-of-sync on a question.
 
-    TODO: Move logic to analytics.
+    TODO: Move logic to prios_api.
 
     Parameters
     ----------
@@ -278,7 +277,7 @@ def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Asse
     return people
 
 
-def believable_consensus_exists(question: objects.Question) -> objects.meta.Assertion:
+def believable_consensus_exists(question: objects.Question) -> prios_api.domain_objects.meta.Assertion:
     """
     TODO: Needs clarification on where it lives conceptually, what the I/O types should be, whether it can be refactored
     Consensus exists on a question.
@@ -304,9 +303,9 @@ def believable_consensus_exists(question: objects.Question) -> objects.meta.Asse
         return meta.Assertion(source=objects.System, target=question, value=results, measure=objects.BooleanOption)
 
 
-def significantly_out_of_sync_meeting(meeting: objects.Meeting,
-                                      threshold_low=0.8,
-                                      threshold_high=1.2) -> List[meta.Assertion]:
+def significantly_out_of_sync_in_meeting(meeting: objects.Meeting,
+                                         threshold_low=0.8,
+                                         threshold_high=1.2) -> List[meta.Assertion]:
     """
     A person is out of sync on significantly higher number of questions than others in a meeting.
 

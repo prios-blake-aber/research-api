@@ -2,10 +2,7 @@
 Not Implemented: Insights on Contribution
 """
 
-import itertools
-from typing import List, Dict
-from src import objects, meta
-from analytics import utils, disagreement, activity
+from prios_api.domain_objects import objects
 
 """
 TBD

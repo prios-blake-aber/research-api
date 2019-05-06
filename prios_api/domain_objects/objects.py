@@ -3,10 +3,9 @@
 TBD
 """
 
+from prios_api.domain_objects import meta
 from dataclasses import dataclass, field
 import typing
-
-from src import meta
 from enum import Enum
 
 
