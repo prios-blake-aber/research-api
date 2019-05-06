@@ -7,7 +7,7 @@ import itertools
 import numpy as np
 import pandas as pd
 from typing import Tuple, List, TypeVar, Any, Dict
-from analytics import foundation, activity, utils
+from analytics import foundation, activity, concepts, utils
 from analytics.concepts import disagreement
 from src import objects, meta
 
@@ -18,7 +18,8 @@ _THRESHOLD_STD_MAPPED_SCALE = 0.5
 _UNIQUE_DISAGREEMENT = 0.88
 
 
-def dots_in_meeting_are_polarizing(meeting: objects.Meeting) -> meta.Assertion:
+def dots_in_meeting_are_polarizing(meeting: objects.Meeting,
+                                   by_action: Dict[str, str] = None) -> List[meta.Assertion]:
     """
     Returns Assertion on whether a List of Dots are Polarizing.
 
@@ -26,27 +27,32 @@ def dots_in_meeting_are_polarizing(meeting: objects.Meeting) -> meta.Assertion:
     ----------
     meeting
         Meeting object
+    by_action
+        Specifies mapping from Attribute to Action. Assumes that Attributes and Actions are
+        represented as strings.
 
     Returns
     -------
-    meta.Assertion
-        Whether or not
+    List[meta.Assertion]
+        Whether or not Dots are polarizing (by action or for entire meeting)
     """
-    syntheses = synthesize(dots)
-    targets = set([s.target for s in syntheses])
-    result = []
-    for t in targets:
-        target_syntheses = [s for s in syntheses if s.target == t]
-        target_is_polarizing = disagreement.is_polarizing(target_syntheses)
-        target_is_polarizing.target = t
-        result += [target_is_polarizing]
-    return result
+    # TODO: Represent Attributes by objects instead of strings.
 
+    # TODO: Below is all Data Plumbing -- need to define utility function for it.
+    dots_df = pd.DataFrame.from_records([(dot.source, dot.target, dot.value) for dot in
+                                         meeting.dots], columns=['author', 'subject', 'value'])
 
-def synthesize(dots: List[objects.Dot]) -> List[meta.Assertion]:
-    dot_ratings = [dot.value for dot in meeting.dots]
-    result = concepts.disagreement.is_polarizing(dot_ratings)
-    return meta.Assertion(source=objects.System, target=meeting, value=result)
+    if by_action:
+        dots_df['by'] = [by_action[dot.attribute] for dot in meeting.dots]
+    else:
+        dots_df['by'] = "all_dots"
+
+    results = list()
+    for action, df in dots_df.groupby(['by']):
+        is_polar = disagreement.is_polarizing(list(df['value']))
+        results.append(meta.Assertion(source=objects.System, target=objects.Person,
+                                      value=is_polar, label=action))
+    return results
 
 
 def dots_on_subject_are_polarizing(dots: List[objects.Dot]) -> List[meta.Assertion]:
@@ -57,7 +63,6 @@ def dots_on_subject_are_polarizing(dots: List[objects.Dot]) -> List[meta.Asserti
 
     1. Values about a target given by each source is synthesized.
     2. Determines whether the synthesized values have a polarizing distribution.
-    TODO: Generalize input type beyond Dots.
     TODO: Disentangle into core concepts.
 
     Parameters
@@ -69,6 +74,7 @@ def dots_on_subject_are_polarizing(dots: List[objects.Dot]) -> List[meta.Asserti
     List[meta.Assertion]
         Target of each Assertion is a topic/subject. Value is True if it is polarizing.
     """
+    # TODO: Below is all Data Plumbing -- need to define utility function for it.
     author_subject_value = [
         (dot.source, dot.target, dot.value) for dot in dots
     ]
@@ -82,13 +88,7 @@ def dots_on_subject_are_polarizing(dots: List[objects.Dot]) -> List[meta.Asserti
 
     results = list()
     for subject, polar in polarizing_subjects.items():
-        results.append(
-            meta.Assertion(
-                source=objects.System,
-                target=subject,
-                value=polar
-            )
-        )
+        results.append(meta.Assertion(source=objects.System, target=subject, value=polar))
     return results
 
 
