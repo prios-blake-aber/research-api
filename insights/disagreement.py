@@ -60,20 +60,20 @@ def action_is_polarizing_161(meeting: objects.Meeting):
 
 
 @utils.scope_required_data_within_object(collections_to_keep=['dots'])
-def meeting_section_sentiment_is_polarizing_118(meeting: objects.Meeting) -> objects.Judgement:
+def meeting_section_sentiment_is_polarizing_118(meeting: objects.Meeting) -> meta.Assertion:
     """
     Determines if Meeting Section Sentiment is polarizing, based on Dots.
 
     Parameters
     ----------
     meeting
+        Meeting object
 
     Returns
     -------
-    objects.Judgement
+    meta.Assertion
     """
-    dots = [dot for dot in meeting.dots]
-    return disagreement.is_polarizing(dots)
+    return disagreement.dots_in_meeting_are_polarizing(meeting)
 
 
 def consensus_exists_131(question: objects.Question) -> bool:
@@ -126,7 +126,7 @@ def polarizing_participants_38(meeting: objects.Meeting) -> List[meta.Assertion]
     List[meta.Assertion]
     """
     frequently_dotted = activity.frequently_dotted_subjects(meeting.dots)
-    polarizing = disagreement.polarizing_topics(meeting.dots)
+    polarizing = disagreement.dots_are_polarizing(meeting.dots)
 
     # TODO: Write function for determining whether values are True in two (or more) lists of
     #  Judgements. Elements of each list should have the same targets, which only appear once.
@@ -228,12 +228,6 @@ def significantly_out_of_sync_114(meeting: objects.Meeting,
     List[objects.Judgement]
         Value = True if person is Significantly OOS.
     """
-    notable = activity.notable_participants(meeting)
-    # TODO: Util function to convert List of Assertions to Dictionary (doable with Dataclasses)
-    notable_dict = {
-        p.id: p.value for p in notable
-    }
-
     oos = {
         q.id: out_of_sync_people_on_question_41(q.id) for q in meeting.questions
     }
@@ -242,9 +236,12 @@ def significantly_out_of_sync_114(meeting: objects.Meeting,
         person: 0 for person in meeting.partcipants
     }
 
-    for k, v in oos:
-        for person in v:
-            oos_count[person] += 1
+    for q, is_oos in oos.items():
+        for person in is_oos:
+            if person.value:
+                oos_count[person] += 1
+
+
 
     def to_zscore(x: Dict[objects.Person, int]) -> Dict[objects.Person, float]:
         """Placeholder.
@@ -264,4 +261,31 @@ def significantly_out_of_sync_114(meeting: objects.Meeting,
         results += [
             objects.Judgement(source=objects.System, target=person, value=result_person)
         ]
+    return results
+
+
+    """
+    A person is uniquely out of sync on a question, if their response is unique (
+    analytics.disagreement.is_unique) and out-of-sync with the believable consensus (
+    analytics.disagreement.out_of_sync_people_on_question).
+
+    Parameters
+    ----------
+    question
+
+    Returns
+    -------
+    List[meta.Assertion]
+        Assertion for each person who answers the question. Value is whether they are uniquely
+        out of sync.
+    """
+    unique_responses = disagreement.is_unique(question)
+    oos = disagreement.out_of_sync_people_on_question(question)
+    results = list()
+    for person_unique in unique_responses:
+        for person_oos in oos:
+            if person_unique.target == person_oos.target:
+                uniquely_oos = person_oos.value and person_unique.value
+        results.append(meta.Assertion(source=objects.System, target=person_unique,
+                                      value=uniquely_oos))
     return results

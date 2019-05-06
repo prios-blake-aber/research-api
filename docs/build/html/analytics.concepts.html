@@ -17,36 +17,34 @@
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
 
+  
+  
     
 
   
+
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Domain Objects" href="src.objects.html" />
     <link rel="prev" title="API Methods" href="analytics.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
+
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+        <div class="wy-side-nav-search">
           
 
           
@@ -176,18 +174,17 @@
 <dd><p>Primary participants.</p>
 <p># TODO: Identical to <cite>insights.activity.primary_participants_in_meeting_138</cite>?
 # TODO: Is it an insight or an analytic?</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dots</strong> – </td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True/False for whether people are a participant.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[<a class="reference internal" href="src.objects.html#src.objects.Judgement" title="src.objects.Judgement">objects.Judgement</a>]</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dots</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True/False for whether people are a participant.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="src.objects.html#src.objects.Judgement" title="src.objects.Judgement">objects.Judgement</a>]</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -199,66 +196,57 @@
 <code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">believable_choice</code><span class="sig-paren">(</span><em>values_and_weights: List[Tuple[StringOrFloat, float]], value_type: src.objects.QuestionType</em><span class="sig-paren">)</span> &#x2192; Optional[StringOrFloat]<a class="reference internal" href="_modules/analytics/concepts/disagreement.html#believable_choice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.believable_choice" title="Permalink to this definition">¶</a></dt>
 <dd><p>Believable choice</p>
 <p>TODO: Change to ValueType.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>values_and_weights</strong> – Values and Believability weights.</li>
-<li><strong>value_type</strong> – Type of value</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values_and_weights</strong> – Values and Believability weights.</p></li>
+<li><p><strong>value_type</strong> – Type of value</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Value or None</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Optional[StringOrFloat]</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Value or None</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Optional[StringOrFloat]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="analytics.concepts.disagreement.believable_choice_categorical_binary">
 <code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">believable_choice_categorical_binary</code><span class="sig-paren">(</span><em>values_and_weights: List[Tuple[str, float]], minimum_vote: float = 0.7</em><span class="sig-paren">)</span> &#x2192; Optional[str]<a class="reference internal" href="_modules/analytics/concepts/disagreement.html#believable_choice_categorical_binary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.believable_choice_categorical_binary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Disagrees With logic for Categorical/Binary responses.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>values_and_weights</strong> – Strings values and corresponding believability</li>
-<li><strong>minimum_vote</strong> – Believable choice has greater than this quantity of the believability-weighted vote.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values_and_weights</strong> – Strings values and corresponding believability</p></li>
+<li><p><strong>minimum_vote</strong> – Believable choice has greater than this quantity of the believability-weighted vote.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Believable choice, or None (if there isn’t one).</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Optional[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a>]</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Believable choice, or None (if there isn’t one).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Optional[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a>]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="analytics.concepts.disagreement.believable_choice_numeric">
 <code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">believable_choice_numeric</code><span class="sig-paren">(</span><em>values_and_weights: List[Tuple[float, float]]</em><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="_modules/analytics/concepts/disagreement.html#believable_choice_numeric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.believable_choice_numeric" title="Permalink to this definition">¶</a></dt>
 <dd><p>“Believable Choice” logic for Numeric responses.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>values_and_weights</strong> – Numeric values and corresponding believability.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Believability-weighted average</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>values_and_weights</strong> – Numeric values and corresponding believability.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Believability-weighted average</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
@@ -266,18 +254,17 @@
 <code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">disagrees_with_167</code><span class="sig-paren">(</span><em>values: Tuple[Any, Any], question_type</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/analytics/concepts/disagreement.html#disagrees_with_167"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.disagrees_with_167" title="Permalink to this definition">¶</a></dt>
 <dd><p>TODO: other analytics that use disagrees_with are Out of Sync People, Uniquely Out of Sync,
 Significantly OOS, etc.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>values</strong> – </td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Empty set, if none exists.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="src.objects.html#src.objects.AssertionSet" title="src.objects.AssertionSet">objects.AssertionSet</a></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>values</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Empty set, if none exists.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="src.objects.html#src.objects.AssertionSet" title="src.objects.AssertionSet">objects.AssertionSet</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
@@ -285,24 +272,20 @@ Significantly OOS, etc.</p>
 <code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">disagrees_with_categorical_binary</code><span class="sig-paren">(</span><em>response_to_compare: StringOrFloat</em>, <em>answer_to_compare: StringOrFloat</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/analytics/concepts/disagreement.html#disagrees_with_categorical_binary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.disagrees_with_categorical_binary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Disagrees With logic for Categorical/Binary values.</p>
 <p>TODO: Find better home -&gt; is this a core concept?</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>response_to_compare</strong> – </li>
-<li><strong>answer_to_compare</strong> – </li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>response_to_compare</strong> – </p></li>
+<li><p><strong>answer_to_compare</strong> – </p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Value is True, if there is a disagreement.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Value is True, if there is a disagreement.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
@@ -310,72 +293,130 @@ Significantly OOS, etc.</p>
 <code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">disagrees_with_numeric</code><span class="sig-paren">(</span><em>response_to_compare: float</em>, <em>answer_to_compare: float</em>, <em>far_away: float = 1.7</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/analytics/concepts/disagreement.html#disagrees_with_numeric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.disagrees_with_numeric" title="Permalink to this definition">¶</a></dt>
 <dd><p>Disagrees With logic for Scale values (1-to-10 or 1-to-5).</p>
 <p>TODO: Find better home -&gt; is this a core concept?</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>response_to_compare</strong> – </li>
-<li><strong>answer_to_compare</strong> – </li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>response_to_compare</strong> – </p></li>
+<li><p><strong>answer_to_compare</strong> – </p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Value is True, if there is a disagreement.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Value is True, if there is a disagreement.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.concepts.disagreement.divisiveness_stat">
+<code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">divisiveness_stat</code><span class="sig-paren">(</span><em>values: List[float], value_type: src.objects.QuestionType, map_to_sentiment: bool = True</em><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="_modules/analytics/concepts/disagreement.html#divisiveness_stat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.divisiveness_stat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Divisiveness is the standard deviation of opinions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> – Numerical values whose divisiveness is being calculated.</p></li>
+<li><p><strong>value_type</strong> – Type of value</p></li>
+<li><p><strong>map_to_sentiment</strong> – Map values to positive, neutral, or negative sentiment prior to taking standard
+deviation. Default is True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Divisiveness measure.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="analytics.concepts.disagreement.is_polarizing">
-<code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">is_polarizing</code><span class="sig-paren">(</span><em>scale_assertions: src.objects.ScaleValueSet</em>, <em>thresh_on_std_scale: float = 1.0</em>, <em>thresh_on_std_mapped_scale: float = 0.5</em>, <em>thresh_on_poles: float = 0.25</em><span class="sig-paren">)</span> &#x2192; src.objects.Judgement<a class="reference internal" href="_modules/analytics/concepts/disagreement.html#is_polarizing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.is_polarizing" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>scale_assertions</strong> – List of assertions with scale values.</li>
-<li><strong>thresh_on_std_scale</strong> – Threshold on standard deviation of scale values.</li>
-<li><strong>thresh_on_std_mapped_scale</strong> – Threshold on standard deviation of scale values mapped to 1, 2, and 3</li>
-<li><strong>thresh_on_poles</strong> – Threshold on ratio between poles</li>
+<code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">is_polarizing</code><span class="sig-paren">(</span><em>values: List[float], thresh_on_std_scale: float = 1.0, thresh_on_std_mapped_scale: float = 0.5, thresh_on_poles: float = 0.25</em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="_modules/analytics/concepts/disagreement.html#is_polarizing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.is_polarizing" title="Permalink to this definition">¶</a></dt>
+<dd><p>“Is polarizing” is a predicate on a distribution of values on the 1-to-10 scale. It returns
+True if the distribution satisfies three criteria:
+* Divisiveness statistic (after mapping to sentiment) exceeds <cite>thresh_on_std_mapped_scale</cite>
+* Divisiveness statistic (raw values) exceeds <cite>thresh_on_std_scale</cite>
+* Polarization statistic exceeds <cite>thresh_on_poles</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> – </p></li>
+<li><p><strong>thresh_on_std_scale</strong> – </p></li>
+<li><p><strong>thresh_on_std_mapped_scale</strong> – </p></li>
+<li><p><strong>thresh_on_poles</strong> – </p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Whether a set of scale values are polarizing.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">object.Judgement</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the distribution of values satisfies three sets of criteria.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.concepts.disagreement.is_polarizing_v0">
+<code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">is_polarizing_v0</code><span class="sig-paren">(</span><em>scale_assertions: src.objects.ScaleValueSet</em>, <em>thresh_on_std_scale: float = 1.0</em>, <em>thresh_on_std_mapped_scale: float = 0.5</em>, <em>thresh_on_poles: float = 0.25</em><span class="sig-paren">)</span> &#x2192; src.objects.Judgement<a class="reference internal" href="_modules/analytics/concepts/disagreement.html#is_polarizing_v0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.is_polarizing_v0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is polarizing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale_assertions</strong> – List of assertions with scale values.</p></li>
+<li><p><strong>thresh_on_std_scale</strong> – Threshold on standard deviation of scale values.</p></li>
+<li><p><strong>thresh_on_std_mapped_scale</strong> – Threshold on standard deviation of scale values mapped to 1, 2, and 3</p></li>
+<li><p><strong>thresh_on_poles</strong> – Threshold on ratio between poles</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a set of scale values are polarizing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>object.Judgement</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.concepts.disagreement.polarizing_stat">
+<code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">polarizing_stat</code><span class="sig-paren">(</span><em>values: List[float]</em><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="_modules/analytics/concepts/disagreement.html#polarizing_stat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.polarizing_stat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the polarization statistic, which measures the balance between positive opinions and
+negative opinions.</p>
+<p>It is the minimum of ratio of the number of positive
+opinions to the number of negative opinions and the ratio of the number of negative opinions
+to the number of positive opinions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>values</strong> – List of values</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Polarization statistic.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="analytics.concepts.disagreement.substantive_disagreement">
 <code class="descclassname">analytics.concepts.disagreement.</code><code class="descname">substantive_disagreement</code><span class="sig-paren">(</span><em>scale_values: Tuple[float, float], threshold_high: float = 1.7</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analytics/concepts/disagreement.html#substantive_disagreement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.concepts.disagreement.substantive_disagreement" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>scale_values</strong> – Scale Value Pair</li>
-<li><strong>threshold_high</strong> – Returns False if difference between raw values is less than this quantity.</li>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale_values</strong> – Scale Value Pair</p></li>
+<li><p><strong>threshold_high</strong> – Returns False if difference between raw values is less than this quantity.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Whether there’s substantive disagreement between two assertions.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">object.Judgement</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether there’s substantive disagreement between two assertions.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>object.Judgement</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -396,7 +437,7 @@ Significantly OOS, etc.</p>
         <a href="src.objects.html" class="btn btn-neutral float-right" title="Domain Objects" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="analytics.html" class="btn btn-neutral float-left" title="API Methods" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="analytics.html" class="btn btn-neutral" title="API Methods" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -405,7 +446,7 @@ Significantly OOS, etc.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Research
+        &copy; Copyright 2019, Research.
 
     </p>
   </div>
@@ -422,16 +463,33 @@ Significantly OOS, etc.</p>
   
 
 
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

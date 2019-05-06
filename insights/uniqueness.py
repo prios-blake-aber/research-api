@@ -10,7 +10,7 @@ from analytics import disagreement
 
 def uniquely_out_of_sync_on_question_136(question: objects.Question) -> List[meta.Assertion]:
     """
-    A person is uniquely ouf of sync on a question, if their response is unique (
+    A person is uniquely out of sync on a question, if their response is unique (
     analytics.disagreement.is_unique) and out-of-sync with the believable consensus (
     analytics.disagreement.out_of_sync_people_on_question).
 

@@ -17,34 +17,32 @@
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
+  
+  
     
 
   
+
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
+
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+        <div class="wy-side-nav-search">
           
 
           
@@ -278,12 +276,105 @@
     <span class="k">return</span> <span class="n">result</span></div>
 
 
-<div class="viewcode-block" id="is_polarizing"><a class="viewcode-back" href="../../../analytics.concepts.html#analytics.concepts.disagreement.is_polarizing">[docs]</a><span class="k">def</span> <span class="nf">is_polarizing</span><span class="p">(</span><span class="n">scale_assertions</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">ScaleValueSet</span><span class="p">,</span>
+<div class="viewcode-block" id="polarizing_stat"><a class="viewcode-back" href="../../../analytics.concepts.html#analytics.concepts.disagreement.polarizing_stat">[docs]</a><span class="k">def</span> <span class="nf">polarizing_stat</span><span class="p">(</span><span class="n">values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the polarization statistic, which measures the balance between positive opinions and</span>
+<span class="sd">    negative opinions.</span>
+
+<span class="sd">    It is the minimum of ratio of the number of positive</span>
+<span class="sd">    opinions to the number of negative opinions and the ratio of the number of negative opinions</span>
+<span class="sd">    to the number of positive opinions.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    values</span>
+<span class="sd">        List of values</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Polarization statistic.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mapped_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">foundation</span><span class="o">.</span><span class="n">map_values</span><span class="p">(</span><span class="n">vi</span><span class="p">,</span> <span class="n">objects</span><span class="o">.</span><span class="n">NumericRange</span><span class="o">.</span><span class="n">ONE_TO_TEN</span><span class="p">)</span> <span class="k">for</span> <span class="n">vi</span> <span class="ow">in</span> <span class="n">values</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">negative_sentiment</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">positive_sentiment</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">3</span>
+
+    <span class="n">percent_negative</span> <span class="o">=</span> <span class="n">foundation</span><span class="o">.</span><span class="n">percent_satisfying_condition</span><span class="p">(</span><span class="n">mapped_values</span><span class="p">,</span> <span class="n">negative_sentiment</span><span class="p">)</span>
+    <span class="n">percent_positive</span> <span class="o">=</span> <span class="n">foundation</span><span class="o">.</span><span class="n">percent_satisfying_condition</span><span class="p">(</span><span class="n">mapped_values</span><span class="p">,</span> <span class="n">positive_sentiment</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">percent_negative</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">percent_positive</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">percent_positive</span><span class="o">/</span><span class="n">percent_negative</span><span class="p">,</span> <span class="n">percent_negative</span><span class="o">/</span><span class="n">percent_positive</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span></div>
+
+
+<div class="viewcode-block" id="divisiveness_stat"><a class="viewcode-back" href="../../../analytics.concepts.html#analytics.concepts.disagreement.divisiveness_stat">[docs]</a><span class="k">def</span> <span class="nf">divisiveness_stat</span><span class="p">(</span><span class="n">values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">value_type</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">QuestionType</span><span class="p">,</span>
+                      <span class="n">map_to_sentiment</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Divisiveness is the standard deviation of opinions.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    values</span>
+<span class="sd">        Numerical values whose divisiveness is being calculated.</span>
+<span class="sd">    value_type</span>
+<span class="sd">        Type of value</span>
+<span class="sd">    map_to_sentiment</span>
+<span class="sd">        Map values to positive, neutral, or negative sentiment prior to taking standard</span>
+<span class="sd">        deviation. Default is True.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Divisiveness measure.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">map_to_sentiment</span><span class="p">:</span>
+        <span class="n">mapped_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">foundation</span><span class="o">.</span><span class="n">map_values</span><span class="p">(</span><span class="n">vi</span><span class="p">,</span> <span class="n">value_type</span><span class="p">)</span> <span class="k">for</span> <span class="n">vi</span> <span class="ow">in</span> <span class="n">values</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">foundation</span><span class="o">.</span><span class="n">standard_deviation</span><span class="p">(</span><span class="n">mapped_values</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">foundation</span><span class="o">.</span><span class="n">standard_deviation</span><span class="p">(</span><span class="n">values</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="is_polarizing"><a class="viewcode-back" href="../../../analytics.concepts.html#analytics.concepts.disagreement.is_polarizing">[docs]</a><span class="k">def</span> <span class="nf">is_polarizing</span><span class="p">(</span><span class="n">values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
                   <span class="n">thresh_on_std_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">_THRESHOLD_STD_SCALE</span><span class="p">,</span>
                   <span class="n">thresh_on_std_mapped_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">_THRESHOLD_STD_MAPPED_SCALE</span><span class="p">,</span>
-                  <span class="n">thresh_on_poles</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">_THRESHOLD_POLES</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">objects</span><span class="o">.</span><span class="n">Judgement</span><span class="p">:</span>
-
+                  <span class="n">thresh_on_poles</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">_THRESHOLD_POLES</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &quot;Is polarizing&quot; is a predicate on a distribution of values on the 1-to-10 scale. It returns</span>
+<span class="sd">    True if the distribution satisfies three criteria:</span>
+<span class="sd">    * Divisiveness statistic (after mapping to sentiment) exceeds `thresh_on_std_mapped_scale`</span>
+<span class="sd">    * Divisiveness statistic (raw values) exceeds `thresh_on_std_scale`</span>
+<span class="sd">    * Polarization statistic exceeds `thresh_on_poles`</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    values</span>
+<span class="sd">    thresh_on_std_scale</span>
+<span class="sd">    thresh_on_std_mapped_scale</span>
+<span class="sd">    thresh_on_poles</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bool</span>
+<span class="sd">        True if the distribution of values satisfies three sets of criteria.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">polarization</span> <span class="o">=</span> <span class="n">polarizing_stat</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">thresh_on_poles</span>
+    <span class="n">divisiveness</span> <span class="o">=</span> <span class="n">divisiveness_stat</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">thresh_on_std_mapped_scale</span>
+    <span class="n">std_dev</span> <span class="o">=</span> <span class="n">divisiveness_stat</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">map_to_sentiment</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">thresh_on_std_scale</span>
+    <span class="k">return</span> <span class="n">polarization</span> <span class="ow">and</span> <span class="n">divisiveness</span> <span class="ow">and</span> <span class="n">std_dev</span></div>
+
+
+<div class="viewcode-block" id="is_polarizing_v0"><a class="viewcode-back" href="../../../analytics.concepts.html#analytics.concepts.disagreement.is_polarizing_v0">[docs]</a><span class="k">def</span> <span class="nf">is_polarizing_v0</span><span class="p">(</span><span class="n">scale_assertions</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">ScaleValueSet</span><span class="p">,</span>
+                     <span class="n">thresh_on_std_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">_THRESHOLD_STD_SCALE</span><span class="p">,</span>
+                     <span class="n">thresh_on_std_mapped_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">_THRESHOLD_STD_MAPPED_SCALE</span><span class="p">,</span>
+                     <span class="n">thresh_on_poles</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">_THRESHOLD_POLES</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">objects</span><span class="o">.</span><span class="n">Judgement</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Is polarizing</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    scale_assertions</span>
@@ -416,7 +507,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Research
+        &copy; Copyright 2019, Research.
 
     </p>
   </div>
@@ -433,16 +524,33 @@
   
 
 
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/language_data.js"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

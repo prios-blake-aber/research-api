@@ -5,8 +5,10 @@ TBD
 
 import itertools
 import numpy as np
-from typing import Tuple, List, TypeVar, Any
-from analytics import foundation, concepts, utils
+import pandas as pd
+from typing import Tuple, List, TypeVar, Any, Dict
+from analytics import foundation, activity
+from analytics import concepts
 from src import objects, meta
 
 
@@ -16,9 +18,30 @@ _THRESHOLD_STD_MAPPED_SCALE = 0.5
 _UNIQUE_DISAGREEMENT = 0.88
 
 
-def polarizing_topics(dots: List[objects.Dot]) -> List[meta.Assertion]:
+def dots_in_meeting_are_polarizing(meeting: objects.Meeting) -> meta.Assertion:
     """
-    Is a "topic" polarizing? A topic is a collection of Assertions on a single target.
+    Returns Assertion on whether a List of Dots are Polarizing.
+
+    Parameters
+    ----------
+    meeting
+        Meeting object
+
+    Returns
+    -------
+    meta.Assertion
+        Whether or not
+    """
+    dot_ratings = [dot.value for dot in meeting.dots]
+    result = concepts.disagreement.is_polarizing(dot_ratings)
+    return meta.Assertion(source=objects.System, target=meeting, value=result)
+
+
+def dots_on_subject_are_polarizing(dots: List[objects.Dot]) -> List[meta.Assertion]:
+    """
+    Returns list of Assertions for each subject (target) in a list of Dots with a True/False
+    value on whether the distribution of author-synthesized dot ratings that they received are
+    polarizing.
 
     1. Values about a target given by each source is synthesized.
     2. Determines whether the synthesized values have a polarizing distribution.
@@ -34,50 +57,27 @@ def polarizing_topics(dots: List[objects.Dot]) -> List[meta.Assertion]:
     List[meta.Assertion]
         Target of each Assertion is a topic/subject. Value is True if it is polarizing.
     """
-    syntheses = synthesize(dots)
-    targets = set([s.target for s in syntheses])
-    result = []
-    for t in targets:
-        target_syntheses = [s for s in syntheses if s.target == t]
-        target_is_polarizing = concepts.disagreement.is_polarizing(target_syntheses)
-        target_is_polarizing.target = t
-        result += [target_is_polarizing]
-    return result
+    author_subject_value = [
+        (dot.source, dot.target, dot.value) for dot in dots
+    ]
+    author_subject_value_df = pd.DataFrame.from_records(author_subject_value, columns=['author',
+                                                                                       'subject',
+                                                                                       'value'])
+    synthesized_ratings = author_subject_value_df.groupby(['author', 'subject']).apply(concepts.syntheses.synthesize)
+    synthesized_ratings = synthesized_ratings.to_frame().reset_index()
+    polarizing_subjects = synthesized_ratings.groupby(['subject'])['value'].apply(
+        concepts.disagreement.is_polarizing).to_dict()
 
-
-def synthesize(dots: List[objects.Dot]) -> List[meta.Assertion]:
-    """
-    Synthesize dots given by each author (source) about a single subject (target) into a single
-    assertion.
-    TODO: Synthesis is a core concept.
-    TODO: Add keyword arguments for specifying how syntheses are performed
-
-    Parameters
-    ----------
-    dots
-
-    Returns
-    -------
-    List[meta.Assertion]
-
-    """
-    sources = set([dot.source for dot in dots])
-    targets = set([dot.target for dot in dots])
-
-    result = list()
-    for s in sources:
-        for t in targets:
-            subset_dots = [dot for dot in dots if dot.source == s and dot.target == t]
-            values = [dot.value for dot in subset_dots]
-            synthesized_value = foundation.weighted_average(values)
-            result.append(
-                meta.Assertion(
-                    source=s,
-                    target=t,
-                    value=synthesized_value
-                )
+    results = list()
+    for subject, polar in polarizing_subjects.items():
+        results.append(
+            meta.Assertion(
+                source=objects.System,
+                target=subject,
+                value=polar
             )
-    return result
+        )
+    return results
 
 
 def is_unique(question: objects.Question, unique_disagreement=_UNIQUE_DISAGREEMENT) -> List[
@@ -266,3 +266,56 @@ def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Asse
     return people
 
 
+def significantly_out_of_sync_meeting(meeting: objects.Meeting,
+                                      threshold_low=0.8,
+                                      threshold_high=1.2) -> List[meta.Assertion]:
+    """
+    A person is out of sync on significantly higher number of questions than others in a meeting.
+
+    Parameters
+    ----------
+    meeting
+    threshold_low
+    threshold_high
+
+    Returns
+    -------
+    List[meta.Assertion]
+        Value = True if person is Significantly OOS.
+    """
+    oos = {
+        q.id: out_of_sync_people_on_question(q.id) for q in meeting.questions
+    }
+
+    oos_count = {
+        person: 0 for person in meeting.participants
+    }
+
+    for q, is_oos in oos.items():
+        for person in is_oos:
+            if person.value:
+                oos_count[person] += 1
+
+    # TODO: Factor this better.
+    oos_count_z_score = foundation.zscore([value for key, value in oos_count.items()])
+    oos_count_z_score_dict = dict()
+    j = 0
+    for key, value in oos_count.items():
+        oos_count_z_score_dict[key] = oos_count_z_score[j]
+        j += 1
+
+    notable_people = activity.notable_participants(meeting)
+
+    results = []
+    for person, v in oos_count_z_score_dict.items():
+        for person_notable in notable_people:
+            if person.id == person_notable.target:
+                if person_notable.value:
+                    result_person = v > threshold_low
+                else:
+                    result_person = v > threshold_high
+
+        results += [
+            meta.Assertion(source=objects.System, target=person, value=result_person)
+        ]
+    return results
