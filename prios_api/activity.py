@@ -22,7 +22,6 @@ def relevance_of_people(dots: List[objects.Person]):
     pass
 
 
-@utils.scope_required_data_within_object(collections_to_keep=['responses'])
 def quorum_exists_question(question: objects.Question, number_participants, quorum_threshold):
     """
     Determines whether a sufficient percentage of Participants answered each question
@@ -39,19 +38,21 @@ def quorum_exists_question(question: objects.Question, number_participants, quor
     meta.Assertion
         A single assertion that where the value is True if a Quorum Exists on the Question or None if no Quorum exists.
     """
-    quorum_flag = ungrouped.quorum_exists(question.responses.data, number_participants, quorum_threshold)
-    if quorum_flag:
-        return meta.Assertion(source=objects.System, target=question, value=quorum_flag, measure=objects.BooleanOption)
+    if number_participants:
+        engagement_on = engagement.engagement_raw(question.responses)
+        engagement_ratio = engagement.engagement_relative(question.responses, number_participants)
+        quorum_flag = (engagement_ratio > quorum_threshold) and (engagement_on > 3)
+        return meta.Assertion(source=meta.System, target=question, value=quorum_flag)
     else:
-        return meta.Assertion(source=objects.System, target=question, value=None, measure=objects.BooleanOption)
+        return meta.Assertion(source=meta.System, target=question, value=None)
 
 
 def engagement_in_meeting(meeting: objects.Meeting):
-    return engagement.engagement_raw(meeting.participants.data)
+    return engagement.engagement_raw(meeting.participants)
 
 
 def engagement_in_question(question: objects.Question):
-    return engagement.engagement_raw(question.responses.data)
+    return engagement.engagement_raw(question.responses)
 
 
 def sufficient_believability_engagement(question: objects.Question,
