@@ -5,7 +5,8 @@ Polarization:
 
 from typing import List, TypeVar
 from prios_api.src import foundation
-from prios_api.domain_objects import objects
+from prios_api.concepts import divisiveness
+from prios_api.domain_objects import objects, meta
 
 StringOrFloat = TypeVar("StringOrFloat", str, float)
 _THRESHOLD_HIGH = 1.7
@@ -37,10 +38,10 @@ def polarizing_stat(values: List[float]) -> float:
     mapped_values = [foundation.map_values(vi, objects.NumericRange.ONE_TO_TEN) for vi in values]
 
     def negative_sentiment(x):
-        return x == 1
+        return x == 0
 
     def positive_sentiment(x):
-        return x == 3
+        return x == 2
 
     percent_negative = foundation.percent_satisfying_condition(mapped_values, negative_sentiment)
     percent_positive = foundation.percent_satisfying_condition(mapped_values, positive_sentiment)
@@ -75,9 +76,9 @@ def is_polarizing(values: List[float],
         True if the distribution of values satisfies three sets of criteria.
     """
     polarization = polarizing_stat(values) > thresh_on_poles
-    divisiveness = divisiveness_stat(values) > thresh_on_std_mapped_scale
-    std_dev = divisiveness_stat(values, map_to_sentiment=False) > thresh_on_std_scale
-    return polarization and divisiveness and std_dev
+    divisiveness_stat = divisiveness.divisiveness_stat(values) > thresh_on_std_mapped_scale
+    std_dev = divisiveness.divisiveness_stat(values, map_to_sentiment=False) > thresh_on_std_scale
+    return polarization and divisiveness_stat and std_dev
 
 
 def is_polarizing_v0(values: List[float],
@@ -124,5 +125,3 @@ def is_polarizing_v0(values: List[float],
     std_mapped_values_condition = foundation.standard_deviation(mapped_values) > thresh_on_std_mapped_scale
     pole_condition = pole_ratio > thresh_on_poles
     return std_values_condition and std_mapped_values_condition and pole_condition
-
-

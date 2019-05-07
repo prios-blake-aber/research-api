@@ -2,14 +2,12 @@
 """
 TBD
 """
-import typing
+from typing import List, Any, Tuple, Callable
 from itertools import groupby
 from prios_api.domain_objects import meta, objects
 
 
-def group_assertions_by_key(
-        assertions: typing.List[meta.Assertion], keyfunc: typing.Callable) -> \
-        typing.List[typing.Tuple[typing.Any, typing.Any]]:
+def group_assertions_by_key(assertions: List[meta.Assertion], key_func: Callable) -> List[Tuple[Any, Any]]:
     """
     Groups values in list of assertions by user-specified Callable.
 
@@ -17,12 +15,12 @@ def group_assertions_by_key(
     ----------
     assertions
         List of assertions
-    keyfunc
+    key_func
         Callable specifying groupby function
 
     Returns
     -------
-    typing.List[typing.Tuple[typing.Any, typing.Any]]
+    List[Tuple[Any, Any]]
         Each element of list is indexed by a defined group with a
         list of associated assertions.
 
@@ -36,8 +34,8 @@ def group_assertions_by_key(
     >>> research.dots.append(objects.Dot(source=adam, target=bob, value=5))
     >>> research.dots.append(objects.Dot(source=charlie, target=bob, value=1))
     >>> research.dots.append(objects.Dot(source=charlie, target=adam, value=5))
-    >>> keyfunc = lambda x: (x.source.uuid, x.target.uuid)
-    >>> result = group_assertions_by_key(research.dots, keyfunc=keyfunc)
+    >>> key_func = lambda x: (x.source.uuid, x.target.uuid)
+    >>> result = group_assertions_by_key(research.dots, key_func=key_func)
     >>> for key, data in result:
     ...     for dot in data:
     ...         print(dot.source.name, dot.target.name, dot.value)
@@ -46,8 +44,8 @@ def group_assertions_by_key(
     Charlie Bob 1
     Charlie Adam 5
     """
-    assertion_list = sorted(assertions, key=keyfunc)
-    grouped_assertion_list = groupby(assertion_list, key=keyfunc)
+    assertion_list = sorted(assertions, key=key_func)
+    grouped_assertion_list = groupby(assertion_list, key=key_func)
     return [(k, list(v)) for k, v in grouped_assertion_list]
 
 

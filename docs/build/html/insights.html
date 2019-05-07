@@ -405,8 +405,13 @@ Defines Primary Participants in a Meeting from Dots.</p>
 </dd></dl>
 
 <dl class="function">
+<<<<<<< HEAD
+<dt id="insights.disagreement.nubby_question_popup_49">
+<code class="descclassname">insights.disagreement.</code><code class="descname">nubby_question_popup_49</code><span class="sig-paren">(</span><em>question: src.objects.Question</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/insights/disagreement.html#nubby_question_popup_49"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.disagreement.nubby_question_popup_49" title="Permalink to this definition">¶</a></dt>
+=======
 <dt id="insights.differences_in_views.question_nubbiness_popup_49">
 <code class="descclassname">insights.differences_in_views.</code><code class="descname">question_nubbiness_popup_49</code><span class="sig-paren">(</span><em>question: prios_api.domain_objects.objects.Question</em><span class="sig-paren">)</span> &#x2192; prios_api.domain_objects.meta.Assertion<a class="reference internal" href="_modules/insights/differences_in_views.html#question_nubbiness_popup_49"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.differences_in_views.question_nubbiness_popup_49" title="Permalink to this definition">¶</a></dt>
+>>>>>>> master
 <dd><p>Returns True if question is nubby and a quorum exists.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -455,6 +460,24 @@ Defines Primary Participants in a Meeting from Dots.</p>
 <p>TBD</p>
 <dl class="function">
 <dt id="insights.uniqueness.uniquely_out_of_sync_on_question_136">
+<<<<<<< HEAD
+<code class="descclassname">insights.uniqueness.</code><code class="descname">uniquely_out_of_sync_on_question_136</code><span class="sig-paren">(</span><em>question: src.objects.Question</em><span class="sig-paren">)</span> &#x2192; List[src.meta.Assertion]<a class="reference internal" href="_modules/insights/uniqueness.html#uniquely_out_of_sync_on_question_136"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.uniqueness.uniquely_out_of_sync_on_question_136" title="Permalink to this definition">¶</a></dt>
+<dd><p>A person is uniquely ouf of sync on a question, if their response is unique (
+analytics.disagreement.unique_choice) and out-of-sync with the believable consensus (
+analytics.disagreement.out_of_sync_people_on_question).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>question</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Assertion for each person who answers the question. Value is whether they are uniquely
+out of sync.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</p>
+</dd>
+</dl>
+=======
 <code class="descclassname">insights.uniqueness.</code><code class="descname">uniquely_out_of_sync_on_question_136</code><span class="sig-paren">(</span><em>question: prios_api.domain_objects.objects.Question</em><span class="sig-paren">)</span> &#x2192; List[prios_api.domain_objects.meta.Assertion]<a class="reference internal" href="_modules/insights/uniqueness.html#uniquely_out_of_sync_on_question_136"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.uniqueness.uniquely_out_of_sync_on_question_136" title="Permalink to this definition">¶</a></dt>
 <dd><p>A person is uniquely out of sync on a question, if their response is unique (
 prios_api.disagreement.is_unique) and out-of-sync with the believable consensus (
@@ -472,6 +495,7 @@ out of sync.</td>
 </tr>
 </tbody>
 </table>
+>>>>>>> master
 </dd></dl>
 
 </div>

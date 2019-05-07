@@ -1,0 +1,491 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>API Methods &mdash; Research API 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Core Concepts" href="analytics.concepts.html" />
+    <link rel="prev" title="Application Logic" href="insights.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Research API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Developing New Logic</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="insights.html">Application Logic</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-analytics.activity">Activity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-analytics.disagreement">Disagreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-analytics.sentiment">Sentiment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.concepts.html">Core Concepts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Operations on Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="src.objects.html">Domain Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.meta.html">Meta-Model Interface</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Helper Functions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="analytics.foundation.html">Mathematical Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics.utils.html">Utilities</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Research API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>API Methods</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/analytics.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="api-methods">
+<h1>API Methods<a class="headerlink" href="#api-methods" title="Permalink to this headline">¶</a></h1>
+<p>New Logic can be expressed in terms of an API that applies Core Concepts to Domain objects.</p>
+<div class="section" id="module-analytics.activity">
+<span id="activity"></span><h2>Activity<a class="headerlink" href="#module-analytics.activity" title="Permalink to this headline">¶</a></h2>
+<p>TBD</p>
+<dl class="function">
+<dt id="analytics.activity.combine_results">
+<code class="descclassname">analytics.activity.</code><code class="descname">combine_results</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analytics/activity.html#combine_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.activity.combine_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines whether values are True in two (or more) lists of
+Judgements. Elements of each list should have the same targets, which only appear once.</p>
+<p>Not an insight (just a placeholder)</p>
+<p># TODO: Find better home.
+# TODO: Is this a utils for analytics OR insights? See insights.disagreements.combine_results
+:param args:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.activity.frequently_dotted_subjects">
+<code class="descclassname">analytics.activity.</code><code class="descname">frequently_dotted_subjects</code><span class="sig-paren">(</span><em>dots: List[src.objects.Dot], min_percent_1: float = 0.1, min_count_1: int = 0, min_percent_2: float = 0.05, min_count_2: int = 5</em><span class="sig-paren">)</span> &#x2192; List[src.objects.Judgement]<a class="reference internal" href="_modules/analytics/activity.html#frequently_dotted_subjects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.activity.frequently_dotted_subjects" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li><p>Determines whether a Subject is Frequently Dotted: receives more than either:</p></li>
+<li><p>10% of all Dot Ratings OR</p></li>
+<li><p>5% of all Dot Ratings along with 10 Dot Ratings.</p></li>
+</ul>
+<p>TODO: Reconcile with Primary Participants</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dots</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Determines whether each subject in a collection of Dots is frequently dotted.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="src.objects.html#src.objects.Judgement" title="src.objects.Judgement">objects.Judgement</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.activity.notable_participants">
+<code class="descclassname">analytics.activity.</code><code class="descname">notable_participants</code><span class="sig-paren">(</span><em>meeting: src.objects.Meeting</em>, <em>**kwargs</em><span class="sig-paren">)</span> &#x2192; List[src.objects.Judgement]<a class="reference internal" href="_modules/analytics/activity.html#notable_participants"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.activity.notable_participants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True/False for whether a list of Participants in a Meeting are Notable Participants.
+Notable Participants are:
+* Believable
+* Primary Participant</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>meeting</strong> – </p></li>
+<li><p><strong>kwargs</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List of people who are primary or believable.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-analytics.disagreement">
+<span id="disagreement"></span><h2>Disagreement<a class="headerlink" href="#module-analytics.disagreement" title="Permalink to this headline">¶</a></h2>
+<p>TBD</p>
+<dl class="function">
+<dt id="analytics.disagreement.believable_choice_on_question">
+<code class="descclassname">analytics.disagreement.</code><code class="descname">believable_choice_on_question</code><span class="sig-paren">(</span><em>question: src.objects.Question</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/analytics/disagreement.html#believable_choice_on_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.believable_choice_on_question" title="Permalink to this definition">¶</a></dt>
+<dd><p>What is the believable choice on a question?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>question</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.disagreement.divisiveness">
+<code class="descclassname">analytics.disagreement.</code><code class="descname">divisiveness</code><span class="sig-paren">(</span><em>ar: List[StringOrFloat], value_type: src.objects.QuestionType</em><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="_modules/analytics/disagreement.html#divisiveness"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.divisiveness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Divisiveness.</p>
+<p># TODO: Core Concept.
+# TODO: How are N/A’s being represented? We shouldn’t assume they’re being filtered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ar</strong> – </p></li>
+<li><p><strong>value_type</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Divisiveness value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.disagreement.dots_on_subjects_are_nubby_and_polarizing">
+<code class="descclassname">analytics.disagreement.</code><code class="descname">dots_on_subjects_are_nubby_and_polarizing</code><span class="sig-paren">(</span><em>dots: List[src.objects.Dot]</em><span class="sig-paren">)</span> &#x2192; List[src.meta.Assertion]<a class="reference internal" href="_modules/analytics/disagreement.html#dots_on_subjects_are_nubby_and_polarizing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.dots_on_subjects_are_nubby_and_polarizing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns list of Assertions for each subject (target) in a list of Dots with a True/False
+value on whether the distribution of author-synthesized dot ratings that they received are
+polarizing.</p>
+<ol class="arabic simple">
+<li><p>Values about a target given by each source is synthesized.</p></li>
+</ol>
+<p>2. Determines whether the synthesized values have a polarizing distribution.
+TODO: Generalize input type beyond Dots.
+TODO: Disentangle into core concepts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dots</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Target of each Assertion is a topic/subject. Value is True if it is polarizing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.disagreement.is_nubby_question">
+<code class="descclassname">analytics.disagreement.</code><code class="descname">is_nubby_question</code><span class="sig-paren">(</span><em>question: src.objects.Question</em>, <em>threshold: float = 0.5</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/analytics/disagreement.html#is_nubby_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.is_nubby_question" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is a question Nubby?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>question</strong> – </p></li>
+<li><p><strong>threshold</strong> – Question is Nubby if its divisiveness value exceeds this quantity.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Value is True if the question is Nubby.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.disagreement.unique_choice">
+<code class="descclassname">analytics.disagreement.</code><code class="descname">unique_choice</code><span class="sig-paren">(</span><em>question: src.objects.Question</em>, <em>unique_disagreement=0.88</em><span class="sig-paren">)</span> &#x2192; List[src.meta.Assertion]<a class="reference internal" href="_modules/analytics/disagreement.html#unique_choice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.unique_choice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines whether responses are in small minority of responses.</p>
+<p>TODO: bucketing should live in it’s own function
+Identify if the given ‘response’ is unique in relation to the given set of ‘responses’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>question</strong> – </p></li>
+<li><p><strong>unique_disagreement</strong> – Response is unique if its percentage (compared to all responses) is less than this value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>System assertions of whether each response is unique</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.disagreement.meeting_nubbiness_v1">
+<code class="descclassname">analytics.disagreement.</code><code class="descname">meeting_nubbiness_v1</code><span class="sig-paren">(</span><em>meeting: src.objects.Meeting, thresholds: List[float] = [0.2, 0.4, 0.6, 0.8]</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/analytics/disagreement.html#meeting_nubbiness_v1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.meeting_nubbiness_v1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is a Meeting Nubby?</p>
+<p>TODO: Public.
+TODO: Default Thresholds are wrong.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>meeting</strong> – </p></li>
+<li><p><strong>thresholds</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Value is a Classification.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.disagreement.out_of_sync_people_on_question">
+<code class="descclassname">analytics.disagreement.</code><code class="descname">out_of_sync_people_on_question</code><span class="sig-paren">(</span><em>question: src.objects.Question</em><span class="sig-paren">)</span> &#x2192; List[src.meta.Assertion]<a class="reference internal" href="_modules/analytics/disagreement.html#out_of_sync_people_on_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.disagreement.out_of_sync_people_on_question" title="Permalink to this definition">¶</a></dt>
+<dd><p>Identifies people who are out-of-sync on a question.</p>
+<p>TODO: Move logic to analytics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>question</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Values are True if person is out-of-sync on the question.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-analytics.sentiment">
+<span id="sentiment"></span><h2>Sentiment<a class="headerlink" href="#module-analytics.sentiment" title="Permalink to this headline">¶</a></h2>
+<p>TBD</p>
+<dl class="function">
+<dt id="analytics.sentiment.quality">
+<code class="descclassname">analytics.sentiment.</code><code class="descname">quality</code><span class="sig-paren">(</span><em>x: src.objects.AssertionSet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analytics/sentiment.html#quality"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.sentiment.quality" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dots</strong> (<a class="reference internal" href="src.objects.html#src.objects.AssertionSet" title="src.objects.AssertionSet"><em>objects.AssertionSet</em></a>) – A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.Dot</span></code>.</p></li>
+<li><p><strong>*args</strong> – Variable length argument list.</p></li>
+<li><p><strong>**kwargs</strong> – Arbitrary keyword arguments.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A set of relevant actions in a meeting, or an empty set if none exist.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="src.objects.html#src.objects.AssertionSet" title="src.objects.AssertionSet">objects.AssertionSet</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="analytics.sentiment.sentiment">
+<code class="descclassname">analytics.sentiment.</code><code class="descname">sentiment</code><span class="sig-paren">(</span><em>scale_assertions: src.objects.ScaleValueSet</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analytics/sentiment.html#sentiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analytics.sentiment.sentiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines “Sentiment” as the [Dots Summary](<a class="reference external" href="https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186">https://blakea-analytics-registry.dev.principled.io/writeup?analytic=186</a>) of all Dots in a Meeting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale_assertions</strong> (<em>objects.CollectionOfScaleValues</em>) – A set of :type:float.</p></li>
+<li><p><strong>*args</strong> – Variable length argument list.</p></li>
+<li><p><strong>**kwargs</strong> – Arbitrary keyword arguments.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value representing sentiment, or None.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>objects.Assertion</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="analytics.concepts.html" class="btn btn-neutral float-right" title="Core Concepts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="insights.html" class="btn btn-neutral" title="Application Logic" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Research.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

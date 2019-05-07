@@ -168,9 +168,15 @@
 
 <div class="viewcode-block" id="uniquely_out_of_sync_on_question_136"><a class="viewcode-back" href="../../insights.html#insights.uniqueness.uniquely_out_of_sync_on_question_136">[docs]</a><span class="k">def</span> <span class="nf">uniquely_out_of_sync_on_question_136</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<<<<<<< HEAD
+<span class="sd">    A person is uniquely ouf of sync on a question, if their response is unique (</span>
+<span class="sd">    analytics.disagreement.unique_choice) and out-of-sync with the believable consensus (</span>
+<span class="sd">    analytics.disagreement.out_of_sync_people_on_question).</span>
+=======
 <span class="sd">    A person is uniquely out of sync on a question, if their response is unique (</span>
 <span class="sd">    prios_api.disagreement.is_unique) and out-of-sync with the believable consensus (</span>
 <span class="sd">    prios_api.disagreement.out_of_sync_people_on_question).</span>
+>>>>>>> master
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -182,7 +188,7 @@
 <span class="sd">        Assertion for each person who answers the question. Value is whether they are uniquely</span>
 <span class="sd">        out of sync.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">unique_responses</span> <span class="o">=</span> <span class="n">disagreement</span><span class="o">.</span><span class="n">is_unique</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+    <span class="n">unique_responses</span> <span class="o">=</span> <span class="n">disagreement</span><span class="o">.</span><span class="n">unique_choice</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
     <span class="n">oos</span> <span class="o">=</span> <span class="n">disagreement</span><span class="o">.</span><span class="n">out_of_sync_people_on_question</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
     <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">person_unique</span> <span class="ow">in</span> <span class="n">unique_responses</span><span class="p">:</span>

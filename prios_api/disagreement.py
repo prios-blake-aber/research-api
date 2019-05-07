@@ -1,20 +1,123 @@
 
 """
-TBD
+PRIOS Analytics on Disagreement.
 """
 
 import numpy as np
 import pandas as pd
 from typing import List, TypeVar, Dict
 from prios_api import activity, concepts
-from prios_api.src import foundation
-from prios_api.concepts import disagreement, believable_choice
+from prios_api.concepts import synthesis, polarizing
+from prios_api.src import foundation, utils
+from prios_api.concepts import disagreement, believable_choice, divisiveness
 from prios_api.domain_objects import meta, objects
 
 StringOrFloat = TypeVar("StringOrFloat", str, float)
 
 _THRESHOLD_STD_MAPPED_SCALE = 0.5
 _UNIQUE_DISAGREEMENT = 0.88
+_THRESHOLD_DICT = {
+    'divisiveness': 1.0,
+    'mapped_divisiveness': 0.5,
+    'polarization': 0.25
+}
+
+
+def dots_on_subjects_are_nubby_and_polarizing(dots: List[objects.Dot],
+                                              thresholds: Dict[str, float] = _THRESHOLD_DICT) \
+                                              ->List[meta.Assertion]:
+    """
+    Returns list of Assertions for each subject (target) in a list of Dots with a True/False
+    value on whether the distribution of author-synthesized dot ratings that they received are
+    "polarizing".
+
+    1. Values about a target given by each source is synthesized.
+    2. Determines whether the synthesized values have a polarizing distribution. A distribution of
+    values is polarizing if the following statistics exceed threshold values
+    - its standard deviation (divisiveness)
+    - the standard deviation of the values mapped to negative/neutral/positive (semantic
+    divisiveness)
+    - the ratio and inverse ratio between the numbers of positive opinions (>= 7) and negative
+    opinions (<5) (polarization)
+
+    Parameters
+    ----------
+    dots
+    thresholds
+        Dictionary containing thresholds at keys for:
+        * 'divisiveness': Divisiveness of raw values (Default = 1.0)
+        * 'mapped_divisiveness': Divisiveness of values mapped to semantic scale (Default = 0.5)
+        * 'polarization': Minimum of ratio between positive to negative opinions and ratio
+        between negative to positive opinions (Default = 0.25)
+
+    Returns
+    -------
+    List[meta.Assertion]
+        Target of each Assertion is a subject. Value is True if distribution of dot ratings (
+        synthesized by author) is nubby and polarizing .
+
+    Examples
+    --------
+    >>> adam = objects.Person(name='Adam', uuid='Adam')
+    >>> bob = objects.Person(name='Bob', uuid='Bob')
+    >>> charlie = objects.Person(name='Charlie', uuid='Charlie')
+    >>> dots = list()
+    >>> dots.append(objects.Dot(source=adam, target=bob, value=10))
+    >>> dots.append(objects.Dot(source=adam, target=bob, value=10))
+    >>> result = dots_on_subjects_are_nubby_and_polarizing(dots)
+    >>> for x in result:
+    ...     print(x.target.name, x.value)
+    Bob False
+    >>> dots.append(objects.Dot(source=charlie, target=bob, value=1))
+    >>> dots.append(objects.Dot(source=charlie, target=bob, value=1))
+    >>> dots.append(objects.Dot(source=bob, target=adam, value=10))
+    >>> result = dots_on_subjects_are_nubby_and_polarizing(dots)
+    >>> for x in result:
+    ...     print(x.target.name, x.value)
+    Bob True
+    Adam False
+    >>> dots.append(objects.Dot(source=charlie, target=adam, value=1))
+    >>> dots.append(objects.Dot(source=charlie, target=adam, value=1))
+    >>> dots.append(objects.Dot(source=bob, target=adam, value=10))
+    >>> dots.append(objects.Dot(source=bob, target=adam, value=10))
+    >>> result = dots_on_subjects_are_nubby_and_polarizing(dots)
+    >>> for x in result:
+    ...     print(x.target.name, x.value)
+    Bob True
+    Adam True
+    """
+    def key_func(x):
+        return x.source.uuid, x.target.uuid
+
+    # Synthesize author opinions of each subject.
+    values_grp_by_author_subject = utils.group_assertions_by_key(dots, key_func=key_func)
+    subjects = dict()
+    for x in values_grp_by_author_subject:
+        one_synthesis = synthesis.synthesize([dot.value for dot in x[1]])
+        if x[0][1] in subjects.keys():
+            subjects[x[0][1]].append(one_synthesis)
+        else:
+            subjects[x[0][1]] = [one_synthesis]
+
+    uuid_to_person = {
+        dot.target.uuid: dot.target for dot in dots
+    }
+
+    # Identify subjects whose author syntheses satisfy divisiveness and polarization conditions.
+    results = list()
+    for sub, values in subjects.items():
+        values_divisiveness = divisiveness.divisiveness_stat(values, objects.QuestionType.SCALE,
+                                                             map_to_sentiment=False)
+        mapped_values_divisiveness = divisiveness.divisiveness_stat(values,
+                                                                    objects.QuestionType.SCALE)
+        values_polarization = polarizing.polarizing_stat(values)
+        is_polarizing = (values_divisiveness > thresholds['divisiveness'] and \
+                         mapped_values_divisiveness > thresholds['mapped_divisiveness'] and \
+                         values_polarization  > thresholds['polarization'])
+        results.append(meta.Assertion(source=objects.System, target=uuid_to_person[sub],
+                                      value=is_polarizing))
+
+    return results
 
 
 def dots_in_meeting_are_polarizing(meeting: objects.Meeting,
@@ -42,7 +145,7 @@ def dots_in_meeting_are_polarizing(meeting: objects.Meeting,
                                          meeting.dots], columns=['author', 'subject', 'value'])
 
     if by_action:
-        dots_df['by'] = [by_action[dot.attribute] for dot in meeting.dots]
+        dots_df['by'] = [by_action[dot.attribute.name] for dot in meeting.dots]
     else:
         dots_df['by'] = "all_dots"
 
@@ -92,8 +195,8 @@ def dots_on_subject_are_polarizing(dots: List[objects.Dot]) -> List[meta.Asserti
     return results
 
 
-def is_unique(question: objects.Question, unique_disagreement=_UNIQUE_DISAGREEMENT) -> List[
-    meta.Assertion]:
+def unique_choice(question: objects.Question,
+                  unique_disagreement=_UNIQUE_DISAGREEMENT) -> List[meta.Assertion]:
     """
     Determines whether responses are in small minority of responses.
 
@@ -145,13 +248,14 @@ def believable_choice_on_question(question: objects.Question) -> meta.Assertion:
     value_type = question.question_type
 
     # Get the Believable choice
-    choice = concepts.believable_choice.believable_choice(values_and_weights, value_type)
+    total_believability = sum([x[1] for x in values_and_weights])
 
-    return meta.Assertion(
-        source=objects.System,
-        target=question,
-        value=choice
-    )
+    if not total_believability:
+        choice = None
+    else:
+        choice = concepts.believable_choice.believable_choice(values_and_weights, value_type)
+
+    return meta.Assertion(source=objects.System, target=question, value=choice)
 
 
 def is_nubby_question(question: objects.Question,
@@ -176,7 +280,7 @@ def is_nubby_question(question: objects.Question,
         result = False
     else:
         mapped_values = foundation.map_values(values)
-        result = divisiveness(mapped_values, question.question_type) > threshold
+        result = divisiveness.divisiveness_stat(mapped_values, question.question_type) > threshold
 
     return meta.Assertion(target=question, value=result)
 
@@ -226,7 +330,7 @@ def meeting_nubbiness_v1(meeting: objects.Meeting,
     )
 
 
-def divisiveness(ar: List[StringOrFloat], value_type: objects.QuestionType) -> float:
+def _divisiveness(ar: List[StringOrFloat], value_type: objects.QuestionType) -> float:
     """
     Divisiveness.
 
@@ -313,7 +417,11 @@ def significantly_out_of_sync_in_meeting(meeting: objects.Meeting,
     ----------
     meeting
     threshold_low
+        A Person is Significantly OOS if they are notable and the Z-score of the number of
+        questions on which they were OOS exceeds this quantity.
     threshold_high
+        A Person is Significantly OOS if they are not notable and the Z-score of the number of
+        questions on which they were OOS exceeds this quantity.
 
     Returns
     -------
@@ -346,7 +454,7 @@ def significantly_out_of_sync_in_meeting(meeting: objects.Meeting,
     results = []
     for person, v in oos_count_z_score_dict.items():
         for person_notable in notable_people:
-            if person.id == person_notable.target:
+            if person.id == person_notable.target.id:
                 if person_notable.value:
                     result_person = v > threshold_low
                 else:
