@@ -5,7 +5,8 @@ TBD
 
 from typing import List, Dict
 from prios_api.domain_objects import meta, objects
-from prios_api import utils, disagreement, activity
+from prios_api import disagreement, activity
+from prios_api.src import utils
 
 
 _QUORUM_THRESH_DEFAULT = 0.80
