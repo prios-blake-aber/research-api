@@ -199,11 +199,11 @@
 
 
 <span class="k">def</span> <span class="nf">engagement_in_meeting</span><span class="p">(</span><span class="n">meeting</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">concepts</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">engagement</span><span class="p">(</span><span class="n">meeting</span><span class="o">.</span><span class="n">participants</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">concepts</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">engagement_raw</span><span class="p">(</span><span class="n">meeting</span><span class="o">.</span><span class="n">participants</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">engagement_in_question</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">concepts</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">engagement</span><span class="p">(</span><span class="n">question</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">concepts</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">engagement_raw</span><span class="p">(</span><span class="n">question</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">sufficient_question_engagement</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">):</span>

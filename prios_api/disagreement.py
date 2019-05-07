@@ -7,14 +7,20 @@ import numpy as np
 import pandas as pd
 from typing import List, TypeVar, Dict
 from prios_api import activity, concepts
-from prios_api.src import foundation
-from prios_api.concepts import disagreement, believable_choice
+from prios_api.concepts import syntheses, polarizing
+from prios_api.src import foundation, utils
+from prios_api.concepts import disagreement, believable_choice, divisiveness
 from prios_api.domain_objects import meta, objects
 
 StringOrFloat = TypeVar("StringOrFloat", str, float)
 
 _THRESHOLD_STD_MAPPED_SCALE = 0.5
 _UNIQUE_DISAGREEMENT = 0.88
+_THRESHOLD_DICT = {
+    'divisiveness': 1.0,
+    'mapped_divisiveness': 0.5,
+    'polarization': 0.25
+}
 
 
 def dots_in_meeting_are_polarizing(meeting: objects.Meeting,
@@ -54,40 +60,99 @@ def dots_in_meeting_are_polarizing(meeting: objects.Meeting,
     return results
 
 
-def dots_on_subject_are_polarizing(dots: List[objects.Dot]) -> List[meta.Assertion]:
+def dots_on_subjects_are_nubby_and_polarizing(dots: List[objects.Dot],
+                                              thresholds: Dict[str, float] = _THRESHOLD_DICT) \
+                                              ->List[meta.Assertion]:
     """
     Returns list of Assertions for each subject (target) in a list of Dots with a True/False
     value on whether the distribution of author-synthesized dot ratings that they received are
-    polarizing.
+    "polarizing".
 
     1. Values about a target given by each source is synthesized.
-    2. Determines whether the synthesized values have a polarizing distribution.
-    TODO: Disentangle into core concepts.
+    2. Determines whether the synthesized values have a polarizing distribution. A distribution of
+    values is polarizing if the following statistics exceed threshold values
+    - its standard deviation (divisiveness)
+    - the standard deviation of the values mapped to negative/neutral/positive (semantic
+    divisiveness)
+    - the ratio and inverse ratio between the numbers of positive opinions (>= 7) and negative
+    opinions (<5) (polarization)
 
     Parameters
     ----------
     dots
+    thresholds
+        Dictionary containing thresholds at keys for:
+        * 'divisiveness': Divisiveness of raw values (Default = 1.0)
+        * 'mapped_divisiveness': Divisiveness of values mapped to semantic scale (Default = 0.5)
+        * 'polarization': Minimum of ratio between positive to negative opinions and ratio
+        between negative to positive opinions (Default = 0.25)
 
     Returns
     -------
     List[meta.Assertion]
         Target of each Assertion is a topic/subject. Value is True if it is polarizing.
+
+
+    Examples
+    --------
+    >>> adam = objects.Person(name='Adam', uuid='Adam')
+    >>> bob = objects.Person(name='Bob', uuid='Bob')
+    >>> charlie = objects.Person(name='Charlie', uuid='Charlie')
+    >>> dots = list()
+    >>> dots.append(objects.Dot(source=adam, target=bob, value=10))
+    >>> dots.append(objects.Dot(source=adam, target=bob, value=10))
+    >>> result = dots_on_subjects_are_nubby_and_polarizing(dots)
+    >>> for x in result:
+    ...     print(x.target.name, x.value)
+    Bob False
+    >>> dots.append(objects.Dot(source=charlie, target=bob, value=1))
+    >>> dots.append(objects.Dot(source=charlie, target=bob, value=1))
+    >>> dots.append(objects.Dot(source=bob, target=adam, value=10))
+    >>> result = dots_on_subjects_are_nubby_and_polarizing(dots)
+    >>> for x in result:
+    ...     print(x.target.name, x.value)
+    Bob True
+    Adam False
+    >>> dots.append(objects.Dot(source=charlie, target=adam, value=1))
+    >>> dots.append(objects.Dot(source=charlie, target=adam, value=1))
+    >>> dots.append(objects.Dot(source=bob, target=adam, value=10))
+    >>> dots.append(objects.Dot(source=bob, target=adam, value=10))
+    >>> result = dots_on_subjects_are_nubby_and_polarizing(dots)
+    >>> for x in result:
+    ...     print(x.target.name, x.value)
+    Bob True
+    Adam True
     """
-    # TODO: Below is all Data Plumbing -- need to define utility function for it.
-    author_subject_value = [
-        (dot.source, dot.target, dot.value) for dot in dots
-    ]
-    author_subject_value_df = pd.DataFrame.from_records(author_subject_value, columns=['author',
-                                                                                       'subject',
-                                                                                       'value'])
-    synthesized_ratings = author_subject_value_df.groupby(['author', 'subject']).apply(concepts.syntheses.synthesize)
-    synthesized_ratings = synthesized_ratings.to_frame().reset_index()
-    polarizing_subjects = synthesized_ratings.groupby(['subject'])['value'].apply(
-        concepts.disagreement.is_polarizing).to_dict()
+    def key_func(x):
+        return x.source.uuid, x.target.uuid
+
+    # Synthesize author opinions of each subject.
+    values_grp_by_author_subject = utils.group_assertions_by_key(dots, key_func=key_func)
+    subjects = dict()
+    for x in values_grp_by_author_subject:
+        one_synthesis = syntheses.synthesize([dot.value for dot in x[1]])
+        if x[0][1] in subjects.keys():
+            subjects[x[0][1]].append(one_synthesis)
+        else:
+            subjects[x[0][1]] = [one_synthesis]
+
+    uuid_to_person = {
+        dot.target.uuid: dot.target for dot in dots
+    }
 
     results = list()
-    for subject, polar in polarizing_subjects.items():
-        results.append(meta.Assertion(source=objects.System, target=subject, value=polar))
+    for sub, values in subjects.items():
+        values_divisiveness = divisiveness.divisiveness_stat(values, objects.QuestionType.SCALE,
+                                                             map_to_sentiment=False)
+        mapped_values_divisiveness = divisiveness.divisiveness_stat(values,
+                                                                    objects.QuestionType.SCALE)
+        values_polarization = polarizing.polarizing_stat(values)
+        is_polarizing = (values_divisiveness > thresholds['divisiveness'] and \
+                         mapped_values_divisiveness > thresholds['mapped_divisiveness'] and \
+                         values_polarization  > thresholds['polarization'])
+        results.append(meta.Assertion(source=objects.System, target=uuid_to_person[sub],
+                                      value=is_polarizing))
+
     return results
 
 
@@ -226,7 +291,7 @@ def meeting_nubbiness_v1(meeting: objects.Meeting,
     )
 
 
-def divisiveness(ar: List[StringOrFloat], value_type: objects.QuestionType) -> float:
+def _divisiveness(ar: List[StringOrFloat], value_type: objects.QuestionType) -> float:
     """
     Divisiveness.
 
@@ -277,7 +342,7 @@ def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Asse
     return people
 
 
-def believable_consensus_exists(question: objects.Question) -> prios_api.domain_objects.meta.Assertion:
+def believable_consensus_exists(question: objects.Question) -> meta.Assertion:
     """
     TODO: Needs clarification on where it lives conceptually, what the I/O types should be, whether it can be refactored
     Consensus exists on a question.

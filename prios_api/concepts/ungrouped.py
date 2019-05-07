@@ -3,7 +3,7 @@
 TBD
 """
 
-from prios_api.domain_objects import objects
+from prios_api.domain_objects import objects, meta
 from typing import List
 
 
@@ -26,9 +26,9 @@ def primary_participants(dots: List[objects.Dot]) -> List[objects.Judgement]:
     pass
 
 
-def relevance(dots: objects.AssertionSet):
+def relevance(dots: List[meta.Assertion]):
     pass
 
 
-def importance(x: objects.AssertionSet):
+def importance(x: List[meta.Assertion]):
     pass

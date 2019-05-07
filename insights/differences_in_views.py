@@ -104,7 +104,7 @@ def meeting_section_nubbiness_149(meeting: objects.Meeting) -> meta.Assertion:
 @utils.scope_required_data_within_object(collections_to_keep=['dots'])
 def polarizing_participants_38(meeting: objects.Meeting) -> List[meta.Assertion]:
     """
-    People who are polarizing, based on their dots.
+    People who are polarizing in a Meeting, based on dots that they received.
 
     Parameters
     ----------
@@ -113,34 +113,22 @@ def polarizing_participants_38(meeting: objects.Meeting) -> List[meta.Assertion]
     Returns
     -------
     List[meta.Assertion]
+        System assertion for each subject with value (Boolean) equal to True if they are
+        viewed as being polarizing or False, otherwise.
     """
     frequently_dotted = activity.frequently_dotted_subjects(meeting.dots)
-    polarizing = disagreement.dots_are_polarizing(meeting.dots)
+    polarizing = disagreement.dots_on_subjects_are_nubby_and_polarizing(meeting.dots)
 
-    # TODO: Write function for determining whether values are True in two (or more) lists of
-    #  Judgements. Elements of each list should have the same targets, which only appear once.
+    def to_dict(x: List[meta.Assertion]) -> Dict[str, bool]:
+        return {xi.target.id: xi.value for xi in x}
 
-    frequently_dotted_dict = {
-        person.target.id: person.value for person in frequently_dotted
-    }
-
-    polarizing_dict = {
-        person.target.id: person.value for person in polarizing
-    }
+    frequently_dotted_dict = to_dict(frequently_dotted)
+    polarizing_dict = to_dict(polarizing)
 
     result = []
-    for person, value in polarizing_dict.items():
-        is_frequently_dotted = frequently_dotted_dict[person]
-        if value and is_frequently_dotted:
-            person_is_polarizing = True
-        else:
-            person_is_polarizing = False
-        result.append(
-            meta.Assertion(source=objects.System,
-                           target=person,
-                           value=person_is_polarizing)
-        )
-
+    for person, is_polarizing in polarizing_dict.items():
+        result.append(meta.Assertion(source=objects.System, target=person,
+                                     value=is_polarizing and frequently_dotted_dict[person]))
     return result
 
 

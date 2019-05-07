@@ -5,9 +5,8 @@ TBD
 
 from typing import List
 from prios_api.domain_objects import meta, objects
-from prios_api.src import utils
-from prios_api.src import foundation
-from prios_api.concepts import ungrouped
+from prios_api.src import utils, foundation
+from prios_api.concepts import engagement, ungrouped
 
 
 _QUORUM_THRESH_DEFAULT = 0.80
@@ -15,11 +14,11 @@ _SUFFICIENT_RESPONSE_ENGAGEMENT = 3
 _SUFFICIENT_BELIEVABILITY_ENGAGEMENT = 0.75
 
 
-def relevance_of_dots(dots: objects.DotCollection):
+def relevance_of_dots(dots: List[objects.Dot]):
     pass
 
 
-def relevance_of_people(dots: objects.DotCollection):
+def relevance_of_people(dots: List[objects.Dot]):
     pass
 
 
@@ -80,14 +79,13 @@ def sufficient_believability_engagement(question: objects.Question,
         return False
 
 
-
 def frequently_dotted_subjects(dots: List[objects.Dot],
                                min_percent_1: float = 0.10,
                                min_count_1: int = 0,
                                min_percent_2: float = 0.05,
-                               min_count_2: int = 5) -> List[objects.Judgement]:
+                               min_count_2: int = 5) -> List[meta.Assertion]:
     """
-    * Determines whether a Subject is Frequently Dotted: receives more than either:
+    Determines whether a Subject is Frequently Dotted. receives more than either:
     * 10% of all Dot Ratings OR
     * 5% of all Dot Ratings along with 10 Dot Ratings.
 
@@ -96,23 +94,37 @@ def frequently_dotted_subjects(dots: List[objects.Dot],
     Parameters
     ----------
     dots
+    min_percent_1
+        A subject is frequently dotted if the percent of dots they receive exceeds this quantity
+        and the number of dots exceeds `min_count_1` (default = 10%)
+    min_count_1
+        A subject is frequently dotted if the number of dots they receive exceeds this quantity
+        and the percentage of dots exceeds `min_percent_1` (default = 0)
+    min_percent_2
+        A subject is frequently dotted if the percent of dots they receive exceeds this quantity
+        and the number of dots exceeds `min_count_2` (default = 5%)
+    min_count_2
+        A subject is frequently dotted if the number of dots they receive exceeds this quantity
+        and the percentage of dots exceeds `min_percent_2` (default = 5)
 
     Returns
     -------
-    List[objects.Judgement]
-        Determines whether each subject in a collection of Dots is frequently dotted.
+    List[meta.Assertion]
+        System assertion for each subject with value (Boolean) equal to True if they are
+        frequently dotted or False, otherwise.
     """
     subjects = set([dot.target for dot in dots])
 
     result = []
     for s in subjects:
         subject_dots = [dot for dot in dots if dot.source == s]
-        cond1 = len(subject_dots) / len(dots) > min_percent_1 and len(subject_dots) > min_count_1
-        cond2 = len(subject_dots) / len(dots) > min_percent_2 and len(subject_dots) > min_count_2
-        frequently_dotted = cond1 or cond2
-        subject_is_frequently_dotted = objects.Judgement(source=objects.System,
-                                                         target=s,
-                                                         value=frequently_dotted)
+        percent_dots = engagement.engagement_relative(subject_dots, len(dots))
+        total_dots = engagement.engagement_raw(subject_dots)
+        cond1 = percent_dots > min_percent_1 and total_dots > min_count_1
+        cond2 = percent_dots > min_percent_2 and total_dots > min_count_2
+        subject_is_frequently_dotted = meta.Assertion(source=objects.System,
+                                                      target=s,
+                                                      value=cond1 or cond2)
         result += [subject_is_frequently_dotted]
 
     return result

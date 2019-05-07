@@ -14,7 +14,6 @@ _THRESHOLD_POLES = 0.25
 _MINIMUM_THRESH = 0.7
 
 
-
 def divisiveness_stat(values: List[float], value_type: objects.QuestionType,
                       map_to_sentiment: bool = True) -> float:
     """
@@ -34,7 +33,19 @@ def divisiveness_stat(values: List[float], value_type: objects.QuestionType,
     -------
     float
         Divisiveness measure.
+
+    Examples
+    --------
+    >>> divisiveness_stat([1], objects.QuestionType.SCALE)
+    0
+    >>> round(divisiveness_stat([1,10], objects.QuestionType.SCALE), 3)
+    1.414
+    >>> round(divisiveness_stat([1,10], objects.QuestionType.SCALE, map_to_sentiment=True), 3)
+    1.414
     """
+    if len(values) < 2:
+        return 0
+
     if map_to_sentiment:
         mapped_values = [foundation.map_values(vi, value_type) for vi in values]
         return foundation.standard_deviation(mapped_values)
