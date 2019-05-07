@@ -11,7 +11,7 @@ from typing import List
 
 _QUORUM_THRESH_DEFAULT = 0.80
 
-def primary_actions_157(dots: objects.DotCollection, *args, **kwargs):
+def primary_actions_157(dots: List[objects.Dot], *args, **kwargs):
     """
     Defines Primary Actions in a Meeting based on :class:`objects.DotCollection`
 
@@ -31,7 +31,7 @@ def primary_actions_157(dots: objects.DotCollection, *args, **kwargs):
     return sorted(relevant_actions, key=lambda x: x.value)[:3]  # top 3 scores
 
 
-def primary_participants_in_meeting_138(dots: objects.DotCollection, *args, **kwargs):
+def primary_participants_in_meeting_138(dots: List[objects.Dot], *args, **kwargs):
     """
     # TODO: Move logic to prios_api.
     Defines Primary Participants in a Meeting from Dots.
@@ -55,12 +55,12 @@ def primary_participants_in_meeting_138(dots: objects.DotCollection, *args, **kw
     for person, dots in itertools.groupby(dots, lambda x: x.target):
         person_dots = len(list(dots))
         if ((person_dots / total_participation) > 0.2) or (person_dots > 10 and ((person_dots / total_participation) > 0.1)):
-            yield objects.Judgement(source=objects.System(), target=person, value=True)
+            yield objects.Judgement(target=person, value=True)
         else:
-            yield objects.Judgement(source=objects.System(), target=person, value=False)
+            yield objects.Judgement(target=person, value=False)
 
 
-def action_relevance_158(dots: objects.DotCollection, *args, **kwargs):
+def action_relevance_158(dots: List[objects.Dot], *args, **kwargs):
     """
     Defines Action Relevance in a Meeting from Dots.
 
@@ -81,7 +81,7 @@ def action_relevance_158(dots: objects.DotCollection, *args, **kwargs):
     return activity.relevance_of_dots(dots)
 
 
-def attention_participant_received_155(dots: objects.DotCollection):
+def attention_participant_received_155(dots: List[objects.Dot]):
     """
     Defines "Relevant" People in a Meeting from Dots.
 
@@ -126,6 +126,6 @@ def quorum_exists_on_question_145(meeting: objects.Meeting,
     return [
         activity.quorum_exists_question(question, number_participants=number_participants,
                                         quorum_threshold=quorum_threshold)
-        for question in meeting.questions.data
+        for question in meeting.questions
     ]
 

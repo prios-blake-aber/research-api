@@ -17,34 +17,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="API Methods" href="analytics.html" />
+    <link rel="next" title="API Methods" href="prios_api.html" />
     <link rel="prev" title="Welcome to Research’s API documentation!" href="index.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -81,27 +83,25 @@
               <p class="caption"><span class="caption-text">Developing New Logic</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Application Logic</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-insights.activity">Activity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-insights.contribution">Contribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-insights.disagreement">Disagreement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-insights.interaction">Interaction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-insights.sentiment">Sentiment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-insights.summaries">Summaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-insights.believable_view_disagrees">Disagreeing with the Believable View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-insights.describe_actions">Actions In Meeting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-insights.differences_in_views">Differing Opinions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-insights.uniqueness">Uniqueness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-insights.utils">Utilities</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="analytics.html">API Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analytics.concepts.html">Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prios_api.html">API Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prios_api.concepts.html">Core Concepts</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Operations on Objects</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="src.objects.html">Domain Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="src.meta.html">Meta-Model Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prios_api.domain_objects.objects.html">Domain Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prios_api.domain_objects.meta.html">Meta-Model Interface</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Helper Functions</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="analytics.foundation.html">Mathematical Operations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analytics.utils.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prios_api.src.foundation.html">Mathematical Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prios_api.src.utils.html">Utilities</a></li>
 </ul>
 
             
@@ -169,283 +169,315 @@
   <div class="section" id="application-logic">
 <h1>Application Logic<a class="headerlink" href="#application-logic" title="Permalink to this headline">¶</a></h1>
 <p>New Logic can be expressed in terms of an API that applies Core Concepts to Domain objects.</p>
-<div class="section" id="module-insights.activity">
-<span id="activity"></span><h2>Activity<a class="headerlink" href="#module-insights.activity" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-insights.believable_view_disagrees">
+<span id="disagreeing-with-the-believable-view"></span><h2>Disagreeing with the Believable View<a class="headerlink" href="#module-insights.believable_view_disagrees" title="Permalink to this headline">¶</a></h2>
+<p>Believable View Disagrees With.</p>
+<dl class="function">
+<dt id="insights.believable_view_disagrees.believable_and_overall_meeting_section_sentiment_disagree_119">
+<code class="descclassname">insights.believable_view_disagrees.</code><code class="descname">believable_and_overall_meeting_section_sentiment_disagree_119</code><span class="sig-paren">(</span><em>question: prios_api.domain_objects.objects.Question</em><span class="sig-paren">)</span> &#x2192; prios_api.domain_objects.meta.Assertion<a class="reference internal" href="_modules/insights/believable_view_disagrees.html#believable_and_overall_meeting_section_sentiment_disagree_119"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.believable_view_disagrees.believable_and_overall_meeting_section_sentiment_disagree_119" title="Permalink to this definition">¶</a></dt>
+<dd><p>Believable and Overall Meeting Section Sentiment Disagree</p>
+<p>TODO: This function assumes non-zero believabilities for every person</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>objects.Question</strong> – The “Rate This Section” question object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An assertion describing whether substantive disagreement exists between
+the believable and overall meeting section sentiment</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="prios_api.domain_objects.meta.html#prios_api.domain_objects.meta.Assertion" title="prios_api.domain_objects.meta.Assertion">meta.Assertion</a></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rate_the_section</span> <span class="o">=</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Rate This Section&#39;</span><span class="p">,</span> <span class="n">question_type</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">QuestionType</span><span class="o">.</span><span class="n">RATING</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">adam</span> <span class="o">=</span> <span class="n">objects</span><span class="o">.</span><span class="n">Person</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Adam&#39;</span><span class="p">,</span> <span class="n">believability</span><span class="o">=</span><span class="mf">0.45</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bob</span> <span class="o">=</span> <span class="n">objects</span><span class="o">.</span><span class="n">Person</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="n">believability</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">charlie</span> <span class="o">=</span> <span class="n">objects</span><span class="o">.</span><span class="n">Person</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Charlie&#39;</span><span class="p">,</span> <span class="n">believability</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rate_the_section</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">objects</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">adam</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">rate_the_section</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rate_the_section</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">objects</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">bob</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">rate_the_section</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rate_the_section</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">objects</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">charlie</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">rate_the_section</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">believable_and_overall_meeting_section_sentiment_disagree_119</span><span class="p">(</span><span class="n">rate_the_section</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">value</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-insights.describe_actions">
+<span id="actions-in-meeting"></span><h2>Actions In Meeting<a class="headerlink" href="#module-insights.describe_actions" title="Permalink to this headline">¶</a></h2>
 <p>TBD</p>
 <dl class="function">
-<dt id="insights.activity.action_relevance_158">
-<code class="descclassname">insights.activity.</code><code class="descname">action_relevance_158</code><span class="sig-paren">(</span><em>dots: src.objects.DotCollection</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/insights/activity.html#action_relevance_158"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.activity.action_relevance_158" title="Permalink to this definition">¶</a></dt>
+<dt id="insights.describe_actions.action_relevance_158">
+<code class="descclassname">insights.describe_actions.</code><code class="descname">action_relevance_158</code><span class="sig-paren">(</span><em>dots: List[prios_api.domain_objects.objects.Dot], *args, **kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/insights/describe_actions.html#action_relevance_158"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.describe_actions.action_relevance_158" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines Action Relevance in a Meeting from Dots.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dots</strong> – </p></li>
-<li><p><strong>*args</strong> – Variable length argument list.</p></li>
-<li><p><strong>**kwargs</strong> – Arbitrary keyword arguments.</p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dots</strong> – </li>
+<li><strong>*args</strong> – Variable length argument list.</li>
+<li><strong>**kwargs</strong> – Arbitrary keyword arguments.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.RelevanceScore</span></code>, or an empty set if none exist.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="src.objects.html#src.objects.RelevanceCollection" title="src.objects.RelevanceCollection">objects.RelevanceCollection</a></p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.RelevanceScore</span></code>, or an empty set if none exist.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">objects.RelevanceCollection</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
-<dt id="insights.activity.attention_participant_received_155">
-<code class="descclassname">insights.activity.</code><code class="descname">attention_participant_received_155</code><span class="sig-paren">(</span><em>dots: src.objects.DotCollection</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/insights/activity.html#attention_participant_received_155"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.activity.attention_participant_received_155" title="Permalink to this definition">¶</a></dt>
+<dt id="insights.describe_actions.attention_participant_received_155">
+<code class="descclassname">insights.describe_actions.</code><code class="descname">attention_participant_received_155</code><span class="sig-paren">(</span><em>dots: List[prios_api.domain_objects.objects.Dot]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/insights/describe_actions.html#attention_participant_received_155"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.describe_actions.attention_participant_received_155" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines “Relevant” People in a Meeting from Dots.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dots</strong> – </p></li>
-<li><p><strong>*args</strong> – Variable length argument list.</p></li>
-<li><p><strong>**kwargs</strong> – Arbitrary keyword arguments.</p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dots</strong> – </li>
+<li><strong>*args</strong> – Variable length argument list.</li>
+<li><strong>**kwargs</strong> – Arbitrary keyword arguments.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.RelevanceScore</span></code>, or an empty set if none exist.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="src.objects.html#src.objects.RelevanceCollection" title="src.objects.RelevanceCollection">objects.RelevanceCollection</a></p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.RelevanceScore</span></code>, or an empty set if none exist.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">objects.RelevanceCollection</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
-<dt id="insights.activity.primary_actions_157">
-<code class="descclassname">insights.activity.</code><code class="descname">primary_actions_157</code><span class="sig-paren">(</span><em>dots: src.objects.DotCollection</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/insights/activity.html#primary_actions_157"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.activity.primary_actions_157" title="Permalink to this definition">¶</a></dt>
+<dt id="insights.describe_actions.primary_actions_157">
+<code class="descclassname">insights.describe_actions.</code><code class="descname">primary_actions_157</code><span class="sig-paren">(</span><em>dots: List[prios_api.domain_objects.objects.Dot], *args, **kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/insights/describe_actions.html#primary_actions_157"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.describe_actions.primary_actions_157" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines Primary Actions in a Meeting based on <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.DotCollection</span></code></p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dots</strong> – A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.Dot</span></code>.</p></li>
-<li><p><strong>args</strong> – </p></li>
-<li><p><strong>kwargs</strong> – </p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dots</strong> – A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.Dot</span></code>.</li>
+<li><strong>args</strong> – </li>
+<li><strong>kwargs</strong> – </li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.RelevanceScore</span></code>, or an empty set if none exist.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="src.objects.html#src.objects.RelevanceCollection" title="src.objects.RelevanceCollection">objects.RelevanceCollection</a></p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.RelevanceScore</span></code>, or an empty set if none exist.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">objects.RelevanceCollection</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
-<dt id="insights.activity.primary_participants_in_meeting_138">
-<code class="descclassname">insights.activity.</code><code class="descname">primary_participants_in_meeting_138</code><span class="sig-paren">(</span><em>dots: src.objects.DotCollection</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/insights/activity.html#primary_participants_in_meeting_138"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.activity.primary_participants_in_meeting_138" title="Permalink to this definition">¶</a></dt>
-<dd><p># TODO: Move logic to analytics.
+<dt id="insights.describe_actions.primary_participants_in_meeting_138">
+<code class="descclassname">insights.describe_actions.</code><code class="descname">primary_participants_in_meeting_138</code><span class="sig-paren">(</span><em>dots: List[prios_api.domain_objects.objects.Dot], *args, **kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/insights/describe_actions.html#primary_participants_in_meeting_138"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.describe_actions.primary_participants_in_meeting_138" title="Permalink to this definition">¶</a></dt>
+<dd><p># TODO: Move logic to prios_api.
 Defines Primary Participants in a Meeting from Dots.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dots</strong> – </p></li>
-<li><p><strong>*args</strong> – Variable length argument list.</p></li>
-<li><p><strong>**kwargs</strong> – Arbitrary keyword arguments.</p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dots</strong> – </li>
+<li><strong>*args</strong> – Variable length argument list.</li>
+<li><strong>**kwargs</strong> – Arbitrary keyword arguments.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.RelevanceScore</span></code>, or an empty set if none exist.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="src.objects.html#src.objects.RelevanceCollection" title="src.objects.RelevanceCollection">objects.RelevanceCollection</a></p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A set of <code class="xref py py-class docutils literal notranslate"><span class="pre">objects.RelevanceScore</span></code>, or an empty set if none exist.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">objects.RelevanceCollection</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
-<div class="section" id="module-insights.contribution">
-<span id="contribution"></span><h2>Contribution<a class="headerlink" href="#module-insights.contribution" title="Permalink to this headline">¶</a></h2>
-<p>TBD</p>
-</div>
-<div class="section" id="module-insights.disagreement">
-<span id="disagreement"></span><h2>Disagreement<a class="headerlink" href="#module-insights.disagreement" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-insights.differences_in_views">
+<span id="differing-opinions"></span><h2>Differing Opinions<a class="headerlink" href="#module-insights.differences_in_views" title="Permalink to this headline">¶</a></h2>
 <p>TBD</p>
 <dl class="function">
-<dt id="insights.disagreement.believable_choice_130">
-<code class="descclassname">insights.disagreement.</code><code class="descname">believable_choice_130</code><span class="sig-paren">(</span><em>question: src.objects.QuestionType</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/insights/disagreement.html#believable_choice_130"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.disagreement.believable_choice_130" title="Permalink to this definition">¶</a></dt>
+<dt id="insights.differences_in_views.believable_choice_130">
+<code class="descclassname">insights.differences_in_views.</code><code class="descname">believable_choice_130</code><span class="sig-paren">(</span><em>question: prios_api.domain_objects.objects.QuestionType</em><span class="sig-paren">)</span> &#x2192; prios_api.domain_objects.meta.Assertion<a class="reference internal" href="_modules/insights/differences_in_views.html#believable_choice_130"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.differences_in_views.believable_choice_130" title="Permalink to this definition">¶</a></dt>
 <dd><p>Believable choice.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>question</strong> – </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>question</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A single assertion on whether there is a Believable Choice answer to the question and which answer choice it is.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="prios_api.domain_objects.meta.html#prios_api.domain_objects.meta.Assertion" title="prios_api.domain_objects.meta.Assertion">meta.Assertion</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
-<dt id="insights.disagreement.consensus_exists_131">
-<code class="descclassname">insights.disagreement.</code><code class="descname">consensus_exists_131</code><span class="sig-paren">(</span><em>question: src.objects.Question</em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="_modules/insights/disagreement.html#consensus_exists_131"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.disagreement.consensus_exists_131" title="Permalink to this definition">¶</a></dt>
-<dd><p>Consensus exists on a question.</p>
-<p>TODO: Logic is core-functionality. It is also used by a Sig Gen, for the case of questions.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>question</strong> – </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Whether there is a consensus answer.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)">bool</a></p>
-</dd>
-</dl>
+<dt id="insights.differences_in_views.believable_consensus_exists_131">
+<code class="descclassname">insights.differences_in_views.</code><code class="descname">believable_consensus_exists_131</code><span class="sig-paren">(</span><em>question: prios_api.domain_objects.objects.Question</em><span class="sig-paren">)</span> &#x2192; prios_api.domain_objects.meta.Assertion<a class="reference internal" href="_modules/insights/differences_in_views.html#believable_consensus_exists_131"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.differences_in_views.believable_consensus_exists_131" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether consensus exists on a question.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>question</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Whether there is a consensus answer.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)">bool</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
-<dt id="insights.disagreement.meeting_section_nubbiness_149">
-<code class="descclassname">insights.disagreement.</code><code class="descname">meeting_section_nubbiness_149</code><span class="sig-paren">(</span><em>meeting: src.objects.Meeting</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/insights/disagreement.html#meeting_section_nubbiness_149"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.disagreement.meeting_section_nubbiness_149" title="Permalink to this definition">¶</a></dt>
+<dt id="insights.differences_in_views.meeting_section_nubbiness_149">
+<code class="descclassname">insights.differences_in_views.</code><code class="descname">meeting_section_nubbiness_149</code><span class="sig-paren">(</span><em>meeting: prios_api.domain_objects.objects.Meeting</em><span class="sig-paren">)</span> &#x2192; prios_api.domain_objects.meta.Assertion<a class="reference internal" href="_modules/insights/differences_in_views.html#meeting_section_nubbiness_149"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.differences_in_views.meeting_section_nubbiness_149" title="Permalink to this definition">¶</a></dt>
 <dd><p>Classifies Nubbiness level of a Meeting Section.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>meeting</strong> – </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>meeting</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="prios_api.domain_objects.meta.html#prios_api.domain_objects.meta.Assertion" title="prios_api.domain_objects.meta.Assertion">meta.Assertion</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
-<dt id="insights.disagreement.nubby_question_147">
-<code class="descclassname">insights.disagreement.</code><code class="descname">nubby_question_147</code><span class="sig-paren">(</span><em>question: src.objects.Question</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/insights/disagreement.html#nubby_question_147"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.disagreement.nubby_question_147" title="Permalink to this definition">¶</a></dt>
+<dt id="insights.differences_in_views.nubby_question_147">
+<code class="descclassname">insights.differences_in_views.</code><code class="descname">nubby_question_147</code><span class="sig-paren">(</span><em>question: prios_api.domain_objects.objects.Question</em><span class="sig-paren">)</span> &#x2192; prios_api.domain_objects.meta.Assertion<a class="reference internal" href="_modules/insights/differences_in_views.html#nubby_question_147"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.differences_in_views.nubby_question_147" title="Permalink to this definition">¶</a></dt>
 <dd><p>Is a Question Nubby?</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>question</strong> – </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Value is True if the Question is Nubby.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>question</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Value is True if the Question is Nubby.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="prios_api.domain_objects.meta.html#prios_api.domain_objects.meta.Assertion" title="prios_api.domain_objects.meta.Assertion">meta.Assertion</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
-<dt id="insights.disagreement.out_of_sync_people_on_question_41">
-<code class="descclassname">insights.disagreement.</code><code class="descname">out_of_sync_people_on_question_41</code><span class="sig-paren">(</span><em>question: src.objects.Question</em><span class="sig-paren">)</span> &#x2192; List[src.meta.Assertion]<a class="reference internal" href="_modules/insights/disagreement.html#out_of_sync_people_on_question_41"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.disagreement.out_of_sync_people_on_question_41" title="Permalink to this definition">¶</a></dt>
+<dt id="insights.differences_in_views.out_of_sync_people_on_question_41">
+<code class="descclassname">insights.differences_in_views.</code><code class="descname">out_of_sync_people_on_question_41</code><span class="sig-paren">(</span><em>question: prios_api.domain_objects.objects.Question</em><span class="sig-paren">)</span> &#x2192; List[prios_api.domain_objects.meta.Assertion]<a class="reference internal" href="_modules/insights/differences_in_views.html#out_of_sync_people_on_question_41"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.differences_in_views.out_of_sync_people_on_question_41" title="Permalink to this definition">¶</a></dt>
 <dd><p>Identifies people who are out-of-sync on a question.</p>
-<p>TODO: Move logic to analytics.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>question</strong> – </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Values are True if person is out-of-sync on the question.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>List[<a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>question</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Values are True if person is out-of-sync on the question.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[<a class="reference internal" href="prios_api.domain_objects.meta.html#prios_api.domain_objects.meta.Assertion" title="prios_api.domain_objects.meta.Assertion">meta.Assertion</a>]</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
-<dt id="insights.disagreement.question_nubbiness_popup_49">
-<code class="descclassname">insights.disagreement.</code><code class="descname">question_nubbiness_popup_49</code><span class="sig-paren">(</span><em>question: src.objects.Question</em><span class="sig-paren">)</span> &#x2192; src.meta.Assertion<a class="reference internal" href="_modules/insights/disagreement.html#question_nubbiness_popup_49"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.disagreement.question_nubbiness_popup_49" title="Permalink to this definition">¶</a></dt>
+<dt id="insights.differences_in_views.question_nubbiness_popup_49">
+<code class="descclassname">insights.differences_in_views.</code><code class="descname">question_nubbiness_popup_49</code><span class="sig-paren">(</span><em>question: prios_api.domain_objects.objects.Question</em><span class="sig-paren">)</span> &#x2192; prios_api.domain_objects.meta.Assertion<a class="reference internal" href="_modules/insights/differences_in_views.html#question_nubbiness_popup_49"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.differences_in_views.question_nubbiness_popup_49" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns True if question is nubby and a quorum exists.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>question</strong> – </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Value is True if the Question is Nubby.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a></p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>question</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Value is True if the Question is Nubby.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="prios_api.domain_objects.meta.html#prios_api.domain_objects.meta.Assertion" title="prios_api.domain_objects.meta.Assertion">meta.Assertion</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
-<dt id="insights.disagreement.significantly_out_of_sync_114">
-<code class="descclassname">insights.disagreement.</code><code class="descname">significantly_out_of_sync_114</code><span class="sig-paren">(</span><em>meeting: src.objects.Meeting</em>, <em>threshold_low=0.8</em>, <em>threshold_high=1.2</em><span class="sig-paren">)</span> &#x2192; List[src.objects.Judgement]<a class="reference internal" href="_modules/insights/disagreement.html#significantly_out_of_sync_114"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.disagreement.significantly_out_of_sync_114" title="Permalink to this definition">¶</a></dt>
+<dt id="insights.differences_in_views.significantly_out_of_sync_114">
+<code class="descclassname">insights.differences_in_views.</code><code class="descname">significantly_out_of_sync_114</code><span class="sig-paren">(</span><em>meeting: prios_api.domain_objects.objects.Meeting</em>, <em>threshold_low=0.8</em>, <em>threshold_high=1.2</em><span class="sig-paren">)</span> &#x2192; List[prios_api.domain_objects.objects.Judgement]<a class="reference internal" href="_modules/insights/differences_in_views.html#significantly_out_of_sync_114"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.differences_in_views.significantly_out_of_sync_114" title="Permalink to this definition">¶</a></dt>
 <dd><p>A person is out of sync on significantly higher number of questions than others in a meeting.
 # TODO: Figure out how to factor this better by Disentangling logic and data plumbing.
 # TODO: Where are parameters called and its default values set?</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>meeting</strong> – </p></li>
-<li><p><strong>threshold_low</strong> – </p></li>
-<li><p><strong>threshold_high</strong> – </p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>meeting</strong> – </li>
+<li><strong>threshold_low</strong> – </li>
+<li><strong>threshold_high</strong> – </li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Value = True if person is Significantly OOS.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>List[<a class="reference internal" href="src.objects.html#src.objects.Judgement" title="src.objects.Judgement">objects.Judgement</a>]</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Value = True if person is Significantly OOS.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List[<a class="reference internal" href="prios_api.domain_objects.objects.html#prios_api.domain_objects.objects.Judgement" title="prios_api.domain_objects.objects.Judgement">objects.Judgement</a>]</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-</div>
-<div class="section" id="module-insights.interaction">
-<span id="interaction"></span><h2>Interaction<a class="headerlink" href="#module-insights.interaction" title="Permalink to this headline">¶</a></h2>
-<p>TBD</p>
-<dl class="function">
-<dt id="insights.interaction.believable_and_overall_meeting_section_sentiment_disagree_119">
-<code class="descclassname">insights.interaction.</code><code class="descname">believable_and_overall_meeting_section_sentiment_disagree_119</code><span class="sig-paren">(</span><em>question: src.objects.Question</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/insights/interaction.html#believable_and_overall_meeting_section_sentiment_disagree_119"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.interaction.believable_and_overall_meeting_section_sentiment_disagree_119" title="Permalink to this definition">¶</a></dt>
-<dd><p>TBD</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="insights.interaction.believable_view_disagrees_with_overall_view_on_action">
-<code class="descclassname">insights.interaction.</code><code class="descname">believable_view_disagrees_with_overall_view_on_action</code><span class="sig-paren">(</span><em>dots: src.objects.DotCollection</em>, <em>attribute</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/insights/interaction.html#believable_view_disagrees_with_overall_view_on_action"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.interaction.believable_view_disagrees_with_overall_view_on_action" title="Permalink to this definition">¶</a></dt>
-<dd><p>TBD</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="insights.interaction.believable_view_disagrees_with_overall_view_on_action_162">
-<code class="descclassname">insights.interaction.</code><code class="descname">believable_view_disagrees_with_overall_view_on_action_162</code><span class="sig-paren">(</span><em>meeting: src.objects.Meeting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/insights/interaction.html#believable_view_disagrees_with_overall_view_on_action_162"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.interaction.believable_view_disagrees_with_overall_view_on_action_162" title="Permalink to this definition">¶</a></dt>
-<dd><p>TBD</p>
-</dd></dl>
-
-</div>
-<div class="section" id="module-insights.sentiment">
-<span id="sentiment"></span><h2>Sentiment<a class="headerlink" href="#module-insights.sentiment" title="Permalink to this headline">¶</a></h2>
-<p>TBD</p>
-</div>
-<div class="section" id="module-insights.summaries">
-<span id="summaries"></span><h2>Summaries<a class="headerlink" href="#module-insights.summaries" title="Permalink to this headline">¶</a></h2>
-<p>TBD</p>
 </div>
 <div class="section" id="module-insights.uniqueness">
 <span id="uniqueness"></span><h2>Uniqueness<a class="headerlink" href="#module-insights.uniqueness" title="Permalink to this headline">¶</a></h2>
 <p>TBD</p>
 <dl class="function">
 <dt id="insights.uniqueness.uniquely_out_of_sync_on_question_136">
-<code class="descclassname">insights.uniqueness.</code><code class="descname">uniquely_out_of_sync_on_question_136</code><span class="sig-paren">(</span><em>question: src.objects.Question</em><span class="sig-paren">)</span> &#x2192; List[src.meta.Assertion]<a class="reference internal" href="_modules/insights/uniqueness.html#uniquely_out_of_sync_on_question_136"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.uniqueness.uniquely_out_of_sync_on_question_136" title="Permalink to this definition">¶</a></dt>
-<dd><p>A person is uniquely ouf of sync on a question, if their response is unique (
-analytics.disagreement.is_unique) and out-of-sync with the believable consensus (
-analytics.disagreement.out_of_sync_people_on_question).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>question</strong> – </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Assertion for each person who answers the question. Value is whether they are uniquely
-out of sync.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>List[<a class="reference internal" href="src.meta.html#src.meta.Assertion" title="src.meta.Assertion">meta.Assertion</a>]</p>
-</dd>
-</dl>
+<code class="descclassname">insights.uniqueness.</code><code class="descname">uniquely_out_of_sync_on_question_136</code><span class="sig-paren">(</span><em>question: prios_api.domain_objects.objects.Question</em><span class="sig-paren">)</span> &#x2192; List[prios_api.domain_objects.meta.Assertion]<a class="reference internal" href="_modules/insights/uniqueness.html#uniquely_out_of_sync_on_question_136"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#insights.uniqueness.uniquely_out_of_sync_on_question_136" title="Permalink to this definition">¶</a></dt>
+<dd><p>A person is uniquely out of sync on a question, if their response is unique (
+prios_api.disagreement.is_unique) and out-of-sync with the believable consensus (
+prios_api.disagreement.out_of_sync_people_on_question).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>question</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Assertion for each person who answers the question. Value is whether they are uniquely
+out of sync.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[<a class="reference internal" href="prios_api.domain_objects.meta.html#prios_api.domain_objects.meta.Assertion" title="prios_api.domain_objects.meta.Assertion">meta.Assertion</a>]</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
+</div>
+<div class="section" id="module-insights.utils">
+<span id="utilities"></span><h2>Utilities<a class="headerlink" href="#module-insights.utils" title="Permalink to this headline">¶</a></h2>
+<p>TBD</p>
 </div>
 </div>
 
@@ -457,10 +489,10 @@ out of sync.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="analytics.html" class="btn btn-neutral float-right" title="API Methods" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="prios_api.html" class="btn btn-neutral float-right" title="API Methods" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Welcome to Research’s API documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Research’s API documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -469,7 +501,7 @@ out of sync.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Research.
+        &copy; Copyright 2019, Research
 
     </p>
   </div>
@@ -486,33 +518,16 @@ out of sync.</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.0.1',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

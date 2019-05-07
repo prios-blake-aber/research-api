@@ -4,8 +4,7 @@ TBD
 """
 import typing
 from itertools import groupby
-from src import meta
-from prios_api.domain_objects import objects
+from prios_api.domain_objects import meta, objects
 
 
 def group_assertions_by_key(

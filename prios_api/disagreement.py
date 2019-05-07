@@ -62,6 +62,7 @@ def dots_on_subject_are_polarizing(dots: List[objects.Dot]) -> List[meta.Asserti
 
     1. Values about a target given by each source is synthesized.
     2. Determines whether the synthesized values have a polarizing distribution.
+
     TODO: Disentangle into core concepts.
 
     Parameters
@@ -171,14 +172,13 @@ def is_nubby_question(question: objects.Question,
     """
     # TODO: Create extractor method in `objects.Question` that returns list of responses?
     values = [response.value for response in question.responses]
-    if len(values) < 2:
+    if len(values) < 2:  # TODO: reasonable heuristic... where should it live?
         result = False
     else:
         mapped_values = foundation.map_values(values)
         result = divisiveness(mapped_values, question.question_type) > threshold
 
-    return meta.Assertion(source=objects.System, target=question, value=result,
-                          measure=objects.BooleanOption)
+    return meta.Assertion(target=question, value=result)
 
 
 def meeting_nubbiness_v1(meeting: objects.Meeting,
@@ -277,7 +277,7 @@ def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Asse
     return people
 
 
-def believable_consensus_exists(question: objects.Question) -> prios_api.domain_objects.meta.Assertion:
+def believable_consensus_exists(question: objects.Question) -> meta.Assertion:
     """
     TODO: Needs clarification on where it lives conceptually, what the I/O types should be, whether it can be refactored
     Consensus exists on a question.
