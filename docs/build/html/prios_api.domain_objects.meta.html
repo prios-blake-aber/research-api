@@ -1,0 +1,256 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Meta-Model Interface &mdash; Research API 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Mathematical Operations" href="prios_api.src.foundation.html" />
+    <link rel="prev" title="Domain Objects" href="prios_api.domain_objects.objects.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Research API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Developing New Logic</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="insights.html">Application Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prios_api.html">API Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prios_api.concepts.html">Core Concepts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Operations on Objects</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="prios_api.domain_objects.objects.html">Domain Objects</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Meta-Model Interface</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Helper Functions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="prios_api.src.foundation.html">Mathematical Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prios_api.src.utils.html">Utilities</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Research API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Meta-Model Interface</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prios_api.domain_objects.meta.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="meta-model-interface">
+<h1>Meta-Model Interface<a class="headerlink" href="#meta-model-interface" title="Permalink to this headline">¶</a></h1>
+<p>Domain objects are expressed in terms of the Meta-Model.</p>
+<span class="target" id="module-prios_api.domain_objects.meta"></span><p>TBD</p>
+<dl class="class">
+<dt id="prios_api.domain_objects.meta.Assertion">
+<em class="property">class </em><code class="descclassname">prios_api.domain_objects.meta.</code><code class="descname">Assertion</code><span class="sig-paren">(</span><em>source: Optional[prios_api.domain_objects.meta.Entity] = None</em>, <em>target: Optional[prios_api.domain_objects.meta.Entity] = None</em>, <em>value: Union[bool</em>, <em>float</em>, <em>int</em>, <em>str</em>, <em>None] = None</em>, <em>confidence: Optional[float] = None</em>, <em>description: Optional[str] = None</em>, <em>attribute: Optional[prios_api.domain_objects.meta.Attribute] = None</em>, <em>context: Any = None</em>, <em>created_at: float = 1557202870.117476</em>, <em>uuid_id: &lt;module 'uuid' from '/usr/local/anaconda3/lib/python3.7/uuid.py'&gt; = UUID('2cc1745d-9d00-4304-a80c-e2486fd13933')</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prios_api/domain_objects/meta.html#Assertion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.domain_objects.meta.Assertion" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generic Assertion object:</p>
+<ul class="simple">
+<li>The “source” and “target” attributes should both be an Entity</li>
+<li>The “value” should be some numerical value</li>
+<li>The “confidence” should be some numerical value</li>
+<li>The “description” should be a free-form text field</li>
+<li>The “attribute” should be an Attribute</li>
+<li>The “context” should be a list of Tags, Entities, etc that contextualize assertions</li>
+</ul>
+</dd></dl>
+
+<dl class="class">
+<dt id="prios_api.domain_objects.meta.Attribute">
+<em class="property">class </em><code class="descclassname">prios_api.domain_objects.meta.</code><code class="descname">Attribute</code><span class="sig-paren">(</span><em>name: str</em>, <em>description: str</em>, <em>members: List[Attribute] = &lt;factory&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prios_api/domain_objects/meta.html#Attribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.domain_objects.meta.Attribute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="prios_api.domain_objects.meta.Entity">
+<em class="property">class </em><code class="descclassname">prios_api.domain_objects.meta.</code><code class="descname">Entity</code><span class="sig-paren">(</span><em>uuid: UUID('fd0b20a8-2e22-4a6a-b249-c8ee0cdb906e') = UUID('fd0b20a8-2e22-4a6a-b249-c8ee0cdb906e')</em>, <em>created_at: int = 1557202870.116277</em>, <em>members: List[Entity] = &lt;factory&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prios_api/domain_objects/meta.html#Entity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.domain_objects.meta.Entity" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generic Entity object</p>
+<ul class="simple">
+<li>This class is expected to act as a MixIn for Domain Objects</li>
+</ul>
+<dl class="method">
+<dt id="prios_api.domain_objects.meta.Entity.empty">
+<code class="descname">empty</code><span class="sig-paren">(</span><em>attributes_to_keep: List[str]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prios_api/domain_objects/meta.html#Entity.empty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.domain_objects.meta.Entity.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters data from instantiated object (Not recommended for ad hoc use)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prios_api.domain_objects.meta.System">
+<em class="property">class </em><code class="descclassname">prios_api.domain_objects.meta.</code><code class="descname">System</code><span class="sig-paren">(</span><em>uuid: UUID('fd0b20a8-2e22-4a6a-b249-c8ee0cdb906e') = UUID('fd0b20a8-2e22-4a6a-b249-c8ee0cdb906e')</em>, <em>created_at: int = 1557202870.116277</em>, <em>members: List[ForwardRef('Entity')] = &lt;factory&gt;</em>, <em>description: Union[str</em>, <em>NoneType] = 'PriOS'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prios_api/domain_objects/meta.html#System"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.domain_objects.meta.System" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="prios_api.src.foundation.html" class="btn btn-neutral float-right" title="Mathematical Operations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prios_api.domain_objects.objects.html" class="btn btn-neutral float-left" title="Domain Objects" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

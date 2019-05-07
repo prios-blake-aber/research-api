@@ -8,40 +8,23 @@ Application Logic
 
 New Logic can be expressed in terms of an API that applies Core Concepts to Domain objects.
 
-Activity
-^^^^^^^^
 
-.. automodule:: insights.activity
+Disagreeing with the Believable View
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: insights.believable_view_disagrees
     :members:
 
-Contribution
-^^^^^^^^^^^^
+Actions In Meeting
+^^^^^^^^^^^^^^^^^^
 
-.. automodule:: insights.contribution
+.. automodule:: insights.describe_actions
     :members:
 
-Disagreement
-^^^^^^^^^^^^
+Differing Opinions
+^^^^^^^^^^^^^^^^^^
 
-.. automodule:: insights.disagreement
-    :members:
-
-Interaction
-^^^^^^^^^^^
-
-.. automodule:: insights.interaction
-    :members:
-
-Sentiment
-^^^^^^^^^
-
-.. automodule:: insights.sentiment
-    :members:
-
-Summaries
-^^^^^^^^^
-
-.. automodule:: insights.summaries
+.. automodule:: insights.differences_in_views
     :members:
 
 Uniqueness
@@ -49,3 +32,10 @@ Uniqueness
 
 .. automodule:: insights.uniqueness
     :members:
+
+Utilities
+^^^^^^^^^
+
+.. automodule:: insights.utils
+    :members:
+

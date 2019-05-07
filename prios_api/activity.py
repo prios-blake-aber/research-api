@@ -15,11 +15,11 @@ _SUFFICIENT_RESPONSE_ENGAGEMENT = 3
 _SUFFICIENT_BELIEVABILITY_ENGAGEMENT = 0.75
 
 
-def relevance_of_dots(dots: objects.DotCollection):
+def relevance_of_dots(dots: List[objects.Dot]):
     pass
 
 
-def relevance_of_people(dots: objects.DotCollection):
+def relevance_of_people(dots: List[objects.Person]):
     pass
 
 

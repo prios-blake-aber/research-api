@@ -53,7 +53,7 @@ class Assertion:
     * The "attribute" should be an Attribute
     * The "context" should be a list of Tags, Entities, etc that contextualize assertions
     """
-    source: Entity = System()
+    source: typing.Optional[Entity] = None
     target: typing.Optional[Entity] = None
 
     # TODO: this is a terrible definition for value

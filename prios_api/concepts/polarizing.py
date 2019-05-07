@@ -80,10 +80,10 @@ def is_polarizing(values: List[float],
     return polarization and divisiveness and std_dev
 
 
-def is_polarizing_v0(scale_assertions: objects.ScaleValueSet,
+def is_polarizing_v0(values: List[float],
                      thresh_on_std_scale: float = _THRESHOLD_STD_SCALE,
                      thresh_on_std_mapped_scale: float = _THRESHOLD_STD_MAPPED_SCALE,
-                     thresh_on_poles: float = _THRESHOLD_POLES) -> objects.Judgement:
+                     thresh_on_poles: float = _THRESHOLD_POLES) -> bool:
     """
     Is polarizing
 
@@ -100,10 +100,9 @@ def is_polarizing_v0(scale_assertions: objects.ScaleValueSet,
 
     Returns
     -------
-    object.Judgement
+    bool
         Whether a set of scale values are polarizing.
     """
-    values = [xi.value for xi in scale_assertions]
     mapped_values = [foundation.map_values(vi, objects.NumericRange.ONE_TO_TEN) for vi in values]
 
     # TODO: nesting functions here is terrible; why not use the sentiment module?
@@ -124,7 +123,6 @@ def is_polarizing_v0(scale_assertions: objects.ScaleValueSet,
     std_values_condition = foundation.standard_deviation(values) > thresh_on_std_scale
     std_mapped_values_condition = foundation.standard_deviation(mapped_values) > thresh_on_std_mapped_scale
     pole_condition = pole_ratio > thresh_on_poles
-    result = std_values_condition and std_mapped_values_condition and pole_condition
-    return objects.Judgement(source=objects.System, target=objects.System, value=result)
+    return std_values_condition and std_mapped_values_condition and pole_condition
 
 
