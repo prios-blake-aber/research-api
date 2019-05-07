@@ -1,0 +1,301 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>insights.believable_view_disagrees &mdash; PRIOS_API 1.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> PRIOS_API
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">PRIOS API Library:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../prios_api.html">prios_api package</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Insights (Signal Generators and New Logic):</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html">insights package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PRIOS_API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>insights.believable_view_disagrees</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for insights.believable_view_disagrees</h1><div class="highlight"><pre>
+<span></span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Believable View Disagrees With.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">from</span> <span class="nn">prios_api.domain_objects</span> <span class="k">import</span> <span class="n">meta</span><span class="p">,</span> <span class="n">objects</span>
+<span class="kn">from</span> <span class="nn">prios_api.concepts</span> <span class="k">import</span> <span class="n">sentiment</span><span class="p">,</span> <span class="n">disagreement</span>
+
+
+<div class="viewcode-block" id="believable_and_overall_meeting_section_sentiment_disagree_119"><a class="viewcode-back" href="../../insights.html#insights.believable_view_disagrees.believable_and_overall_meeting_section_sentiment_disagree_119">[docs]</a><span class="k">def</span> <span class="nf">believable_and_overall_meeting_section_sentiment_disagree_119</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Believable and Overall Meeting Section Sentiment Disagree</span>
+
+<span class="sd">    TODO: This function assumes non-zero believabilities for every person</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    objects.Question</span>
+<span class="sd">        The &quot;Rate This Section&quot; question object</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    meta.Assertion</span>
+<span class="sd">        An assertion describing whether substantive disagreement exists between</span>
+<span class="sd">        the believable and overall meeting section sentiment</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; rate_the_section = objects.Question(title=&#39;Rate This Section&#39;, question_type=objects.QuestionType.RATING)</span>
+<span class="sd">    &gt;&gt;&gt; adam = objects.Person(name=&#39;Adam&#39;, believability=0.45)</span>
+<span class="sd">    &gt;&gt;&gt; bob = objects.Person(name=&#39;Bob&#39;, believability=0.05)</span>
+<span class="sd">    &gt;&gt;&gt; charlie = objects.Person(name=&#39;Charlie&#39;, believability=0.05)</span>
+<span class="sd">    &gt;&gt;&gt; rate_the_section.responses.append(objects.Response(source=adam, target=rate_the_section, value=10))</span>
+<span class="sd">    &gt;&gt;&gt; rate_the_section.responses.append(objects.Response(source=bob, target=rate_the_section, value=1))</span>
+<span class="sd">    &gt;&gt;&gt; rate_the_section.responses.append(objects.Response(source=charlie, target=rate_the_section, value=5))</span>
+<span class="sd">    &gt;&gt;&gt; result = believable_and_overall_meeting_section_sentiment_disagree_119(rate_the_section)</span>
+<span class="sd">    &gt;&gt;&gt; result.value</span>
+<span class="sd">    1</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">question</span><span class="o">.</span><span class="n">question_type</span> <span class="o">==</span> <span class="n">objects</span><span class="o">.</span><span class="n">QuestionType</span><span class="o">.</span><span class="n">RATING</span><span class="p">,</span> <span class="s1">&#39;Question must be of type QuestionType.RATING!&#39;</span>
+
+    <span class="n">responses</span> <span class="o">=</span> <span class="p">[(</span><span class="n">response</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">believability</span><span class="p">)</span> <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">question</span><span class="o">.</span><span class="n">responses</span><span class="p">]</span>
+    <span class="n">values</span><span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">responses</span><span class="p">))</span>
+
+    <span class="n">believable_sentiment</span> <span class="o">=</span> <span class="n">sentiment</span><span class="o">.</span><span class="n">sentiment</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
+    <span class="n">overall_sentiment</span> <span class="o">=</span> <span class="n">sentiment</span><span class="o">.</span><span class="n">sentiment</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">disagreement</span><span class="o">.</span><span class="n">substantive_disagreement</span><span class="p">(</span><span class="n">believable_sentiment</span><span class="p">,</span> <span class="n">overall_sentiment</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">question</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">result</span><span class="p">)</span></div>
+
+<span class="c1">#</span>
+<span class="c1"># def believable_view_disagrees_with_overall_view_on_action_162(meeting: objects.Meeting):</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     TBD</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     # TODO: how do we roll-up an arbitrarily deep attribute taxonomy into actions?</span>
+<span class="c1">#     # TODO: is the attribute taxonomy a function input?</span>
+<span class="c1">#     # TODO: should a Meeting have actions (pre-populated) separately on the object? (YES)... why?</span>
+<span class="c1">#     # TODO:    1) researchers will likely want to modify the taxonomy on the fly</span>
+<span class="c1">#     # TODO:    2) hierarchical queries should be run on the server, not grpc</span>
+<span class="c1">#     def sort_by_measure(x):</span>
+<span class="c1">#         return x.measure.name</span>
+<span class="c1">#</span>
+<span class="c1">#     results = []</span>
+<span class="c1">#     dots_by_attribute = sorted(meeting.dots.data, key=sort_by_measure)</span>
+<span class="c1">#     for attribute, dot_set in itertools.groupby(dots_by_attribute, key=sort_by_measure):</span>
+<span class="c1">#         materialized_dot_set = meta.EntityCollection(list(dot_set))  # TODO: materialization and instantiation is shitty here</span>
+<span class="c1">#         result = believable_view_disagrees_with_overall_view_on_action(materialized_dot_set, attribute)</span>
+<span class="c1">#         results.append(result)</span>
+<span class="c1">#     return results</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># def believable_view_disagrees_with_overall_view_on_action(dots: objects.DotCollection, attribute):</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     TBD</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     # TODO: This function assumes non-zero believabilities for every person</span>
+<span class="c1">#     weights = [dot.source.believability for dot in dots]  # TODO: the data attribute is used confusingly; need dataclasses</span>
+<span class="c1">#</span>
+<span class="c1">#     if not weights:  # TODO: add better check that dots exist</span>
+<span class="c1">#         return None</span>
+<span class="c1">#</span>
+<span class="c1">#     believable_view = sentiment.sentiment(dots, weights=weights)</span>
+<span class="c1">#     overall_view = sentiment.sentiment(dots)</span>
+<span class="c1">#</span>
+<span class="c1">#     sentiment_comparison = (believable_view, overall_view)</span>
+<span class="c1">#</span>
+<span class="c1">#     result = disagreement.substantive_disagreement(sentiment_comparison)</span>
+<span class="c1">#     return meta.Assertion(source=objects.System, target=attribute, value=result)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, dots_research.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

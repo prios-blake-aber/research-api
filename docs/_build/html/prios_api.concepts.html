@@ -1,0 +1,644 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prios_api.concepts package &mdash; PRIOS_API 1.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="prios_api.domain_objects package" href="prios_api.domain_objects.html" />
+    <link rel="prev" title="prios_api package" href="prios_api.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PRIOS_API
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">PRIOS API Library:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="prios_api.html">prios_api package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="prios_api.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">prios_api.concepts package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prios_api.concepts.believable_choice">prios_api.concepts.believable_choice module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prios_api.concepts.disagreement">prios_api.concepts.disagreement module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prios_api.concepts.divisiveness">prios_api.concepts.divisiveness module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prios_api.concepts.engagement">prios_api.concepts.engagement module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prios_api.concepts.polarizing">prios_api.concepts.polarizing module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prios_api.concepts.sentiment">prios_api.concepts.sentiment module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prios_api.concepts.synthesis">prios_api.concepts.synthesis module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prios_api.concepts.ungrouped">prios_api.concepts.ungrouped module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prios_api.concepts">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prios_api.domain_objects.html">prios_api.domain_objects package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prios_api.examples.html">prios_api.examples package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prios_api.src.html">prios_api.src package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prios_api.visualizations.html">prios_api.visualizations package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prios_api.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prios_api.html#module-prios_api.activity">prios_api.activity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prios_api.html#module-prios_api.disagreement">prios_api.disagreement module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prios_api.html#module-prios_api">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Insights (Signal Generators and New Logic):</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="insights.html">insights package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PRIOS_API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="prios_api.html">prios_api package</a> &raquo;</li>
+        
+      <li>prios_api.concepts package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prios_api.concepts.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="prios-api-concepts-package">
+<h1>prios_api.concepts package<a class="headerlink" href="#prios-api-concepts-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-prios_api.concepts.believable_choice">
+<span id="prios-api-concepts-believable-choice-module"></span><h2>prios_api.concepts.believable_choice module<a class="headerlink" href="#module-prios_api.concepts.believable_choice" title="Permalink to this headline">¶</a></h2>
+<p>Believable Choice.</p>
+<dl class="function">
+<dt id="prios_api.concepts.believable_choice.believable_choice">
+<code class="descclassname">prios_api.concepts.believable_choice.</code><code class="descname">believable_choice</code><span class="sig-paren">(</span><em>values_and_weights: List[Tuple[StringOrFloat, float]], value_type: prios_api.domain_objects.objects.QuestionType</em><span class="sig-paren">)</span> &#x2192; Optional[StringOrFloat]<a class="reference internal" href="_modules/prios_api/concepts/believable_choice.html#believable_choice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.concepts.believable_choice.believable_choice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Believable choice</p>
+<p>TODO: Change to ValueType.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values_and_weights</strong> – Values and Believability weights.</p></li>
+<li><p><strong>value_type</strong> – Type of value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Value or None. Value represents either the believability-weighted average or the answer choice on which there is</dt><dd><p>sufficient believability.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Optional[StringOrFloat]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prios_api.concepts.believable_choice.believable_choice_categorical_binary">
+<code class="descclassname">prios_api.concepts.believable_choice.</code><code class="descname">believable_choice_categorical_binary</code><span class="sig-paren">(</span><em>values_and_weights: List[Tuple[str, float]], minimum_vote: float = 0.7</em><span class="sig-paren">)</span> &#x2192; Optional[str]<a class="reference internal" href="_modules/prios_api/concepts/believable_choice.html#believable_choice_categorical_binary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.concepts.believable_choice.believable_choice_categorical_binary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disagrees With logic for Categorical/Binary responses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values_and_weights</strong> – Strings values and corresponding believability</p></li>
+<li><p><strong>minimum_vote</strong> – Believable choice has greater than this quantity of the believability-weighted vote.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Believable choice, or None (if there isn’t one).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prios_api.concepts.believable_choice.believable_choice_numeric">
+<code class="descclassname">prios_api.concepts.believable_choice.</code><code class="descname">believable_choice_numeric</code><span class="sig-paren">(</span><em>values_and_weights: List[Tuple[float, float]]</em><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="_modules/prios_api/concepts/believable_choice.html#believable_choice_numeric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.concepts.believable_choice.believable_choice_numeric" title="Permalink to this definition">¶</a></dt>
+<dd><p>“Believable Choice” logic for Numeric responses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>values_and_weights</strong> – Numeric values and corresponding believability.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Believability-weighted average</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prios_api.concepts.disagreement">
+<span id="prios-api-concepts-disagreement-module"></span><h2>prios_api.concepts.disagreement module<a class="headerlink" href="#module-prios_api.concepts.disagreement" title="Permalink to this headline">¶</a></h2>
+<p>TBD</p>
+<dl class="function">
+<dt id="prios_api.concepts.disagreement.bucketed_disagreement">
+<code class="descclassname">prios_api.concepts.disagreement.</code><code class="descname">bucketed_disagreement</code><span class="sig-paren">(</span><em>x1: float</em>, <em>x2: float</em><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="_modules/prios_api/concepts/disagreement.html#bucketed_disagreement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.concepts.disagreement.bucketed_disagreement" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>values</strong> – Tuple of numeric values</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The absolute difference in bucketed disagreement between two v alues.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prios_api.concepts.disagreement.disagrees_with_167">
+<code class="descclassname">prios_api.concepts.disagreement.</code><code class="descname">disagrees_with_167</code><span class="sig-paren">(</span><em>values: Tuple[Any, Any], question_type</em><span class="sig-paren">)</span> &#x2192; prios_api.domain_objects.meta.Assertion<a class="reference internal" href="_modules/prios_api/concepts/disagreement.html#disagrees_with_167"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.concepts.disagreement.disagrees_with_167" title="Permalink to this definition">¶</a></dt>
+<dd><p>Significantly OOS, etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> – </p></li>
+<li><p><strong>question_type</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Empty set, if none exists.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>objects.AssertionSet</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prios_api.concepts.disagreement.disagrees_with_categorical_binary">
+<code class="descclassname">prios_api.concepts.disagreement.</code><code class="descname">disagrees_with_categorical_binary</code><span class="sig-paren">(</span><em>response_to_compare: StringOrFloat</em>, <em>answer_to_compare: StringOrFloat</em><span class="sig-paren">)</span> &#x2192; prios_api.domain_objects.meta.Assertion<a class="reference internal" href="_modules/prios_api/concepts/disagreement.html#disagrees_with_categorical_binary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.concepts.disagreement.disagrees_with_categorical_binary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disagrees With logic for Categorical/Binary values.</p>
+<p>TODO: Find better home -&gt; is this a core concept?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>response_to_compare</strong> – </p></li>
+<li><p><strong>answer_to_compare</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Value is True, if there is a disagreement.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="prios_api.domain_objects.html#prios_api.domain_objects.meta.Assertion" title="prios_api.domain_objects.meta.Assertion">meta.Assertion</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prios_api.concepts.disagreement.disagrees_with_numeric">
+<code class="descclassname">prios_api.concepts.disagreement.</code><code class="descname">disagrees_with_numeric</code><span class="sig-paren">(</span><em>response_to_compare: float</em>, <em>answer_to_compare: float</em>, <em>far_away: float = 1.7</em><span class="sig-paren">)</span> &#x2192; prios_api.domain_objects.meta.Assertion<a class="reference internal" href="_modules/prios_api/concepts/disagreement.html#disagrees_with_numeric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.concepts.disagreement.disagrees_with_numeric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disagrees With logic for Scale values (1-to-10 or 1-to-5).</p>
+<p>TODO: Find better home -&gt; is this a core concept?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>response_to_compare</strong> – </p></li>
+<li><p><strong>answer_to_compare</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Value is True, if there is a disagreement.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="prios_api.domain_objects.html#prios_api.domain_objects.meta.Assertion" title="prios_api.domain_objects.meta.Assertion">meta.Assertion</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prios_api.concepts.disagreement.substantive_disagreement">
+<code class="descclassname">prios_api.concepts.disagreement.</code><code class="descname">substantive_disagreement</code><span class="sig-paren">(</span><em>x1: float</em>, <em>x2: float</em>, <em>threshold_high: float = 1.7</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prios_api/concepts/disagreement.html#substantive_disagreement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.concepts.disagreement.substantive_disagreement" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x1</strong> – numeric value</p></li>
+<li><p><strong>x2</strong> – numeric value</p></li>
+<li><p><strong>threshold_high</strong> – Returns False if difference between raw values is less than this quantity.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether there’s substantive disagreement between two values.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prios_api.concepts.divisiveness">
+<span id="prios-api-concepts-divisiveness-module"></span><h2>prios_api.concepts.divisiveness module<a class="headerlink" href="#module-prios_api.concepts.divisiveness" title="Permalink to this headline">¶</a></h2>
+<p>Divisiveness: Statistic of disagreement between a set of opinions.</p>
+<dl class="function">
+<dt id="prios_api.concepts.divisiveness.divisiveness_stat">
+<code class="descclassname">prios_api.concepts.divisiveness.</code><code class="descname">divisiveness_stat</code><span class="sig-paren">(</span><em>values: List[float], value_type: prios_api.domain_objects.objects.QuestionType, map_to_sentiment: bool = True</em><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="_modules/prios_api/concepts/divisiveness.html#divisiveness_stat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.concepts.divisiveness.divisiveness_stat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Divisiveness is the standard deviation of opinions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> – Numerical values whose divisiveness is being calculated.</p></li>
+<li><p><strong>value_type</strong> – Type of value</p></li>
+<li><p><strong>map_to_sentiment</strong> – Map values to positive, neutral, or negative sentiment prior to taking standard
+deviation. Default is True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Divisiveness measure.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prios_api.concepts.engagement">
+<span id="prios-api-concepts-engagement-module"></span><h2>prios_api.concepts.engagement module<a class="headerlink" href="#module-prios_api.concepts.engagement" title="Permalink to this headline">¶</a></h2>
+<p>Engagement</p>
+<dl class="function">
+<dt id="prios_api.concepts.engagement.engagement">
+<code class="descclassname">prios_api.concepts.engagement.</code><code class="descname">engagement</code><span class="sig-paren">(</span><em>values: List[Any]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prios_api/concepts/engagement.html#engagement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.concepts.engagement.engagement" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prios_api.concepts.engagement.quorum_exists">
+<code class="descclassname">prios_api.concepts.engagement.</code><code class="descname">quorum_exists</code><span class="sig-paren">(</span><em>values: List[Any], number_participants, quorum_threshold</em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="_modules/prios_api/concepts/engagement.html#quorum_exists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.concepts.engagement.quorum_exists" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO: generalize the concept of minimum_engagement
+Whether a quorum exists within a set of meta.objects.Judgements</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> (<em>any meta.objects.Judgements</em>) – </p></li>
+<li><p><strong>number_participants</strong> – </p></li>
+<li><p><strong>quorum_threshold</strong> (The threshold above which quorum exists. Defaults to <code class="xref py py-data docutils literal notranslate"><span class="pre">_QUORUM_THRESH_DEFAULT</span></code>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a quorum exists within the set of values.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prios_api.concepts.polarizing">
+<span id="prios-api-concepts-polarizing-module"></span><h2>prios_api.concepts.polarizing module<a class="headerlink" href="#module-prios_api.concepts.polarizing" title="Permalink to this headline">¶</a></h2>
+<p>Polarization:</p>
+<dl class="function">
+<dt id="prios_api.concepts.polarizing.is_polarizing">
+<code class="descclassname">prios_api.concepts.polarizing.</code><code class="descname">is_polarizing</code><span class="sig-paren">(</span><em>values: List[float], thresh_on_std_scale: float = 1.0, thresh_on_std_mapped_scale: float = 0.5, thresh_on_poles: float = 0.25</em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="_modules/prios_api/concepts/polarizing.html#is_polarizing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.concepts.polarizing.is_polarizing" title="Permalink to this definition">¶</a></dt>
+<dd><p>“Is polarizing” is a predicate on a distribution of values on the 1-to-10 scale. It returns
+True if the distribution satisfies three criteria:
+* Divisiveness statistic (after mapping to sentiment) exceeds <cite>thresh_on_std_mapped_scale</cite>
+* Divisiveness statistic (raw values) exceeds <cite>thresh_on_std_scale</cite>
+* Polarization statistic exceeds <cite>thresh_on_poles</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> – </p></li>
+<li><p><strong>thresh_on_std_scale</strong> – </p></li>
+<li><p><strong>thresh_on_std_mapped_scale</strong> – </p></li>
+<li><p><strong>thresh_on_poles</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the distribution of values satisfies three sets of criteria.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prios_api.concepts.polarizing.is_polarizing_v0">
+<code class="descclassname">prios_api.concepts.polarizing.</code><code class="descname">is_polarizing_v0</code><span class="sig-paren">(</span><em>values: List[float], thresh_on_std_scale: float = 1.0, thresh_on_std_mapped_scale: float = 0.5, thresh_on_poles: float = 0.25</em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="_modules/prios_api/concepts/polarizing.html#is_polarizing_v0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.concepts.polarizing.is_polarizing_v0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is polarizing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale_assertions</strong> – List of assertions with scale values.</p></li>
+<li><p><strong>thresh_on_std_scale</strong> – Threshold on standard deviation of scale values.</p></li>
+<li><p><strong>thresh_on_std_mapped_scale</strong> – Threshold on standard deviation of scale values mapped to 1, 2, and 3</p></li>
+<li><p><strong>thresh_on_poles</strong> – Threshold on ratio between poles</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a set of scale values are polarizing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prios_api.concepts.polarizing.polarizing_stat">
+<code class="descclassname">prios_api.concepts.polarizing.</code><code class="descname">polarizing_stat</code><span class="sig-paren">(</span><em>values: List[float]</em><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="_modules/prios_api/concepts/polarizing.html#polarizing_stat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.concepts.polarizing.polarizing_stat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the polarization statistic, which measures the balance between positive opinions and
+negative opinions.</p>
+<p>It is the minimum of ratio of the number of positive
+opinions to the number of negative opinions and the ratio of the number of negative opinions
+to the number of positive opinions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>values</strong> – List of values</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Polarization statistic.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prios_api.concepts.sentiment">
+<span id="prios-api-concepts-sentiment-module"></span><h2>prios_api.concepts.sentiment module<a class="headerlink" href="#module-prios_api.concepts.sentiment" title="Permalink to this headline">¶</a></h2>
+<p>TBD</p>
+<dl class="function">
+<dt id="prios_api.concepts.sentiment.sentiment">
+<code class="descclassname">prios_api.concepts.sentiment.</code><code class="descname">sentiment</code><span class="sig-paren">(</span><em>values: List[float], weights=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prios_api/concepts/sentiment.html#sentiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.concepts.sentiment.sentiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines sentiment as the average of all values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> (<em>typing.List</em><em>[</em><em>float</em><em>]</em>) – A list of :type:float.</p></li>
+<li><p><strong>weights</strong> – Weights to apply as a weighted average.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value representing sentiment, or None.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>objects.Assertion</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prios_api.concepts.synthesis">
+<span id="prios-api-concepts-synthesis-module"></span><h2>prios_api.concepts.synthesis module<a class="headerlink" href="#module-prios_api.concepts.synthesis" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="prios_api.concepts.synthesis.synthesize">
+<code class="descclassname">prios_api.concepts.synthesis.</code><code class="descname">synthesize</code><span class="sig-paren">(</span><em>values: List[float], synthesis_fun: Callable = &lt;function weighted_average&gt;</em><span class="sig-paren">)</span> &#x2192; Optional[float]<a class="reference internal" href="_modules/prios_api/concepts/synthesis.html#synthesize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.concepts.synthesis.synthesize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synthesize values into a
+:param values: Numerical values that are being synthesized into a single number.
+:param synthesis_fun: Operation applied to synthesize a list of values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Synthesized value. Returns None if there aren’t any values.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">synthesize</span><span class="p">([])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">synthesize</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="go">2.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">synthesize</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">)</span>
+<span class="go">1.0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prios_api.concepts.ungrouped">
+<span id="prios-api-concepts-ungrouped-module"></span><h2>prios_api.concepts.ungrouped module<a class="headerlink" href="#module-prios_api.concepts.ungrouped" title="Permalink to this headline">¶</a></h2>
+<p>TBD</p>
+<dl class="function">
+<dt id="prios_api.concepts.ungrouped.importance">
+<code class="descclassname">prios_api.concepts.ungrouped.</code><code class="descname">importance</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prios_api/concepts/ungrouped.html#importance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.concepts.ungrouped.importance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prios_api.concepts.ungrouped.primary_participants">
+<code class="descclassname">prios_api.concepts.ungrouped.</code><code class="descname">primary_participants</code><span class="sig-paren">(</span><em>dots</em><span class="sig-paren">)</span> &#x2192; List[prios_api.domain_objects.objects.Judgement]<a class="reference internal" href="_modules/prios_api/concepts/ungrouped.html#primary_participants"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.concepts.ungrouped.primary_participants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Primary participants.</p>
+<p># TODO: Identical to <cite>insights.activity.primary_participants_in_meeting_138</cite>?
+# TODO: Is it an insight or an analytic?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dots</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True/False for whether people are a participant.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="prios_api.domain_objects.html#prios_api.domain_objects.objects.Judgement" title="prios_api.domain_objects.objects.Judgement">objects.Judgement</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prios_api.concepts.ungrouped.relevance">
+<code class="descclassname">prios_api.concepts.ungrouped.</code><code class="descname">relevance</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prios_api/concepts/ungrouped.html#relevance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.concepts.ungrouped.relevance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prios_api.concepts">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-prios_api.concepts" title="Permalink to this headline">¶</a></h2>
+<p>PRIOS Core Concepts: Arithmetic operations.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="prios_api.domain_objects.html" class="btn btn-neutral float-right" title="prios_api.domain_objects package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prios_api.html" class="btn btn-neutral" title="prios_api package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, dots_research.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
