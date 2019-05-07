@@ -1,6 +1,6 @@
 
 """
-TBD
+PRIOS Analytics on Activity.
 """
 
 from typing import List
@@ -47,11 +47,11 @@ def quorum_exists_question(question: objects.Question, number_participants, quor
 
 
 def engagement_in_meeting(meeting: objects.Meeting):
-    return ungrouped.engagement(meeting.participants.data)
+    return engagement.engagement_raw(meeting.participants.data)
 
 
 def engagement_in_question(question: objects.Question):
-    return ungrouped.engagement(question.responses.data)
+    return engagement.engagement_raw(question.responses.data)
 
 
 def sufficient_believability_engagement(question: objects.Question,
@@ -89,7 +89,6 @@ def frequently_dotted_subjects(dots: List[objects.Dot],
     * 10% of all Dot Ratings OR
     * 5% of all Dot Ratings along with 10 Dot Ratings.
 
-    TODO: Reconcile with Primary Participants
 
     Parameters
     ----------
@@ -153,23 +152,3 @@ def notable_participants(meeting: objects.Meeting, **kwargs) -> List[objects.Jud
     primary_people = ungrouped.primary_participants(meeting.dots)
 
     return combine_results(believable_people, primary_people, condition="OR")
-
-
-def combine_results(*args):
-    """
-    Determines whether values are True in two (or more) lists of
-    Judgements. Elements of each list should have the same targets, which only appear once.
-
-    Not an insight (just a placeholder)
-
-    # TODO: Find better home.
-    # TODO: Is this a utils for prios_api OR insights? See insights.disagreements.combine_results
-    Parameters
-    ----------
-    args
-
-    Returns
-    -------
-
-    """
-    pass

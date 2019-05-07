@@ -11,6 +11,7 @@ from typing import List
 
 _QUORUM_THRESH_DEFAULT = 0.80
 
+
 def primary_actions_157(dots: objects.DotCollection, *args, **kwargs):
     """
     Defines Primary Actions in a Meeting based on :class:`objects.DotCollection`
@@ -31,33 +32,43 @@ def primary_actions_157(dots: objects.DotCollection, *args, **kwargs):
     return sorted(relevant_actions, key=lambda x: x.value)[:3]  # top 3 scores
 
 
-def primary_participants_in_meeting_138(dots: objects.DotCollection, *args, **kwargs):
+def primary_participants_in_meeting_138(meeting: objects.Meeting,
+                                        min_percent_1: float = 0.20,
+                                        min_count_1: int = 0,
+                                        min_percent_2: float = 0.10,
+                                        min_count_2: int = 10,
+                                        *args, **kwargs) -> List[meta.Assertion]:
     """
-    # TODO: Move logic to prios_api.
     Defines Primary Participants in a Meeting from Dots.
 
     Parameters
     ----------
     dots
+    min_percent_1
+        A subject is a Primary Participant if the percent of dots they receive exceeds this quantity
+        and the number of dots exceeds `min_count_1` (default = 10%)
+    min_count_1
+        A subject is a Primary Participant if the number of dots they receive exceeds this quantity
+        and the percentage of dots exceeds `min_percent_1` (default = 0)
+    min_percent_2
+        A subject is a Primary Participant if the percent of dots they receive exceeds this quantity
+        and the number of dots exceeds `min_count_2` (default = 5%)
+    min_count_2
+        A subject is a Primary Participant if the number of dots they receive exceeds this quantity
+        and the percentage of dots exceeds `min_percent_2` (default = 5)
     *args
         Variable length argument list.
     **kwargs
         Arbitrary keyword arguments.
 
-
     Returns
     -------
-    objects.RelevanceCollection
-         A set of :class:`objects.RelevanceScore`, or an empty set if none exist.
+    List[meta.Assertion]
+        System assertion for each subject with value (Boolean) equal to True if they are
+        a Primary Participant or False, otherwise.
     """
-    total_participation = len(dots)
-    dots.sort(key=lambda x: x.source.name, reverse=False)
-    for person, dots in itertools.groupby(dots, lambda x: x.target):
-        person_dots = len(list(dots))
-        if ((person_dots / total_participation) > 0.2) or (person_dots > 10 and ((person_dots / total_participation) > 0.1)):
-            yield objects.Judgement(source=objects.System(), target=person, value=True)
-        else:
-            yield objects.Judgement(source=objects.System(), target=person, value=False)
+    return activity.frequently_dotted_subjects(meeting.dots, min_percent_1, min_count_1,
+                                               min_percent_2, min_count_2)
 
 
 def action_relevance_158(dots: objects.DotCollection, *args, **kwargs):

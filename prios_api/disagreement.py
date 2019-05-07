@@ -1,6 +1,6 @@
 
 """
-TBD
+PRIOS Analytics on Disagreement.
 """
 
 import numpy as np
@@ -21,43 +21,6 @@ _THRESHOLD_DICT = {
     'mapped_divisiveness': 0.5,
     'polarization': 0.25
 }
-
-
-def dots_in_meeting_are_polarizing(meeting: objects.Meeting,
-                                   by_action: Dict[str, str] = None) -> List[meta.Assertion]:
-    """
-    Returns Assertion on whether a List of Dots are Polarizing.
-
-    Parameters
-    ----------
-    meeting
-        Meeting object
-    by_action
-        Specifies mapping from Attribute to Action. Assumes that Attributes and Actions are
-        represented as strings.
-
-    Returns
-    -------
-    List[meta.Assertion]
-        Whether or not Dots are polarizing (by action or for entire meeting)
-    """
-    # TODO: Represent Attributes by objects instead of strings.
-
-    # TODO: Below is all Data Plumbing -- need to define utility function for it.
-    dots_df = pd.DataFrame.from_records([(dot.source, dot.target, dot.value) for dot in
-                                         meeting.dots], columns=['author', 'subject', 'value'])
-
-    if by_action:
-        dots_df['by'] = [by_action[dot.attribute] for dot in meeting.dots]
-    else:
-        dots_df['by'] = "all_dots"
-
-    results = list()
-    for action, df in dots_df.groupby(['by']):
-        is_polar = disagreement.is_polarizing(list(df['value']))
-        results.append(meta.Assertion(source=objects.System, target=objects.Person,
-                                      value=is_polar, label=action))
-    return results
 
 
 def dots_on_subjects_are_nubby_and_polarizing(dots: List[objects.Dot],
@@ -90,8 +53,8 @@ def dots_on_subjects_are_nubby_and_polarizing(dots: List[objects.Dot],
     Returns
     -------
     List[meta.Assertion]
-        Target of each Assertion is a topic/subject. Value is True if it is polarizing.
-
+        Target of each Assertion is a subject. Value is True if distribution of dot ratings (
+        synthesized by author) is nubby and polarizing .
 
     Examples
     --------
@@ -140,6 +103,7 @@ def dots_on_subjects_are_nubby_and_polarizing(dots: List[objects.Dot],
         dot.target.uuid: dot.target for dot in dots
     }
 
+    # Identify subjects whose author syntheses satisfy divisiveness and polarization conditions.
     results = list()
     for sub, values in subjects.items():
         values_divisiveness = divisiveness.divisiveness_stat(values, objects.QuestionType.SCALE,
@@ -156,8 +120,45 @@ def dots_on_subjects_are_nubby_and_polarizing(dots: List[objects.Dot],
     return results
 
 
-def is_unique(question: objects.Question, unique_disagreement=_UNIQUE_DISAGREEMENT) -> List[
-    meta.Assertion]:
+def dots_in_meeting_are_polarizing(meeting: objects.Meeting,
+                                   by_action: Dict[str, str] = None) -> List[meta.Assertion]:
+    """
+    Returns Assertion on whether a List of Dots are Polarizing.
+
+    Parameters
+    ----------
+    meeting
+        Meeting object
+    by_action
+        Specifies mapping from Attribute to Action. Assumes that Attributes and Actions are
+        represented as strings.
+
+    Returns
+    -------
+    List[meta.Assertion]
+        Whether or not Dots are polarizing (by action or for entire meeting)
+    """
+    # TODO: Represent Attributes by objects instead of strings.
+
+    # TODO: Below is all Data Plumbing -- need to define utility function for it.
+    dots_df = pd.DataFrame.from_records([(dot.source, dot.target, dot.value) for dot in
+                                         meeting.dots], columns=['author', 'subject', 'value'])
+
+    if by_action:
+        dots_df['by'] = [by_action[dot.attribute.name] for dot in meeting.dots]
+    else:
+        dots_df['by'] = "all_dots"
+
+    results = list()
+    for action, df in dots_df.groupby(['by']):
+        is_polar = disagreement.is_polarizing(list(df['value']))
+        results.append(meta.Assertion(source=objects.System, target=objects.Person,
+                                      value=is_polar, label=action))
+    return results
+
+
+def unique_choice(question: objects.Question,
+                  unique_disagreement=_UNIQUE_DISAGREEMENT) -> List[meta.Assertion]:
     """
     Determines whether responses are in small minority of responses.
 
@@ -209,13 +210,14 @@ def believable_choice_on_question(question: objects.Question) -> meta.Assertion:
     value_type = question.question_type
 
     # Get the Believable choice
-    choice = concepts.believable_choice.believable_choice(values_and_weights, value_type)
+    total_believability = sum([x[1] for x in values_and_weights])
 
-    return meta.Assertion(
-        source=objects.System,
-        target=question,
-        value=choice
-    )
+    if not total_believability:
+        choice = None
+    else:
+        choice = concepts.believable_choice.believable_choice(values_and_weights, value_type)
+
+    return meta.Assertion(source=objects.System, target=question, value=choice)
 
 
 def is_nubby_question(question: objects.Question,
@@ -240,7 +242,7 @@ def is_nubby_question(question: objects.Question,
         result = False
     else:
         mapped_values = foundation.map_values(values)
-        result = divisiveness(mapped_values, question.question_type) > threshold
+        result = divisiveness.divisiveness_stat(mapped_values, question.question_type) > threshold
 
     return meta.Assertion(source=objects.System, target=question, value=result,
                           measure=objects.BooleanOption)
@@ -378,7 +380,11 @@ def significantly_out_of_sync_in_meeting(meeting: objects.Meeting,
     ----------
     meeting
     threshold_low
+        A Person is Significantly OOS if they are notable and the Z-score of the number of
+        questions on which they were OOS exceeds this quantity.
     threshold_high
+        A Person is Significantly OOS if they are not notable and the Z-score of the number of
+        questions on which they were OOS exceeds this quantity.
 
     Returns
     -------
@@ -411,7 +417,7 @@ def significantly_out_of_sync_in_meeting(meeting: objects.Meeting,
     results = []
     for person, v in oos_count_z_score_dict.items():
         for person_notable in notable_people:
-            if person.id == person_notable.target:
+            if person.id == person_notable.target.id:
                 if person_notable.value:
                     result_person = v > threshold_low
                 else:

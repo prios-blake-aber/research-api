@@ -34,12 +34,6 @@ def believable_choice(values_and_weights: List[Tuple[StringOrFloat, float]],
         Value or None. Value represents either the believability-weighted average or the answer choice on which there is
          sufficient believability.
     """
-
-    total_believability = sum([x[1] for x in values_and_weights])
-
-    if not total_believability:
-        return None
-
     if value_type in [objects.QuestionType.LIKERT, objects.QuestionType.SCALE]:
         return believable_choice_numeric(values_and_weights)
     elif value_type in [objects.QuestionType.CATEGORICAL, objects.QuestionType.BINARY]:

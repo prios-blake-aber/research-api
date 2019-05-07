@@ -28,6 +28,22 @@ def believable_choice_130(question: objects.QuestionType) -> meta.Assertion:
     return disagreement.believable_choice_on_question(question)
 
 
+def believable_consensus_exists_131(question: objects.Question) -> meta.Assertion:
+    """
+    Whether consensus exists on a question.
+
+    Parameters
+    ----------
+    question
+
+    Returns
+    -------
+    bool
+        Whether there is a consensus answer.
+    """
+    return disagreement.believable_consensus_exists(question)
+
+
 @utils.scope_required_data_within_object(collections_to_keep=['dots'])
 def action_is_polarizing_161(meeting: objects.Meeting,
                              by_action: Dict[str, str] = None) -> List[meta.Assertion]:
@@ -70,25 +86,11 @@ def meeting_section_sentiment_is_polarizing_118(meeting: objects.Meeting) -> met
     return disagreement.dots_in_meeting_are_polarizing(meeting)
 
 
-def believable_consensus_exists_131(question: objects.Question) -> meta.Assertion:
-    """
-    Whether consensus exists on a question.
-
-    Parameters
-    ----------
-    question
-
-    Returns
-    -------
-    bool
-        Whether there is a consensus answer.
-    """
-    return disagreement.believable_consensus_exists(question)
-
-
 def meeting_section_nubbiness_149(meeting: objects.Meeting) -> meta.Assertion:
     """
     Classifies Nubbiness level of a Meeting Section.
+
+    TODO: This is no longer in production: see Meeting Section Nubbiness V2.
 
     Parameters
     ----------
@@ -104,7 +106,8 @@ def meeting_section_nubbiness_149(meeting: objects.Meeting) -> meta.Assertion:
 @utils.scope_required_data_within_object(collections_to_keep=['dots'])
 def polarizing_participants_38(meeting: objects.Meeting) -> List[meta.Assertion]:
     """
-    People who are polarizing in a Meeting, based on dots that they received.
+    People who are polarizing in a Meeting, based on dots that they received and
+    whether they were frequently dotted.
 
     Parameters
     ----------
@@ -117,13 +120,13 @@ def polarizing_participants_38(meeting: objects.Meeting) -> List[meta.Assertion]
         viewed as being polarizing or False, otherwise.
     """
     frequently_dotted = activity.frequently_dotted_subjects(meeting.dots)
-    polarizing = disagreement.dots_on_subjects_are_nubby_and_polarizing(meeting.dots)
+    dots_are_polarizing = disagreement.dots_on_subjects_are_nubby_and_polarizing(meeting.dots)
 
     def to_dict(x: List[meta.Assertion]) -> Dict[str, bool]:
         return {xi.target.id: xi.value for xi in x}
 
     frequently_dotted_dict = to_dict(frequently_dotted)
-    polarizing_dict = to_dict(polarizing)
+    polarizing_dict = to_dict(dots_are_polarizing)
 
     result = []
     for person, is_polarizing in polarizing_dict.items():
@@ -148,7 +151,7 @@ def nubby_question_147(question: objects.Question) -> meta.Assertion:
     return disagreement.is_nubby_question(question)
 
 
-def question_nubbiness_popup_49(question: objects.Question) -> meta.Assertion:
+def nubby_question_popup_49(question: objects.Question) -> meta.Assertion:
     """
     Returns True if question is nubby and a quorum exists.
 
@@ -162,12 +165,8 @@ def question_nubbiness_popup_49(question: objects.Question) -> meta.Assertion:
         Value is True if the Question is Nubby.
     """
     nubby = disagreement.is_nubby_question(question)
-    quorum = activity.quorum_exists_on_question_145(question)
-    return meta.Assertion(
-        source=objects.System,
-        target=question,
-        value=nubby and quorum
-    )
+    quorum = activity.quorum_exists_question(question)
+    return meta.Assertion(source=objects.System, target=question, value=nubby and quorum)
 
 
 def out_of_sync_people_on_question_41(question: objects.Question) -> List[meta.Assertion]:
@@ -202,6 +201,7 @@ def significantly_out_of_sync_114(meeting: objects.Meeting,
 
     Returns
     -------
-    List[objects.Judgement]
+    List[meta.Assertion]
         Value = True if person is Significantly OOS.
     """
+    return disagreement.significantly_out_of_sync_in_meeting(meeting, threshold_low, threshold_high)
