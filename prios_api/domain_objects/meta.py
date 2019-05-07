@@ -38,6 +38,11 @@ class Attribute:
 
 
 @dataclass
+class System(Entity):
+    description: typing.Optional[str] = 'PriOS'
+
+
+@dataclass
 class Assertion:
     """A generic Assertion object:
 
@@ -48,7 +53,7 @@ class Assertion:
     * The "attribute" should be an Attribute
     * The "context" should be a list of Tags, Entities, etc that contextualize assertions
     """
-    source: typing.Optional[Entity] = None
+    source: Entity = System()
     target: typing.Optional[Entity] = None
 
     # TODO: this is a terrible definition for value

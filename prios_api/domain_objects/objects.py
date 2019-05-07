@@ -52,30 +52,6 @@ class Dot(Judgement):
 
 
 @dataclass
-class Ranking(Judgement):
-    description: typing.Optional[str] = None
-
-
-@dataclass
-class Response(Judgement):
-    # TODO: Is this an artifact?
-    description: typing.Optional[str] = None
-
-
-@dataclass
-class Question(meta.Entity):
-    title: typing.Optional[str] = None
-    description: typing.Optional[str] = None
-    question_type: typing.Optional[QuestionType] = None
-    responses: typing.List[Response] = field(default_factory=list)
-
-
-@dataclass
-class System(meta.Entity):
-    description: typing.Optional[str] = None
-
-
-@dataclass
 class Person(meta.Entity):
     name: typing.Optional[str] = None
     role: typing.Optional[str] = None
@@ -88,6 +64,26 @@ class Person(meta.Entity):
 class Team(meta.Entity):
     name: typing.Optional[str] = None
     description: typing.Optional[str] = None
+
+
+@dataclass
+class Ranking(Judgement):
+    description: typing.Optional[str] = None
+
+
+@dataclass
+class Response(Judgement):
+    # TODO: Is this an artifact?
+    source: typing.Optional[Person] = None
+    description: typing.Optional[str] = None
+
+
+@dataclass
+class Question(meta.Entity):
+    title: typing.Optional[str] = None
+    description: typing.Optional[str] = None
+    question_type: typing.Optional[QuestionType] = None
+    responses: typing.List[Response] = field(default_factory=list)
 
 
 @dataclass

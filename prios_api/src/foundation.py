@@ -11,9 +11,10 @@ from prios_api.domain_objects import objects
 import itertools
 
 StringOrFloat = TypeVar("StringOrFloat", str, float)
+QuestionOrNumeric = TypeVar("QuestionOrNumeric", objects.QuestionType, objects.NumericRange)
 
 
-def map_values(values: List[float], value_type: objects.QuestionType):
+def map_values(values: List[float], value_type: QuestionOrNumeric):
     """
     Maps values from one numeric range to a different numeric range. Currently, mapping is to
     defined for 1-to-10 or 1-to-5 ranges to "Semantic Buckets" (Positive, Negative, or Neutral).
@@ -54,20 +55,22 @@ def standard_deviation(x: List[float]) -> float:
     return np.nanstd(np.array(x), ddof=1)
 
 
-def weighted_average(values: List[float], **kwargs) -> float:
+def weighted_average(values: List[float], weights=None) -> float:
     """
     Average of numeric values.
 
     Parameters
     ----------
     values
-    kwargs
+        List of numeric values
+    weights
+        List of numeric values
 
     Returns
     -------
     float
     """
-    return np.average(values, **kwargs)
+    return np.average(values, weights=weights)
 
 
 def percent_satisfying_condition(ar: List[float], condition: Callable) -> Optional[float]:
