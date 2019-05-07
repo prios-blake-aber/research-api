@@ -355,31 +355,6 @@ def _divisiveness(ar: List[StringOrFloat], value_type: objects.QuestionType) -> 
         return foundation.standard_deviation(mapped_ar)
 
 
-def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Assertion]:
-    """
-    Identifies people who are out-of-sync on a question.
-
-    TODO: Move logic to prios_api.
-
-    Parameters
-    ----------
-    question
-
-    Returns
-    -------
-    List[meta.Assertion]
-        Values are True if person is out-of-sync on the question.
-    """
-    believable_choice_result = believable_choice_on_question(question)
-    disagrees_with_result = disagreement.disagrees_with_167(question)
-    people = []
-    for response in question.responses:
-        result = disagrees_with_result and (believable_choice_result or isinstance(believable_choice_result, float))
-        people.append(meta.Assertion(source=objects.System, target=response.source, value=result,
-                                     measure=objects.AssertionSet))
-    return people
-
-
 def believable_consensus_exists(question: objects.Question) -> meta.Assertion:
     """
     TODO: Needs clarification on where it lives conceptually, what the I/O types should be, whether it can be refactored
@@ -463,3 +438,4 @@ def significantly_out_of_sync_in_meeting(meeting: objects.Meeting,
             meta.Assertion(source=objects.System, target=person, value=result_person)
         ]
     return results
+
