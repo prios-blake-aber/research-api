@@ -370,6 +370,13 @@ def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Asse
     -------
     List[meta.Assertion]
         Values are True if person is out-of-sync on the question.
+
+    Examples
+    --------
+    >>> from prios_api.examples import example1
+    >>> x = out_of_sync_people_on_question(example1.question)
+    >>> for xi in x:
+    ...    print(xi.value)
     """
     believable_choice_result = believable_choice_on_question(question)
     disagrees_with_result = disagreement.disagrees_with_167(question)
