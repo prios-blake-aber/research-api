@@ -17,6 +17,8 @@ _MINIMUM_THRESH = 0.7
 
 def disagrees_with_167(values : Tuple[Any, Any], question_type) -> meta.Assertion:
     """
+    TODO this is currently question specific, we need to make it generic to take in other objects (i.e. Dots)
+
     Significantly OOS, etc.
 
     Parameters
