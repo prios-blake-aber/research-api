@@ -254,7 +254,7 @@ def believable_choice_on_question(question: objects.Question) -> meta.Assertion:
     else:
         choice = concepts.believable_choice.believable_choice(values_and_weights, value_type)
 
-    return meta.Assertion(source=objects.System, target=question, value=choice)
+    return meta.Assertion(source=meta.System, target=question, value=choice)
 
 
 def is_nubby_question(question: objects.Question,

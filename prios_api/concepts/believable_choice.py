@@ -80,7 +80,7 @@ def believable_choice_categorical_binary(values_and_weights: List[Tuple[str, flo
         Believable choice, or None (if there isn't one).
     """
     vote = foundation.percent_of_total(values_and_weights)
-    for key, value in vote:
+    for key, value in vote.items():
         if value > minimum_vote:
             return key
     return None

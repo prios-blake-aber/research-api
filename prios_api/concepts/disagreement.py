@@ -32,8 +32,7 @@ def disagrees_with_167(values : Tuple[Any, Any], question_type) -> meta.Assertio
         Empty set, if none exists.
     """
     response, response_value = values
-    categorical_binary = question_type in (
-    objects.QuestionType.CATEGORICAL, objects.QuestionType.BINARY)
+    categorical_binary = question_type in (objects.QuestionType.CATEGORICAL, objects.QuestionType.BINARY)
     numeric = question_type in (objects.QuestionType.LIKERT, objects.QuestionType.SCALE)
 
     if categorical_binary:
@@ -62,8 +61,7 @@ def disagrees_with_categorical_binary(response_to_compare: StringOrFloat,
         Value is True, if there is a disagreement.
     """
     result = response_to_compare != answer_to_compare
-    return meta.Assertion(source=objects.System, target=response_to_compare, value=result,
-                          measure=objects.BooleanOption)
+    return meta.Assertion(source=meta.System, target=response_to_compare, value=result)
 
 
 def disagrees_with_numeric(response_to_compare: float,
@@ -91,8 +89,7 @@ def disagrees_with_numeric(response_to_compare: float,
         far_away = abs(response_to_compare - answer_to_compare) > far_away
 
         result = far_away and not same_bucket
-        return meta.Assertion(source=objects.System, target=response_to_compare, value=result,
-                              measure=objects.FloatOption)
+        return meta.Assertion(source=meta.System, target=response_to_compare, value=result)
 
     except TypeError:
         return not same_bucket

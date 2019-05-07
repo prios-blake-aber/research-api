@@ -219,9 +219,11 @@ def out_of_sync_people_on_question_41(question: objects.Question) -> List[meta.A
     believable_choice_result = disagreement.believable_choice_on_question(question)
     assertions = []
     for response in question.responses:
-        disagrees_with_result = concept_disagreement.disagrees_with_167((response, believable_choice_result), question_type)
-        result = disagrees_with_result and (believable_choice_result or isinstance(believable_choice_result, float))
-        assertions.append(meta.Assertion(source=objects.System, target=response.source, value=result))
+        disagrees_with_result = concept_disagreement.disagrees_with_167((response, believable_choice_result),
+                                                                        question_type)
+        result = disagrees_with_result.value and (believable_choice_result.value or
+                                                  isinstance(believable_choice_result.value, float))
+        assertions.append(meta.Assertion(source=meta.System, target=response.source, value=result))
     return assertions
 
 
