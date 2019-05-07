@@ -5,8 +5,8 @@ TBD
 
 from typing import List
 from prios_api.domain_objects import meta, objects
-from prios_api import utils
-from prios_api.utils import foundation
+from prios_api.src import utils
+from prios_api.src import foundation
 from prios_api.concepts import ungrouped
 
 

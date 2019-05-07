@@ -3,7 +3,7 @@ Divisiveness: Statistic of disagreement between a set of opinions.
 """
 
 from typing import List, TypeVar
-from prios_api.utils import foundation
+from prios_api.src import foundation
 from prios_api.domain_objects import objects
 
 StringOrFloat = TypeVar("StringOrFloat", str, float)

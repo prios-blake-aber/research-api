@@ -5,7 +5,8 @@ TBD
 
 import itertools
 from prios_api.domain_objects import meta, objects
-from prios_api import utils, activity
+from prios_api.src import utils
+from prios_api import activity
 from typing import List
 
 _QUORUM_THRESH_DEFAULT = 0.80

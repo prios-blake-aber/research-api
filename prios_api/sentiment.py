@@ -4,7 +4,7 @@ TBD
 """
 
 from prios_api.domain_objects import meta, objects
-from prios_api.utils import foundation
+from prios_api.src import foundation
 
 
 def quality(x: objects.AssertionSet):

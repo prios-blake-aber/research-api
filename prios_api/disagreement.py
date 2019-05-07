@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 from typing import List, TypeVar, Dict
 from prios_api import activity, concepts
-from prios_api.utils import foundation
+from prios_api.src import foundation
 from prios_api.concepts import disagreement, believable_choice
 from prios_api.domain_objects import meta, objects
 
