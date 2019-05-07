@@ -1,0 +1,280 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Domain Objects &mdash; Research API 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Meta-Model Interface" href="prios_api.domain_objects.meta.html" />
+    <link rel="prev" title="Core Concepts" href="prios_api.concepts.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Research API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Developing New Logic</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="insights.html">Application Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prios_api.html">API Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prios_api.concepts.html">Core Concepts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Operations on Objects</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Domain Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prios_api.domain_objects.meta.html">Meta-Model Interface</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Helper Functions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="prios_api.src.foundation.html">Mathematical Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prios_api.src.utils.html">Utilities</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Research API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Domain Objects</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prios_api.domain_objects.objects.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="domain-objects">
+<h1>Domain Objects<a class="headerlink" href="#domain-objects" title="Permalink to this headline">¶</a></h1>
+<p>Domain objects are expressed in terms of the Meta-Model.</p>
+<span class="target" id="module-prios_api.domain_objects.objects"></span><p>TBD</p>
+<dl class="class">
+<dt id="prios_api.domain_objects.objects.Comparison">
+<em class="property">class </em><code class="descclassname">prios_api.domain_objects.objects.</code><code class="descname">Comparison</code><span class="sig-paren">(</span><em>source: Union[prios_api.domain_objects.meta.Entity</em>, <em>NoneType] = None</em>, <em>target: Union[prios_api.domain_objects.meta.Entity</em>, <em>NoneType] = None</em>, <em>value: Union[bool</em>, <em>float</em>, <em>int</em>, <em>str</em>, <em>NoneType] = None</em>, <em>confidence: Union[float</em>, <em>NoneType] = None</em>, <em>description: Union[str</em>, <em>NoneType] = 'A Comparison made between two Entities'</em>, <em>attribute: Union[prios_api.domain_objects.meta.Attribute</em>, <em>NoneType] = None</em>, <em>context: Any = None</em>, <em>created_at: float = 1557202870.117476</em>, <em>uuid_id: &lt;module 'uuid' from '/usr/local/anaconda3/lib/python3.7/uuid.py'&gt; = UUID('2cc1745d-9d00-4304-a80c-e2486fd13933')</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prios_api/domain_objects/objects.html#Comparison"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.domain_objects.objects.Comparison" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="prios_api.domain_objects.objects.Dot">
+<em class="property">class </em><code class="descclassname">prios_api.domain_objects.objects.</code><code class="descname">Dot</code><span class="sig-paren">(</span><em>source: Union[prios_api.domain_objects.meta.Entity</em>, <em>NoneType] = None</em>, <em>target: Union[prios_api.domain_objects.meta.Entity</em>, <em>NoneType] = None</em>, <em>value: Union[bool</em>, <em>float</em>, <em>int</em>, <em>str</em>, <em>NoneType] = None</em>, <em>confidence: Union[float</em>, <em>NoneType] = None</em>, <em>description: Union[str</em>, <em>NoneType] = None</em>, <em>attribute: Union[prios_api.domain_objects.meta.Attribute</em>, <em>NoneType] = None</em>, <em>context: Any = None</em>, <em>created_at: float = 1557202870.117476</em>, <em>uuid_id: &lt;module 'uuid' from '/usr/local/anaconda3/lib/python3.7/uuid.py'&gt; = UUID('2cc1745d-9d00-4304-a80c-e2486fd13933')</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prios_api/domain_objects/objects.html#Dot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.domain_objects.objects.Dot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="prios_api.domain_objects.objects.Judgement">
+<em class="property">class </em><code class="descclassname">prios_api.domain_objects.objects.</code><code class="descname">Judgement</code><span class="sig-paren">(</span><em>source: Union[prios_api.domain_objects.meta.Entity</em>, <em>NoneType] = None</em>, <em>target: Union[prios_api.domain_objects.meta.Entity</em>, <em>NoneType] = None</em>, <em>value: Union[bool</em>, <em>float</em>, <em>int</em>, <em>str</em>, <em>NoneType] = None</em>, <em>confidence: Union[float</em>, <em>NoneType] = None</em>, <em>description: Union[str</em>, <em>NoneType] = 'A Judgement made by one Entity about another Entity'</em>, <em>attribute: Union[prios_api.domain_objects.meta.Attribute</em>, <em>NoneType] = None</em>, <em>context: Any = None</em>, <em>created_at: float = 1557202870.117476</em>, <em>uuid_id: &lt;module 'uuid' from '/usr/local/anaconda3/lib/python3.7/uuid.py'&gt; = UUID('2cc1745d-9d00-4304-a80c-e2486fd13933')</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prios_api/domain_objects/objects.html#Judgement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.domain_objects.objects.Judgement" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="prios_api.domain_objects.objects.Meeting">
+<em class="property">class </em><code class="descclassname">prios_api.domain_objects.objects.</code><code class="descname">Meeting</code><span class="sig-paren">(</span><em>uuid: UUID('fd0b20a8-2e22-4a6a-b249-c8ee0cdb906e') = UUID('fd0b20a8-2e22-4a6a-b249-c8ee0cdb906e')</em>, <em>created_at: int = 1557202870.116277</em>, <em>members: List[ForwardRef('Entity')] = &lt;factory&gt;</em>, <em>name: Union[str</em>, <em>NoneType] = None</em>, <em>description: Union[str</em>, <em>NoneType] = None</em>, <em>dots: List[prios_api.domain_objects.objects.Dot] = &lt;factory&gt;</em>, <em>questions: List[prios_api.domain_objects.objects.Question] = &lt;factory&gt;</em>, <em>participants: List[prios_api.domain_objects.objects.Person] = &lt;factory&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prios_api/domain_objects/objects.html#Meeting"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.domain_objects.objects.Meeting" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="prios_api.domain_objects.objects.MeetingNubbyClassification">
+<em class="property">class </em><code class="descclassname">prios_api.domain_objects.objects.</code><code class="descname">MeetingNubbyClassification</code><a class="reference internal" href="_modules/prios_api/domain_objects/objects.html#MeetingNubbyClassification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.domain_objects.objects.MeetingNubbyClassification" title="Permalink to this definition">¶</a></dt>
+<dd><p>An enumeration.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="prios_api.domain_objects.objects.NumericRange">
+<em class="property">class </em><code class="descclassname">prios_api.domain_objects.objects.</code><code class="descname">NumericRange</code><a class="reference internal" href="_modules/prios_api/domain_objects/objects.html#NumericRange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.domain_objects.objects.NumericRange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enumeration that fixes the range of numerical values.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="prios_api.domain_objects.objects.Person">
+<em class="property">class </em><code class="descclassname">prios_api.domain_objects.objects.</code><code class="descname">Person</code><span class="sig-paren">(</span><em>uuid: UUID('fd0b20a8-2e22-4a6a-b249-c8ee0cdb906e') = UUID('fd0b20a8-2e22-4a6a-b249-c8ee0cdb906e')</em>, <em>created_at: int = 1557202870.116277</em>, <em>members: List[ForwardRef('Entity')] = &lt;factory&gt;</em>, <em>name: Union[str</em>, <em>NoneType] = None</em>, <em>role: Union[str</em>, <em>NoneType] = None</em>, <em>description: Union[str</em>, <em>NoneType] = None</em>, <em>believability: Union[float</em>, <em>NoneType] = 0.01</em>, <em>dots: List[prios_api.domain_objects.objects.Dot] = &lt;factory&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prios_api/domain_objects/objects.html#Person"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.domain_objects.objects.Person" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="prios_api.domain_objects.objects.Question">
+<em class="property">class </em><code class="descclassname">prios_api.domain_objects.objects.</code><code class="descname">Question</code><span class="sig-paren">(</span><em>uuid: UUID('fd0b20a8-2e22-4a6a-b249-c8ee0cdb906e') = UUID('fd0b20a8-2e22-4a6a-b249-c8ee0cdb906e')</em>, <em>created_at: int = 1557202870.116277</em>, <em>members: List[ForwardRef('Entity')] = &lt;factory&gt;</em>, <em>title: Union[str</em>, <em>NoneType] = None</em>, <em>description: Union[str</em>, <em>NoneType] = None</em>, <em>question_type: Union[prios_api.domain_objects.objects.QuestionType</em>, <em>NoneType] = None</em>, <em>responses: List[prios_api.domain_objects.objects.Response] = &lt;factory&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prios_api/domain_objects/objects.html#Question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.domain_objects.objects.Question" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="prios_api.domain_objects.objects.QuestionType">
+<em class="property">class </em><code class="descclassname">prios_api.domain_objects.objects.</code><code class="descname">QuestionType</code><a class="reference internal" href="_modules/prios_api/domain_objects/objects.html#QuestionType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.domain_objects.objects.QuestionType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stub for the possible enumerations of Question Type</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="prios_api.domain_objects.objects.Ranking">
+<em class="property">class </em><code class="descclassname">prios_api.domain_objects.objects.</code><code class="descname">Ranking</code><span class="sig-paren">(</span><em>source: Union[prios_api.domain_objects.meta.Entity</em>, <em>NoneType] = None</em>, <em>target: Union[prios_api.domain_objects.meta.Entity</em>, <em>NoneType] = None</em>, <em>value: Union[bool</em>, <em>float</em>, <em>int</em>, <em>str</em>, <em>NoneType] = None</em>, <em>confidence: Union[float</em>, <em>NoneType] = None</em>, <em>description: Union[str</em>, <em>NoneType] = None</em>, <em>attribute: Union[prios_api.domain_objects.meta.Attribute</em>, <em>NoneType] = None</em>, <em>context: Any = None</em>, <em>created_at: float = 1557202870.117476</em>, <em>uuid_id: &lt;module 'uuid' from '/usr/local/anaconda3/lib/python3.7/uuid.py'&gt; = UUID('2cc1745d-9d00-4304-a80c-e2486fd13933')</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prios_api/domain_objects/objects.html#Ranking"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.domain_objects.objects.Ranking" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="prios_api.domain_objects.objects.Response">
+<em class="property">class </em><code class="descclassname">prios_api.domain_objects.objects.</code><code class="descname">Response</code><span class="sig-paren">(</span><em>source: Union[prios_api.domain_objects.objects.Person</em>, <em>NoneType] = None</em>, <em>target: Union[prios_api.domain_objects.meta.Entity</em>, <em>NoneType] = None</em>, <em>value: Union[bool</em>, <em>float</em>, <em>int</em>, <em>str</em>, <em>NoneType] = None</em>, <em>confidence: Union[float</em>, <em>NoneType] = None</em>, <em>description: Union[str</em>, <em>NoneType] = None</em>, <em>attribute: Union[prios_api.domain_objects.meta.Attribute</em>, <em>NoneType] = None</em>, <em>context: Any = None</em>, <em>created_at: float = 1557202870.117476</em>, <em>uuid_id: &lt;module 'uuid' from '/usr/local/anaconda3/lib/python3.7/uuid.py'&gt; = UUID('2cc1745d-9d00-4304-a80c-e2486fd13933')</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prios_api/domain_objects/objects.html#Response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.domain_objects.objects.Response" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="prios_api.domain_objects.objects.Team">
+<em class="property">class </em><code class="descclassname">prios_api.domain_objects.objects.</code><code class="descname">Team</code><span class="sig-paren">(</span><em>uuid: UUID('fd0b20a8-2e22-4a6a-b249-c8ee0cdb906e') = UUID('fd0b20a8-2e22-4a6a-b249-c8ee0cdb906e')</em>, <em>created_at: int = 1557202870.116277</em>, <em>members: List[ForwardRef('Entity')] = &lt;factory&gt;</em>, <em>name: Union[str</em>, <em>NoneType] = None</em>, <em>description: Union[str</em>, <em>NoneType] = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prios_api/domain_objects/objects.html#Team"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prios_api.domain_objects.objects.Team" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="prios_api.domain_objects.meta.html" class="btn btn-neutral float-right" title="Meta-Model Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prios_api.concepts.html" class="btn btn-neutral float-left" title="Core Concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

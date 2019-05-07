@@ -1,0 +1,566 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prios_api.disagreement &mdash; Research API 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Research API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Developing New Logic</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../insights.html">Application Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prios_api.html">API Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prios_api.concepts.html">Core Concepts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Operations on Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../prios_api.domain_objects.objects.html">Domain Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prios_api.domain_objects.meta.html">Meta-Model Interface</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Helper Functions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../prios_api.src.foundation.html">Mathematical Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prios_api.src.utils.html">Utilities</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Research API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>prios_api.disagreement</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for prios_api.disagreement</h1><div class="highlight"><pre>
+<span></span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">TBD</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">prios_api</span> <span class="k">import</span> <span class="n">activity</span><span class="p">,</span> <span class="n">concepts</span>
+<span class="kn">from</span> <span class="nn">prios_api.src</span> <span class="k">import</span> <span class="n">foundation</span>
+<span class="kn">from</span> <span class="nn">prios_api.concepts</span> <span class="k">import</span> <span class="n">disagreement</span><span class="p">,</span> <span class="n">believable_choice</span>
+<span class="kn">from</span> <span class="nn">prios_api.domain_objects</span> <span class="k">import</span> <span class="n">meta</span><span class="p">,</span> <span class="n">objects</span>
+
+<span class="n">StringOrFloat</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;StringOrFloat&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+
+<span class="n">_THRESHOLD_STD_MAPPED_SCALE</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">_UNIQUE_DISAGREEMENT</span> <span class="o">=</span> <span class="mf">0.88</span>
+
+
+<<<<<<< HEAD:docs/build/html/_modules/analytics/disagreement.html
+<div class="viewcode-block" id="dots_on_subjects_are_nubby_and_polarizing"><a class="viewcode-back" href="../../analytics.html#analytics.disagreement.dots_on_subjects_are_nubby_and_polarizing">[docs]</a><span class="k">def</span> <span class="nf">dots_on_subjects_are_nubby_and_polarizing</span><span class="p">(</span><span class="n">dots</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">objects</span><span class="o">.</span><span class="n">Dot</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">]:</span>
+=======
+<div class="viewcode-block" id="dots_in_meeting_are_polarizing"><a class="viewcode-back" href="../../prios_api.html#prios_api.disagreement.dots_in_meeting_are_polarizing">[docs]</a><span class="k">def</span> <span class="nf">dots_in_meeting_are_polarizing</span><span class="p">(</span><span class="n">meeting</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">,</span>
+                                   <span class="n">by_action</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns Assertion on whether a List of Dots are Polarizing.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    meeting</span>
+<span class="sd">        Meeting object</span>
+<span class="sd">    by_action</span>
+<span class="sd">        Specifies mapping from Attribute to Action. Assumes that Attributes and Actions are</span>
+<span class="sd">        represented as strings.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    List[meta.Assertion]</span>
+<span class="sd">        Whether or not Dots are polarizing (by action or for entire meeting)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO: Represent Attributes by objects instead of strings.</span>
+
+    <span class="c1"># TODO: Below is all Data Plumbing -- need to define utility function for it.</span>
+    <span class="n">dots_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">([(</span><span class="n">dot</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="n">dot</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">dot</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">dot</span> <span class="ow">in</span>
+                                         <span class="n">meeting</span><span class="o">.</span><span class="n">dots</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;subject&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">by_action</span><span class="p">:</span>
+        <span class="n">dots_df</span><span class="p">[</span><span class="s1">&#39;by&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">by_action</span><span class="p">[</span><span class="n">dot</span><span class="o">.</span><span class="n">attribute</span><span class="p">]</span> <span class="k">for</span> <span class="n">dot</span> <span class="ow">in</span> <span class="n">meeting</span><span class="o">.</span><span class="n">dots</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dots_df</span><span class="p">[</span><span class="s1">&#39;by&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;all_dots&quot;</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">dots_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;by&#39;</span><span class="p">]):</span>
+        <span class="n">is_polar</span> <span class="o">=</span> <span class="n">disagreement</span><span class="o">.</span><span class="n">is_polarizing</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]))</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">Person</span><span class="p">,</span>
+                                      <span class="n">value</span><span class="o">=</span><span class="n">is_polar</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">action</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">results</span></div>
+
+
+<div class="viewcode-block" id="dots_on_subject_are_polarizing"><a class="viewcode-back" href="../../prios_api.html#prios_api.disagreement.dots_on_subject_are_polarizing">[docs]</a><span class="k">def</span> <span class="nf">dots_on_subject_are_polarizing</span><span class="p">(</span><span class="n">dots</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">objects</span><span class="o">.</span><span class="n">Dot</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">]:</span>
+>>>>>>> master:docs/build/html/_modules/prios_api/disagreement.html
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns list of Assertions for each subject (target) in a list of Dots with a True/False</span>
+<span class="sd">    value on whether the distribution of author-synthesized dot ratings that they received are</span>
+<span class="sd">    polarizing.</span>
+
+<span class="sd">    1. Values about a target given by each source is synthesized.</span>
+<span class="sd">    2. Determines whether the synthesized values have a polarizing distribution.</span>
+
+<span class="sd">    TODO: Disentangle into core concepts.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dots</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    List[meta.Assertion]</span>
+<span class="sd">        Target of each Assertion is a topic/subject. Value is True if it is polarizing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO: Below is all Data Plumbing -- need to define utility function for it.</span>
+    <span class="n">author_subject_value</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="n">dot</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="n">dot</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">dot</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">dot</span> <span class="ow">in</span> <span class="n">dots</span>
+    <span class="p">]</span>
+    <span class="n">author_subject_value_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">author_subject_value</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">,</span>
+                                                                                       <span class="s1">&#39;subject&#39;</span><span class="p">,</span>
+                                                                                       <span class="s1">&#39;value&#39;</span><span class="p">])</span>
+    <span class="n">synthesized_ratings</span> <span class="o">=</span> <span class="n">author_subject_value_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;subject&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">concepts</span><span class="o">.</span><span class="n">syntheses</span><span class="o">.</span><span class="n">synthesize</span><span class="p">)</span>
+    <span class="n">synthesized_ratings</span> <span class="o">=</span> <span class="n">synthesized_ratings</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">polarizing_subjects</span> <span class="o">=</span> <span class="n">synthesized_ratings</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;subject&#39;</span><span class="p">])[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+        <span class="n">concepts</span><span class="o">.</span><span class="n">disagreement</span><span class="o">.</span><span class="n">is_polarizing</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">subject</span><span class="p">,</span> <span class="n">polar</span> <span class="ow">in</span> <span class="n">polarizing_subjects</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">subject</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">polar</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">results</span></div>
+
+
+<<<<<<< HEAD:docs/build/html/_modules/analytics/disagreement.html
+<div class="viewcode-block" id="unique_choice"><a class="viewcode-back" href="../../analytics.html#analytics.disagreement.unique_choice">[docs]</a><span class="k">def</span> <span class="nf">unique_choice</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">,</span> <span class="n">unique_disagreement</span><span class="o">=</span><span class="n">_UNIQUE_DISAGREEMENT</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span>
+=======
+<div class="viewcode-block" id="is_unique"><a class="viewcode-back" href="../../prios_api.html#prios_api.disagreement.is_unique">[docs]</a><span class="k">def</span> <span class="nf">is_unique</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">,</span> <span class="n">unique_disagreement</span><span class="o">=</span><span class="n">_UNIQUE_DISAGREEMENT</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span>
+>>>>>>> master:docs/build/html/_modules/prios_api/disagreement.html
+    <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Determines whether responses are in small minority of responses.</span>
+
+<span class="sd">    TODO: bucketing should live in it&#39;s own function</span>
+<span class="sd">    Identify if the given &#39;response&#39; is unique in relation to the given set of &#39;responses&#39;.</span>
+
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    question</span>
+<span class="sd">    unique_disagreement</span>
+<span class="sd">        Response is unique if its percentage (compared to all responses) is less than this value</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    List[meta.Assertion]</span>
+<span class="sd">        System assertions of whether each response is unique</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">xi</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">question</span><span class="o">.</span><span class="n">responses</span><span class="p">]</span>
+    <span class="n">all_buckets</span> <span class="o">=</span> <span class="n">foundation</span><span class="o">.</span><span class="n">map_values</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">objects</span><span class="o">.</span><span class="n">NumericRange</span><span class="p">)</span>
+    <span class="n">percent</span> <span class="o">=</span> <span class="n">foundation</span><span class="o">.</span><span class="n">counts</span><span class="p">(</span><span class="n">all_buckets</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">question</span><span class="o">.</span><span class="n">responses</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">percent</span><span class="p">[</span><span class="n">response</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">unique_disagreement</span><span class="p">:</span>
+            <span class="n">unique</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">unique</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">unique</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">results</span></div>
+
+
+<div class="viewcode-block" id="believable_choice_on_question"><a class="viewcode-back" href="../../prios_api.html#prios_api.disagreement.believable_choice_on_question">[docs]</a><span class="k">def</span> <span class="nf">believable_choice_on_question</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    What is the believable choice on a question?</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    question</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    meta.Assertion</span>
+<span class="sd">        Value represents the believable choice answer on the question.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Extract responses and question data.</span>
+    <span class="n">values_and_weights</span> <span class="o">=</span> <span class="p">[(</span><span class="n">response</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">believability</span><span class="p">)</span>
+                          <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">question</span><span class="o">.</span><span class="n">responses</span><span class="p">]</span>
+    <span class="n">value_type</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">question_type</span>
+
+    <span class="c1"># Get the Believable choice</span>
+    <span class="n">choice</span> <span class="o">=</span> <span class="n">concepts</span><span class="o">.</span><span class="n">believable_choice</span><span class="o">.</span><span class="n">believable_choice</span><span class="p">(</span><span class="n">values_and_weights</span><span class="p">,</span> <span class="n">value_type</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">(</span>
+        <span class="n">source</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">,</span>
+        <span class="n">target</span><span class="o">=</span><span class="n">question</span><span class="p">,</span>
+        <span class="n">value</span><span class="o">=</span><span class="n">choice</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="is_nubby_question"><a class="viewcode-back" href="../../prios_api.html#prios_api.disagreement.is_nubby_question">[docs]</a><span class="k">def</span> <span class="nf">is_nubby_question</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">,</span>
+                      <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">_THRESHOLD_STD_MAPPED_SCALE</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Is a question Nubby?</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    question</span>
+<span class="sd">    threshold</span>
+<span class="sd">        Question is Nubby if its divisiveness value exceeds this quantity.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    meta.Assertion</span>
+<span class="sd">        Value is True if the question is Nubby.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO: Create extractor method in `objects.Question` that returns list of responses?</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">response</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">question</span><span class="o">.</span><span class="n">responses</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># TODO: reasonable heuristic... where should it live?</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">mapped_values</span> <span class="o">=</span> <span class="n">foundation</span><span class="o">.</span><span class="n">map_values</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">divisiveness</span><span class="p">(</span><span class="n">mapped_values</span><span class="p">,</span> <span class="n">question</span><span class="o">.</span><span class="n">question_type</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">threshold</span>
+
+    <span class="k">return</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">question</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">result</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="meeting_nubbiness_v1"><a class="viewcode-back" href="../../prios_api.html#prios_api.disagreement.meeting_nubbiness_v1">[docs]</a><span class="k">def</span> <span class="nf">meeting_nubbiness_v1</span><span class="p">(</span><span class="n">meeting</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">,</span>
+                         <span class="n">thresholds</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Is a Meeting Nubby?</span>
+
+<span class="sd">    TODO: Public.</span>
+<span class="sd">    TODO: Default Thresholds are wrong.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    meeting</span>
+<span class="sd">    thresholds</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    meta.Assertion</span>
+<span class="sd">        Value is a Classification.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nubby_questions</span> <span class="o">=</span> <span class="p">[</span><span class="n">q</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">meeting</span><span class="o">.</span><span class="n">questions</span> <span class="k">if</span> <span class="n">is_nubby_question</span><span class="p">(</span><span class="n">q</span><span class="p">)]</span>
+
+    <span class="k">def</span> <span class="nf">responses_to_list</span><span class="p">(</span><span class="n">question</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">q</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">nubby_questions</span><span class="o">.</span><span class="n">responses</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nubby_questions</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">meeting_divisiveness</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">meeting_divisiveness</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">divisiveness</span><span class="p">(</span><span class="n">responses_to_list</span><span class="p">(</span><span class="n">q</span><span class="p">))</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">nubby_questions</span>
+        <span class="p">]</span>
+
+    <span class="n">scaling_factor</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nubby_questions</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
+
+    <span class="n">meeting_nubbiness</span> <span class="o">=</span> <span class="n">scaling_factor</span> <span class="o">*</span> <span class="n">meeting_divisiveness</span>
+
+    <span class="c1"># TODO: Generalize classification object.</span>
+    <span class="c1"># TODO: Add &quot;classify&quot; to Core Concepts.</span>
+    <span class="n">classification</span> <span class="o">=</span> <span class="n">objects</span><span class="o">.</span><span class="n">MeetingNubbyClassification</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span><span class="n">meeting_nubbiness</span><span class="p">,</span> <span class="n">thresholds</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">(</span>
+        <span class="n">source</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">,</span>
+        <span class="n">target</span><span class="o">=</span> <span class="n">meeting</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="n">value</span><span class="o">=</span><span class="n">classification</span><span class="p">,</span>
+        <span class="n">measure</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">MeetingNubbyClassification</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="divisiveness"><a class="viewcode-back" href="../../prios_api.html#prios_api.disagreement.divisiveness">[docs]</a><span class="k">def</span> <span class="nf">divisiveness</span><span class="p">(</span><span class="n">ar</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">StringOrFloat</span><span class="p">],</span> <span class="n">value_type</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">QuestionType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Divisiveness.</span>
+
+<span class="sd">    # TODO: Core Concept.</span>
+<span class="sd">    # TODO: How are N/A&#39;s being represented? We shouldn&#39;t assume they&#39;re being filtered.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ar</span>
+<span class="sd">    value_type</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Divisiveness value</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">value_type</span> <span class="ow">in</span> <span class="p">[</span><span class="n">objects</span><span class="o">.</span><span class="n">QuestionType</span><span class="o">.</span><span class="n">SCALE</span><span class="p">,</span> <span class="n">objects</span><span class="o">.</span><span class="n">QuestionType</span><span class="o">.</span><span class="n">LIKERT</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">foundation</span><span class="o">.</span><span class="n">standard_deviation</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">value_type</span> <span class="o">==</span> <span class="n">objects</span><span class="o">.</span><span class="n">QuestionType</span><span class="o">.</span><span class="n">CATEGORICAL</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">foundation</span><span class="o">.</span><span class="n">counts</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+        <span class="n">max_count</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+        <span class="n">mapped_ar</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">max_count</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span> <span class="o">-</span> <span class="n">max_count</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">foundation</span><span class="o">.</span><span class="n">standard_deviation</span><span class="p">(</span><span class="n">mapped_ar</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="out_of_sync_people_on_question"><a class="viewcode-back" href="../../prios_api.html#prios_api.disagreement.out_of_sync_people_on_question">[docs]</a><span class="k">def</span> <span class="nf">out_of_sync_people_on_question</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Identifies people who are out-of-sync on a question.</span>
+
+<span class="sd">    TODO: Move logic to prios_api.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    question</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    List[meta.Assertion]</span>
+<span class="sd">        Values are True if person is out-of-sync on the question.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">believable_choice_result</span> <span class="o">=</span> <span class="n">believable_choice_on_question</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+    <span class="n">disagrees_with_result</span> <span class="o">=</span> <span class="n">disagreement</span><span class="o">.</span><span class="n">disagrees_with_167</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+    <span class="n">people</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">question</span><span class="o">.</span><span class="n">responses</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">disagrees_with_result</span> <span class="ow">and</span> <span class="p">(</span><span class="n">believable_choice_result</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">believable_choice_result</span><span class="p">,</span> <span class="nb">float</span><span class="p">))</span>
+        <span class="n">people</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">result</span><span class="p">,</span>
+                                     <span class="n">measure</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">AssertionSet</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">people</span></div>
+
+
+<div class="viewcode-block" id="believable_consensus_exists"><a class="viewcode-back" href="../../prios_api.html#prios_api.disagreement.believable_consensus_exists">[docs]</a><span class="k">def</span> <span class="nf">believable_consensus_exists</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Question</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    TODO: Needs clarification on where it lives conceptually, what the I/O types should be, whether it can be refactored</span>
+<span class="sd">    Consensus exists on a question.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    question</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bool</span>
+<span class="sd">        Whether there is a consensus answer.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sufficient_engagement_flag</span> <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="n">quorum_exists_on_question_145</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+    <span class="n">sufficient_believability_engagement_flag</span> <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="n">sufficient_believability_engagement</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+    <span class="n">believable_choice_results</span> <span class="o">=</span> <span class="n">believable_choice_on_question</span><span class="p">(</span><span class="n">question</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span>
+        <span class="n">believable_choice_on_question</span><span class="p">(</span><span class="n">question</span><span class="p">),</span> <span class="nb">float</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">sufficient_engagement_flag</span> <span class="ow">and</span> <span class="n">sufficient_believability_engagement_flag</span> <span class="ow">and</span> <span class="n">believable_choice_results</span><span class="p">:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">question</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">results</span><span class="p">,</span> <span class="n">measure</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">BooleanOption</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">question</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">results</span><span class="p">,</span> <span class="n">measure</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">BooleanOption</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="significantly_out_of_sync_in_meeting"><a class="viewcode-back" href="../../prios_api.html#prios_api.disagreement.significantly_out_of_sync_in_meeting">[docs]</a><span class="k">def</span> <span class="nf">significantly_out_of_sync_in_meeting</span><span class="p">(</span><span class="n">meeting</span><span class="p">:</span> <span class="n">objects</span><span class="o">.</span><span class="n">Meeting</span><span class="p">,</span>
+                                         <span class="n">threshold_low</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+                                         <span class="n">threshold_high</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A person is out of sync on significantly higher number of questions than others in a meeting.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    meeting</span>
+<span class="sd">    threshold_low</span>
+<span class="sd">    threshold_high</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    List[meta.Assertion]</span>
+<span class="sd">        Value = True if person is Significantly OOS.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">oos</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">q</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="n">out_of_sync_people_on_question</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">meeting</span><span class="o">.</span><span class="n">questions</span>
+    <span class="p">}</span>
+
+    <span class="n">oos_count</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">person</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">meeting</span><span class="o">.</span><span class="n">participants</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">q</span><span class="p">,</span> <span class="n">is_oos</span> <span class="ow">in</span> <span class="n">oos</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">is_oos</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">person</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+                <span class="n">oos_count</span><span class="p">[</span><span class="n">person</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># TODO: Factor this better.</span>
+    <span class="n">oos_count_z_score</span> <span class="o">=</span> <span class="n">foundation</span><span class="o">.</span><span class="n">zscore</span><span class="p">([</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">oos_count</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+    <span class="n">oos_count_z_score_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">oos_count</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">oos_count_z_score_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">oos_count_z_score</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">notable_people</span> <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="n">notable_participants</span><span class="p">(</span><span class="n">meeting</span><span class="p">)</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">person</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">oos_count_z_score_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">person_notable</span> <span class="ow">in</span> <span class="n">notable_people</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">person</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">person_notable</span><span class="o">.</span><span class="n">target</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">person_notable</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+                    <span class="n">result_person</span> <span class="o">=</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="n">threshold_low</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">result_person</span> <span class="o">=</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="n">threshold_high</span>
+
+        <span class="n">results</span> <span class="o">+=</span> <span class="p">[</span>
+            <span class="n">meta</span><span class="o">.</span><span class="n">Assertion</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">objects</span><span class="o">.</span><span class="n">System</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">person</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">result_person</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="k">return</span> <span class="n">results</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

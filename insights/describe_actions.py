@@ -11,8 +11,7 @@ from typing import List
 
 _QUORUM_THRESH_DEFAULT = 0.80
 
-
-def primary_actions_157(dots: objects.DotCollection, *args, **kwargs):
+def primary_actions_157(dots: List[objects.Dot], *args, **kwargs):
     """
     Defines Primary Actions in a Meeting based on :class:`objects.DotCollection`
 
@@ -71,7 +70,7 @@ def primary_participants_in_meeting_138(meeting: objects.Meeting,
                                                min_percent_2, min_count_2)
 
 
-def action_relevance_158(dots: objects.DotCollection, *args, **kwargs):
+def action_relevance_158(dots: List[objects.Dot], *args, **kwargs):
     """
     Defines Action Relevance in a Meeting from Dots.
 
@@ -92,7 +91,7 @@ def action_relevance_158(dots: objects.DotCollection, *args, **kwargs):
     return activity.relevance_of_dots(dots)
 
 
-def attention_participant_received_155(dots: objects.DotCollection):
+def attention_participant_received_155(dots: List[objects.Dot]):
     """
     Defines "Relevant" People in a Meeting from Dots.
 
@@ -137,6 +136,6 @@ def quorum_exists_on_question_145(meeting: objects.Meeting,
     return [
         activity.quorum_exists_question(question, number_participants=number_participants,
                                         quorum_threshold=quorum_threshold)
-        for question in meeting.questions.data
+        for question in meeting.questions
     ]
 

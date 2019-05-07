@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 from typing import List, TypeVar, Dict
 from prios_api import activity, concepts
-from prios_api.concepts import syntheses, polarizing
+from prios_api.concepts import synthesis, polarizing
 from prios_api.src import foundation, utils
 from prios_api.concepts import disagreement, believable_choice, divisiveness
 from prios_api.domain_objects import meta, objects
@@ -93,7 +93,7 @@ def dots_on_subjects_are_nubby_and_polarizing(dots: List[objects.Dot],
     values_grp_by_author_subject = utils.group_assertions_by_key(dots, key_func=key_func)
     subjects = dict()
     for x in values_grp_by_author_subject:
-        one_synthesis = syntheses.synthesize([dot.value for dot in x[1]])
+        one_synthesis = synthesis.synthesize([dot.value for dot in x[1]])
         if x[0][1] in subjects.keys():
             subjects[x[0][1]].append(one_synthesis)
         else:
@@ -157,6 +157,44 @@ def dots_in_meeting_are_polarizing(meeting: objects.Meeting,
     return results
 
 
+def dots_on_subject_are_polarizing(dots: List[objects.Dot]) -> List[meta.Assertion]:
+    """
+    Returns list of Assertions for each subject (target) in a list of Dots with a True/False
+    value on whether the distribution of author-synthesized dot ratings that they received are
+    polarizing.
+
+    1. Values about a target given by each source is synthesized.
+    2. Determines whether the synthesized values have a polarizing distribution.
+
+    TODO: Disentangle into core concepts.
+
+    Parameters
+    ----------
+    dots
+
+    Returns
+    -------
+    List[meta.Assertion]
+        Target of each Assertion is a topic/subject. Value is True if it is polarizing.
+    """
+    # TODO: Below is all Data Plumbing -- need to define utility function for it.
+    author_subject_value = [
+        (dot.source, dot.target, dot.value) for dot in dots
+    ]
+    author_subject_value_df = pd.DataFrame.from_records(author_subject_value, columns=['author',
+                                                                                       'subject',
+                                                                                       'value'])
+    synthesized_ratings = author_subject_value_df.groupby(['author', 'subject']).apply(concepts.syntheses.synthesize)
+    synthesized_ratings = synthesized_ratings.to_frame().reset_index()
+    polarizing_subjects = synthesized_ratings.groupby(['subject'])['value'].apply(
+        concepts.disagreement.is_polarizing).to_dict()
+
+    results = list()
+    for subject, polar in polarizing_subjects.items():
+        results.append(meta.Assertion(source=objects.System, target=subject, value=polar))
+    return results
+
+
 def unique_choice(question: objects.Question,
                   unique_disagreement=_UNIQUE_DISAGREEMENT) -> List[meta.Assertion]:
     """
@@ -177,11 +215,11 @@ def unique_choice(question: objects.Question,
     List[meta.Assertion]
         System assertions of whether each response is unique
     """
-    values = [xi.value for xi in question.responses.data]
+    values = [xi.value for xi in question.responses]
     all_buckets = foundation.map_values(values, objects.NumericRange)
     percent = foundation.counts(all_buckets, normalize=True)
     results = list()
-    for response in question.responses.data:
+    for response in question.responses:
         if percent[response.value] < unique_disagreement:
             unique = True
         else:
@@ -206,7 +244,7 @@ def believable_choice_on_question(question: objects.Question) -> meta.Assertion:
 
     # Extract responses and question data.
     values_and_weights = [(response.value, response.source.believability)
-                          for response in question.responses.data]
+                          for response in question.responses]
     value_type = question.question_type
 
     # Get the Believable choice
@@ -237,15 +275,14 @@ def is_nubby_question(question: objects.Question,
         Value is True if the question is Nubby.
     """
     # TODO: Create extractor method in `objects.Question` that returns list of responses?
-    values = [response.value for response in question.responses.data]
-    if len(values) < 2:
+    values = [response.value for response in question.responses]
+    if len(values) < 2:  # TODO: reasonable heuristic... where should it live?
         result = False
     else:
         mapped_values = foundation.map_values(values)
         result = divisiveness.divisiveness_stat(mapped_values, question.question_type) > threshold
 
-    return meta.Assertion(source=objects.System, target=question, value=result,
-                          measure=objects.BooleanOption)
+    return meta.Assertion(target=question, value=result)
 
 
 def meeting_nubbiness_v1(meeting: objects.Meeting,
@@ -269,7 +306,7 @@ def meeting_nubbiness_v1(meeting: objects.Meeting,
     nubby_questions = [q for q in meeting.questions if is_nubby_question(q)]
 
     def responses_to_list(question):
-        return [q.response.value for q in nubby_questions.responses.data]
+        return [q.response.value for q in nubby_questions.responses]
 
     if len(nubby_questions) == 0:
         meeting_divisiveness = 0.0
@@ -337,7 +374,7 @@ def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Asse
     believable_choice_result = believable_choice_on_question(question)
     disagrees_with_result = disagreement.disagrees_with_167(question)
     people = []
-    for response in question.responses.data:
+    for response in question.responses:
         result = disagrees_with_result and (believable_choice_result or isinstance(believable_choice_result, float))
         people.append(meta.Assertion(source=objects.System, target=response.source, value=result,
                                      measure=objects.AssertionSet))

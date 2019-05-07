@@ -13,22 +13,22 @@ New and existing logic can be expressed in terms of API methods and Domain Model
    :caption: Developing New Logic
 
    Application Logic <insights>
-   API Methods <analytics>
-   Core Concepts <analytics.concepts>
+   API Methods <prios_api>
+   Core Concepts <prios_api.concepts>
 
 .. toctree::
    :maxdepth: 2
    :caption: Operations on Objects
 
-   Domain Objects <src.objects>
-   Meta-Model Interface <src.meta>
+   Domain Objects <prios_api.domain_objects.objects>
+   Meta-Model Interface <prios_api.domain_objects.meta>
 
 .. toctree::
    :maxdepth: 2
    :caption: Helper Functions
 
-   Mathematical Operations <analytics.foundation>
-   Utilities <analytics.utils>
+   Mathematical Operations <prios_api.src.foundation>
+   Utilities <prios_api.src.utils>
 
 Indices and Tables
 ##################

@@ -80,3 +80,48 @@ def is_polarizing(values: List[float],
     std_dev = divisiveness.divisiveness_stat(values, map_to_sentiment=False) > thresh_on_std_scale
     return polarization and divisiveness_stat and std_dev
 
+
+def is_polarizing_v0(values: List[float],
+                     thresh_on_std_scale: float = _THRESHOLD_STD_SCALE,
+                     thresh_on_std_mapped_scale: float = _THRESHOLD_STD_MAPPED_SCALE,
+                     thresh_on_poles: float = _THRESHOLD_POLES) -> bool:
+    """
+    Is polarizing
+
+    Parameters
+    ----------
+    scale_assertions
+        List of assertions with scale values.
+    thresh_on_std_scale
+        Threshold on standard deviation of scale values.
+    thresh_on_std_mapped_scale
+        Threshold on standard deviation of scale values mapped to 1, 2, and 3
+    thresh_on_poles
+        Threshold on ratio between poles
+
+    Returns
+    -------
+    bool
+        Whether a set of scale values are polarizing.
+    """
+    mapped_values = [foundation.map_values(vi, objects.NumericRange.ONE_TO_TEN) for vi in values]
+
+    # TODO: nesting functions here is terrible; why not use the sentiment module?
+    def negative_sentiment(x):
+        return x == 1
+
+    def positive_sentiment(x):
+        return x == 3
+
+    percent_negative = foundation.percent_satisfying_condition(mapped_values, negative_sentiment)
+    percent_positive = foundation.percent_satisfying_condition(mapped_values, positive_sentiment)
+
+    if percent_negative > 0 and percent_positive > 0:
+        pole_ratio = min(percent_positive/percent_negative, percent_negative/percent_positive)
+    else:
+        pole_ratio = 0
+
+    std_values_condition = foundation.standard_deviation(values) > thresh_on_std_scale
+    std_mapped_values_condition = foundation.standard_deviation(mapped_values) > thresh_on_std_mapped_scale
+    pole_condition = pole_ratio > thresh_on_poles
+    return std_values_condition and std_mapped_values_condition and pole_condition

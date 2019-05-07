@@ -38,6 +38,11 @@ class Attribute:
 
 
 @dataclass
+class System(Entity):
+    description: typing.Optional[str] = 'PriOS'
+
+
+@dataclass
 class Assertion:
     """A generic Assertion object:
 

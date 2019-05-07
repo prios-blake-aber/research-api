@@ -18,7 +18,7 @@ def relevance_of_dots(dots: List[objects.Dot]):
     pass
 
 
-def relevance_of_people(dots: List[objects.Dot]):
+def relevance_of_people(dots: List[objects.Person]):
     pass
 
 
@@ -71,7 +71,7 @@ def sufficient_believability_engagement(question: objects.Question,
     Bool
         True if there is sufficient believability.
     """
-    individual_believability = [response.source.believability for response in question.responses.data]
+    individual_believability = [response.source.believability for response in question.responses]
     total_believability = foundation.addition(individual_believability)
     if total_believability > believability_engagement:
         return True
