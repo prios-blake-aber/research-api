@@ -5,7 +5,7 @@ Engagement
 from typing import List, Any
 
 
-def engagement_raw(values: List[Any]) -> float:
+def engagement_raw(values: List[Any], believability_weighted=False) -> float:
     """
     Calculate raw engagement level as the number of times an event occurred.
 
@@ -14,10 +14,15 @@ def engagement_raw(values: List[Any]) -> float:
     values
         List of values
 
+    believability_weighted
+        Whether or not engagement should be measured as the amount of Believability present. If true will return the
+        sum of Believabilities associated with the values passed in.
+
     Returns
     -------
     float
-        Engagement level (raw): the number of times an event occurred.
+        Engagement level (raw): the number of times an event occurred, or, if believability_weighted is True, the sum
+        of Believabilities associated with the values passed in.
 
     Examples
     --------
@@ -26,7 +31,10 @@ def engagement_raw(values: List[Any]) -> float:
     >>> engagement_raw([1, 1])
     2
     """
-    return len(values)
+    if believability_weighted:
+        return sum(values)
+    else:
+        return len(values)
 
 
 def engagement_relative(values: List[Any], max_number_of_values: int) -> float:
@@ -61,28 +69,4 @@ def engagement_relative(values: List[Any], max_number_of_values: int) -> float:
     if max_number_of_values < max(1, len(values)):
         raise ValueError("Maximum number of values must be >= to max(1, `len(values)`).")
     return len(values) / max_number_of_values
-
-
-def quorum_exists(values: List[Any], number_participants, quorum_threshold) -> bool:
-    """
-    TODO: generalize the concept of minimum_engagement
-    Whether a quorum exists within a set of meta.objects.Judgements
-
-    Parameters
-    ----------
-    values: any meta.objects.Judgements
-    number_participants:
-    quorum_threshold: The threshold above which quorum exists. Defaults to :data:`_QUORUM_THRESH_DEFAULT`
-
-    Returns
-    -------
-    bool
-        Whether a quorum exists within the set of values.
-    """
-    if number_participants:
-        engagement_on = engagement_raw(values)
-        quorum_flag = (engagement_on / number_participants > quorum_threshold) and (engagement_on > 3)
-        return quorum_flag
-    else:
-        return None
 
