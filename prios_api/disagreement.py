@@ -111,11 +111,11 @@ def is_unique(question: objects.Question, unique_disagreement=_UNIQUE_DISAGREEME
     List[meta.Assertion]
         System assertions of whether each response is unique
     """
-    values = [xi.value for xi in question.responses.data]
+    values = [xi.value for xi in question.responses]
     all_buckets = foundation.map_values(values, objects.NumericRange)
     percent = foundation.counts(all_buckets, normalize=True)
     results = list()
-    for response in question.responses.data:
+    for response in question.responses:
         if percent[response.value] < unique_disagreement:
             unique = True
         else:
@@ -140,7 +140,7 @@ def believable_choice_on_question(question: objects.Question) -> meta.Assertion:
 
     # Extract responses and question data.
     values_and_weights = [(response.value, response.source.believability)
-                          for response in question.responses.data]
+                          for response in question.responses]
     value_type = question.question_type
 
     # Get the Believable choice
@@ -170,7 +170,7 @@ def is_nubby_question(question: objects.Question,
         Value is True if the question is Nubby.
     """
     # TODO: Create extractor method in `objects.Question` that returns list of responses?
-    values = [response.value for response in question.responses.data]
+    values = [response.value for response in question.responses]
     if len(values) < 2:
         result = False
     else:
@@ -202,7 +202,7 @@ def meeting_nubbiness_v1(meeting: objects.Meeting,
     nubby_questions = [q for q in meeting.questions if is_nubby_question(q)]
 
     def responses_to_list(question):
-        return [q.response.value for q in nubby_questions.responses.data]
+        return [q.response.value for q in nubby_questions.responses]
 
     if len(nubby_questions) == 0:
         meeting_divisiveness = 0.0
@@ -270,7 +270,7 @@ def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Asse
     believable_choice_result = believable_choice_on_question(question)
     disagrees_with_result = disagreement.disagrees_with_167(question)
     people = []
-    for response in question.responses.data:
+    for response in question.responses:
         result = disagrees_with_result and (believable_choice_result or isinstance(believable_choice_result, float))
         people.append(meta.Assertion(source=objects.System, target=response.source, value=result,
                                      measure=objects.AssertionSet))

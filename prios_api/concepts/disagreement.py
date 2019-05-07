@@ -96,28 +96,42 @@ def disagrees_with_numeric(response_to_compare: float,
         return not same_bucket
 
 
-def substantive_disagreement(scale_values: Tuple[float, float],
-                             threshold_high: float = _THRESHOLD_HIGH):
+def bucketed_disagreement(x1: float, x2: float) -> float:
     """
     Parameters
     ----------
-    scale_values
-        Scale Value Pair
+    values
+        Tuple of numeric values
+
+    Returns
+    -------
+    float
+        The absolute difference in bucketed disagreement between two v alues.
+    """
+    mapped_x1, mapped_x2 = foundation.map_values([x1, x2], objects.NumericRange.ONE_TO_TEN)
+    result = abs(mapped_x1 - mapped_x2)
+    return result.item()  # TODO: handling of numpy conversion here is terrible
+
+
+def substantive_disagreement(x1: float, x2: float, threshold_high: float = _THRESHOLD_HIGH):
+    """
+    Parameters
+    ----------
+    x1
+        numeric value
+    x2
+        numeric value
     threshold_high
         Returns False if difference between raw values is less than this quantity.
 
     Returns
     -------
-    object.Judgement
-        Whether there's substantive disagreement between two assertions.
+    bool
+        Whether there's substantive disagreement between two values.
     """
-    x1, x2 = scale_values
-    diff = abs(x1.value - x2.value)
+    diff = abs(x1 - x2)
     far_away = diff > threshold_high
-    mapped_x1 = foundation.map_values(x1.value, objects.NumericRange.ONE_TO_TEN)
-    mapped_x2 = foundation.map_values(x2.value, objects.NumericRange.ONE_TO_TEN)
-    mapped_diff = abs(mapped_x1 - mapped_x2)
-    result = far_away and mapped_diff
-    return result
+    mapped_diff = bucketed_disagreement(x1, x2)
+    return far_away and mapped_diff
 
 

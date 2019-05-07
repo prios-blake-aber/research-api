@@ -103,7 +103,7 @@ def is_polarizing_v0(scale_assertions: objects.ScaleValueSet,
     object.Judgement
         Whether a set of scale values are polarizing.
     """
-    values = [xi.value for xi in scale_assertions.data]
+    values = [xi.value for xi in scale_assertions]
     mapped_values = [foundation.map_values(vi, objects.NumericRange.ONE_TO_TEN) for vi in values]
 
     # TODO: nesting functions here is terrible; why not use the sentiment module?
