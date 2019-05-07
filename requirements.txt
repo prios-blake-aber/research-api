@@ -1,0 +1,3 @@
+vega
+altair
+snowflake-connector-python
