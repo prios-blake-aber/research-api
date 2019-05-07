@@ -464,3 +464,4 @@ def significantly_out_of_sync_in_meeting(meeting: objects.Meeting,
             meta.Assertion(source=objects.System, target=person, value=result_person)
         ]
     return results
+

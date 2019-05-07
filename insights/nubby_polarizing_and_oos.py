@@ -7,12 +7,13 @@ from typing import List, Dict
 from prios_api.domain_objects import meta, objects
 from prios_api import disagreement, activity
 from prios_api.src import utils
+from prios_api.concepts import disagreement as concept_disagreement
 
 
 _QUORUM_THRESH_DEFAULT = 0.80
 
 
-def believable_choice_130(question: objects.QuestionType) -> meta.Assertion:
+def believable_choice_on_question_130(question: objects.QuestionType) -> meta.Assertion:
     """
     Believable choice.
 
@@ -233,7 +234,14 @@ def out_of_sync_people_on_question_41(question: objects.Question) -> List[meta.A
     List[meta.Assertion]
         Values are True if person is out-of-sync on the question.
     """
-    return disagreement.out_of_sync_people_on_question(question)
+    question_type = question.question_type
+    believable_choice_result = disagreement.believable_choice_on_question(question)
+    assertions = []
+    for response in question.responses:
+        disagrees_with_result = concept_disagreement.disagrees_with_167((response, believable_choice_result), question_type)
+        result = disagrees_with_result and (believable_choice_result or isinstance(believable_choice_result, float))
+        assertions.append(meta.Assertion(source=objects.System, target=response.source, value=result))
+    return assertions
 
 
 def significantly_out_of_sync_114(meeting: objects.Meeting,
