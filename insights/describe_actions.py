@@ -112,7 +112,6 @@ def attention_participant_received_155(dots: List[objects.Dot]):
     return activity.relevance_of_people(dots)
 
 
-@utils.scope_required_data_within_object(collections_to_keep=['participants', 'questions'])
 def quorum_exists_on_question_145(meeting: objects.Meeting,
                                   quorum_threshold: float = _QUORUM_THRESH_DEFAULT,
                                   *args, **kwargs) -> List[meta.Assertion]:
