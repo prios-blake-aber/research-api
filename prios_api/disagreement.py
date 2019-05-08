@@ -11,6 +11,7 @@ from prios_api.concepts import synthesis, polarizing
 from prios_api.src import foundation, utils
 from prios_api.concepts import disagreement, believable_choice, divisiveness
 from prios_api.domain_objects import meta, objects
+from statistics import stdev
 
 StringOrFloat = TypeVar("StringOrFloat", str, float)
 
@@ -21,6 +22,8 @@ _THRESHOLD_DICT = {
     'mapped_divisiveness': 0.5,
     'polarization': 0.25
 }
+UNIQUE_RESPONSE = 1
+OTHER_RESPONSE = 2
 
 
 def dots_on_subjects_are_nubby_and_polarizing(dots: List[objects.Dot],
@@ -258,7 +261,7 @@ def believable_choice_on_question(question: objects.Question) -> meta.Assertion:
     return meta.Assertion(source=objects.System, target=question, value=choice)
 
 
-def is_nubby_question(question: objects.Question,
+def is_nubby_question(question: objects.Question, question_type,
                       threshold: float = _THRESHOLD_STD_MAPPED_SCALE) -> meta.Assertion:
     """
     Is a question Nubby?
@@ -266,6 +269,7 @@ def is_nubby_question(question: objects.Question,
     Parameters
     ----------
     question
+    question_type
     threshold
         Question is Nubby if its divisiveness value exceeds this quantity.
 
@@ -276,20 +280,39 @@ def is_nubby_question(question: objects.Question,
 
     Examples
     --------
-    # >>> from prios_api.examples import example1
-    # >>> print((is_nubby_question(example1.question)).value)
-    # False
+    >>> from prios_api.examples import binaryexample
+    >>> print((is_nubby_question(binaryexample.question, question_type=objects.QuestionType.BINARY)).value)
+    False
     >>> from prios_api.examples import likertexample
-    >>> print((is_nubby_question(likertexample.question)).value)
+    >>> print((is_nubby_question(likertexample.question, question_type=objects.QuestionType.LIKERT)).value)
     True
+    >>> from prios_api.examples import categoricalexample
+    >>> print((is_nubby_question(categoricalexample.question, question_type=objects.QuestionType.CATEGORICAL)).value)
+    True
+    >>> from prios_api.examples import binaryexample
+    >>> print((is_nubby_question(binaryexample.question, question_type=objects.QuestionType.BINARY)).value)
+    False
+    >>> from prios_api.examples import singleresponseexample
+    >>> print((is_nubby_question(singleresponseexample.question, question_type=objects.QuestionType.LIKERT)).value)
+    False
     """
     # TODO: Create extractor method in `objects.Question` that returns list of responses?
     values = [response.value for response in question.responses]
-    if len(values) < 2:  # TODO: reasonable heuristic... where should it live? (Similar heuristic exists in Consensus)
+    if len(values) < 2:  # TODO: reasonable heuristic... where should it live?
         result = False
-    else:
+
+    if question_type is not objects.QuestionType.CATEGORICAL:
         mapped_values = foundation.map_values(values, value_type=question.question_type)
-        result = divisiveness.divisiveness_stat(mapped_values, question.question_type) > threshold
+        result = divisiveness.divisiveness_stat(mapped_values, question.question_type, map_to_sentiment=False) > threshold
+    else:
+        values = [response.value for response in question.responses]
+        list_set = set(values)
+        unique_list = (list(list_set))
+        for unique_response in unique_list:
+            cat_mapped = [UNIQUE_RESPONSE if x == unique_response else OTHER_RESPONSE for x in values]
+            response_divisiveness = stdev(cat_mapped)
+            if response_divisiveness > threshold:
+                result = True
 
     return meta.Assertion(target=question, value=result)
 

@@ -147,8 +147,27 @@ def nubby_question_147(question: objects.Question) -> meta.Assertion:
     -------
     meta.Assertion
         Value is True if the Question is Nubby.
+
+    Examples
+    --------
+    >>> from prios_api.examples import binaryexample
+    >>> print(nubby_question_147(binaryexample.question).value)
+    False
+    >>> from prios_api.examples import likertexample
+    >>> print(nubby_question_147(likertexample.question).value)
+    True
+    >>> from prios_api.examples import categoricalexample
+    >>> print(nubby_question_147(categoricalexample.question).value)
+    True
+    >>> from prios_api.examples import binaryexample
+    >>> print(nubby_question_147(binaryexample.question).value)
+    False
+    >>> from prios_api.examples import singleresponseexample
+    >>> print(nubby_question_147(singleresponseexample.question).value)
+    False
     """
-    return disagreement.is_nubby_question(question)
+    question_type = question.question_type
+    return disagreement.is_nubby_question(question, question_type)
 
 
 def nubby_question_popup_49(question: objects.Question) -> meta.Assertion:

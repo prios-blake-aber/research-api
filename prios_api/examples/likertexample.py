@@ -23,7 +23,7 @@ meeting.participants.append(chintan)
 sophia = objects.Person(name='Sophia', believability=0)
 meeting.participants.append(sophia)
 
-question = objects.Question(title='How is this project going?')
+question = objects.Question(title='How is this project going?', question_type=objects.QuestionType.LIKERT)
 meeting.questions.append(question)
 
 for question in meeting.questions:
@@ -38,6 +38,6 @@ for question in meeting.questions:
     question.responses.append(will_response)
     chintan_response = objects.Response(source=chintan, target='How is this project going?', value=4)
     question.responses.append(chintan_response)
-    sophia_response = objects.Response(source=sophia, target='How is this project going?', value=3)
+    sophia_response = objects.Response(source=sophia, target='How is this project going?', value=4)
     question.responses.append(sophia_response)
 
