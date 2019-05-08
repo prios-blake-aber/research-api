@@ -273,13 +273,22 @@ def is_nubby_question(question: objects.Question,
     -------
     meta.Assertion
         Value is True if the question is Nubby.
+
+    Examples
+    --------
+    # >>> from prios_api.examples import example1
+    # >>> print((is_nubby_question(example1.question)).value)
+    # False
+    >>> from prios_api.examples import likertexample
+    >>> print((is_nubby_question(likertexample.question)).value)
+    True
     """
     # TODO: Create extractor method in `objects.Question` that returns list of responses?
     values = [response.value for response in question.responses]
-    if len(values) < 2:  # TODO: reasonable heuristic... where should it live?
+    if len(values) < 2:  # TODO: reasonable heuristic... where should it live? (Similar heuristic exists in Consensus)
         result = False
     else:
-        mapped_values = foundation.map_values(values)
+        mapped_values = foundation.map_values(values, value_type=question.question_type)
         result = divisiveness.divisiveness_stat(mapped_values, question.question_type) > threshold
 
     return meta.Assertion(target=question, value=result)
@@ -373,8 +382,8 @@ def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Asse
 
     Examples
     --------
-    >>> from prios_api.examples import example1
-    >>> x = out_of_sync_people_on_question(example1.question)
+    >>> from prios_api.examples import binaryexample
+    >>> x = out_of_sync_people_on_question(binaryexample.question)
     >>> for xi in x:
     ...    print(xi.value)
     """
