@@ -1,3 +1,9 @@
+# Example 1 - Meeting with:
+# Question: 1 Yes/No Question
+# Participants: Two Meeting Participants who both have believability
+# Responses: 2 (1 yes, 1 no)
+# Believability: Total of 0.95 Believability in the meeting
+
 from prios_api.domain_objects import objects
 
 meeting = objects.Meeting(name='Test Meeting')

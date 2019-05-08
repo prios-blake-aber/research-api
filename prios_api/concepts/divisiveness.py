@@ -42,6 +42,8 @@ def divisiveness_stat(values: List[float], value_type: objects.QuestionType,
     1.414
     >>> round(divisiveness_stat([1,10], objects.QuestionType.SCALE, map_to_sentiment=True), 3)
     1.414
+    >>> round(divisiveness_stat([1, 3, 4, 5, 5], objects.QuestionType.LIKERT), 3)
+    1.673
     """
     if len(values) < 2:
         return 0
