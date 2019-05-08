@@ -5,6 +5,10 @@
 # Believability: 0 Believability in the meeting
 
 from prios_api.domain_objects import objects
+from statistics import stdev
+threshold = 1
+MOST_COMMON = 1
+OTHER = 2
 
 meeting = objects.Meeting(name='Test Meeting')
 
@@ -20,7 +24,10 @@ meeting.participants.append(will)
 chintan = objects.Person(name='Chintan', believability=0)
 meeting.participants.append(chintan)
 
-question = objects.Question(title='How should we move forward with this project?')
+sophia = objects.Person(name='Sophia', believability=0)
+meeting.participants.append(sophia)
+
+question = objects.Question(title='How should we move forward with this project?', question_type=objects.QuestionType.CATEGORICAL)
 meeting.questions.append(question)
 
 for question in meeting.questions:
@@ -37,3 +44,5 @@ for question in meeting.questions:
     chintan_response = objects.Response(source=chintan, target='How is this project going?',
                                         value='Do whatever it takes to make it work')
     question.responses.append(chintan_response)
+    sophia_response = objects.Response(source=sophia, target='How is this project going?', value='Give up')
+    question.responses.append(sophia_response)
