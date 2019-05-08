@@ -218,7 +218,6 @@ def out_of_sync_people_on_question_41(question: objects.Question) -> List[meta.A
     return disagreement.disagrees_with_believable_choice(question)
 
 
-
 def significantly_out_of_sync_114(meeting: objects.Meeting,
                                   threshold_low=0.8,
                                   threshold_high=1.2) -> List[objects.Judgement]:
