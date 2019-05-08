@@ -12,27 +12,42 @@ import itertools
 
 StringOrFloat = TypeVar("StringOrFloat", str, float)
 QuestionOrNumeric = TypeVar("QuestionOrNumeric", objects.QuestionType, objects.NumericRange)
+YES_VALUE = 2
+NO_VALUE = 1
 
 
-def map_values(values: List[float], value_type: QuestionOrNumeric):
+def map_values(values: List[StringOrFloat], value_type: QuestionOrNumeric):
     """
     Maps values from one numeric range to a different numeric range. Currently, mapping is to
     defined for 1-to-10 or 1-to-5 ranges to "Semantic Buckets" (Positive, Negative, or Neutral).
 
     TODO: Add parameter for mapping lambda and to_type.
     TODO: Hard-coded to map 1-to-10 or 1-to-5 values to "Semantic Buckets".
+    TODO: Need to consider adopting Alex's typing system (Yes/No handling is currently not great).
 
     Parameters
     ----------
     values
         Input data
     value_type
-        Type of
+        Type of values
 
     Returns
     -------
     List[float]
         Numeric values on different scale. Currently hard-coded to legacy semantic bucket scale.
+
+    Examples
+    --------
+    >>> print(map_values([1, 2, 3, 4, 5], value_type=objects.QuestionType.LIKERT))
+    [0 0 1 2 2]
+    >>> print(map_values([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], value_type=objects.QuestionType.SCALE))
+    [0 0 0 0 1 1 2 2 2 2]
+    >>> print(map_values(["Yes", "No", "Yes", "No"], value_type=objects.QuestionType.BINARY))
+    [2, 1, 2, 1]
+    >>> print(map_values(['Give up', 'Push Ahead and see what happens', 'Delay',
+    ...                  'Do whatever it takes to make it work'], value_type=objects.QuestionType.CATEGORICAL))
+    ['Give up', 'Push Ahead and see what happens', 'Delay', 'Do whatever it takes to make it work']
     """
 
     # TODO: Finalize value-type object.
@@ -40,10 +55,14 @@ def map_values(values: List[float], value_type: QuestionOrNumeric):
         value_type = objects.QuestionType.SCALE
     if value_type == objects.NumericRange.ONE_TO_FIVE:
         value_type = objects.QuestionType.LIKERT
+    if value_type == objects.QuestionType.BINARY:
+        value_type = objects.QuestionType.BINARY
 
-    if value_type == objects.QuestionType.SCALE:
+    if value_type == objects.QuestionType.BINARY:
+        return [YES_VALUE if x == "Yes" else NO_VALUE for x in values]
+    elif value_type == objects.QuestionType.SCALE:
         (low_thresh, high_thresh) = (5, 7)
-    elif value_type == objects.QuestionType:
+    elif value_type == objects.QuestionType.LIKERT:
         (low_thresh, high_thresh) = (2.5, 3.5)
     else:
         return values
@@ -52,6 +71,24 @@ def map_values(values: List[float], value_type: QuestionOrNumeric):
 
 
 def standard_deviation(x: List[float]) -> float:
+    """
+    Parameters
+    ----------
+    x
+        Input values, list of floats
+
+    Returns
+    -------
+    Float
+        Standard deviation of the list of values
+
+    Examples
+    --------
+    >>> print(round(standard_deviation([1, 2, 4, 4, 4]), 2))
+    1.41
+    >>> print(round(standard_deviation([1]), 2))
+    nan
+    """
     return np.nanstd(np.array(x), ddof=1)
 
 

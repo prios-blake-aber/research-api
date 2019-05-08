@@ -9,42 +9,44 @@ from prios_api.domain_objects import objects
 StringOrFloat = TypeVar("StringOrFloat", str, float)
 
 
-def divisiveness_stat(values: List[StringOrFloat], value_type: objects.QuestionType,
-                      map_to_sentiment: bool = True) -> float:
+def divisiveness_stat(ar: List[StringOrFloat], value_type: objects.QuestionType) -> float:
     """
-    Divisiveness is the standard deviation of opinions.
+    Divisiveness.
+
+    TODO: How are N/A's being represented? We shouldn't assume they're being filtered.
 
     TODO: Fix
 
     Parameters
     ----------
-    values
-        Numerical values whose divisiveness is being calculated.
+    ar
     value_type
-        Type of value
-    map_to_sentiment
-        Map values to positive, neutral, or negative sentiment prior to taking standard
-        deviation. Default is True.
 
     Returns
     -------
     float
-        Divisiveness measure.
+        Divisiveness value
 
     Examples
     --------
-    >>> divisiveness_stat([1], objects.QuestionType.SCALE)
-    0
-    >>> round(divisiveness_stat([1,10], objects.QuestionType.SCALE), 3)
+    >>> divisiveness_stat([1], value_type = objects.QuestionType.SCALE)
+    nan
+    >>> round(divisiveness_stat([1,10], value_type = objects.QuestionType.SCALE), 3)
     1.414
-    >>> round(divisiveness_stat([1,10], objects.QuestionType.SCALE, map_to_sentiment=True), 3)
-    1.414
+    >>> round(divisiveness_stat([1, 3, 4, 5, 5], value_type = objects.QuestionType.LIKERT), 3)
+    0.894
+    >>> round(divisiveness_stat(['Give up', 'Push Ahead and see what happens', 'Delay',
+    ... 'Do whatever it takes to make it work'], value_type = objects.QuestionType.CATEGORICAL), 2)
+    0.5
+    >>> round(divisiveness_stat(["Yes", "No", "Yes", "No"], value_type = objects.QuestionType.BINARY), 2)
+    0.58
     """
-    if len(values) < 2:
-        return 0
-
-    if map_to_sentiment:
-        mapped_values = [foundation.map_values(vi, value_type) for vi in values]
+    if value_type in [objects.QuestionType.SCALE, objects.QuestionType.LIKERT, objects.QuestionType.BINARY]:
+        mapped_values = foundation.map_values(ar, value_type)
         return foundation.standard_deviation(mapped_values)
     else:
-        return foundation.standard_deviation(values)
+        count = [v for k, v in foundation.counts(ar).items()]
+        max_count = max(count)
+        mapped_ar = [0]*max_count + [1]*(len(ar) - max_count)
+        return foundation.standard_deviation(mapped_ar)
+

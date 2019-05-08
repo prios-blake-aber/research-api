@@ -10,6 +10,7 @@ from prios_api import activity, concepts
 from prios_api.concepts import synthesis, polarizing, disagreement, believable_choice, divisiveness
 from prios_api.src import foundation, utils
 from prios_api.domain_objects import meta, objects
+from statistics import stdev
 
 StringOrFloat = TypeVar("StringOrFloat", str, float)
 
@@ -20,6 +21,8 @@ _THRESHOLD_DICT = {
     'mapped_divisiveness': 0.5,
     'polarization': 0.25
 }
+UNIQUE_RESPONSE = 1
+OTHER_RESPONSE = 2
 
 
 def dots_on_subjects_are_nubby_and_polarizing(dots: List[objects.Dot],
@@ -257,7 +260,7 @@ def believable_choice_on_question(question: objects.Question) -> meta.Assertion:
     return meta.Assertion(source=objects.System, target=question, value=choice)
 
 
-def is_nubby_question(question: objects.Question,
+def is_nubby_question(question: objects.Question, question_type,
                       threshold: float = _THRESHOLD_STD_MAPPED_SCALE) -> meta.Assertion:
     """
     Is a question Nubby?
@@ -265,6 +268,7 @@ def is_nubby_question(question: objects.Question,
     Parameters
     ----------
     question
+    question_type
     threshold
         Question is Nubby if its divisiveness value exceeds this quantity.
 
@@ -272,15 +276,31 @@ def is_nubby_question(question: objects.Question,
     -------
     meta.Assertion
         Value is True if the question is Nubby.
+
+    Examples
+    --------
+    >>> from prios_api.examples import binaryexample
+    >>> print((is_nubby_question(binaryexample.question, question_type=objects.QuestionType.BINARY)).value)
+    False
+    >>> from prios_api.examples import likertexample
+    >>> print((is_nubby_question(likertexample.question, question_type=objects.QuestionType.LIKERT)).value)
+    True
+    >>> from prios_api.examples import categoricalexample
+    >>> print((is_nubby_question(categoricalexample.question, question_type=objects.QuestionType.CATEGORICAL)).value)
+    True
+    >>> from prios_api.examples import scaleexample
+    >>> print((is_nubby_question(scaleexample.question, question_type=objects.QuestionType.SCALE)).value)
+    False
+    >>> from prios_api.examples import singleresponseexample
+    >>> print((is_nubby_question(singleresponseexample.question, question_type=objects.QuestionType.LIKERT)).value)
+    False
     """
     # TODO: Create extractor method in `objects.Question` that returns list of responses?
     values = [response.value for response in question.responses]
     if len(values) < 2:  # TODO: reasonable heuristic... where should it live?
         result = False
     else:
-        mapped_values = foundation.map_values(values)
-        result = divisiveness.divisiveness_stat(mapped_values, question.question_type) > threshold
-
+        result = divisiveness.divisiveness_stat(values, value_type=question_type) > threshold
     return meta.Assertion(target=question, value=result)
 
 
@@ -329,32 +349,6 @@ def meeting_nubbiness_v1(meeting: objects.Meeting,
     )
 
 
-def _divisiveness(ar: List[StringOrFloat], value_type: objects.QuestionType) -> float:
-    """
-    Divisiveness.
-
-    # TODO: Core Concept.
-    # TODO: How are N/A's being represented? We shouldn't assume they're being filtered.
-
-    Parameters
-    ----------
-    ar
-    value_type
-
-    Returns
-    -------
-    float
-        Divisiveness value
-    """
-    if value_type in [objects.QuestionType.SCALE, objects.QuestionType.LIKERT]:
-        return foundation.standard_deviation(ar)
-    elif value_type == objects.QuestionType.CATEGORICAL:
-        count = [v for k, v in foundation.counts(ar).items()]
-        max_count = max(count)
-        mapped_ar = [0]*max_count + [1]*(len(ar) - max_count)
-        return foundation.standard_deviation(mapped_ar)
-
-
 def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Assertion]:
     """
     Identifies people who are out-of-sync on a question.
@@ -369,6 +363,13 @@ def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Asse
     -------
     List[meta.Assertion]
         Values are True if person is out-of-sync on the question.
+
+    Examples
+    --------
+    >>> from prios_api.examples import binaryexample
+    >>> x = out_of_sync_people_on_question(binaryexample.question)
+    >>> for xi in x:
+    ...    print(xi.value)
     """
     believable_choice_result = believable_choice_on_question(question)
     disagrees_with_result = disagreement.disagrees_with_167(question)
