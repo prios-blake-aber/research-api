@@ -6,7 +6,7 @@ PRIOS Analytics on Disagreement.
 import numpy as np
 import pandas as pd
 from typing import List, TypeVar, Dict
-from prios_api import activity, concepts
+from prios_api import activity, concepts, disagreement
 from prios_api.concepts import synthesis, polarizing, disagreement, believable_choice, divisiveness
 from prios_api.src import foundation, utils
 from prios_api.domain_objects import meta, objects
@@ -405,6 +405,30 @@ def believable_consensus_exists(question: objects.Question) -> meta.Assertion:
     else:
         results = False
         return meta.Assertion(source=objects.System, target=question, value=results, measure=objects.BooleanOption)
+
+
+def disagrees_with_believable_choice(question: objects.Question) -> List[meta.Assertion]:
+    """
+    Whether the responses in a question disagree with the believable choice.
+
+    Parameters
+    ----------
+    question
+
+    Returns
+    -------
+    objects.AssertionSet
+        Empty set, if none exists.
+    """
+    question_type = question.question_type
+    believable_choice_result = believable_choice_on_question(question)
+    assertions = []
+    for response in question.responses:
+        disagrees_with_result = disagreement.disagrees_with_167((response, believable_choice_result), question_type)
+        result = disagrees_with_result.value is True and (believable_choice_result.value is True or
+                                                          isinstance(believable_choice_result.value, float))
+        assertions.append(meta.Assertion(source=meta.System, target=response.source, value=result))
+    return assertions
 
 
 def significantly_out_of_sync_in_meeting(meeting: objects.Meeting,
