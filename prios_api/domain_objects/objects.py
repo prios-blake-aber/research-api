@@ -54,6 +54,7 @@ class Dot(Judgement):
 @dataclass
 class Person(meta.Entity):
     name: typing.Optional[str] = None
+    person_id: typing.Optional[str] = None
     role: typing.Optional[str] = None
     description: typing.Optional[str] = None
     believability: typing.Optional[float] = 0.01

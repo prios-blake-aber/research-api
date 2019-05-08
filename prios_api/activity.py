@@ -112,18 +112,47 @@ def frequently_dotted_subjects(dots: List[objects.Dot],
     List[meta.Assertion]
         System assertion for each subject with value (Boolean) equal to True if they are
         frequently dotted or False, otherwise.
+
+    Examples
+    --------
+    >>> adam = objects.Person(name='Adam', uuid='Adam')
+    >>> bob = objects.Person(name='Bob', uuid='Bob')
+    >>> charlie = objects.Person(name='Charlie', uuid='Charlie')
+    >>> bob_receives_every_dot = [objects.Dot(source=bob, target=adam, value=10)] * 2
+    >>> for x in frequently_dotted_subjects(bob_receives_every_dot):
+    ...     print(x.target.name, x.value)
+    Bob True
+    >>> dots_split_between_two_people = list()
+    >>> dots_split_between_two_people += [objects.Dot(source=charlie, target=adam, value=1)] * 2
+    >>> dots_split_between_two_people += [objects.Dot(source=charlie, target=bob, value=1)] * 2
+    >>> for x in frequently_dotted_subjects(dots_split_between_two_people):
+    ...     print(x.target.name, x.value)
+    Adam True
+    Bob True
+    >>> one_person_gets_most_dots = list()
+    >>> one_person_gets_most_dots += [objects.Dot(source=charlie, target=adam, value=1)] * 2
+    >>> one_person_gets_most_dots += [objects.Dot(source=charlie, target=bob, value=1)] * 2
+    >>> one_person_gets_most_dots += [objects.Dot(source=charlie, target=charlie, value=1)] * 100
+    >>> for x in frequently_dotted_subjects(one_person_gets_most_dots):
+    ...     print(x.target.name, x.value)
+    Adam False
+    Bob False
+    Charlie True
     """
-    subjects = set([dot.target for dot in dots])
+
+    # Identify unique subjects.
+    subjects = {
+        dot.target.uuid: dot.target for dot in dots
+    }
 
     result = []
-    for s in subjects:
-        subject_dots = [dot for dot in dots if dot.source == s]
+    for subject_uuid, subject in subjects.items():
+        subject_dots = [dot for dot in dots if dot.target.uuid == subject_uuid]
         percent_dots = engagement.engagement_relative(subject_dots, len(dots))
         total_dots = engagement.engagement_raw(subject_dots)
         cond1 = percent_dots > min_percent_1 and total_dots > min_count_1
         cond2 = percent_dots > min_percent_2 and total_dots > min_count_2
-        subject_is_frequently_dotted = meta.Assertion(source=objects.System,
-                                                      target=s,
+        subject_is_frequently_dotted = meta.Assertion(source=meta.System, target=subject,
                                                       value=cond1 or cond2)
         result += [subject_is_frequently_dotted]
 

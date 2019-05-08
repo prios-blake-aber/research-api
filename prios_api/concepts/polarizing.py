@@ -34,6 +34,15 @@ def polarizing_stat(values: List[float]) -> float:
     -------
     float
         Polarization statistic.
+
+    Examples
+    --------
+    >>> polarizing_stat([1, 10])
+    1.0
+    >>> polarizing_stat([10, 10])
+    0.0
+    >>> polarizing_stat([])
+    0.0
     """
     mapped_values = [foundation.map_values(vi, objects.NumericRange.ONE_TO_TEN) for vi in values]
 
@@ -46,10 +55,10 @@ def polarizing_stat(values: List[float]) -> float:
     percent_negative = foundation.percent_satisfying_condition(mapped_values, negative_sentiment)
     percent_positive = foundation.percent_satisfying_condition(mapped_values, positive_sentiment)
 
-    if percent_negative > 0 and percent_positive > 0:
+    if percent_positive and percent_negative and percent_negative > 0 and percent_positive > 0:
         return min(percent_positive/percent_negative, percent_negative/percent_positive)
     else:
-        return 0
+        return 0.0
 
 
 def is_polarizing(values: List[float],

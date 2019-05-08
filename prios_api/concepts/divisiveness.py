@@ -7,11 +7,6 @@ from prios_api.src import foundation
 from prios_api.domain_objects import objects
 
 StringOrFloat = TypeVar("StringOrFloat", str, float)
-_THRESHOLD_HIGH = 1.7
-_THRESHOLD_STD_SCALE = 1.0
-_THRESHOLD_STD_MAPPED_SCALE = 0.5
-_THRESHOLD_POLES = 0.25
-_MINIMUM_THRESH = 0.7
 
 
 def divisiveness_stat(ar: List[StringOrFloat], value_type: objects.QuestionType) -> float:
@@ -19,6 +14,8 @@ def divisiveness_stat(ar: List[StringOrFloat], value_type: objects.QuestionType)
     Divisiveness.
 
     TODO: How are N/A's being represented? We shouldn't assume they're being filtered.
+
+    TODO: Fix
 
     Parameters
     ----------
