@@ -26,3 +26,5 @@ for question in meeting.questions:
     question.responses.append(natalie_response)
     blake_response = objects.Response(source=blake, target='Does this work?', value='No')
     question.responses.append(blake_response)
+
+values_and_weights = [(response.value, response.source.believability) for response in question.responses]
