@@ -26,7 +26,7 @@ for question in meeting.questions:
 for question in meeting.questions:
     natalie_response = objects.Response(source=natalie, target='How is this project going?', value=7)
     question.responses.append(natalie_response)
-    blake_response = objects.Response(source=blake, target='How is this project going?', value=6)
+    blake_response = objects.Response(source=blake, target='How is this project going?', value=7)
     question.responses.append(blake_response)
     will_response = objects.Response(source=will, target='How is this project going?', value=7)
     question.responses.append(will_response)
