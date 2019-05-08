@@ -7,17 +7,14 @@ from prios_api.src import foundation
 from prios_api.domain_objects import objects
 
 StringOrFloat = TypeVar("StringOrFloat", str, float)
-_THRESHOLD_HIGH = 1.7
-_THRESHOLD_STD_SCALE = 1.0
-_THRESHOLD_STD_MAPPED_SCALE = 0.5
-_THRESHOLD_POLES = 0.25
-_MINIMUM_THRESH = 0.7
 
 
-def divisiveness_stat(values: List[float], value_type: objects.QuestionType,
+def divisiveness_stat(values: List[StringOrFloat], value_type: objects.QuestionType,
                       map_to_sentiment: bool = True) -> float:
     """
     Divisiveness is the standard deviation of opinions.
+
+    TODO: Fix
 
     Parameters
     ----------
@@ -51,5 +48,3 @@ def divisiveness_stat(values: List[float], value_type: objects.QuestionType,
         return foundation.standard_deviation(mapped_values)
     else:
         return foundation.standard_deviation(values)
-
-

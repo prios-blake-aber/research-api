@@ -7,9 +7,8 @@ import numpy as np
 import pandas as pd
 from typing import List, TypeVar, Dict
 from prios_api import activity, concepts
-from prios_api.concepts import synthesis, polarizing
+from prios_api.concepts import synthesis, polarizing, disagreement, believable_choice, divisiveness
 from prios_api.src import foundation, utils
-from prios_api.concepts import disagreement, believable_choice, divisiveness
 from prios_api.domain_objects import meta, objects
 
 StringOrFloat = TypeVar("StringOrFloat", str, float)
@@ -114,7 +113,7 @@ def dots_on_subjects_are_nubby_and_polarizing(dots: List[objects.Dot],
         is_polarizing = (values_divisiveness > thresholds['divisiveness'] and \
                          mapped_values_divisiveness > thresholds['mapped_divisiveness'] and \
                          values_polarization  > thresholds['polarization'])
-        results.append(meta.Assertion(source=objects.System, target=uuid_to_person[sub],
+        results.append(meta.Assertion(source=meta.System, target=uuid_to_person[sub],
                                       value=is_polarizing))
 
     return results
