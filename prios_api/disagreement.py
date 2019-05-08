@@ -242,6 +242,9 @@ def believable_choice_on_question(question: objects.Question) -> meta.Assertion:
     -------
     meta.Assertion
         Value represents the believable choice answer on the question.
+
+    Examples
+    --------
     """
 
     # Extract responses and question data.
@@ -349,38 +352,6 @@ def meeting_nubbiness_v1(meeting: objects.Meeting,
     )
 
 
-def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Assertion]:
-    """
-    Identifies people who are out-of-sync on a question.
-
-    TODO: Move logic to prios_api.
-
-    Parameters
-    ----------
-    question
-
-    Returns
-    -------
-    List[meta.Assertion]
-        Values are True if person is out-of-sync on the question.
-
-    Examples
-    --------
-    >>> from prios_api.examples import binaryexample
-    >>> x = out_of_sync_people_on_question(binaryexample.question)
-    >>> for xi in x:
-    ...    print(xi.value)
-    """
-    believable_choice_result = believable_choice_on_question(question)
-    disagrees_with_result = disagreement.disagrees_with_167(question)
-    people = []
-    for response in question.responses:
-        result = disagrees_with_result and (believable_choice_result or isinstance(believable_choice_result, float))
-        people.append(meta.Assertion(source=objects.System, target=response.source, value=result,
-                                     measure=objects.AssertionSet))
-    return people
-
-
 def believable_consensus_exists(question: objects.Question) -> meta.Assertion:
     """
     TODO: Needs clarification on where it lives conceptually, what the I/O types should be, whether it can be refactored
@@ -417,8 +388,15 @@ def disagrees_with_believable_choice(question: objects.Question) -> List[meta.As
 
     Returns
     -------
-    objects.AssertionSet
-        Empty set, if none exists.
+    List[meta.Assertion]
+        Values are True if person is out-of-sync on the question.
+
+    Examples
+    --------
+    >>> from prios_api.examples import binaryexample
+    >>> x = out_of_sync_people_on_question(binaryexample.question)
+    >>> for xi in x:
+    ...    print(xi.value)
     """
     question_type = question.question_type
     believable_choice_result = believable_choice_on_question(question)

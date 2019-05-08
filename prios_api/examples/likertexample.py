@@ -30,10 +30,10 @@ for question in meeting.questions:
     question.question_type = objects.QuestionType.LIKERT
 
 for question in meeting.questions:
-    natalie_response = objects.Response(source=natalie, target='How is this project going?', value=1)
-    question.responses.append(natalie_response)
     blake_response = objects.Response(source=blake, target='How is this project going?', value=2)
     question.responses.append(blake_response)
+    natalie_response = objects.Response(source=natalie, target='How is this project going?', value=1)
+    question.responses.append(natalie_response)
     will_response = objects.Response(source=will, target='How is this project going?', value=4)
     question.responses.append(will_response)
     chintan_response = objects.Response(source=chintan, target='How is this project going?', value=4)
@@ -41,3 +41,4 @@ for question in meeting.questions:
     sophia_response = objects.Response(source=sophia, target='How is this project going?', value=4)
     question.responses.append(sophia_response)
 
+values_and_weights = [(response.value, response.source.believability) for response in question.responses]

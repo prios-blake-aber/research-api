@@ -8,9 +8,6 @@ from prios_api.domain_objects import objects
 
 meeting = objects.Meeting(name='Test Meeting')
 
-blake = objects.Person(name='Blake', believability=0.9)
-meeting.participants.append(blake)
-
 natalie = objects.Person(name='Natalie', believability=0.05)
 meeting.participants.append(natalie)
 
@@ -24,3 +21,5 @@ for question in meeting.questions:
 for question in meeting.questions:
     natalie_response = objects.Response(source=natalie, target='Does this work?', value=1)
     question.responses.append(natalie_response)
+
+values_and_weights = [(response.value, response.source.believability) for response in question.responses]
