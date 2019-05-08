@@ -118,20 +118,52 @@ def polarizing_participants_38(meeting: objects.Meeting) -> List[meta.Assertion]
     List[meta.Assertion]
         System assertion for each subject with value (Boolean) equal to True if they are
         viewed as being polarizing or False, otherwise.
+
+    Examples
+    --------
+    >>> adam = objects.Person(person_id='Adam', uuid='Adam')
+    >>> bob = objects.Person(person_id='Bob', uuid='Bob')
+    >>> charlie = objects.Person(person_id='Charlie', uuid='Charlie')
+    >>> dots = list()
+    >>> result = polarizing_participants_38(objects.Meeting(dots=dots))
+    >>> for x in result:
+    ...     print(x.target.person_id, x.value)
+    >>> dots = list()
+    >>> dots.append(objects.Dot(source=adam, target=bob, value=1))
+    >>> dots.append(objects.Dot(source=bob, target=charlie, value=10))
+    >>> result = polarizing_participants_38(objects.Meeting(dots=dots))
+    >>> for x in result:
+    ...     print(x.target.person_id, x.value)
+    Bob False
+    Charlie False
+    >>> dots = list()
+    >>> dots.append(objects.Dot(source=bob, target=adam, value=1))
+    >>> dots.append(objects.Dot(source=charlie, target=adam, value=10))
+    >>> result = polarizing_participants_38(objects.Meeting(dots=dots))
+    >>> for x in result:
+    ...     print(x.target.person_id, x.value)
+    Adam True
+    >>> dots = list()
+    >>> dots.append(objects.Dot(source=bob, target=adam, value=1))
+    >>> dots.append(objects.Dot(source=charlie, target=adam, value=10))
+    >>> dots.append(objects.Dot(source=bob, target=adam, value=10))
+    >>> dots.append(objects.Dot(source=charlie, target=adam, value=1))
+    >>> result = polarizing_participants_38(objects.Meeting(dots=dots))
+    >>> for x in result:
+    ...     print(x.target.person_id, x.value)
+    Adam False
     """
     frequently_dotted = activity.frequently_dotted_subjects(meeting.dots)
     dots_are_polarizing = disagreement.dots_on_subjects_are_nubby_and_polarizing(meeting.dots)
 
-    def to_dict(x: List[meta.Assertion]) -> Dict[str, bool]:
-        return {xi.target.id: xi.value for xi in x}
-
-    frequently_dotted_dict = to_dict(frequently_dotted)
-    polarizing_dict = to_dict(dots_are_polarizing)
-
     result = []
-    for person, is_polarizing in polarizing_dict.items():
-        result.append(meta.Assertion(source=objects.System, target=person,
-                                     value=is_polarizing and frequently_dotted_dict[person]))
+    for person_frequently_dotted in frequently_dotted:
+        for person_polarizing in dots_are_polarizing:
+            if person_frequently_dotted.target.person_id == person_polarizing.target.person_id:
+                person = person_frequently_dotted.target
+                result.append(meta.Assertion(source=meta.System, target=person,
+                                             value=(person_frequently_dotted.value and
+                                                    person_polarizing.value)))
     return result
 
 
