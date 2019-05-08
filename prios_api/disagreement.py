@@ -289,8 +289,8 @@ def is_nubby_question(question: objects.Question, question_type,
     >>> from prios_api.examples import categoricalexample
     >>> print((is_nubby_question(categoricalexample.question, question_type=objects.QuestionType.CATEGORICAL)).value)
     True
-    >>> from prios_api.examples import binaryexample
-    >>> print((is_nubby_question(binaryexample.question, question_type=objects.QuestionType.BINARY)).value)
+    >>> from prios_api.examples import scaleexample
+    >>> print((is_nubby_question(scaleexample.question, question_type=objects.QuestionType.SCALE)).value)
     False
     >>> from prios_api.examples import singleresponseexample
     >>> print((is_nubby_question(singleresponseexample.question, question_type=objects.QuestionType.LIKERT)).value)
@@ -300,20 +300,8 @@ def is_nubby_question(question: objects.Question, question_type,
     values = [response.value for response in question.responses]
     if len(values) < 2:  # TODO: reasonable heuristic... where should it live?
         result = False
-
-    if question_type is not objects.QuestionType.CATEGORICAL:
-        mapped_values = foundation.map_values(values, value_type=question.question_type)
-        result = divisiveness.divisiveness_stat(mapped_values, question.question_type, map_to_sentiment=False) > threshold
     else:
-        values = [response.value for response in question.responses]
-        list_set = set(values)
-        unique_list = (list(list_set))
-        for unique_response in unique_list:
-            cat_mapped = [UNIQUE_RESPONSE if x == unique_response else OTHER_RESPONSE for x in values]
-            response_divisiveness = stdev(cat_mapped)
-            if response_divisiveness > threshold:
-                result = True
-
+        result = divisiveness.divisiveness_stat(values, value_type=question_type) > threshold
     return meta.Assertion(target=question, value=result)
 
 
@@ -360,32 +348,6 @@ def meeting_nubbiness_v1(meeting: objects.Meeting,
         value=classification,
         measure=objects.MeetingNubbyClassification
     )
-
-
-def _divisiveness(ar: List[StringOrFloat], value_type: objects.QuestionType) -> float:
-    """
-    Divisiveness.
-
-    # TODO: Core Concept.
-    # TODO: How are N/A's being represented? We shouldn't assume they're being filtered.
-
-    Parameters
-    ----------
-    ar
-    value_type
-
-    Returns
-    -------
-    float
-        Divisiveness value
-    """
-    if value_type in [objects.QuestionType.SCALE, objects.QuestionType.LIKERT]:
-        return foundation.standard_deviation(ar)
-    elif value_type == objects.QuestionType.CATEGORICAL:
-        count = [v for k, v in foundation.counts(ar).items()]
-        max_count = max(count)
-        mapped_ar = [0]*max_count + [1]*(len(ar) - max_count)
-        return foundation.standard_deviation(mapped_ar)
 
 
 def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Assertion]:
