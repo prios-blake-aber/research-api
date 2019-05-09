@@ -14,77 +14,6 @@ _THRESHOLD_POLES = 0.25
 _MINIMUM_THRESH = 0.7
 
 
-def believable_choice(values_and_weights: List[Tuple[StringOrFloat, float]],
-                      value_type: objects.QuestionType) -> Optional[StringOrFloat]:
-    """
-    Believable choice
-
-    TODO: Change to ValueType.
-
-    Parameters
-    ----------
-    values_and_weights
-        Values and Believability weights.
-    value_type
-        Type of value
-
-    Returns
-    -------
-    Optional[StringOrFloat]
-        Value or None. Value represents either the believability-weighted average or the answer choice on which there is
-         sufficient believability.
-
-    Examples
-    --------
-    >>> from prios_api.examples import binaryexample
-    >>> print(believable_choice(binaryexample.values_and_weights, value_type=objects.QuestionType.BINARY))
-    No
-    >>> from prios_api.examples import categoricalexample
-    >>> print(believable_choice(categoricalexample.values_and_weights, value_type=objects.QuestionType.CATEGORICAL))
-    None
-    >>> from prios_api.examples import singleresponseexample
-    >>> print(believable_choice(singleresponseexample.values_and_weights, value_type=objects.QuestionType.LIKERT))
-    1.0
-    >>> from prios_api.examples import scaleexample
-    >>> round(believable_choice(scaleexample.values_and_weights, value_type=objects.QuestionType.SCALE), 2)
-    7.0
-    >>> from prios_api.examples import likertexample
-    >>> round(believable_choice(likertexample.values_and_weights, value_type=objects.QuestionType.LIKERT), 2)
-    3.16
-    """
-    if value_type in [objects.QuestionType.LIKERT, objects.QuestionType.SCALE]:
-        return believable_choice_numeric(values_and_weights)
-    elif value_type in [objects.QuestionType.CATEGORICAL, objects.QuestionType.BINARY]:
-        return believable_choice_categorical_binary(values_and_weights)
-    else:
-        return None
-
-
-def believable_choice_numeric(values_and_weights: List[Tuple[float, float]]) -> float:
-    """
-    "Believable Choice" logic for Numeric responses.
-
-    Parameters
-    ----------
-    values_and_weights
-        Numeric values and corresponding believability.
-
-    Returns
-    -------
-    float
-        Believability-weighted average
-    >>> from prios_api.examples import scaleexample
-    >>> round(believable_choice(scaleexample.values_and_weights, value_type=objects.QuestionType.SCALE), 2)
-    7.0
-    >>> from prios_api.examples import likertexample
-    >>> round(believable_choice(likertexample.values_and_weights, value_type=objects.QuestionType.LIKERT), 2)
-    3.16
-    """
-    values = [x[0] for x in values_and_weights]
-    weights = [x[1] for x in values_and_weights]
-    return foundation.weighted_average(values, weights)
-
-
 def believable_choice_categorical_binary(values_and_weights: List[Tuple[str, float]],
                                          minimum_vote: float = _MINIMUM_THRESH) -> Optional[str]:
     """
@@ -105,14 +34,14 @@ def believable_choice_categorical_binary(values_and_weights: List[Tuple[str, flo
     Examples
     --------
     >>> from prios_api.examples import binaryexample
-    >>> print(believable_choice(binaryexample.values_and_weights, value_type=objects.QuestionType.BINARY))
+    >>> print(believable_choice_categorical_binary(binaryexample.values_and_weights))
     No
     >>> from prios_api.examples import categoricalexample
-    >>> print(believable_choice(categoricalexample.values_and_weights, value_type=objects.QuestionType.CATEGORICAL))
+    >>> print(believable_choice_categorical_binary(categoricalexample.values_and_weights))
     None
     >>> from prios_api.examples import singleresponseexample
-    >>> print(believable_choice(singleresponseexample.values_and_weights, value_type=objects.QuestionType.LIKERT))
-    1.0
+    >>> print(believable_choice_categorical_binary(singleresponseexample.values_and_weights))
+    1
     """
     vote = foundation.percent_of_total(values_and_weights)
     for key, value in vote.items():

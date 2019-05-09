@@ -245,6 +245,21 @@ def believable_choice_on_question(question: objects.Question) -> meta.Assertion:
 
     Examples
     --------
+    >>> from prios_api.examples import binaryexample
+    >>> believable_choice_on_question(binaryexample.question).value
+    'No'
+    >>> from prios_api.examples import categoricalexample
+    >>> print(believable_choice_on_question(categoricalexample.question).value)
+    None
+    >>> from prios_api.examples import singleresponseexample
+    >>> round(believable_choice_on_question(singleresponseexample.question).value, 2)
+    1.0
+    >>> from prios_api.examples import scaleexample
+    >>> round(believable_choice_on_question(scaleexample.question).value, 2)
+    7.0
+    >>> from prios_api.examples import likertexample
+    >>> round(believable_choice_on_question(likertexample.question).value, 2)
+    3.16
     """
 
     # Extract responses and question data.
@@ -252,15 +267,21 @@ def believable_choice_on_question(question: objects.Question) -> meta.Assertion:
                           for response in question.responses]
     value_type = question.question_type
 
+
     # Get the Believable choice
     total_believability = sum([x[1] for x in values_and_weights])
 
     if not total_believability:
-        choice = None
+        result = None
+    elif value_type in [objects.QuestionType.CATEGORICAL, objects.QuestionType.BINARY]:
+        result = believable_choice.believable_choice_categorical_binary(values_and_weights)
+    elif value_type in [objects.QuestionType.LIKERT, objects.QuestionType.SCALE]:
+        result = foundation.weighted_average([response.value for response in question.responses],
+                                             [response.source.believability for response in question.responses])
     else:
-        choice = concepts.believable_choice.believable_choice(values_and_weights, value_type)
+        result = None
 
-    return meta.Assertion(source=meta.System, target=question, value=choice)
+    return meta.Assertion(source=meta.System, target=question, value=result)
 
 
 def is_nubby_question(question: objects.Question, question_type,
@@ -394,18 +415,33 @@ def disagrees_with_believable_choice(question: objects.Question) -> List[meta.As
     Examples
     --------
     >>> from prios_api.examples import binaryexample
-    >>> x = out_of_sync_people_on_question(binaryexample.question)
-    >>> for xi in x:
-    ...    print(xi.value)
+    >>> x = disagrees_with_believable_choice(binaryexample.question)
+    >>> print([xi.value for xi in x])
+    [False, True]
+    >>> from prios_api.examples import categoricalexample
+    >>> x = disagrees_with_believable_choice(categoricalexample.question)
+    >>> print([xi.value for xi in x])
+    []
+    >>> from prios_api.examples import scaleexample
+    >>> x = disagrees_with_believable_choice(scaleexample.question)
+    >>> print([xi.value for xi in x])
+    [False, False, False]
+    >>> from prios_api.examples import likertexample
+    >>> x = disagrees_with_believable_choice(likertexample.question)
+    >>> print([xi.value for xi in x])
+    [False, True, False, False, False]
+    >>> from prios_api.examples import singleresponseexample
+    >>> x = disagrees_with_believable_choice(singleresponseexample.question)
+    >>> print([xi.value for xi in x])
+    [False]
     """
     question_type = question.question_type
-    believable_choice_result = believable_choice_on_question(question)
+    believable_choice_result = believable_choice_on_question(question).value
     assertions = []
-    for response in question.responses:
-        disagrees_with_result = disagreement.disagrees_with_167((response, believable_choice_result), question_type)
-        result = disagrees_with_result.value is True and (believable_choice_result.value is True or
-                                                          isinstance(believable_choice_result.value, float))
-        assertions.append(meta.Assertion(source=meta.System, target=response.source, value=result))
+    if believable_choice_result:
+        for response in question.responses:
+            result = disagreement.disagrees_with_167((response.value, believable_choice_result), question_type)
+            assertions.append(meta.Assertion(source=meta.System, target=response.source, value=result))
     return assertions
 
 

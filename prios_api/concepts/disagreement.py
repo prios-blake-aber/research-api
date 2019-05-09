@@ -6,8 +6,10 @@ TBD
 from typing import Tuple, TypeVar, Any
 from prios_api.src import foundation
 from prios_api.domain_objects import meta, objects
+from prios_api.concepts import believable_choice
 
 StringOrFloat = TypeVar("StringOrFloat", str, float)
+QuestionOrNumeric = TypeVar("QuestionOrNumeric", objects.QuestionType, objects.NumericRange)
 _THRESHOLD_HIGH = 1.7
 _THRESHOLD_STD_SCALE = 1.0
 _THRESHOLD_STD_MAPPED_SCALE = 0.5
@@ -15,81 +17,76 @@ _THRESHOLD_POLES = 0.25
 _MINIMUM_THRESH = 0.7
 
 
-def disagrees_with_167(values : Tuple[Any, Any], question_type) -> meta.Assertion:
+def disagrees_with_167(values : Tuple[Any, Any], value_type: QuestionOrNumeric) -> bool:
     """
-    TODO this is currently question specific, we need to make it generic to take in other objects (i.e. Dots)
+    TODO need to handle the Value Type case better, consider Alex's new solution.
 
-    Significantly OOS, etc.
+    Whether or not two values disagree.
 
     Parameters
     ----------
     values
-    question_type
+        Input data
+    value_type
+        Type of values
 
     Returns
     -------
-    objects.AssertionSet
-        Empty set, if none exists.
+    Boolean
+        True, if there is a disagreement.
+
+    Examples
+    --------
+    >>> disagrees_with_167(('yes', 'no'), objects.QuestionType.BINARY)
+    True
+    >>> disagrees_with_167(('no', 'no'), objects.QuestionType.BINARY)
+    False
+    >>> disagrees_with_numeric(5, 7)
+    True
+    >>> disagrees_with_numeric(6, 7)
+    False
     """
-    response, response_value = values
-    categorical_binary = question_type in (objects.QuestionType.CATEGORICAL, objects.QuestionType.BINARY)
-    numeric = question_type in (objects.QuestionType.LIKERT, objects.QuestionType.SCALE)
+    x1, x2 = values
+    categorical_binary = value_type in (objects.QuestionType.CATEGORICAL, objects.QuestionType.BINARY)
+    numeric = value_type in (objects.QuestionType.LIKERT, objects.QuestionType.SCALE, objects.NumericRange)
 
     if categorical_binary:
-        return disagrees_with_categorical_binary(response, response_value)
+        return x1 != x2
     elif numeric:
-        return disagrees_with_numeric(response, response_value)
+        return disagrees_with_numeric(x1, x2)
     else:
         return None
 
 
-def disagrees_with_categorical_binary(response_to_compare: StringOrFloat,
-                                      answer_to_compare: StringOrFloat) -> meta.Assertion:
-    """
-    Disagrees With logic for Categorical/Binary values.
-
-    TODO: Find better home -> is this a core concept?
-
-    Parameters
-    ----------
-    response_to_compare
-    answer_to_compare
-
-    Returns
-    -------
-    meta.Assertion
-        Value is True, if there is a disagreement.
-    """
-    result = response_to_compare != answer_to_compare
-    return meta.Assertion(source=meta.System, target=response_to_compare, value=result)
-
-
-def disagrees_with_numeric(response_to_compare: float,
-                           answer_to_compare: float,
-                           far_away: float=_THRESHOLD_HIGH) -> meta.Assertion:
+def disagrees_with_numeric(x1: float, x2: float, far_away: float=_THRESHOLD_HIGH) -> bool:
     """
     Disagrees With logic for Scale values (1-to-10 or 1-to-5).
 
-    TODO: Find better home -> is this a core concept?
-
     Parameters
     ----------
-    response_to_compare
-    answer_to_compare
+    x1: the value to compare to x2
+    x2: the value to compare to x1
+    far_away: the threshold at which two responses are deemed to be sufficiently different.
 
     Returns
     -------
-    meta.Assertion
-        Value is True, if there is a disagreement.
+    Boolean
+        True, if there is a disagreement.
+
+    Examples
+    --------
+    >>> disagrees_with_numeric(5, 7)
+    True
+    >>> disagrees_with_numeric(6, 7)
+    False
     """
-    buckets = foundation.map_values([response_to_compare, answer_to_compare], objects.NumericRange)
-    same_bucket = buckets[0] == buckets[1]
+    mapped_x1, mapped_x2 = foundation.map_values([x1, x2], objects.NumericRange)
+    same_bucket = mapped_x1 == mapped_x2
 
     try:
-        far_away = abs(response_to_compare - answer_to_compare) > far_away
+        far_away = abs(mapped_x1 - mapped_x2) > far_away
 
-        result = far_away and not same_bucket
-        return meta.Assertion(source=meta.System, target=response_to_compare, value=result)
+        return far_away and not same_bucket
 
     except TypeError:
         return not same_bucket
