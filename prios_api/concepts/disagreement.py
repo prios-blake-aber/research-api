@@ -41,9 +41,9 @@ def disagrees_with_167(values : Tuple[Any, Any], value_type: QuestionOrNumeric) 
     True
     >>> disagrees_with_167(('no', 'no'), objects.QuestionType.BINARY)
     False
-    >>> disagrees_with_numeric(5, 7)
+    >>> disagrees_with_167((5, 7), objects.QuestionType.SCALE)
     True
-    >>> disagrees_with_numeric(6, 7)
+    >>> disagrees_with_167((6, 7), objects.QuestionType.SCALE)
     False
     """
     x1, x2 = values
