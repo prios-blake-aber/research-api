@@ -7,7 +7,6 @@ from typing import List, Dict
 from prios_api.domain_objects import meta, objects
 from prios_api import disagreement, activity
 from prios_api.src import utils
-from prios_api.concepts import disagreement as concept_disagreement
 
 
 _QUORUM_THRESH_DEFAULT = 0.80
@@ -233,6 +232,29 @@ def out_of_sync_people_on_question_41(question: objects.Question) -> List[meta.A
     -------
     List[meta.Assertion]
         Values are True if person is out-of-sync on the question.
+
+    Examples
+    --------
+    >>> from prios_api.examples import binaryexample
+    >>> x = out_of_sync_people_on_question_41(binaryexample.question)
+    >>> print([xi.value for xi in x])
+    [False, True]
+    >>> from prios_api.examples import categoricalexample
+    >>> x = out_of_sync_people_on_question_41(categoricalexample.question)
+    >>> print([xi.value for xi in x])
+    []
+    >>> from prios_api.examples import scaleexample
+    >>> x = out_of_sync_people_on_question_41(scaleexample.question)
+    >>> print([xi.value for xi in x])
+    [False, False, False]
+    >>> from prios_api.examples import likertexample
+    >>> x = out_of_sync_people_on_question_41(likertexample.question)
+    >>> print([xi.value for xi in x])
+    [False, True, False, False, False]
+    >>> from prios_api.examples import singleresponseexample
+    >>> x = out_of_sync_people_on_question_41(singleresponseexample.question)
+    >>> print([xi.value for xi in x])
+    [False]
     """
     return disagreement.disagrees_with_believable_choice(question)
 
