@@ -22,7 +22,9 @@ for question in meeting.questions:
 
 
 for question in meeting.questions:
-    natalie_response = objects.Response(source=natalie, target='Does this work?', value='yes')
-    question.responses.append(natalie_response)
     blake_response = objects.Response(source=blake, target='Does this work?', value='No')
     question.responses.append(blake_response)
+    natalie_response = objects.Response(source=natalie, target='Does this work?', value='Yes')
+    question.responses.append(natalie_response)
+
+values_and_weights = [(response.value, response.source.believability) for response in question.responses]

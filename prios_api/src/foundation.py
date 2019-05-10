@@ -106,6 +106,17 @@ def weighted_average(values: List[float], weights=None) -> float:
     Returns
     -------
     float
+
+    Examples
+    --------
+    >>> round(weighted_average([2, 1, 4, 4, 4], weights=[0.2, 0.01, 0.3, 0, 0]), 3)
+    3.157
+    >>> round(weighted_average([2, 1, 4, 4, 4], weights=None))
+    3.0
+    >>> round(weighted_average(3, weights=None))
+    3.0
+    >>> round(weighted_average(3, weights=0.2))
+    3.0
     """
     return np.average(values, weights=weights)
 
@@ -188,12 +199,22 @@ def percent_of_total(values_and_weights: List[Tuple[StringOrFloat, float]]) -> D
     Returns
     -------
     Dict[StringOrFloat, float]
+
+    Examples
+    --------
+    >>> percent_of_total([])
+    {}
+    >>> percent_of_total([('yes', 0.05), ('no', 0.95)])
+    {'no': 0.95, 'yes': 0.05}
+    >>> percent_of_total([('yes', 5), ('no', 95)])
+    {'no': 0.95, 'yes': 0.05}
     """
     total = sum([x[1] for x in values_and_weights])
     sorted_responses = sorted(values_and_weights, key=lambda x: x[0])
     result = dict()
     for choice, weight in itertools.groupby(sorted_responses, key=lambda x: x[0]):
-        result[choice] = sum(list(weight)) / total
+        sum_weights = sum([x[1] for x in weight])
+        result[choice] = sum_weights / total
     return result
 
 

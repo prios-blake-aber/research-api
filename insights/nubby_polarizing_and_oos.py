@@ -12,7 +12,7 @@ from prios_api.src import utils
 _QUORUM_THRESH_DEFAULT = 0.80
 
 
-def believable_choice_130(question: objects.QuestionType) -> meta.Assertion:
+def believable_choice_on_question_130(question: objects.QuestionType) -> meta.Assertion:
     """
     Believable choice.
 
@@ -232,8 +232,31 @@ def out_of_sync_people_on_question_41(question: objects.Question) -> List[meta.A
     -------
     List[meta.Assertion]
         Values are True if person is out-of-sync on the question.
+
+    Examples
+    --------
+    >>> from prios_api.examples import binaryexample
+    >>> x = out_of_sync_people_on_question_41(binaryexample.question)
+    >>> print([xi.value for xi in x])
+    [False, True]
+    >>> from prios_api.examples import categoricalexample
+    >>> x = out_of_sync_people_on_question_41(categoricalexample.question)
+    >>> print([xi.value for xi in x])
+    []
+    >>> from prios_api.examples import scaleexample
+    >>> x = out_of_sync_people_on_question_41(scaleexample.question)
+    >>> print([xi.value for xi in x])
+    [False, False, False]
+    >>> from prios_api.examples import likertexample
+    >>> x = out_of_sync_people_on_question_41(likertexample.question)
+    >>> print([xi.value for xi in x])
+    [False, True, False, False, False]
+    >>> from prios_api.examples import singleresponseexample
+    >>> x = out_of_sync_people_on_question_41(singleresponseexample.question)
+    >>> print([xi.value for xi in x])
+    [False]
     """
-    return disagreement.out_of_sync_people_on_question(question)
+    return disagreement.disagrees_with_believable_choice(question)
 
 
 def significantly_out_of_sync_114(meeting: objects.Meeting,

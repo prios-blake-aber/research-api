@@ -6,7 +6,7 @@ PRIOS Analytics on Disagreement.
 import numpy as np
 import pandas as pd
 from typing import List, TypeVar, Dict
-from prios_api import activity, concepts
+from prios_api import activity, concepts, disagreement
 from prios_api.concepts import synthesis, polarizing, disagreement, believable_choice, divisiveness
 from prios_api.src import foundation, utils
 from prios_api.domain_objects import meta, objects
@@ -242,6 +242,24 @@ def believable_choice_on_question(question: objects.Question) -> meta.Assertion:
     -------
     meta.Assertion
         Value represents the believable choice answer on the question.
+
+    Examples
+    --------
+    >>> from prios_api.examples import binaryexample
+    >>> believable_choice_on_question(binaryexample.question).value
+    'No'
+    >>> from prios_api.examples import categoricalexample
+    >>> print(believable_choice_on_question(categoricalexample.question).value)
+    None
+    >>> from prios_api.examples import singleresponseexample
+    >>> round(believable_choice_on_question(singleresponseexample.question).value, 2)
+    1.0
+    >>> from prios_api.examples import scaleexample
+    >>> round(believable_choice_on_question(scaleexample.question).value, 2)
+    7.0
+    >>> from prios_api.examples import likertexample
+    >>> round(believable_choice_on_question(likertexample.question).value, 2)
+    3.16
     """
 
     # Extract responses and question data.
@@ -249,15 +267,21 @@ def believable_choice_on_question(question: objects.Question) -> meta.Assertion:
                           for response in question.responses]
     value_type = question.question_type
 
+
     # Get the Believable choice
     total_believability = sum([x[1] for x in values_and_weights])
 
     if not total_believability:
-        choice = None
+        result = None
+    elif value_type in [objects.QuestionType.CATEGORICAL, objects.QuestionType.BINARY]:
+        result = believable_choice.believable_choice_categorical_binary(values_and_weights)
+    elif value_type in [objects.QuestionType.LIKERT, objects.QuestionType.SCALE]:
+        result = foundation.weighted_average([response.value for response in question.responses],
+                                             [response.source.believability for response in question.responses])
     else:
-        choice = concepts.believable_choice.believable_choice(values_and_weights, value_type)
+        result = None
 
-    return meta.Assertion(source=objects.System, target=question, value=choice)
+    return meta.Assertion(source=meta.System, target=question, value=result)
 
 
 def is_nubby_question(question: objects.Question, question_type,
@@ -349,38 +373,6 @@ def meeting_nubbiness_v1(meeting: objects.Meeting,
     )
 
 
-def out_of_sync_people_on_question(question: objects.Question) -> List[meta.Assertion]:
-    """
-    Identifies people who are out-of-sync on a question.
-
-    TODO: Move logic to prios_api.
-
-    Parameters
-    ----------
-    question
-
-    Returns
-    -------
-    List[meta.Assertion]
-        Values are True if person is out-of-sync on the question.
-
-    Examples
-    --------
-    >>> from prios_api.examples import binaryexample
-    >>> x = out_of_sync_people_on_question(binaryexample.question)
-    >>> for xi in x:
-    ...    print(xi.value)
-    """
-    believable_choice_result = believable_choice_on_question(question)
-    disagrees_with_result = disagreement.disagrees_with_167(question)
-    people = []
-    for response in question.responses:
-        result = disagrees_with_result and (believable_choice_result or isinstance(believable_choice_result, float))
-        people.append(meta.Assertion(source=objects.System, target=response.source, value=result,
-                                     measure=objects.AssertionSet))
-    return people
-
-
 def believable_consensus_exists(question: objects.Question) -> meta.Assertion:
     """
     TODO: Needs clarification on where it lives conceptually, what the I/O types should be, whether it can be refactored
@@ -405,6 +397,52 @@ def believable_consensus_exists(question: objects.Question) -> meta.Assertion:
     else:
         results = False
         return meta.Assertion(source=objects.System, target=question, value=results, measure=objects.BooleanOption)
+
+
+def disagrees_with_believable_choice(question: objects.Question) -> List[meta.Assertion]:
+    """
+    Whether the responses in a question disagree with the believable choice.
+
+    Parameters
+    ----------
+    question
+
+    Returns
+    -------
+    List[meta.Assertion]
+        Values are True if person is out-of-sync on the question.
+
+    Examples
+    --------
+    >>> from prios_api.examples import binaryexample
+    >>> x = disagrees_with_believable_choice(binaryexample.question)
+    >>> print([xi.value for xi in x])
+    [False, True]
+    >>> from prios_api.examples import categoricalexample
+    >>> x = disagrees_with_believable_choice(categoricalexample.question)
+    >>> print([xi.value for xi in x])
+    []
+    >>> from prios_api.examples import scaleexample
+    >>> x = disagrees_with_believable_choice(scaleexample.question)
+    >>> print([xi.value for xi in x])
+    [False, False, False]
+    >>> from prios_api.examples import likertexample
+    >>> x = disagrees_with_believable_choice(likertexample.question)
+    >>> print([xi.value for xi in x])
+    [False, True, False, False, False]
+    >>> from prios_api.examples import singleresponseexample
+    >>> x = disagrees_with_believable_choice(singleresponseexample.question)
+    >>> print([xi.value for xi in x])
+    [False]
+    """
+    question_type = question.question_type
+    believable_choice_result = believable_choice_on_question(question).value
+    assertions = []
+    if believable_choice_result:
+        for response in question.responses:
+            result = disagreement.disagrees_with_167((response.value, believable_choice_result), question_type)
+            assertions.append(meta.Assertion(source=meta.System, target=response.source, value=result))
+    return assertions
 
 
 def significantly_out_of_sync_in_meeting(meeting: objects.Meeting,
@@ -464,3 +502,4 @@ def significantly_out_of_sync_in_meeting(meeting: objects.Meeting,
             meta.Assertion(source=objects.System, target=person, value=result_person)
         ]
     return results
+
